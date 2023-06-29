@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  NumberOfReportedLevels="1E-6" NormalizeReportingVariables="Y" DecileBin="20" LiftEpsilon="1E-6"
+ ProfitEpsilon="1E-6" RoiEpsilon="1E-6" ScoreDistBin="20" RocChart="Y" RocEpsilon="0.01"
+ AssessAllTargetLevels="N" SelectionData="DEFAULT" HPCriteria="_MISC_" intervalViyaCriteria="DEFAULT"
+ classViyaCriteria="DEFAULT" SelectionTable="TEST" SelectionCriteria="DEFAULT" SelectionDepth="10"
+ NumberofBins="100" RecomputeAssess="N" TargetName="Attrition_Flag" ModelId="Boost2"
+ ModelDescription="Modifed 1 Boost" ModelCriteria="Valid: Misclassification Rate"
+ ForceRun="N" RunAction="Train" Component="ModelCompare" RawCreateTime="1964211258.5"
+ CreateTime="29MAR2022:22:14:19" RunId="ea356c4d-ab6f-4f31-a1ab-2e1b4ca8511b" StatisticUsed="_VMISC_"
+ TargetLabel="" RawLastTimeRun="1965137141.2" RawRunTime="31.296000004" LastTimeRun="09APR2022:15:25:41"
+ RunTime="0 Hr. 0 Min. 31.30 Sec.">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES/>
+</_ROOT_>

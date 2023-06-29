@@ -1,0 +1,694 @@
+*------------------------------------------------------------*
+User:                Kevin
+Date:                April 09, 2022
+Time:                15:09:38
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+INPUT      INTERVAL          5
+INPUT      NOMINAL           6
+TARGET     BINARY            1
+ 
+ 
+ 
+ 
+Model Events
+ 
+                                          Number
+                           Measurement      of
+    Target        Event       Level       Levels      Order       Label
+ 
+Attrition_Flag      1        BINARY          2      Descending
+ 
+ 
+ 
+ 
+Predicted and decision variables
+ 
+Type             Variable                    Label
+ 
+TARGET       Attrition_Flag
+PREDICTED    P_Attrition_Flag1    Predicted: Attrition_Flag=1
+RESIDUAL     R_Attrition_Flag1    Residual: Attrition_Flag=1
+PREDICTED    P_Attrition_Flag0    Predicted: Attrition_Flag=0
+RESIDUAL     R_Attrition_Flag0    Residual: Attrition_Flag=0
+FROM         F_Attrition_Flag     From: Attrition_Flag
+INTO         I_Attrition_Flag     Into: Attrition_Flag
+ 
+ 
+ 
+ 
+ 
+The DMREG Procedure
+ 
+                Model Information
+ 
+Training Data Set              WORK.EM_DMREG.VIEW
+DMDB Catalog                   WORK.REG2_DMDB
+Target Variable                Attrition_Flag
+Target Measurement Level       Ordinal
+Number of Target Categories    2
+Error                          MBernoulli
+Link Function                  Logit
+Number of Model Parameters     41
+Number of Observations         7594
+ 
+ 
+            Target Profile
+ 
+ Ordered     Attrition_         Total
+   Value     Flag           Frequency
+ 
+       1     1                   1220
+       2     0                   6374
+ 
+ 
+ 
+ 
+Backward Elimination Procedure
+ 
+ 
+Step 0: The following effects were entered.
+ 
+Intercept  G_Contacts_Count_12_mon  G_Customer_Age  G_Months_Inactive_12_mon  G_Months_on_book
+ G_Total_Relationship_Count  G_Total_Trans_Ct  RANGE_LOG_Total_Trans_Amt
+RANGE_SQRT_Avg_Utilization_Ratio  RANGE_SQRT_Total_Amt_Chng_Q4_Q1
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1  RANGE_Total_Revolving_Bal
+ 
+ 
+ 
+ 
+ 
+The DMREG Procedure
+ 
+Dual Quasi-Newton Optimization
+ 
+Dual Broyden - Fletcher - Goldfarb - Shanno Update (DBFGS)
+ 
+Parameter Estimates              41
+ 
+                                      Optimization Start
+ 
+Active Constraints                           0  Objective Function                3347.0658366
+Max Abs Gradient Element           599.0624177
+ 
+ 
+                                                       Objective   Max Abs            Slope of
+                 Function       Active      Objective   Function  Gradient     Step     Search
+Iter   Restarts     Calls  Constraints       Function     Change   Element     Size  Direction
+ 
+   1          0         5            0           1963     1383.8     508.0    0.905    -3234.3
+   2          0         9            0           1693      270.4     127.9    2.000     -312.3
+   3          0        13            0           1607    85.7092   43.5039    2.000    -86.449
+   4          0        17            0           1584    22.6437   25.9864    2.256    -19.954
+   5          0        21            0           1579     5.4139   14.1027    2.000     -5.597
+   6          0        24            0           1577     2.0299    4.3295    2.741     -1.468
+   7          0        27            0           1577     0.4007    1.7765    1.614     -0.475
+   8          0        30            0           1577     0.0609    0.5091    2.089    -0.0576
+   9          0        33            0           1577     0.0293    0.4954    3.190    -0.0185
+  10          0        35            0           1577     0.0279    1.5852    5.157    -0.0142
+  11          0        37            0           1576     0.0371    0.5633    2.751    -0.0253
+  12          0        39            0           1576     0.0464    0.4389    3.833    -0.0242
+  13          0        42            0           1576     0.0257    0.5857    3.471    -0.0160
+  14          0        45            0           1576     0.0122    0.5543    2.343    -0.0107
+  15          0        48            0           1576    0.00710    0.2406    3.249    -0.0046
+  16          0        51            0           1576    0.00233    0.1322    2.495    -0.0020
+  17          0        54            0           1576    0.00105    0.1266    2.783    -0.0008
+ 
+                                     Optimization Results
+ 
+Iterations                                  17  Function Calls                              56
+Gradient Calls                              24  Active Constraints                           0
+Objective Function                1576.4041692  Max Abs Gradient Element           0.126588188
+Slope of Search Direction         -0.000795252
+ 
+Convergence criterion (GCONV=1E-6) satisfied.
+ 
+NOTE: At least one element of the gradient is greater than 1e-3.
+ 
+ 
+ 
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+ 
+   6694.132        3152.808      3541.3233       40         <.0001
+ 
+ 
+                     Type 3 Analysis of Effects
+ 
+                                                  Wald
+Effect                                DF    Chi-Square    Pr > ChiSq
+ 
+G_Contacts_Count_12_mon                4       90.9728        <.0001
+G_Customer_Age                        10       59.1934        <.0001
+G_Months_Inactive_12_mon               4      125.6169        <.0001
+G_Months_on_book                       8       36.8424        <.0001
+G_Total_Relationship_Count             2      237.6844        <.0001
+G_Total_Trans_Ct                       7      596.9710        <.0001
+RANGE_LOG_Total_Trans_Amt              1      134.7924        <.0001
+RANGE_SQRT_Avg_Utilization_Ratio       1        9.9346        0.0016
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1        1        4.2701        0.0388
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1         1      172.9904        <.0001
+RANGE_Total_Revolving_Bal              1       53.6118        <.0001
+ 
+ 
+                         Analysis of Maximum Likelihood Estimates
+ 
+                                                Standard       Wald            Standardized
+Parameter                           DF Estimate    Error Chi-Square Pr > ChiSq     Estimate
+ 
+Intercept                            1   7.1910   5.8913       1.49     0.2222
+G_Contacts_Count_12_mon          0   1  10.3818  23.4769       0.20     0.6583
+G_Contacts_Count_12_mon          1   1  -1.4988   5.8734       0.07     0.7986
+G_Contacts_Count_12_mon          2   1  -2.3580   5.8698       0.16     0.6879
+G_Contacts_Count_12_mon          3   1  -2.9725   5.8700       0.26     0.6126
+G_Customer_Age                   0   1   2.2228   2.0881       1.13     0.2871
+G_Customer_Age                   1   1   0.5540   0.3959       1.96     0.1617
+G_Customer_Age                   2   1   0.3676   0.3123       1.39     0.2392
+G_Customer_Age                   3   1   0.7353   0.3270       5.06     0.0245
+G_Customer_Age                   4   1   0.2872   0.2668       1.16     0.2816
+G_Customer_Age                   5   1   0.3494   0.2675       1.71     0.1914
+G_Customer_Age                   6   1   0.0235   0.2606       0.01     0.9281
+G_Customer_Age                   7   1   0.0266   0.2696       0.01     0.9215
+G_Customer_Age                   8   1  -0.5231   0.2909       3.23     0.0722
+G_Customer_Age                   9   1  -1.5895   0.4012      15.70     <.0001
+G_Months_Inactive_12_mon         0   1   1.9344   0.6468       8.94     0.0028
+G_Months_Inactive_12_mon         1   1   0.2555   0.2285       1.25     0.2635
+G_Months_Inactive_12_mon         2   1  -0.0520   0.1778       0.09     0.7700
+G_Months_Inactive_12_mon         3   1  -0.4366   0.1806       5.84     0.0156
+G_Months_on_book                 0   1   0.3302   0.3499       0.89     0.3452
+G_Months_on_book                 1   1   1.8741   0.4335      18.69     <.0001
+G_Months_on_book                 2   1   0.0514   0.1362       0.14     0.7058
+G_Months_on_book                 3   1  -0.0253   0.1138       0.05     0.8239
+G_Months_on_book                 4   1  -0.1979   0.1622       1.49     0.2226
+G_Months_on_book                 5   1  -0.3653   0.1569       5.42     0.0199
+G_Months_on_book                 6   1  -0.3993   0.1410       8.02     0.0046
+G_Months_on_book                 7   1  -0.3942   0.1697       5.40     0.0202
+G_Total_Relationship_Count       0   1   1.3258   0.0924     205.71     <.0001
+G_Total_Relationship_Count       1   1  -0.4600   0.0779      34.91     <.0001
+G_Total_Trans_Ct                 0   1   4.8337   0.7511      41.42     <.0001
+G_Total_Trans_Ct                 1   1   1.5850   0.1708      86.11     <.0001
+G_Total_Trans_Ct                 2   1   1.0411   0.1568      44.07     <.0001
+G_Total_Trans_Ct                 3   1   0.7657   0.1685      20.65     <.0001
+G_Total_Trans_Ct                 4   1   0.2265   0.1723       1.73     0.1888
+G_Total_Trans_Ct                 5   1  -0.2432   0.1479       2.71     0.0999
+G_Total_Trans_Ct                 6   1  -2.4060   0.1615     221.86     <.0001
+RANGE_LOG_Total_Trans_Amt            1   5.6443   0.4862     134.79     <.0001       0.6189
+RANGE_SQRT_Avg_Utilization_Ratio     1  -0.7801   0.2475       9.93     0.0016      -0.1347
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1      1  -1.5306   0.7407       4.27     0.0388      -0.0548
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1       1  -9.5849   0.7287     172.99     <.0001      -0.3732
+RANGE_Total_Revolving_Bal            1  -1.6585   0.2265      53.61     <.0001      -0.2965
+ 
+  Analysis of Maximum Likelihood Estimates
+ 
+Parameter                           Exp(Est)
+ 
+Intercept                            999.000
+G_Contacts_Count_12_mon          0   999.000
+G_Contacts_Count_12_mon          1     0.223
+G_Contacts_Count_12_mon          2     0.095
+G_Contacts_Count_12_mon          3     0.051
+G_Customer_Age                   0     9.233
+G_Customer_Age                   1     1.740
+G_Customer_Age                   2     1.444
+G_Customer_Age                   3     2.086
+G_Customer_Age                   4     1.333
+G_Customer_Age                   5     1.418
+G_Customer_Age                   6     1.024
+G_Customer_Age                   7     1.027
+G_Customer_Age                   8     0.593
+G_Customer_Age                   9     0.204
+G_Months_Inactive_12_mon         0     6.920
+G_Months_Inactive_12_mon         1     1.291
+G_Months_Inactive_12_mon         2     0.949
+G_Months_Inactive_12_mon         3     0.646
+G_Months_on_book                 0     1.391
+G_Months_on_book                 1     6.515
+G_Months_on_book                 2     1.053
+G_Months_on_book                 3     0.975
+G_Months_on_book                 4     0.820
+G_Months_on_book                 5     0.694
+G_Months_on_book                 6     0.671
+G_Months_on_book                 7     0.674
+G_Total_Relationship_Count       0     3.765
+G_Total_Relationship_Count       1     0.631
+G_Total_Trans_Ct                 0   125.681
+G_Total_Trans_Ct                 1     4.879
+G_Total_Trans_Ct                 2     2.832
+G_Total_Trans_Ct                 3     2.150
+G_Total_Trans_Ct                 4     1.254
+G_Total_Trans_Ct                 5     0.784
+G_Total_Trans_Ct                 6     0.090
+RANGE_LOG_Total_Trans_Amt            282.688
+RANGE_SQRT_Avg_Utilization_Ratio       0.458
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1        0.216
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1         0.000
+RANGE_Total_Revolving_Bal              0.190
+ 
+ 
+                Odds Ratio Estimates
+ 
+                                                Point
+Effect                                       Estimate
+ 
+G_Contacts_Count_12_mon          0 vs 4       999.000
+G_Contacts_Count_12_mon          1 vs 4         7.797
+G_Contacts_Count_12_mon          2 vs 4         3.302
+G_Contacts_Count_12_mon          3 vs 4         1.786
+G_Customer_Age                   0 vs 10      107.415
+G_Customer_Age                   1 vs 10       20.244
+G_Customer_Age                   2 vs 10       16.802
+G_Customer_Age                   3 vs 10       24.269
+G_Customer_Age                   4 vs 10       15.504
+G_Customer_Age                   5 vs 10       16.500
+G_Customer_Age                   6 vs 10       11.910
+G_Customer_Age                   7 vs 10       11.947
+G_Customer_Age                   8 vs 10        6.895
+G_Customer_Age                   9 vs 10        2.374
+G_Months_Inactive_12_mon         0 vs 4        37.930
+G_Months_Inactive_12_mon         1 vs 4         7.076
+G_Months_Inactive_12_mon         2 vs 4         5.203
+G_Months_Inactive_12_mon         3 vs 4         3.542
+G_Months_on_book                 0 vs 8         3.333
+G_Months_on_book                 1 vs 8        15.608
+G_Months_on_book                 2 vs 8         2.522
+G_Months_on_book                 3 vs 8         2.336
+G_Months_on_book                 4 vs 8         1.966
+G_Months_on_book                 5 vs 8         1.663
+G_Months_on_book                 6 vs 8         1.607
+G_Months_on_book                 7 vs 8         1.615
+G_Total_Relationship_Count       0 vs 2         8.950
+G_Total_Relationship_Count       1 vs 2         1.501
+G_Total_Trans_Ct                 0 vs 7       999.000
+G_Total_Trans_Ct                 1 vs 7       999.000
+G_Total_Trans_Ct                 2 vs 7       937.995
+G_Total_Trans_Ct                 3 vs 7       712.174
+G_Total_Trans_Ct                 4 vs 7       415.353
+G_Total_Trans_Ct                 5 vs 7       259.671
+G_Total_Trans_Ct                 6 vs 7        29.864
+RANGE_LOG_Total_Trans_Amt                     282.688
+RANGE_SQRT_Avg_Utilization_Ratio                0.458
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1                 0.216
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1                 <0.001
+RANGE_Total_Revolving_Bal                       0.190
+ 
+ 
+NOTE: No (additional) effects met the 0.05 significance level for removal from the model.
+ 
+ 
+ 
+ 
+The selected model is the model trained in the last step (Step 0). It consists of the
+following effects:
+ 
+Intercept  G_Contacts_Count_12_mon  G_Customer_Age  G_Months_Inactive_12_mon  G_Months_on_book
+ G_Total_Relationship_Count  G_Total_Trans_Ct  RANGE_LOG_Total_Trans_Amt
+RANGE_SQRT_Avg_Utilization_Ratio  RANGE_SQRT_Total_Amt_Chng_Q4_Q1
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1  RANGE_Total_Revolving_Bal
+ 
+ 
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+ 
+   6694.132        3152.808      3541.3233       40         <.0001
+ 
+ 
+                     Type 3 Analysis of Effects
+ 
+                                                  Wald
+Effect                                DF    Chi-Square    Pr > ChiSq
+ 
+G_Contacts_Count_12_mon                4       90.9728        <.0001
+G_Customer_Age                        10       59.1934        <.0001
+G_Months_Inactive_12_mon               4      125.6169        <.0001
+G_Months_on_book                       8       36.8424        <.0001
+G_Total_Relationship_Count             2      237.6844        <.0001
+G_Total_Trans_Ct                       7      596.9710        <.0001
+RANGE_LOG_Total_Trans_Amt              1      134.7924        <.0001
+RANGE_SQRT_Avg_Utilization_Ratio       1        9.9346        0.0016
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1        1        4.2701        0.0388
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1         1      172.9904        <.0001
+RANGE_Total_Revolving_Bal              1       53.6118        <.0001
+ 
+ 
+                         Analysis of Maximum Likelihood Estimates
+ 
+                                                Standard       Wald            Standardized
+Parameter                           DF Estimate    Error Chi-Square Pr > ChiSq     Estimate
+ 
+Intercept                            1   7.1910   5.8913       1.49     0.2222
+G_Contacts_Count_12_mon          0   1  10.3818  23.4769       0.20     0.6583
+G_Contacts_Count_12_mon          1   1  -1.4988   5.8734       0.07     0.7986
+G_Contacts_Count_12_mon          2   1  -2.3580   5.8698       0.16     0.6879
+G_Contacts_Count_12_mon          3   1  -2.9725   5.8700       0.26     0.6126
+G_Customer_Age                   0   1   2.2228   2.0881       1.13     0.2871
+G_Customer_Age                   1   1   0.5540   0.3959       1.96     0.1617
+G_Customer_Age                   2   1   0.3676   0.3123       1.39     0.2392
+G_Customer_Age                   3   1   0.7353   0.3270       5.06     0.0245
+G_Customer_Age                   4   1   0.2872   0.2668       1.16     0.2816
+G_Customer_Age                   5   1   0.3494   0.2675       1.71     0.1914
+G_Customer_Age                   6   1   0.0235   0.2606       0.01     0.9281
+G_Customer_Age                   7   1   0.0266   0.2696       0.01     0.9215
+G_Customer_Age                   8   1  -0.5231   0.2909       3.23     0.0722
+G_Customer_Age                   9   1  -1.5895   0.4012      15.70     <.0001
+G_Months_Inactive_12_mon         0   1   1.9344   0.6468       8.94     0.0028
+G_Months_Inactive_12_mon         1   1   0.2555   0.2285       1.25     0.2635
+G_Months_Inactive_12_mon         2   1  -0.0520   0.1778       0.09     0.7700
+G_Months_Inactive_12_mon         3   1  -0.4366   0.1806       5.84     0.0156
+G_Months_on_book                 0   1   0.3302   0.3499       0.89     0.3452
+G_Months_on_book                 1   1   1.8741   0.4335      18.69     <.0001
+G_Months_on_book                 2   1   0.0514   0.1362       0.14     0.7058
+G_Months_on_book                 3   1  -0.0253   0.1138       0.05     0.8239
+G_Months_on_book                 4   1  -0.1979   0.1622       1.49     0.2226
+G_Months_on_book                 5   1  -0.3653   0.1569       5.42     0.0199
+G_Months_on_book                 6   1  -0.3993   0.1410       8.02     0.0046
+G_Months_on_book                 7   1  -0.3942   0.1697       5.40     0.0202
+G_Total_Relationship_Count       0   1   1.3258   0.0924     205.71     <.0001
+G_Total_Relationship_Count       1   1  -0.4600   0.0779      34.91     <.0001
+G_Total_Trans_Ct                 0   1   4.8337   0.7511      41.42     <.0001
+G_Total_Trans_Ct                 1   1   1.5850   0.1708      86.11     <.0001
+G_Total_Trans_Ct                 2   1   1.0411   0.1568      44.07     <.0001
+G_Total_Trans_Ct                 3   1   0.7657   0.1685      20.65     <.0001
+G_Total_Trans_Ct                 4   1   0.2265   0.1723       1.73     0.1888
+G_Total_Trans_Ct                 5   1  -0.2432   0.1479       2.71     0.0999
+G_Total_Trans_Ct                 6   1  -2.4060   0.1615     221.86     <.0001
+RANGE_LOG_Total_Trans_Amt            1   5.6443   0.4862     134.79     <.0001       0.6189
+RANGE_SQRT_Avg_Utilization_Ratio     1  -0.7801   0.2475       9.93     0.0016      -0.1347
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1      1  -1.5306   0.7407       4.27     0.0388      -0.0548
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1       1  -9.5849   0.7287     172.99     <.0001      -0.3732
+RANGE_Total_Revolving_Bal            1  -1.6585   0.2265      53.61     <.0001      -0.2965
+ 
+  Analysis of Maximum Likelihood Estimates
+ 
+Parameter                           Exp(Est)
+ 
+Intercept                            999.000
+G_Contacts_Count_12_mon          0   999.000
+G_Contacts_Count_12_mon          1     0.223
+G_Contacts_Count_12_mon          2     0.095
+G_Contacts_Count_12_mon          3     0.051
+G_Customer_Age                   0     9.233
+G_Customer_Age                   1     1.740
+G_Customer_Age                   2     1.444
+G_Customer_Age                   3     2.086
+G_Customer_Age                   4     1.333
+G_Customer_Age                   5     1.418
+G_Customer_Age                   6     1.024
+G_Customer_Age                   7     1.027
+G_Customer_Age                   8     0.593
+G_Customer_Age                   9     0.204
+G_Months_Inactive_12_mon         0     6.920
+G_Months_Inactive_12_mon         1     1.291
+G_Months_Inactive_12_mon         2     0.949
+G_Months_Inactive_12_mon         3     0.646
+G_Months_on_book                 0     1.391
+G_Months_on_book                 1     6.515
+G_Months_on_book                 2     1.053
+G_Months_on_book                 3     0.975
+G_Months_on_book                 4     0.820
+G_Months_on_book                 5     0.694
+G_Months_on_book                 6     0.671
+G_Months_on_book                 7     0.674
+G_Total_Relationship_Count       0     3.765
+G_Total_Relationship_Count       1     0.631
+G_Total_Trans_Ct                 0   125.681
+G_Total_Trans_Ct                 1     4.879
+G_Total_Trans_Ct                 2     2.832
+G_Total_Trans_Ct                 3     2.150
+G_Total_Trans_Ct                 4     1.254
+G_Total_Trans_Ct                 5     0.784
+G_Total_Trans_Ct                 6     0.090
+RANGE_LOG_Total_Trans_Amt            282.688
+RANGE_SQRT_Avg_Utilization_Ratio       0.458
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1        0.216
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1         0.000
+RANGE_Total_Revolving_Bal              0.190
+ 
+ 
+                Odds Ratio Estimates
+ 
+                                                Point
+Effect                                       Estimate
+ 
+G_Contacts_Count_12_mon          0 vs 4       999.000
+G_Contacts_Count_12_mon          1 vs 4         7.797
+G_Contacts_Count_12_mon          2 vs 4         3.302
+G_Contacts_Count_12_mon          3 vs 4         1.786
+G_Customer_Age                   0 vs 10      107.415
+G_Customer_Age                   1 vs 10       20.244
+G_Customer_Age                   2 vs 10       16.802
+G_Customer_Age                   3 vs 10       24.269
+G_Customer_Age                   4 vs 10       15.504
+G_Customer_Age                   5 vs 10       16.500
+G_Customer_Age                   6 vs 10       11.910
+G_Customer_Age                   7 vs 10       11.947
+G_Customer_Age                   8 vs 10        6.895
+G_Customer_Age                   9 vs 10        2.374
+G_Months_Inactive_12_mon         0 vs 4        37.930
+G_Months_Inactive_12_mon         1 vs 4         7.076
+G_Months_Inactive_12_mon         2 vs 4         5.203
+G_Months_Inactive_12_mon         3 vs 4         3.542
+G_Months_on_book                 0 vs 8         3.333
+G_Months_on_book                 1 vs 8        15.608
+G_Months_on_book                 2 vs 8         2.522
+G_Months_on_book                 3 vs 8         2.336
+G_Months_on_book                 4 vs 8         1.966
+G_Months_on_book                 5 vs 8         1.663
+G_Months_on_book                 6 vs 8         1.607
+G_Months_on_book                 7 vs 8         1.615
+G_Total_Relationship_Count       0 vs 2         8.950
+G_Total_Relationship_Count       1 vs 2         1.501
+G_Total_Trans_Ct                 0 vs 7       999.000
+G_Total_Trans_Ct                 1 vs 7       999.000
+G_Total_Trans_Ct                 2 vs 7       937.995
+G_Total_Trans_Ct                 3 vs 7       712.174
+G_Total_Trans_Ct                 4 vs 7       415.353
+G_Total_Trans_Ct                 5 vs 7       259.671
+G_Total_Trans_Ct                 6 vs 7        29.864
+RANGE_LOG_Total_Trans_Amt                     282.688
+RANGE_SQRT_Avg_Utilization_Ratio                0.458
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1                 0.216
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1                 <0.001
+RANGE_Total_Revolving_Bal                       0.190
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Fit Statistics
+ 
+Target=Attrition_Flag Target Label=' '
+ 
+   Fit
+Statistics    Statistics Label                     Train    Validation
+ 
+ _AIC_        Akaike's Information Criterion     3234.81          .
+ _ASE_        Average Squared Error                 0.06         0.06
+ _AVERR_      Average Error Function                0.21         0.20
+ _DFE_        Degrees of Freedom for Error       7553.00          .
+ _DFM_        Model Degrees of Freedom             41.00          .
+ _DFT_        Total Degrees of Freedom           7594.00          .
+ _DIV_        Divisor for ASE                   15188.00      5066.00
+ _ERR_        Error Function                     3152.81      1002.17
+ _FPE_        Final Prediction Error                0.06          .
+ _MAX_        Maximum Absolute Error                1.00         1.00
+ _MSE_        Mean Square Error                     0.06         0.06
+ _NOBS_       Sum of Frequencies                 7594.00      2533.00
+ _NW_         Number of Estimate Weights           41.00          .
+ _RASE_       Root Average Sum of Squares           0.24         0.24
+ _RFPE_       Root Final Prediction Error           0.24          .
+ _RMSE_       Root Mean Squared Error               0.24         0.24
+ _SBC_        Schwarz's Bayesian Criterion       3519.15          .
+ _SSE_        Sum of Squared Errors               882.15       296.81
+ _SUMW_       Sum of Case Weights Times Freq    15188.00      5066.00
+ _MISC_       Misclassification Rate                0.08         0.08
+ 
+ 
+ 
+ 
+Classification Table
+ 
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+  0          0         93.6944       97.4427        6211        81.7883
+  1          0          6.3056       34.2623         418         5.5043
+  0          1         16.8912        2.5573         163         2.1464
+  1          1         83.1088       65.7377         802        10.5610
+ 
+ 
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+  0          0         94.0018       96.5663        2053        81.0501
+  1          0          5.9982       32.1867         131         5.1717
+  0          1         20.9169        3.4337          73         2.8820
+  1          1         79.0831       67.8133         276        10.8962
+ 
+ 
+ 
+ 
+Event Classification Table
+ 
+Data Role=TRAIN Target=Attrition_Flag Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   418        6211         163         802
+ 
+ 
+Data Role=VALIDATE Target=Attrition_Flag Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   131        2053         73          276
+ 
+ 
+ 
+ 
+Assessment Score Rankings
+ 
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    506.079   6.06079     6.06079     97.3684     97.3684         380         0.94969
+  10    465.127   5.24176     5.65127     84.2105     90.7895         380         0.77324
+  15    382.133   3.16144     4.82133     50.7895     77.4561         380         0.51692
+  20    304.045   1.69164     4.04045     27.1768     64.9111         379         0.31911
+  25    246.138   1.14664     3.46138     18.4211     55.6082         380         0.21158
+  30    199.622   0.67160     2.99622     10.7895     48.1351         380         0.13908
+  35    163.456   0.45986     2.63456      7.3879     42.3251         379         0.09563
+  40    133.371   0.22933     2.33371      3.6842     37.4918         380         0.06601
+  45    109.793   0.21295     2.09793      3.4211     33.7039         380         0.04539
+  50     90.656   0.18066     1.90656      2.9024     30.6294         379         0.03162
+  55     75.099   0.19657     1.75099      3.1579     28.1302         380         0.02221
+  60     61.864   0.16381     1.61864      2.6316     26.0039         380         0.01557
+  65     50.666   0.16381     1.50666      2.6316     24.2050         380         0.01043
+  70     40.627   0.09854     1.40627      1.5831     22.5922         379         0.00652
+  75     32.229   0.14742     1.32229      2.3684     21.2430         380         0.00399
+  80     24.369   0.06552     1.24369      1.0526     19.9803         380         0.00230
+  85     17.356   0.04927     1.17356      0.7916     18.8536         379         0.00130
+  90     11.014   0.03276     1.11014      0.5263     17.8347         380         0.00069
+  95      5.253   0.01638     1.05253      0.2632     16.9092         380         0.00037
+ 100      0.000   0.00000     1.00000      0.0000     16.0653         379         0.00013
+ 
+ 
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    512.558   6.12558     6.12558     98.4252     98.4252         127         0.95769
+  10    443.951   4.75345     5.43951     76.3780     87.4016         127         0.79471
+  15    378.234   3.45755     4.78234     55.5556     76.8421         126         0.56356
+  20    309.996   2.05819     4.09996     33.0709     65.8777         127         0.36700
+  25    249.463   1.07810     3.49463     17.3228     56.1514         127         0.23694
+  30    204.628   0.79030     3.04628     12.6984     48.9474         126         0.15018
+  35    167.327   0.44104     2.67327      7.0866     42.9538         127         0.10043
+  40    139.369   0.44104     2.39369      7.0866     38.4615         127         0.06790
+  45    116.734   0.34575     2.16734      5.5556     34.8246         126         0.04612
+  50     95.991   0.09801     1.95991      1.5748     31.4917         127         0.03202
+  55     78.582   0.04900     1.78582      0.7874     28.6944         127         0.02255
+  60     64.598   0.09879     1.64598      1.5873     26.4474         126         0.01505
+  65     52.661   0.09801     1.52661      1.5748     24.5294         127         0.00995
+  70     41.732   0.00000     1.41732      0.0000     22.7734         127         0.00655
+  75     32.988   0.09879     1.32988      1.5873     21.3684         126         0.00421
+  80     24.963   0.04900     1.24963      0.7874     20.0789         127         0.00234
+  85     17.595   0.00000     1.17595      0.0000     18.8951         127         0.00125
+  90     11.096   0.00000     1.11096      0.0000     17.8509         126         0.00074
+  95      5.235   0.00000     1.05235      0.0000     16.9090         127         0.00038
+ 100      0.000   0.00000     1.00000      0.0000     16.0679         126         0.00015
+ 
+ 
+ 
+ 
+Assessment Score Distribution
+ 
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       212           1        0.98214         2.8048
+ 0.90-0.95        95           4        0.92584         1.3037
+ 0.85-0.90       114           7        0.87302         1.5934
+ 0.80-0.85        89          11        0.82408         1.3168
+ 0.75-0.80        73           8        0.77746         1.0666
+ 0.70-0.75        60          23        0.72582         1.0930
+ 0.65-0.70        47          17        0.67576         0.8428
+ 0.60-0.65        44          28        0.62679         0.9481
+ 0.55-0.60        37          32        0.57347         0.9086
+ 0.50-0.55        31          32        0.52294         0.8296
+ 0.45-0.50        49          39        0.47473         1.1588
+ 0.40-0.45        29          47        0.42077         1.0008
+ 0.35-0.40        33          78        0.37350         1.4617
+ 0.30-0.35        46          94        0.32269         1.8436
+ 0.25-0.30        38         139        0.27316         2.3308
+ 0.20-0.25        37         151        0.22514         2.4756
+ 0.15-0.20        33         230        0.17421         3.4633
+ 0.10-0.15        39         372        0.12260         5.4122
+ 0.05-0.10        39         662        0.07228         9.2310
+ 0.00-0.05        75        4399        0.01097        58.9149
+ 
+ 
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       77            1        0.98083         3.0794
+ 0.90-0.95       42            1        0.92411         1.6976
+ 0.85-0.90       38            5        0.87594         1.6976
+ 0.80-0.85       23            2        0.82328         0.9870
+ 0.75-0.80       18            9        0.77877         1.0659
+ 0.70-0.75       17            7        0.72522         0.9475
+ 0.65-0.70       17           12        0.67650         1.1449
+ 0.60-0.65       21           12        0.62192         1.3028
+ 0.55-0.60       13           11        0.57431         0.9475
+ 0.50-0.55       10           13        0.52401         0.9080
+ 0.45-0.50       17           16        0.47177         1.3028
+ 0.40-0.45       15           18        0.42289         1.3028
+ 0.35-0.40       16           26        0.37033         1.6581
+ 0.30-0.35       10           41        0.32348         2.0134
+ 0.25-0.30       10           29        0.27417         1.5397
+ 0.20-0.25       10           60        0.22603         2.7635
+ 0.15-0.20        8           70        0.17301         3.0794
+ 0.10-0.15       15          113        0.12225         5.0533
+ 0.05-0.10       16          206        0.07232         8.7643
+ 0.00-0.05       14         1474        0.01093        58.7446

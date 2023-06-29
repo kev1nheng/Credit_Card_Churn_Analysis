@@ -1,0 +1,75 @@
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+ 
+Variable Summary
+
+            Measurement    Frequency
+Role           Level         Count
+
+INPUT        INTERVAL          5    
+INPUT        NOMINAL           5    
+REJECTED     NOMINAL           1    
+TARGET       BINARY            1    
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+ 
+Model Events
+
+                                          Number
+                           Measurement      of
+    Target        Event       Level       Levels      Order       Label
+
+Attrition_Flag      1        BINARY          2      Descending         
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+ 
+Predicted and decision variables
+
+Type             Variable                    Label
+
+TARGET       Attrition_Flag                                  
+PREDICTED    P_Attrition_Flag1    Predicted: Attrition_Flag=1
+RESIDUAL     R_Attrition_Flag1    Residual: Attrition_Flag=1 
+PREDICTED    P_Attrition_Flag0    Predicted: Attrition_Flag=0
+RESIDUAL     R_Attrition_Flag0    Residual: Attrition_Flag=0 
+FROM         F_Attrition_Flag     From: Attrition_Flag       
+INTO         I_Attrition_Flag     Into: Attrition_Flag       
+ 
+                                                                                               
+ 
+Imported Models to be Combined
+Probability Function: Average
+
+Node Id        rpt_modeltype
+
+REG            Regression     
+AUTONEURAL2    AutoNeural     
+BOOST2         Extension Class
+TREE4          Extension Class

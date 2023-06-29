@@ -1,0 +1,18 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+Variable Importance
+
+Obs    NAME                                                    LABEL                         NRULES    IMPORTANCE    VIMPORTANCE     RATIO
+
+  1    G_Total_Trans_Ct                    Grouped Levels for  Total_Trans_Ct                  37        1.00000       1.00000      1.00000
+  2    RANGE_Total_Revolving_Bal           Transformed Total_Revolving_Bal                     28        0.76400       0.83850      1.09751
+  3    RANGE_SQRT_Total_Ct_Chng_Q4_Q1      Transformed: Transformed Total_Ct_Chng_Q4_Q1        19        0.59160       0.64837      1.09597
+  4    RANGE_LOG_Total_Trans_Amt           Transformed: Transformed Total_Trans_Amt            45        0.47192       0.54720      1.15952
+  5    G_Total_Relationship_Count          Grouped Levels for  Total_Relationship_Count        18        0.37325       0.52687      1.41155
+  6    G_Months_Inactive_12_mon            Grouped Levels for  Months_Inactive_12_mon          10        0.20395       0.25673      1.25882
+  7    RANGE_SQRT_Total_Amt_Chng_Q4_Q1     Transformed: Transformed Total_Amt_Chng_Q4_Q1       13        0.18245       0.18912      1.03658
+  8    G_Contacts_Count_12_mon             Grouped Levels for  Contacts_Count_12_mon            7        0.16138       0.10106      0.62618
+  9    RANGE_SQRT_Avg_Utilization_Ratio    Transformed: Transformed Avg_Utilization_Ratio       5        0.09456       0.06281      0.66428
+ 10    G_Customer_Age                      Grouped Levels for  Customer_Age                     1        0.05527       0.06035      1.09190
+ 11    G_Months_on_book                    Grouped Levels for  Months_on_book                   2        0.03991       0.00000      0.00000

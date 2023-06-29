@@ -1,0 +1,3120 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "April 09, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:41:11" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                April 09, 2022
+Time:                15:41:11
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O1F61NY5 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMSCORE.out" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O1F61NY5 new;
+MPRINT(EM_DIAGRAM):   run;
+NOTE: View EMWS1.AUTONEURAL2_TRAIN.VIEW used (Total process time):
+      real time           0.09 seconds
+      cpu time            0.10 seconds
+      
+NOTE: View EMWS1.AUTONEURAL2_TRAIN.VIEW used (Total process time):
+      real time           0.20 seconds
+      cpu time            0.20 seconds
+      
+48908      /* Generate assessment metadata, which will be used to generate assessment data step
+48908    !  */
+48909      /* code, such as retrieving names of temporary variables and summary variables,
+48909    !  */
+48910      /* labels, etc.  It is used in almost all the assessment computations such as lift,
+48910    !  */
+48911      /* roc, index, scoreDist and could be thought as a global variable in assessment
+48911    !  */
+48912      /* computation.
+48912    !  */
+48913      data work.ASSESS_13LGQN5_assessMeta_V67AlQ;
+MPRINT(EM_DIAGRAM):    data work.ASSESS_13LGQN5_assessMeta_V67AlQ;
+48914      length VARIABLE $32 FORMAT $44 TYPE $32 PARENT $32 LEVEL $32 PROPERTY $32
+48914    ! MEASUREMENT $10 LAST_LEVEL $32 GEN_VAR_IN_TEMP_DATA $32 RESULT_MEAN $32
+48914    ! RESULT_MEAN_LABEL $100 RESULT_MIN $32 RESULT_MIN_LABEL $100 MIN_ADJUSTED $32
+48914    ! RESULT_MAX $32 RESULT_MAX_LABEL
+48915         $100 MAX_ADJUSTED $32 RESULT_COUNT $32 RESULT_COUNT_LABEL $100 TEMPORARY_VARIABLE
+48915    !  $32;
+MPRINT(EM_DIAGRAM):   length VARIABLE $32 FORMAT $44 TYPE $32 PARENT $32 LEVEL $32 PROPERTY 
+$32 MEASUREMENT $10 LAST_LEVEL $32 GEN_VAR_IN_TEMP_DATA $32 RESULT_MEAN $32 RESULT_MEAN_LABEL 
+$100 RESULT_MIN $32 RESULT_MIN_LABEL $100 MIN_ADJUSTED $32 RESULT_MAX $32 RESULT_MAX_LABEL 
+$100 MAX_ADJUSTED $32 RESULT_COUNT $32 RESULT_COUNT_LABEL $100 TEMPORARY_VARIABLE $32;
+48916      VARIABLE = "Attrition_Flag";
+MPRINT(EM_DIAGRAM):   VARIABLE = "Attrition_Flag";
+48917      PARENT = "";
+MPRINT(EM_DIAGRAM):   PARENT = "";
+48918      FORMAT = "";
+MPRINT(EM_DIAGRAM):   FORMAT = "";
+48919      TYPE = "";
+MPRINT(EM_DIAGRAM):   TYPE = "";
+48920      LEVEL = '';
+MPRINT(EM_DIAGRAM):   LEVEL = '';
+48921      PROPERTY = "TARGET";
+MPRINT(EM_DIAGRAM):   PROPERTY = "TARGET";
+48922      MEASUREMENT = "BINARY";
+MPRINT(EM_DIAGRAM):   MEASUREMENT = "BINARY";
+48923      LAST_LEVEL = '';
+MPRINT(EM_DIAGRAM):   LAST_LEVEL = '';
+48924      GEN_VAR_IN_TEMP_DATA = "Attrition_Flag";
+MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "Attrition_Flag";
+48925      RESULT_MEAN = "";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN = "";
+48926      RESULT_MEAN_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "";
+48927      RESULT_MIN = "";
+MPRINT(EM_DIAGRAM):   RESULT_MIN = "";
+48928      RESULT_MIN_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "";
+48929      MIN_ADJUSTED = "";
+MPRINT(EM_DIAGRAM):   MIN_ADJUSTED = "";
+48930      RESULT_MAX = "";
+MPRINT(EM_DIAGRAM):   RESULT_MAX = "";
+48931      RESULT_MAX_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "";
+48932      MAX_ADJUSTED = "";
+MPRINT(EM_DIAGRAM):   MAX_ADJUSTED = "";
+48933      RESULT_COUNT = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT = "";
+48934      RESULT_COUNT_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "";
+48935      TEMPORARY_VARIABLE = "Attrition_Flag_QWVjA_6Fiu8RBjZ";
+MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "Attrition_Flag_QWVjA_6Fiu8RBjZ";
+48936      output;
+MPRINT(EM_DIAGRAM):   output;
+48937      VARIABLE = "F_Attrition_Flag_1";
+MPRINT(EM_DIAGRAM):   VARIABLE = "F_Attrition_Flag_1";
+48938      FORMAT = "";
+MPRINT(EM_DIAGRAM):   FORMAT = "";
+48939      TYPE = "";
+MPRINT(EM_DIAGRAM):   TYPE = "";
+48940      PARENT = "F_Attrition_Flag";
+MPRINT(EM_DIAGRAM):   PARENT = "F_Attrition_Flag";
+48941      LEVEL = "1";
+MPRINT(EM_DIAGRAM):   LEVEL = "1";
+48942      PROPERTY = "TARGET_LEVEL";
+MPRINT(EM_DIAGRAM):   PROPERTY = "TARGET_LEVEL";
+48943      MEASUREMENT = "INTERVAL";
+MPRINT(EM_DIAGRAM):   MEASUREMENT = "INTERVAL";
+48944      LAST_LEVEL = "0";
+MPRINT(EM_DIAGRAM):   LAST_LEVEL = "0";
+48945      GEN_VAR_IN_TEMP_DATA = "F_Attrition_Flag_801uRN1SMebp07p";
+MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "F_Attrition_Flag_801uRN1SMebp07p";
+48946      RESULT_MEAN = "F_Attritio_mean_KgPwDa7tYHe_3sG";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN = "F_Attritio_mean_KgPwDa7tYHe_3sG";
+48947      /* adjust for tied cases */
+48948      RESULT_MEAN_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "";
+48949      RESULT_MIN = "";
+MPRINT(EM_DIAGRAM):   RESULT_MIN = "";
+48950      RESULT_MIN_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "";
+48951      RESULT_MAX = "";
+MPRINT(EM_DIAGRAM):   RESULT_MAX = "";
+48952      RESULT_MAX_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "";
+48953      RESULT_COUNT = "NumberOfEvents";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT = "NumberOfEvents";
+48954      RESULT_COUNT_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_NumEvent_vlabel,
+48954    ! NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "Number of Events";
+48955      TEMPORARY_VARIABLE = "F_Attrition_Flag_xquhR4hHl3cHjSM";
+MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "F_Attrition_Flag_xquhR4hHl3cHjSM";
+48956      output;
+MPRINT(EM_DIAGRAM):   output;
+48957      VARIABLE = "F_Attrition_Flag_0";
+MPRINT(EM_DIAGRAM):   VARIABLE = "F_Attrition_Flag_0";
+48958      FORMAT = "";
+MPRINT(EM_DIAGRAM):   FORMAT = "";
+48959      TYPE = "";
+MPRINT(EM_DIAGRAM):   TYPE = "";
+48960      PARENT = "F_Attrition_Flag";
+MPRINT(EM_DIAGRAM):   PARENT = "F_Attrition_Flag";
+48961      LEVEL = "0";
+MPRINT(EM_DIAGRAM):   LEVEL = "0";
+48962      PROPERTY = "TARGET_LEVEL";
+MPRINT(EM_DIAGRAM):   PROPERTY = "TARGET_LEVEL";
+48963      MEASUREMENT = "INTERVAL";
+MPRINT(EM_DIAGRAM):   MEASUREMENT = "INTERVAL";
+48964      LAST_LEVEL = "0";
+MPRINT(EM_DIAGRAM):   LAST_LEVEL = "0";
+48965      GEN_VAR_IN_TEMP_DATA = "F_Attrition_Flag_my6MvhijicA6vqe";
+MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "F_Attrition_Flag_my6MvhijicA6vqe";
+48966      RESULT_MEAN = "F_Attritio_mean_9Qb2Qjb1xyzvzJ1";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN = "F_Attritio_mean_9Qb2Qjb1xyzvzJ1";
+48967      /* adjust for tied cases */
+48968      RESULT_MEAN_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "";
+48969      RESULT_MIN = "";
+MPRINT(EM_DIAGRAM):   RESULT_MIN = "";
+48970      RESULT_MIN_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "";
+48971      RESULT_MAX = "";
+MPRINT(EM_DIAGRAM):   RESULT_MAX = "";
+48972      RESULT_MAX_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "";
+48973      RESULT_COUNT = "NumberOfEvents";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT = "NumberOfEvents";
+48974      RESULT_COUNT_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_NumEvent_vlabel,
+48974    ! NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "Number of Events";
+48975      TEMPORARY_VARIABLE = "F_Attrition_Flag_m9xBu78WQcrgAIh";
+MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "F_Attrition_Flag_m9xBu78WQcrgAIh";
+48976      output;
+MPRINT(EM_DIAGRAM):   output;
+48977      VARIABLE = "P_Attrition_Flag1";
+MPRINT(EM_DIAGRAM):   VARIABLE = "P_Attrition_Flag1";
+48978      FORMAT = "";
+MPRINT(EM_DIAGRAM):   FORMAT = "";
+48979      TYPE = "";
+MPRINT(EM_DIAGRAM):   TYPE = "";
+48980      PARENT = "";
+MPRINT(EM_DIAGRAM):   PARENT = "";
+48981      LEVEL = "1";
+MPRINT(EM_DIAGRAM):   LEVEL = "1";
+48982      PROPERTY = "POSTERIOR_LEVEL";
+MPRINT(EM_DIAGRAM):   PROPERTY = "POSTERIOR_LEVEL";
+48983      MEASUREMENT = "INTERVAL";
+MPRINT(EM_DIAGRAM):   MEASUREMENT = "INTERVAL";
+48984      LAST_LEVEL = "";
+MPRINT(EM_DIAGRAM):   LAST_LEVEL = "";
+48985      GEN_VAR_IN_TEMP_DATA = "P_Attrition_Flag1";
+MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "P_Attrition_Flag1";
+48986      RESULT_MEAN = "_meanP_";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN = "_meanP_";
+48987      RESULT_MEAN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_probMean_vlabel,
+48987    ! NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "Mean Posterior Probability";
+48988      RESULT_MIN = "_minP_";
+MPRINT(EM_DIAGRAM):   RESULT_MIN = "_minP_";
+48989      RESULT_MIN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_probMin_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "Min Posterior Probability";
+48990      MIN_ADJUSTED = "P_Attrit_minAdjusted_qnFFSsnzM";
+MPRINT(EM_DIAGRAM):   MIN_ADJUSTED = "P_Attrit_minAdjusted_qnFFSsnzM";
+48991      RESULT_MAX = "_maxP_";
+MPRINT(EM_DIAGRAM):   RESULT_MAX = "_maxP_";
+48992      RESULT_MAX_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_probMax_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "Max Posterior Probability";
+48993      MAX_ADJUSTED = "P_Attrit_maxAdjusted_UdrlmIq_V";
+MPRINT(EM_DIAGRAM):   MAX_ADJUSTED = "P_Attrit_maxAdjusted_UdrlmIq_V";
+48994      RESULT_COUNT = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT = "";
+48995      RESULT_COUNT_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "";
+48996      TEMPORARY_VARIABLE = "P_Attrition_Flag_jQ7eQ0ARunRJAjc";
+MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "P_Attrition_Flag_jQ7eQ0ARunRJAjc";
+48997      output;
+MPRINT(EM_DIAGRAM):   output;
+48998      VARIABLE = "P_Attrition_Flag0";
+MPRINT(EM_DIAGRAM):   VARIABLE = "P_Attrition_Flag0";
+48999      FORMAT = "";
+MPRINT(EM_DIAGRAM):   FORMAT = "";
+49000      TYPE = "";
+MPRINT(EM_DIAGRAM):   TYPE = "";
+49001      PARENT = "";
+MPRINT(EM_DIAGRAM):   PARENT = "";
+49002      LEVEL = "0";
+MPRINT(EM_DIAGRAM):   LEVEL = "0";
+49003      PROPERTY = "POSTERIOR_LEVEL";
+MPRINT(EM_DIAGRAM):   PROPERTY = "POSTERIOR_LEVEL";
+49004      MEASUREMENT = "INTERVAL";
+MPRINT(EM_DIAGRAM):   MEASUREMENT = "INTERVAL";
+49005      LAST_LEVEL = "";
+MPRINT(EM_DIAGRAM):   LAST_LEVEL = "";
+49006      GEN_VAR_IN_TEMP_DATA = "P_Attrition_Flag0";
+MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "P_Attrition_Flag0";
+49007      RESULT_MEAN = "_meanP_";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN = "_meanP_";
+49008      RESULT_MEAN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_probMean_vlabel,
+49008    ! NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "Mean Posterior Probability";
+49009      RESULT_MIN = "_minP_";
+MPRINT(EM_DIAGRAM):   RESULT_MIN = "_minP_";
+49010      RESULT_MIN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_probMin_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "Min Posterior Probability";
+49011      MIN_ADJUSTED = "P_Attrit_minAdjusted_c3J0oh3xb";
+MPRINT(EM_DIAGRAM):   MIN_ADJUSTED = "P_Attrit_minAdjusted_c3J0oh3xb";
+49012      RESULT_MAX = "_maxP_";
+MPRINT(EM_DIAGRAM):   RESULT_MAX = "_maxP_";
+49013      RESULT_MAX_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_probMax_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "Max Posterior Probability";
+49014      MAX_ADJUSTED = "P_Attrit_maxAdjusted_YREihIh_i";
+MPRINT(EM_DIAGRAM):   MAX_ADJUSTED = "P_Attrit_maxAdjusted_YREihIh_i";
+49015      RESULT_COUNT = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT = "";
+49016      RESULT_COUNT_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "";
+49017      TEMPORARY_VARIABLE = "P_Attrition_Flag_4BI1huOKQ7r7Y2Q";
+MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "P_Attrition_Flag_4BI1huOKQ7r7Y2Q";
+49018      output;
+MPRINT(EM_DIAGRAM):   output;
+49019      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set WORK.ASSESS_13LGQN5_ASSESSMETA_V67ALQ has 5 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+49020      /* Generate temporary dataset and obtain summary statistics such as total number of
+49020    !   */
+49021      /* obserations, frequency of target.  However, summary statistics for class
+49021    ! reporting */
+49022      /* variabels are not computed here since if there exist class reporting variables,
+49022    !   */
+49023      /* then PROC DMDB will be called. And there is no need to compute interval reporting
+49023    !   */
+49024      /* summary statisitcs, if any.
+49024    !   */
+49025      data work.ASSESS_13LGQN5_normSD_2oc974(drop=
+49026      _numberOfObservation_
+49027      _levelFrequency_1
+49028      _levelFrequency_2
+49029      )
+49030      work.ASSESS_13LGQN5_meansAndTi_hFSDHa (keep=
+49031      _numberOfObservation_
+49032      _levelFrequency_1
+49033      _levelFrequency_2
+49034      );
+MPRINT(EM_DIAGRAM):    data work.ASSESS_13LGQN5_normSD_2oc974(drop= _numberOfObservation_ 
+_levelFrequency_1 _levelFrequency_2 ) work.ASSESS_13LGQN5_meansAndTi_hFSDHa (keep= 
+_numberOfObservation_ _levelFrequency_1 _levelFrequency_2 );
+49035      set EMWS1.AutoNeural2_TRAIN(
+49036      where=(
+49037      (Attrition_Flag ^= ' ')
+49038      )
+49039      ) end=_lastObservation_;
+MPRINT(EM_DIAGRAM):   set EMWS1.AutoNeural2_TRAIN( where=( (Attrition_Flag ^= ' ') ) ) 
+end=_lastObservation_;
+49040      keep frequency_MIsKlF;
+MPRINT(EM_DIAGRAM):   keep frequency_MIsKlF;
+49041      frequency_MIsKlF = 1;
+MPRINT(EM_DIAGRAM):   frequency_MIsKlF = 1;
+49042      keep I_Attrition_Flag F_Attrition_Flag;
+MPRINT(EM_DIAGRAM):   keep I_Attrition_Flag F_Attrition_Flag;
+49043      keep F_Attrition_Flag_801uRN1SMebp07p;
+MPRINT(EM_DIAGRAM):   keep F_Attrition_Flag_801uRN1SMebp07p;
+49044      if (F_Attrition_Flag = '1') then do;
+MPRINT(EM_DIAGRAM):   if (F_Attrition_Flag = '1') then do;
+49045      F_Attrition_Flag_801uRN1SMebp07p = 1;
+MPRINT(EM_DIAGRAM):   F_Attrition_Flag_801uRN1SMebp07p = 1;
+49046      end;
+MPRINT(EM_DIAGRAM):   end;
+49047      else do;
+MPRINT(EM_DIAGRAM):   else do;
+49048      F_Attrition_Flag_801uRN1SMebp07p = 0;
+MPRINT(EM_DIAGRAM):   F_Attrition_Flag_801uRN1SMebp07p = 0;
+49049      end;
+MPRINT(EM_DIAGRAM):   end;
+49050      keep F_Attrition_Flag_my6MvhijicA6vqe;
+MPRINT(EM_DIAGRAM):   keep F_Attrition_Flag_my6MvhijicA6vqe;
+49051      if (F_Attrition_Flag = '0') then do;
+MPRINT(EM_DIAGRAM):   if (F_Attrition_Flag = '0') then do;
+49052      F_Attrition_Flag_my6MvhijicA6vqe = 1;
+MPRINT(EM_DIAGRAM):   F_Attrition_Flag_my6MvhijicA6vqe = 1;
+49053      end;
+MPRINT(EM_DIAGRAM):   end;
+49054      else do;
+MPRINT(EM_DIAGRAM):   else do;
+49055      F_Attrition_Flag_my6MvhijicA6vqe = 0;
+MPRINT(EM_DIAGRAM):   F_Attrition_Flag_my6MvhijicA6vqe = 0;
+49056      end;
+MPRINT(EM_DIAGRAM):   end;
+49057      keep P_Attrition_Flag1;
+MPRINT(EM_DIAGRAM):   keep P_Attrition_Flag1;
+49058      keep P_Attrition_Flag0;
+MPRINT(EM_DIAGRAM):   keep P_Attrition_Flag0;
+49059      output work.ASSESS_13LGQN5_normSD_2oc974;
+MPRINT(EM_DIAGRAM):   output work.ASSESS_13LGQN5_normSD_2oc974;
+49060      keep _numberOfObservation_;
+MPRINT(EM_DIAGRAM):   keep _numberOfObservation_;
+49061      retain _numberOfObservation_ 0;
+MPRINT(EM_DIAGRAM):   retain _numberOfObservation_ 0;
+49062      _numberOfObservation_ + frequency_MIsKlF;
+MPRINT(EM_DIAGRAM):   _numberOfObservation_ + frequency_MIsKlF;
+49063      keep _levelFrequency_1;
+MPRINT(EM_DIAGRAM):   keep _levelFrequency_1;
+49064      retain _levelFrequency_1 0;
+MPRINT(EM_DIAGRAM):   retain _levelFrequency_1 0;
+49065      if (F_Attrition_Flag = '1') then do;
+MPRINT(EM_DIAGRAM):   if (F_Attrition_Flag = '1') then do;
+49066      _levelFrequency_1 + frequency_MIsKlF;
+MPRINT(EM_DIAGRAM):   _levelFrequency_1 + frequency_MIsKlF;
+49067      end;
+MPRINT(EM_DIAGRAM):   end;
+49068      keep _levelFrequency_2;
+MPRINT(EM_DIAGRAM):   keep _levelFrequency_2;
+49069      retain _levelFrequency_2 0;
+MPRINT(EM_DIAGRAM):   retain _levelFrequency_2 0;
+49070      if (F_Attrition_Flag = '0') then do;
+MPRINT(EM_DIAGRAM):   if (F_Attrition_Flag = '0') then do;
+49071      _levelFrequency_2 + frequency_MIsKlF;
+MPRINT(EM_DIAGRAM):   _levelFrequency_2 + frequency_MIsKlF;
+49072      end;
+MPRINT(EM_DIAGRAM):   end;
+49073      if _lastObservation_ then do;
+MPRINT(EM_DIAGRAM):   if _lastObservation_ then do;
+49074      output work.ASSESS_13LGQN5_meansAndTi_hFSDHa;
+MPRINT(EM_DIAGRAM):   output work.ASSESS_13LGQN5_meansAndTi_hFSDHa;
+49075      end;
+MPRINT(EM_DIAGRAM):   end;
+49076      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: View EMWS1.AUTONEURAL2_TRAIN.VIEW used (Total process time):
+      real time           0.15 seconds
+      cpu time            0.15 seconds
+      
+NOTE: There were 7088 observations read from the data set EMWS1.PART2_TRAIN.
+NOTE: There were 7088 observations read from the data set EMWS1.AUTONEURAL2_TRAIN.
+      WHERE Attrition_Flag not = ' ';
+NOTE: The data set WORK.ASSESS_13LGQN5_NORMSD_2OC974 has 7088 observations and 7 variables.
+NOTE: The data set WORK.ASSESS_13LGQN5_MEANSANDTI_HFSDHA has 1 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.17 seconds
+      cpu time            0.17 seconds
+      
+
+49077      data WORK._EMRANK;
+MPRINT(EM_DIAGRAM):    data WORK._EMRANK;
+49078      set EMWS1.MdlComp5_EMRANK;
+MPRINT(EM_DIAGRAM):   set EMWS1.MdlComp5_EMRANK;
+49079      where MODEL = "AutoNeural2" and TARGET = "Attrition_Flag" and dataRole="TRAIN";
+MPRINT(EM_DIAGRAM):   where MODEL = "AutoNeural2" and TARGET = "Attrition_Flag" and 
+dataRole="TRAIN";
+49080      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 100 observations read from the data set EMWS1.MDLCOMP5_EMRANK.
+      WHERE (MODEL='AutoNeural2') and (TARGET='Attrition_Flag') and (dataRole='TRAIN');
+NOTE: The data set WORK._EMRANK has 100 observations and 38 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+49081      data work._augment;
+MPRINT(EM_DIAGRAM):    data work._augment;
+49082      do BIN= 1 to 100;
+MPRINT(EM_DIAGRAM):   do BIN= 1 to 100;
+49083      DECILE = BIN*1;
+MPRINT(EM_DIAGRAM):   DECILE = BIN*1;
+49084      output;
+MPRINT(EM_DIAGRAM):   output;
+49085      end;
+MPRINT(EM_DIAGRAM):   end;
+49086      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set WORK._AUGMENT has 100 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+49087      data WORK._EMRANK;
+MPRINT(EM_DIAGRAM):   data WORK._EMRANK;
+49088      merge WORK._AUGMENT WORK._EMRANK;
+MPRINT(EM_DIAGRAM):   merge WORK._AUGMENT WORK._EMRANK;
+49089      by BIN;
+MPRINT(EM_DIAGRAM):   by BIN;
+49090      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 100 observations read from the data set WORK._AUGMENT.
+NOTE: There were 100 observations read from the data set WORK._EMRANK.
+NOTE: The data set WORK._EMRANK has 100 observations and 38 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+49091      data WORK._EMRANK;
+MPRINT(EM_DIAGRAM):    data WORK._EMRANK;
+49092      set WORK._EMRANK end=_lastObservation_;
+MPRINT(EM_DIAGRAM):   set WORK._EMRANK end=_lastObservation_;
+49093      retain _previousMinP_ _previousMaxP_;
+MPRINT(EM_DIAGRAM):   retain _previousMinP_ _previousMaxP_;
+49094      retain _group_ 1;
+MPRINT(EM_DIAGRAM):   retain _group_ 1;
+49095      keep event;
+MPRINT(EM_DIAGRAM):   keep event;
+49096      keep bin _cutoff_ _group_;
+MPRINT(EM_DIAGRAM):   keep bin _cutoff_ _group_;
+49097      if (bin > 1) then do;
+MPRINT(EM_DIAGRAM):   if (bin > 1) then do;
+49098      bin = bin - 1;
+MPRINT(EM_DIAGRAM):   bin = bin - 1;
+49099      _cutoff_ = (_maxP_ + _previousMinP_) / 2;
+MPRINT(EM_DIAGRAM):   _cutoff_ = (_maxP_ + _previousMinP_) / 2;
+49100      if (abs(_previousMaxP_ - _previousMinP_) < 1E-6) then do;
+MPRINT(EM_DIAGRAM):   if (abs(_previousMaxP_ - _previousMinP_) < 1E-6) then do;
+49101      /* tied */
+49102      _cutoff_ = max((_minP_ + _maxP_)/2, min(_cutoff_, _previousMinP_/*-1E-6*/
+49103      ));
+MPRINT(EM_DIAGRAM):   _cutoff_ = max((_minP_ + _maxP_)/2, min(_cutoff_, _previousMinP_ ));
+49104      end;
+MPRINT(EM_DIAGRAM):   end;
+49105      else if (abs(_maxP_ - _minP_) < 1E-6) then do;
+MPRINT(EM_DIAGRAM):   else if (abs(_maxP_ - _minP_) < 1E-6) then do;
+49106      /* next tied */
+49107      _cutoff_ = min((_previousMinP_ + _previousMaxP_)/2, max(_cutoff_, _maxP_/*+ 1E-6*/
+49108      ));
+MPRINT(EM_DIAGRAM):   _cutoff_ = min((_previousMinP_ + _previousMaxP_)/2, max(_cutoff_, _maxP_ 
+));
+49109      end;
+MPRINT(EM_DIAGRAM):   end;
+49110      output;
+MPRINT(EM_DIAGRAM):   output;
+49111      *if ( abs((_maxP_ +_minP_)/2 - (_previousMaxP_ + _previousMinP_)/2) > 1E-6) then do;
+MPRINT(EM_DIAGRAM):   *if ( abs((_maxP_ +_minP_)/2 - (_previousMaxP_ + _previousMinP_)/2) > 
+1E-6) then do;
+49112      * _group_ + 1;
+MPRINT(EM_DIAGRAM):   * _group_ + 1;
+49113      *end;
+MPRINT(EM_DIAGRAM):   *end;
+49114      if (_maxP_ le _previousMinP_ - 1E-6) then do;
+MPRINT(EM_DIAGRAM):   if (_maxP_ le _previousMinP_ - 1E-6) then do;
+49115      _group_ + 1;
+MPRINT(EM_DIAGRAM):   _group_ + 1;
+49116      end;
+MPRINT(EM_DIAGRAM):   end;
+49117      else if (abs(_maxP_ - _previousMinP_) < 1E-6) then do;
+MPRINT(EM_DIAGRAM):   else if (abs(_maxP_ - _previousMinP_) < 1E-6) then do;
+49118      if (abs(_maxP_ - _minP_) > 1E-6) then do;
+MPRINT(EM_DIAGRAM):   if (abs(_maxP_ - _minP_) > 1E-6) then do;
+49119      _group_ + 1;
+MPRINT(EM_DIAGRAM):   _group_ + 1;
+49120      end;
+MPRINT(EM_DIAGRAM):   end;
+49121      end;
+MPRINT(EM_DIAGRAM):   end;
+49122      bin + 1;
+MPRINT(EM_DIAGRAM):   bin + 1;
+49123      /* correct the previous change */
+49124      end;
+MPRINT(EM_DIAGRAM):   end;
+49125      if (_lastObservation_) then do;
+MPRINT(EM_DIAGRAM):   if (_lastObservation_) then do;
+49126      _cutoff_ = .;
+MPRINT(EM_DIAGRAM):   _cutoff_ = .;
+49127      output;
+MPRINT(EM_DIAGRAM):   output;
+49128      end;
+MPRINT(EM_DIAGRAM):   end;
+49129      _previousMinP_ = _minP_;
+MPRINT(EM_DIAGRAM):   _previousMinP_ = _minP_;
+49130      _previousMaxP_ = _maxP_;
+MPRINT(EM_DIAGRAM):   _previousMaxP_ = _maxP_;
+49131      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 100 observations read from the data set WORK._EMRANK.
+NOTE: The data set WORK._EMRANK has 100 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+49132      data WORK._EMRANK;
+MPRINT(EM_DIAGRAM):    data WORK._EMRANK;
+49133      set WORK._EMRANK;
+MPRINT(EM_DIAGRAM):   set WORK._EMRANK;
+49134      by _group_;
+MPRINT(EM_DIAGRAM):   by _group_;
+49135      retain _start_;
+MPRINT(EM_DIAGRAM):   retain _start_;
+49136      if (first._group_) then do;
+MPRINT(EM_DIAGRAM):   if (first._group_) then do;
+49137      _start_ = _n_;
+MPRINT(EM_DIAGRAM):   _start_ = _n_;
+49138      end;
+MPRINT(EM_DIAGRAM):   end;
+49139      if (last._group_) then do;
+MPRINT(EM_DIAGRAM):   if (last._group_) then do;
+49140      _end_ = _n_;
+MPRINT(EM_DIAGRAM):   _end_ = _n_;
+49141      output;
+MPRINT(EM_DIAGRAM):   output;
+49142      end;
+MPRINT(EM_DIAGRAM):   end;
+49143      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 100 observations read from the data set WORK._EMRANK.
+NOTE: The data set WORK._EMRANK has 100 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+49144      filename emflow
+49144    ! "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * MdlComp5: Scoring AUTONEURAL2_TRAIN data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+49145      *------------------------------------------------------------*;
+49146      * MdlComp5: Scoring AUTONEURAL2_TRAIN data;
+49147      *------------------------------------------------------------*;
+49148      data EMWS1.MdlComp5_TRAIN
+49149      / view=EMWS1.MdlComp5_TRAIN
+49150      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.MdlComp5_TRAIN / view=EMWS1.MdlComp5_TRAIN ;
+49151      set EMWS1.AutoNeural2_TRAIN
+49152      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.AutoNeural2_TRAIN ;
+49153      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file 
+      D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas.
+49154     +if (P_Attrition_Flag1 ge 0.99744906578271) then do;
+MPRINT(EM_DIAGRAM):   if (P_Attrition_Flag1 ge 0.99744906578271) then do;
+49155     +b_Attrition_Flag = 1;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 1;
+49156     +end;
+MPRINT(EM_DIAGRAM):   end;
+49157     +else
+49158     +if (P_Attrition_Flag1 ge 0.99635450737983) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99635450737983) then do;
+49159     +b_Attrition_Flag = 2;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 2;
+49160     +end;
+MPRINT(EM_DIAGRAM):   end;
+49161     +else
+49162     +if (P_Attrition_Flag1 ge 0.99437261953019) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99437261953019) then do;
+49163     +b_Attrition_Flag = 3;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 3;
+49164     +end;
+MPRINT(EM_DIAGRAM):   end;
+49165     +else
+49166     +if (P_Attrition_Flag1 ge 0.99063741196581) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99063741196581) then do;
+49167     +b_Attrition_Flag = 4;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 4;
+49168     +end;
+MPRINT(EM_DIAGRAM):   end;
+49169     +else
+49170     +if (P_Attrition_Flag1 ge 0.98539358541825) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.98539358541825) then do;
+49171     +b_Attrition_Flag = 5;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 5;
+49172     +end;
+MPRINT(EM_DIAGRAM):   end;
+49173     +else
+49174     +if (P_Attrition_Flag1 ge 0.9775346553137) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9775346553137) then do;
+49175     +b_Attrition_Flag = 6;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 6;
+49176     +end;
+MPRINT(EM_DIAGRAM):   end;
+49177     +else
+49178     +if (P_Attrition_Flag1 ge 0.9698197297622) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9698197297622) then do;
+49179     +b_Attrition_Flag = 7;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 7;
+49180     +end;
+MPRINT(EM_DIAGRAM):   end;
+49181     +else
+49182     +if (P_Attrition_Flag1 ge 0.95490307363698) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.95490307363698) then do;
+49183     +b_Attrition_Flag = 8;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 8;
+49184     +end;
+MPRINT(EM_DIAGRAM):   end;
+49185     +else
+49186     +if (P_Attrition_Flag1 ge 0.93555736238583) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.93555736238583) then do;
+49187     +b_Attrition_Flag = 9;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 9;
+49188     +end;
+MPRINT(EM_DIAGRAM):   end;
+49189     +else
+49190     +if (P_Attrition_Flag1 ge 0.9117344640871) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9117344640871) then do;
+49191     +b_Attrition_Flag = 10;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 10;
+49192     +end;
+MPRINT(EM_DIAGRAM):   end;
+49193     +else
+49194     +if (P_Attrition_Flag1 ge 0.87759911828806) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.87759911828806) then do;
+49195     +b_Attrition_Flag = 11;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 11;
+49196     +end;
+MPRINT(EM_DIAGRAM):   end;
+49197     +else
+49198     +if (P_Attrition_Flag1 ge 0.81563589824461) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.81563589824461) then do;
+49199     +b_Attrition_Flag = 12;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 12;
+49200     +end;
+MPRINT(EM_DIAGRAM):   end;
+49201     +else
+49202     +if (P_Attrition_Flag1 ge 0.72836896896857) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.72836896896857) then do;
+49203     +b_Attrition_Flag = 13;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 13;
+49204     +end;
+MPRINT(EM_DIAGRAM):   end;
+49205     +else
+49206     +if (P_Attrition_Flag1 ge 0.63146309002052) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.63146309002052) then do;
+49207     +b_Attrition_Flag = 14;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 14;
+49208     +end;
+MPRINT(EM_DIAGRAM):   end;
+49209     +else
+49210     +if (P_Attrition_Flag1 ge 0.5168705244164) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.5168705244164) then do;
+49211     +b_Attrition_Flag = 15;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 15;
+49212     +end;
+MPRINT(EM_DIAGRAM):   end;
+49213     +else
+49214     +if (P_Attrition_Flag1 ge 0.40115281182836) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.40115281182836) then do;
+49215     +b_Attrition_Flag = 16;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 16;
+49216     +end;
+MPRINT(EM_DIAGRAM):   end;
+49217     +else
+49218     +if (P_Attrition_Flag1 ge 0.31333911153947) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.31333911153947) then do;
+49219     +b_Attrition_Flag = 17;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 17;
+49220     +end;
+MPRINT(EM_DIAGRAM):   end;
+49221     +else
+49222     +if (P_Attrition_Flag1 ge 0.24967818471111) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.24967818471111) then do;
+49223     +b_Attrition_Flag = 18;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 18;
+49224     +end;
+MPRINT(EM_DIAGRAM):   end;
+49225     +else
+49226     +if (P_Attrition_Flag1 ge 0.19401820248423) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.19401820248423) then do;
+49227     +b_Attrition_Flag = 19;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 19;
+49228     +end;
+MPRINT(EM_DIAGRAM):   end;
+49229     +else
+49230     +if (P_Attrition_Flag1 ge 0.14748182403371) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.14748182403371) then do;
+49231     +b_Attrition_Flag = 20;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 20;
+49232     +end;
+MPRINT(EM_DIAGRAM):   end;
+49233     +else
+49234     +if (P_Attrition_Flag1 ge 0.11706762768184) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.11706762768184) then do;
+49235     +b_Attrition_Flag = 21;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 21;
+49236     +end;
+MPRINT(EM_DIAGRAM):   end;
+49237     +else
+49238     +if (P_Attrition_Flag1 ge 0.09637265170113) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.09637265170113) then do;
+49239     +b_Attrition_Flag = 22;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 22;
+49240     +end;
+MPRINT(EM_DIAGRAM):   end;
+49241     +else
+49242     +if (P_Attrition_Flag1 ge 0.07767934671078) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.07767934671078) then do;
+49243     +b_Attrition_Flag = 23;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 23;
+49244     +end;
+MPRINT(EM_DIAGRAM):   end;
+49245     +else
+49246     +if (P_Attrition_Flag1 ge 0.06234548749853) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.06234548749853) then do;
+49247     +b_Attrition_Flag = 24;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 24;
+49248     +end;
+MPRINT(EM_DIAGRAM):   end;
+49249     +else
+49250     +if (P_Attrition_Flag1 ge 0.05214745505164) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.05214745505164) then do;
+49251     +b_Attrition_Flag = 25;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 25;
+49252     +end;
+MPRINT(EM_DIAGRAM):   end;
+49253     +else
+49254     +if (P_Attrition_Flag1 ge 0.04344024187792) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.04344024187792) then do;
+49255     +b_Attrition_Flag = 26;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 26;
+49256     +end;
+MPRINT(EM_DIAGRAM):   end;
+49257     +else
+49258     +if (P_Attrition_Flag1 ge 0.03720230250312) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.03720230250312) then do;
+49259     +b_Attrition_Flag = 27;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 27;
+49260     +end;
+MPRINT(EM_DIAGRAM):   end;
+49261     +else
+49262     +if (P_Attrition_Flag1 ge 0.03065733069929) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.03065733069929) then do;
+49263     +b_Attrition_Flag = 28;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 28;
+49264     +end;
+MPRINT(EM_DIAGRAM):   end;
+49265     +else
+49266     +if (P_Attrition_Flag1 ge 0.02609968304744) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.02609968304744) then do;
+49267     +b_Attrition_Flag = 29;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 29;
+49268     +end;
+MPRINT(EM_DIAGRAM):   end;
+49269     +else
+49270     +if (P_Attrition_Flag1 ge 0.02207471064273) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.02207471064273) then do;
+49271     +b_Attrition_Flag = 30;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 30;
+49272     +end;
+MPRINT(EM_DIAGRAM):   end;
+49273     +else
+49274     +if (P_Attrition_Flag1 ge 0.01883540999836) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01883540999836) then do;
+49275     +b_Attrition_Flag = 31;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 31;
+49276     +end;
+MPRINT(EM_DIAGRAM):   end;
+49277     +else
+49278     +if (P_Attrition_Flag1 ge 0.01672922649221) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01672922649221) then do;
+49279     +b_Attrition_Flag = 32;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 32;
+49280     +end;
+MPRINT(EM_DIAGRAM):   end;
+49281     +else
+49282     +if (P_Attrition_Flag1 ge 0.01425470740608) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01425470740608) then do;
+49283     +b_Attrition_Flag = 33;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 33;
+49284     +end;
+MPRINT(EM_DIAGRAM):   end;
+49285     +else
+49286     +if (P_Attrition_Flag1 ge 0.01243011017591) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01243011017591) then do;
+49287     +b_Attrition_Flag = 34;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 34;
+49288     +end;
+MPRINT(EM_DIAGRAM):   end;
+49289     +else
+49290     +if (P_Attrition_Flag1 ge 0.01085445023656) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01085445023656) then do;
+49291     +b_Attrition_Flag = 35;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 35;
+49292     +end;
+MPRINT(EM_DIAGRAM):   end;
+49293     +else
+49294     +if (P_Attrition_Flag1 ge 0.00953364481037) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00953364481037) then do;
+49295     +b_Attrition_Flag = 36;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 36;
+49296     +end;
+MPRINT(EM_DIAGRAM):   end;
+49297     +else
+49298     +if (P_Attrition_Flag1 ge 0.00832999171096) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00832999171096) then do;
+49299     +b_Attrition_Flag = 37;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 37;
+49300     +end;
+MPRINT(EM_DIAGRAM):   end;
+49301     +else
+49302     +if (P_Attrition_Flag1 ge 0.00751449329062) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00751449329062) then do;
+49303     +b_Attrition_Flag = 38;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 38;
+49304     +end;
+MPRINT(EM_DIAGRAM):   end;
+49305     +else
+49306     +if (P_Attrition_Flag1 ge 0.00669341459008) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00669341459008) then do;
+49307     +b_Attrition_Flag = 39;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 39;
+49308     +end;
+MPRINT(EM_DIAGRAM):   end;
+49309     +else
+49310     +if (P_Attrition_Flag1 ge 0.00604407948841) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00604407948841) then do;
+49311     +b_Attrition_Flag = 40;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 40;
+49312     +end;
+MPRINT(EM_DIAGRAM):   end;
+49313     +else
+49314     +if (P_Attrition_Flag1 ge 0.00535521690733) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00535521690733) then do;
+49315     +b_Attrition_Flag = 41;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 41;
+49316     +end;
+MPRINT(EM_DIAGRAM):   end;
+49317     +else
+49318     +if (P_Attrition_Flag1 ge 0.00495430177513) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00495430177513) then do;
+49319     +b_Attrition_Flag = 42;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 42;
+49320     +end;
+MPRINT(EM_DIAGRAM):   end;
+49321     +else
+49322     +if (P_Attrition_Flag1 ge 0.00451620799226) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00451620799226) then do;
+49323     +b_Attrition_Flag = 43;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 43;
+49324     +end;
+MPRINT(EM_DIAGRAM):   end;
+49325     +else
+49326     +if (P_Attrition_Flag1 ge 0.00416705234237) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00416705234237) then do;
+49327     +b_Attrition_Flag = 44;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 44;
+49328     +end;
+MPRINT(EM_DIAGRAM):   end;
+49329     +else
+49330     +if (P_Attrition_Flag1 ge 0.00385307939378) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00385307939378) then do;
+49331     +b_Attrition_Flag = 45;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 45;
+49332     +end;
+MPRINT(EM_DIAGRAM):   end;
+49333     +else
+49334     +if (P_Attrition_Flag1 ge 0.00349685893116) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00349685893116) then do;
+49335     +b_Attrition_Flag = 46;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 46;
+49336     +end;
+MPRINT(EM_DIAGRAM):   end;
+49337     +else
+49338     +if (P_Attrition_Flag1 ge 0.00322334850518) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00322334850518) then do;
+49339     +b_Attrition_Flag = 47;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 47;
+49340     +end;
+MPRINT(EM_DIAGRAM):   end;
+49341     +else
+49342     +if (P_Attrition_Flag1 ge 0.00302132378211) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00302132378211) then do;
+49343     +b_Attrition_Flag = 48;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 48;
+49344     +end;
+MPRINT(EM_DIAGRAM):   end;
+49345     +else
+49346     +if (P_Attrition_Flag1 ge 0.00282290213484) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00282290213484) then do;
+49347     +b_Attrition_Flag = 49;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 49;
+49348     +end;
+MPRINT(EM_DIAGRAM):   end;
+49349     +else
+49350     +if (P_Attrition_Flag1 ge 0.00266569075658) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00266569075658) then do;
+49351     +b_Attrition_Flag = 50;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 50;
+49352     +end;
+MPRINT(EM_DIAGRAM):   end;
+49353     +else
+49354     +if (P_Attrition_Flag1 ge 0.00250062447579) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00250062447579) then do;
+49355     +b_Attrition_Flag = 51;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 51;
+49356     +end;
+MPRINT(EM_DIAGRAM):   end;
+49357     +else
+49358     +if (P_Attrition_Flag1 ge 0.00232349462332) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00232349462332) then do;
+49359     +b_Attrition_Flag = 52;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 52;
+49360     +end;
+MPRINT(EM_DIAGRAM):   end;
+49361     +else
+49362     +if (P_Attrition_Flag1 ge 0.00219545691642) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00219545691642) then do;
+49363     +b_Attrition_Flag = 53;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 53;
+49364     +end;
+MPRINT(EM_DIAGRAM):   end;
+49365     +else
+49366     +if (P_Attrition_Flag1 ge 0.00207637716027) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00207637716027) then do;
+49367     +b_Attrition_Flag = 54;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 54;
+49368     +end;
+MPRINT(EM_DIAGRAM):   end;
+49369     +else
+49370     +if (P_Attrition_Flag1 ge 0.00196833017842) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00196833017842) then do;
+49371     +b_Attrition_Flag = 55;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 55;
+49372     +end;
+MPRINT(EM_DIAGRAM):   end;
+49373     +else
+49374     +if (P_Attrition_Flag1 ge 0.00186363081978) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00186363081978) then do;
+49375     +b_Attrition_Flag = 56;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 56;
+49376     +end;
+MPRINT(EM_DIAGRAM):   end;
+49377     +else
+49378     +if (P_Attrition_Flag1 ge 0.00178424620068) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00178424620068) then do;
+49379     +b_Attrition_Flag = 57;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 57;
+49380     +end;
+MPRINT(EM_DIAGRAM):   end;
+49381     +else
+49382     +if (P_Attrition_Flag1 ge 0.00170685474161) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00170685474161) then do;
+49383     +b_Attrition_Flag = 58;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 58;
+49384     +end;
+MPRINT(EM_DIAGRAM):   end;
+49385     +else
+49386     +if (P_Attrition_Flag1 ge 0.00164048328418) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00164048328418) then do;
+49387     +b_Attrition_Flag = 59;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 59;
+49388     +end;
+MPRINT(EM_DIAGRAM):   end;
+49389     +else
+49390     +if (P_Attrition_Flag1 ge 0.00156540263436) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00156540263436) then do;
+49391     +b_Attrition_Flag = 60;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 60;
+49392     +end;
+MPRINT(EM_DIAGRAM):   end;
+49393     +else
+49394     +if (P_Attrition_Flag1 ge 0.00150192939819) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00150192939819) then do;
+49395     +b_Attrition_Flag = 61;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 61;
+49396     +end;
+MPRINT(EM_DIAGRAM):   end;
+49397     +else
+49398     +if (P_Attrition_Flag1 ge 0.00144881858959) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00144881858959) then do;
+49399     +b_Attrition_Flag = 62;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 62;
+49400     +end;
+MPRINT(EM_DIAGRAM):   end;
+49401     +else
+49402     +if (P_Attrition_Flag1 ge 0.00139791042541) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00139791042541) then do;
+49403     +b_Attrition_Flag = 63;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 63;
+49404     +end;
+MPRINT(EM_DIAGRAM):   end;
+49405     +else
+49406     +if (P_Attrition_Flag1 ge 0.00133988878528) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00133988878528) then do;
+49407     +b_Attrition_Flag = 64;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 64;
+49408     +end;
+MPRINT(EM_DIAGRAM):   end;
+49409     +else
+49410     +if (P_Attrition_Flag1 ge 0.00128268626103) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00128268626103) then do;
+49411     +b_Attrition_Flag = 65;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 65;
+49412     +end;
+MPRINT(EM_DIAGRAM):   end;
+49413     +else
+49414     +if (P_Attrition_Flag1 ge 0.00123359384492) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00123359384492) then do;
+49415     +b_Attrition_Flag = 66;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 66;
+49416     +end;
+MPRINT(EM_DIAGRAM):   end;
+49417     +else
+49418     +if (P_Attrition_Flag1 ge 0.00118857576201) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00118857576201) then do;
+49419     +b_Attrition_Flag = 67;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 67;
+49420     +end;
+MPRINT(EM_DIAGRAM):   end;
+49421     +else
+49422     +if (P_Attrition_Flag1 ge 0.00113350823534) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00113350823534) then do;
+49423     +b_Attrition_Flag = 68;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 68;
+49424     +end;
+MPRINT(EM_DIAGRAM):   end;
+49425     +else
+49426     +if (P_Attrition_Flag1 ge 0.00108857863621) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00108857863621) then do;
+49427     +b_Attrition_Flag = 69;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 69;
+49428     +end;
+MPRINT(EM_DIAGRAM):   end;
+49429     +else
+49430     +if (P_Attrition_Flag1 ge 0.0010453684503) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.0010453684503) then do;
+49431     +b_Attrition_Flag = 70;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 70;
+49432     +end;
+MPRINT(EM_DIAGRAM):   end;
+49433     +else
+49434     +if (P_Attrition_Flag1 ge 0.00100559812363) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00100559812363) then do;
+49435     +b_Attrition_Flag = 71;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 71;
+49436     +end;
+MPRINT(EM_DIAGRAM):   end;
+49437     +else
+49438     +if (P_Attrition_Flag1 ge 0.00096690729781) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00096690729781) then do;
+49439     +b_Attrition_Flag = 72;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 72;
+49440     +end;
+MPRINT(EM_DIAGRAM):   end;
+49441     +else
+49442     +if (P_Attrition_Flag1 ge 0.00093405125846) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00093405125846) then do;
+49443     +b_Attrition_Flag = 73;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 73;
+49444     +end;
+MPRINT(EM_DIAGRAM):   end;
+49445     +else
+49446     +if (P_Attrition_Flag1 ge 0.00089527626304) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00089527626304) then do;
+49447     +b_Attrition_Flag = 74;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 74;
+49448     +end;
+MPRINT(EM_DIAGRAM):   end;
+49449     +else
+49450     +if (P_Attrition_Flag1 ge 0.00085556765593) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00085556765593) then do;
+49451     +b_Attrition_Flag = 75;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 75;
+49452     +end;
+MPRINT(EM_DIAGRAM):   end;
+49453     +else
+49454     +if (P_Attrition_Flag1 ge 0.00082280755792) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00082280755792) then do;
+49455     +b_Attrition_Flag = 76;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 76;
+49456     +end;
+MPRINT(EM_DIAGRAM):   end;
+49457     +else
+49458     +if (P_Attrition_Flag1 ge 0.00078930983097) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00078930983097) then do;
+49459     +b_Attrition_Flag = 77;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 77;
+49460     +end;
+MPRINT(EM_DIAGRAM):   end;
+49461     +else
+49462     +if (P_Attrition_Flag1 ge 0.00076316709915) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00076316709915) then do;
+49463     +b_Attrition_Flag = 78;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 78;
+49464     +end;
+MPRINT(EM_DIAGRAM):   end;
+49465     +else
+49466     +if (P_Attrition_Flag1 ge 0.00073594842937) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00073594842937) then do;
+49467     +b_Attrition_Flag = 79;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 79;
+49468     +end;
+MPRINT(EM_DIAGRAM):   end;
+49469     +else
+49470     +if (P_Attrition_Flag1 ge 0.00071206594174) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00071206594174) then do;
+49471     +b_Attrition_Flag = 80;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 80;
+49472     +end;
+MPRINT(EM_DIAGRAM):   end;
+49473     +else
+49474     +if (P_Attrition_Flag1 ge 0.00068602350784) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00068602350784) then do;
+49475     +b_Attrition_Flag = 81;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 81;
+49476     +end;
+MPRINT(EM_DIAGRAM):   end;
+49477     +else
+49478     +if (P_Attrition_Flag1 ge 0.00065676604604) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00065676604604) then do;
+49479     +b_Attrition_Flag = 82;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 82;
+49480     +end;
+MPRINT(EM_DIAGRAM):   end;
+49481     +else
+49482     +if (P_Attrition_Flag1 ge 0.00062876264318) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00062876264318) then do;
+49483     +b_Attrition_Flag = 83;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 83;
+49484     +end;
+MPRINT(EM_DIAGRAM):   end;
+49485     +else
+49486     +if (P_Attrition_Flag1 ge 0.00060574868527) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00060574868527) then do;
+49487     +b_Attrition_Flag = 84;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 84;
+49488     +end;
+MPRINT(EM_DIAGRAM):   end;
+49489     +else
+49490     +if (P_Attrition_Flag1 ge 0.00058102646487) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00058102646487) then do;
+49491     +b_Attrition_Flag = 85;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 85;
+49492     +end;
+MPRINT(EM_DIAGRAM):   end;
+49493     +else
+49494     +if (P_Attrition_Flag1 ge 0.00055228175174) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00055228175174) then do;
+49495     +b_Attrition_Flag = 86;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 86;
+49496     +end;
+MPRINT(EM_DIAGRAM):   end;
+49497     +else
+49498     +if (P_Attrition_Flag1 ge 0.00052822458656) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00052822458656) then do;
+49499     +b_Attrition_Flag = 87;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 87;
+49500     +end;
+MPRINT(EM_DIAGRAM):   end;
+49501     +else
+49502     +if (P_Attrition_Flag1 ge 0.00050364655753) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00050364655753) then do;
+49503     +b_Attrition_Flag = 88;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 88;
+49504     +end;
+MPRINT(EM_DIAGRAM):   end;
+49505     +else
+49506     +if (P_Attrition_Flag1 ge 0.00047152651059) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00047152651059) then do;
+49507     +b_Attrition_Flag = 89;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 89;
+49508     +end;
+MPRINT(EM_DIAGRAM):   end;
+49509     +else
+49510     +if (P_Attrition_Flag1 ge 0.00043646007079) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00043646007079) then do;
+49511     +b_Attrition_Flag = 90;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 90;
+49512     +end;
+MPRINT(EM_DIAGRAM):   end;
+49513     +else
+49514     +if (P_Attrition_Flag1 ge 0.00039948960554) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00039948960554) then do;
+49515     +b_Attrition_Flag = 91;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 91;
+49516     +end;
+MPRINT(EM_DIAGRAM):   end;
+49517     +else
+49518     +if (P_Attrition_Flag1 ge 0.00036092211382) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00036092211382) then do;
+49519     +b_Attrition_Flag = 92;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 92;
+49520     +end;
+MPRINT(EM_DIAGRAM):   end;
+49521     +else
+49522     +if (P_Attrition_Flag1 ge 0.00032034310403) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00032034310403) then do;
+49523     +b_Attrition_Flag = 93;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 93;
+49524     +end;
+MPRINT(EM_DIAGRAM):   end;
+49525     +else
+49526     +if (P_Attrition_Flag1 ge 0.00027852018756) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00027852018756) then do;
+49527     +b_Attrition_Flag = 94;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 94;
+49528     +end;
+MPRINT(EM_DIAGRAM):   end;
+49529     +else
+49530     +if (P_Attrition_Flag1 ge 0.0002218440242) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.0002218440242) then do;
+49531     +b_Attrition_Flag = 95;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 95;
+49532     +end;
+MPRINT(EM_DIAGRAM):   end;
+49533     +else
+49534     +if (P_Attrition_Flag1 ge 0.00015411598571) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00015411598571) then do;
+49535     +b_Attrition_Flag = 96;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 96;
+49536     +end;
+MPRINT(EM_DIAGRAM):   end;
+49537     +else
+49538     +if (P_Attrition_Flag1 ge 0.00011243952293) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00011243952293) then do;
+49539     +b_Attrition_Flag = 97;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 97;
+49540     +end;
+MPRINT(EM_DIAGRAM):   end;
+49541     +else
+49542     +if (P_Attrition_Flag1 ge 0.00008042897946) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00008042897946) then do;
+49543     +b_Attrition_Flag = 98;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 98;
+49544     +end;
+MPRINT(EM_DIAGRAM):   end;
+49545     +else
+49546     +if (P_Attrition_Flag1 ge 0.00005934359105) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00005934359105) then do;
+49547     +b_Attrition_Flag = 99;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 99;
+49548     +end;
+MPRINT(EM_DIAGRAM):   end;
+49549     +else
+49550     +do;
+MPRINT(EM_DIAGRAM):   else do;
+49551     +b_Attrition_Flag = 100;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 100;
+49552     +end;
+MPRINT(EM_DIAGRAM):   end;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+49553      run;
+
+NOTE: DATA STEP view saved on file EMWS1.MDLCOMP5_TRAIN.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.AUTONEURAL2_TRAIN.VIEW used (Total process time):
+      real time           0.12 seconds
+      cpu time            0.12 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.13 seconds
+      cpu time            0.12 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+49554      quit;
+49555      filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+49556      filename emflow
+49556    ! "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * MdlComp5: Scoring AUTONEURAL2_VALIDATE data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+49557      *------------------------------------------------------------*;
+49558      * MdlComp5: Scoring AUTONEURAL2_VALIDATE data;
+49559      *------------------------------------------------------------*;
+49560      data EMWS1.MdlComp5_VALIDATE
+49561      / view=EMWS1.MdlComp5_VALIDATE
+49562      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.MdlComp5_VALIDATE / view=EMWS1.MdlComp5_VALIDATE ;
+49563      set EMWS1.AutoNeural2_VALIDATE
+49564      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.AutoNeural2_VALIDATE ;
+49565      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file 
+      D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas.
+49566     +if (P_Attrition_Flag1 ge 0.99744906578271) then do;
+MPRINT(EM_DIAGRAM):   if (P_Attrition_Flag1 ge 0.99744906578271) then do;
+49567     +b_Attrition_Flag = 1;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 1;
+49568     +end;
+MPRINT(EM_DIAGRAM):   end;
+49569     +else
+49570     +if (P_Attrition_Flag1 ge 0.99635450737983) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99635450737983) then do;
+49571     +b_Attrition_Flag = 2;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 2;
+49572     +end;
+MPRINT(EM_DIAGRAM):   end;
+49573     +else
+49574     +if (P_Attrition_Flag1 ge 0.99437261953019) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99437261953019) then do;
+49575     +b_Attrition_Flag = 3;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 3;
+49576     +end;
+MPRINT(EM_DIAGRAM):   end;
+49577     +else
+49578     +if (P_Attrition_Flag1 ge 0.99063741196581) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99063741196581) then do;
+49579     +b_Attrition_Flag = 4;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 4;
+49580     +end;
+MPRINT(EM_DIAGRAM):   end;
+49581     +else
+49582     +if (P_Attrition_Flag1 ge 0.98539358541825) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.98539358541825) then do;
+49583     +b_Attrition_Flag = 5;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 5;
+49584     +end;
+MPRINT(EM_DIAGRAM):   end;
+49585     +else
+49586     +if (P_Attrition_Flag1 ge 0.9775346553137) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9775346553137) then do;
+49587     +b_Attrition_Flag = 6;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 6;
+49588     +end;
+MPRINT(EM_DIAGRAM):   end;
+49589     +else
+49590     +if (P_Attrition_Flag1 ge 0.9698197297622) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9698197297622) then do;
+49591     +b_Attrition_Flag = 7;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 7;
+49592     +end;
+MPRINT(EM_DIAGRAM):   end;
+49593     +else
+49594     +if (P_Attrition_Flag1 ge 0.95490307363698) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.95490307363698) then do;
+49595     +b_Attrition_Flag = 8;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 8;
+49596     +end;
+MPRINT(EM_DIAGRAM):   end;
+49597     +else
+49598     +if (P_Attrition_Flag1 ge 0.93555736238583) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.93555736238583) then do;
+49599     +b_Attrition_Flag = 9;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 9;
+49600     +end;
+MPRINT(EM_DIAGRAM):   end;
+49601     +else
+49602     +if (P_Attrition_Flag1 ge 0.9117344640871) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9117344640871) then do;
+49603     +b_Attrition_Flag = 10;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 10;
+49604     +end;
+MPRINT(EM_DIAGRAM):   end;
+49605     +else
+49606     +if (P_Attrition_Flag1 ge 0.87759911828806) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.87759911828806) then do;
+49607     +b_Attrition_Flag = 11;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 11;
+49608     +end;
+MPRINT(EM_DIAGRAM):   end;
+49609     +else
+49610     +if (P_Attrition_Flag1 ge 0.81563589824461) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.81563589824461) then do;
+49611     +b_Attrition_Flag = 12;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 12;
+49612     +end;
+MPRINT(EM_DIAGRAM):   end;
+49613     +else
+49614     +if (P_Attrition_Flag1 ge 0.72836896896857) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.72836896896857) then do;
+49615     +b_Attrition_Flag = 13;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 13;
+49616     +end;
+MPRINT(EM_DIAGRAM):   end;
+49617     +else
+49618     +if (P_Attrition_Flag1 ge 0.63146309002052) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.63146309002052) then do;
+49619     +b_Attrition_Flag = 14;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 14;
+49620     +end;
+MPRINT(EM_DIAGRAM):   end;
+49621     +else
+49622     +if (P_Attrition_Flag1 ge 0.5168705244164) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.5168705244164) then do;
+49623     +b_Attrition_Flag = 15;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 15;
+49624     +end;
+MPRINT(EM_DIAGRAM):   end;
+49625     +else
+49626     +if (P_Attrition_Flag1 ge 0.40115281182836) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.40115281182836) then do;
+49627     +b_Attrition_Flag = 16;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 16;
+49628     +end;
+MPRINT(EM_DIAGRAM):   end;
+49629     +else
+49630     +if (P_Attrition_Flag1 ge 0.31333911153947) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.31333911153947) then do;
+49631     +b_Attrition_Flag = 17;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 17;
+49632     +end;
+MPRINT(EM_DIAGRAM):   end;
+49633     +else
+49634     +if (P_Attrition_Flag1 ge 0.24967818471111) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.24967818471111) then do;
+49635     +b_Attrition_Flag = 18;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 18;
+49636     +end;
+MPRINT(EM_DIAGRAM):   end;
+49637     +else
+49638     +if (P_Attrition_Flag1 ge 0.19401820248423) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.19401820248423) then do;
+49639     +b_Attrition_Flag = 19;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 19;
+49640     +end;
+MPRINT(EM_DIAGRAM):   end;
+49641     +else
+49642     +if (P_Attrition_Flag1 ge 0.14748182403371) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.14748182403371) then do;
+49643     +b_Attrition_Flag = 20;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 20;
+49644     +end;
+MPRINT(EM_DIAGRAM):   end;
+49645     +else
+49646     +if (P_Attrition_Flag1 ge 0.11706762768184) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.11706762768184) then do;
+49647     +b_Attrition_Flag = 21;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 21;
+49648     +end;
+MPRINT(EM_DIAGRAM):   end;
+49649     +else
+49650     +if (P_Attrition_Flag1 ge 0.09637265170113) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.09637265170113) then do;
+49651     +b_Attrition_Flag = 22;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 22;
+49652     +end;
+MPRINT(EM_DIAGRAM):   end;
+49653     +else
+49654     +if (P_Attrition_Flag1 ge 0.07767934671078) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.07767934671078) then do;
+49655     +b_Attrition_Flag = 23;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 23;
+49656     +end;
+MPRINT(EM_DIAGRAM):   end;
+49657     +else
+49658     +if (P_Attrition_Flag1 ge 0.06234548749853) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.06234548749853) then do;
+49659     +b_Attrition_Flag = 24;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 24;
+49660     +end;
+MPRINT(EM_DIAGRAM):   end;
+49661     +else
+49662     +if (P_Attrition_Flag1 ge 0.05214745505164) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.05214745505164) then do;
+49663     +b_Attrition_Flag = 25;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 25;
+49664     +end;
+MPRINT(EM_DIAGRAM):   end;
+49665     +else
+49666     +if (P_Attrition_Flag1 ge 0.04344024187792) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.04344024187792) then do;
+49667     +b_Attrition_Flag = 26;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 26;
+49668     +end;
+MPRINT(EM_DIAGRAM):   end;
+49669     +else
+49670     +if (P_Attrition_Flag1 ge 0.03720230250312) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.03720230250312) then do;
+49671     +b_Attrition_Flag = 27;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 27;
+49672     +end;
+MPRINT(EM_DIAGRAM):   end;
+49673     +else
+49674     +if (P_Attrition_Flag1 ge 0.03065733069929) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.03065733069929) then do;
+49675     +b_Attrition_Flag = 28;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 28;
+49676     +end;
+MPRINT(EM_DIAGRAM):   end;
+49677     +else
+49678     +if (P_Attrition_Flag1 ge 0.02609968304744) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.02609968304744) then do;
+49679     +b_Attrition_Flag = 29;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 29;
+49680     +end;
+MPRINT(EM_DIAGRAM):   end;
+49681     +else
+49682     +if (P_Attrition_Flag1 ge 0.02207471064273) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.02207471064273) then do;
+49683     +b_Attrition_Flag = 30;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 30;
+49684     +end;
+MPRINT(EM_DIAGRAM):   end;
+49685     +else
+49686     +if (P_Attrition_Flag1 ge 0.01883540999836) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01883540999836) then do;
+49687     +b_Attrition_Flag = 31;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 31;
+49688     +end;
+MPRINT(EM_DIAGRAM):   end;
+49689     +else
+49690     +if (P_Attrition_Flag1 ge 0.01672922649221) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01672922649221) then do;
+49691     +b_Attrition_Flag = 32;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 32;
+49692     +end;
+MPRINT(EM_DIAGRAM):   end;
+49693     +else
+49694     +if (P_Attrition_Flag1 ge 0.01425470740608) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01425470740608) then do;
+49695     +b_Attrition_Flag = 33;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 33;
+49696     +end;
+MPRINT(EM_DIAGRAM):   end;
+49697     +else
+49698     +if (P_Attrition_Flag1 ge 0.01243011017591) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01243011017591) then do;
+49699     +b_Attrition_Flag = 34;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 34;
+49700     +end;
+MPRINT(EM_DIAGRAM):   end;
+49701     +else
+49702     +if (P_Attrition_Flag1 ge 0.01085445023656) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01085445023656) then do;
+49703     +b_Attrition_Flag = 35;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 35;
+49704     +end;
+MPRINT(EM_DIAGRAM):   end;
+49705     +else
+49706     +if (P_Attrition_Flag1 ge 0.00953364481037) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00953364481037) then do;
+49707     +b_Attrition_Flag = 36;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 36;
+49708     +end;
+MPRINT(EM_DIAGRAM):   end;
+49709     +else
+49710     +if (P_Attrition_Flag1 ge 0.00832999171096) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00832999171096) then do;
+49711     +b_Attrition_Flag = 37;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 37;
+49712     +end;
+MPRINT(EM_DIAGRAM):   end;
+49713     +else
+49714     +if (P_Attrition_Flag1 ge 0.00751449329062) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00751449329062) then do;
+49715     +b_Attrition_Flag = 38;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 38;
+49716     +end;
+MPRINT(EM_DIAGRAM):   end;
+49717     +else
+49718     +if (P_Attrition_Flag1 ge 0.00669341459008) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00669341459008) then do;
+49719     +b_Attrition_Flag = 39;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 39;
+49720     +end;
+MPRINT(EM_DIAGRAM):   end;
+49721     +else
+49722     +if (P_Attrition_Flag1 ge 0.00604407948841) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00604407948841) then do;
+49723     +b_Attrition_Flag = 40;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 40;
+49724     +end;
+MPRINT(EM_DIAGRAM):   end;
+49725     +else
+49726     +if (P_Attrition_Flag1 ge 0.00535521690733) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00535521690733) then do;
+49727     +b_Attrition_Flag = 41;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 41;
+49728     +end;
+MPRINT(EM_DIAGRAM):   end;
+49729     +else
+49730     +if (P_Attrition_Flag1 ge 0.00495430177513) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00495430177513) then do;
+49731     +b_Attrition_Flag = 42;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 42;
+49732     +end;
+MPRINT(EM_DIAGRAM):   end;
+49733     +else
+49734     +if (P_Attrition_Flag1 ge 0.00451620799226) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00451620799226) then do;
+49735     +b_Attrition_Flag = 43;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 43;
+49736     +end;
+MPRINT(EM_DIAGRAM):   end;
+49737     +else
+49738     +if (P_Attrition_Flag1 ge 0.00416705234237) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00416705234237) then do;
+49739     +b_Attrition_Flag = 44;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 44;
+49740     +end;
+MPRINT(EM_DIAGRAM):   end;
+49741     +else
+49742     +if (P_Attrition_Flag1 ge 0.00385307939378) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00385307939378) then do;
+49743     +b_Attrition_Flag = 45;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 45;
+49744     +end;
+MPRINT(EM_DIAGRAM):   end;
+49745     +else
+49746     +if (P_Attrition_Flag1 ge 0.00349685893116) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00349685893116) then do;
+49747     +b_Attrition_Flag = 46;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 46;
+49748     +end;
+MPRINT(EM_DIAGRAM):   end;
+49749     +else
+49750     +if (P_Attrition_Flag1 ge 0.00322334850518) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00322334850518) then do;
+49751     +b_Attrition_Flag = 47;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 47;
+49752     +end;
+MPRINT(EM_DIAGRAM):   end;
+49753     +else
+49754     +if (P_Attrition_Flag1 ge 0.00302132378211) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00302132378211) then do;
+49755     +b_Attrition_Flag = 48;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 48;
+49756     +end;
+MPRINT(EM_DIAGRAM):   end;
+49757     +else
+49758     +if (P_Attrition_Flag1 ge 0.00282290213484) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00282290213484) then do;
+49759     +b_Attrition_Flag = 49;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 49;
+49760     +end;
+MPRINT(EM_DIAGRAM):   end;
+49761     +else
+49762     +if (P_Attrition_Flag1 ge 0.00266569075658) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00266569075658) then do;
+49763     +b_Attrition_Flag = 50;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 50;
+49764     +end;
+MPRINT(EM_DIAGRAM):   end;
+49765     +else
+49766     +if (P_Attrition_Flag1 ge 0.00250062447579) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00250062447579) then do;
+49767     +b_Attrition_Flag = 51;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 51;
+49768     +end;
+MPRINT(EM_DIAGRAM):   end;
+49769     +else
+49770     +if (P_Attrition_Flag1 ge 0.00232349462332) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00232349462332) then do;
+49771     +b_Attrition_Flag = 52;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 52;
+49772     +end;
+MPRINT(EM_DIAGRAM):   end;
+49773     +else
+49774     +if (P_Attrition_Flag1 ge 0.00219545691642) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00219545691642) then do;
+49775     +b_Attrition_Flag = 53;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 53;
+49776     +end;
+MPRINT(EM_DIAGRAM):   end;
+49777     +else
+49778     +if (P_Attrition_Flag1 ge 0.00207637716027) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00207637716027) then do;
+49779     +b_Attrition_Flag = 54;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 54;
+49780     +end;
+MPRINT(EM_DIAGRAM):   end;
+49781     +else
+49782     +if (P_Attrition_Flag1 ge 0.00196833017842) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00196833017842) then do;
+49783     +b_Attrition_Flag = 55;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 55;
+49784     +end;
+MPRINT(EM_DIAGRAM):   end;
+49785     +else
+49786     +if (P_Attrition_Flag1 ge 0.00186363081978) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00186363081978) then do;
+49787     +b_Attrition_Flag = 56;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 56;
+49788     +end;
+MPRINT(EM_DIAGRAM):   end;
+49789     +else
+49790     +if (P_Attrition_Flag1 ge 0.00178424620068) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00178424620068) then do;
+49791     +b_Attrition_Flag = 57;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 57;
+49792     +end;
+MPRINT(EM_DIAGRAM):   end;
+49793     +else
+49794     +if (P_Attrition_Flag1 ge 0.00170685474161) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00170685474161) then do;
+49795     +b_Attrition_Flag = 58;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 58;
+49796     +end;
+MPRINT(EM_DIAGRAM):   end;
+49797     +else
+49798     +if (P_Attrition_Flag1 ge 0.00164048328418) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00164048328418) then do;
+49799     +b_Attrition_Flag = 59;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 59;
+49800     +end;
+MPRINT(EM_DIAGRAM):   end;
+49801     +else
+49802     +if (P_Attrition_Flag1 ge 0.00156540263436) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00156540263436) then do;
+49803     +b_Attrition_Flag = 60;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 60;
+49804     +end;
+MPRINT(EM_DIAGRAM):   end;
+49805     +else
+49806     +if (P_Attrition_Flag1 ge 0.00150192939819) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00150192939819) then do;
+49807     +b_Attrition_Flag = 61;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 61;
+49808     +end;
+MPRINT(EM_DIAGRAM):   end;
+49809     +else
+49810     +if (P_Attrition_Flag1 ge 0.00144881858959) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00144881858959) then do;
+49811     +b_Attrition_Flag = 62;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 62;
+49812     +end;
+MPRINT(EM_DIAGRAM):   end;
+49813     +else
+49814     +if (P_Attrition_Flag1 ge 0.00139791042541) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00139791042541) then do;
+49815     +b_Attrition_Flag = 63;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 63;
+49816     +end;
+MPRINT(EM_DIAGRAM):   end;
+49817     +else
+49818     +if (P_Attrition_Flag1 ge 0.00133988878528) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00133988878528) then do;
+49819     +b_Attrition_Flag = 64;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 64;
+49820     +end;
+MPRINT(EM_DIAGRAM):   end;
+49821     +else
+49822     +if (P_Attrition_Flag1 ge 0.00128268626103) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00128268626103) then do;
+49823     +b_Attrition_Flag = 65;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 65;
+49824     +end;
+MPRINT(EM_DIAGRAM):   end;
+49825     +else
+49826     +if (P_Attrition_Flag1 ge 0.00123359384492) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00123359384492) then do;
+49827     +b_Attrition_Flag = 66;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 66;
+49828     +end;
+MPRINT(EM_DIAGRAM):   end;
+49829     +else
+49830     +if (P_Attrition_Flag1 ge 0.00118857576201) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00118857576201) then do;
+49831     +b_Attrition_Flag = 67;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 67;
+49832     +end;
+MPRINT(EM_DIAGRAM):   end;
+49833     +else
+49834     +if (P_Attrition_Flag1 ge 0.00113350823534) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00113350823534) then do;
+49835     +b_Attrition_Flag = 68;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 68;
+49836     +end;
+MPRINT(EM_DIAGRAM):   end;
+49837     +else
+49838     +if (P_Attrition_Flag1 ge 0.00108857863621) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00108857863621) then do;
+49839     +b_Attrition_Flag = 69;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 69;
+49840     +end;
+MPRINT(EM_DIAGRAM):   end;
+49841     +else
+49842     +if (P_Attrition_Flag1 ge 0.0010453684503) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.0010453684503) then do;
+49843     +b_Attrition_Flag = 70;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 70;
+49844     +end;
+MPRINT(EM_DIAGRAM):   end;
+49845     +else
+49846     +if (P_Attrition_Flag1 ge 0.00100559812363) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00100559812363) then do;
+49847     +b_Attrition_Flag = 71;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 71;
+49848     +end;
+MPRINT(EM_DIAGRAM):   end;
+49849     +else
+49850     +if (P_Attrition_Flag1 ge 0.00096690729781) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00096690729781) then do;
+49851     +b_Attrition_Flag = 72;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 72;
+49852     +end;
+MPRINT(EM_DIAGRAM):   end;
+49853     +else
+49854     +if (P_Attrition_Flag1 ge 0.00093405125846) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00093405125846) then do;
+49855     +b_Attrition_Flag = 73;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 73;
+49856     +end;
+MPRINT(EM_DIAGRAM):   end;
+49857     +else
+49858     +if (P_Attrition_Flag1 ge 0.00089527626304) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00089527626304) then do;
+49859     +b_Attrition_Flag = 74;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 74;
+49860     +end;
+MPRINT(EM_DIAGRAM):   end;
+49861     +else
+49862     +if (P_Attrition_Flag1 ge 0.00085556765593) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00085556765593) then do;
+49863     +b_Attrition_Flag = 75;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 75;
+49864     +end;
+MPRINT(EM_DIAGRAM):   end;
+49865     +else
+49866     +if (P_Attrition_Flag1 ge 0.00082280755792) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00082280755792) then do;
+49867     +b_Attrition_Flag = 76;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 76;
+49868     +end;
+MPRINT(EM_DIAGRAM):   end;
+49869     +else
+49870     +if (P_Attrition_Flag1 ge 0.00078930983097) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00078930983097) then do;
+49871     +b_Attrition_Flag = 77;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 77;
+49872     +end;
+MPRINT(EM_DIAGRAM):   end;
+49873     +else
+49874     +if (P_Attrition_Flag1 ge 0.00076316709915) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00076316709915) then do;
+49875     +b_Attrition_Flag = 78;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 78;
+49876     +end;
+MPRINT(EM_DIAGRAM):   end;
+49877     +else
+49878     +if (P_Attrition_Flag1 ge 0.00073594842937) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00073594842937) then do;
+49879     +b_Attrition_Flag = 79;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 79;
+49880     +end;
+MPRINT(EM_DIAGRAM):   end;
+49881     +else
+49882     +if (P_Attrition_Flag1 ge 0.00071206594174) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00071206594174) then do;
+49883     +b_Attrition_Flag = 80;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 80;
+49884     +end;
+MPRINT(EM_DIAGRAM):   end;
+49885     +else
+49886     +if (P_Attrition_Flag1 ge 0.00068602350784) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00068602350784) then do;
+49887     +b_Attrition_Flag = 81;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 81;
+49888     +end;
+MPRINT(EM_DIAGRAM):   end;
+49889     +else
+49890     +if (P_Attrition_Flag1 ge 0.00065676604604) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00065676604604) then do;
+49891     +b_Attrition_Flag = 82;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 82;
+49892     +end;
+MPRINT(EM_DIAGRAM):   end;
+49893     +else
+49894     +if (P_Attrition_Flag1 ge 0.00062876264318) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00062876264318) then do;
+49895     +b_Attrition_Flag = 83;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 83;
+49896     +end;
+MPRINT(EM_DIAGRAM):   end;
+49897     +else
+49898     +if (P_Attrition_Flag1 ge 0.00060574868527) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00060574868527) then do;
+49899     +b_Attrition_Flag = 84;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 84;
+49900     +end;
+MPRINT(EM_DIAGRAM):   end;
+49901     +else
+49902     +if (P_Attrition_Flag1 ge 0.00058102646487) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00058102646487) then do;
+49903     +b_Attrition_Flag = 85;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 85;
+49904     +end;
+MPRINT(EM_DIAGRAM):   end;
+49905     +else
+49906     +if (P_Attrition_Flag1 ge 0.00055228175174) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00055228175174) then do;
+49907     +b_Attrition_Flag = 86;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 86;
+49908     +end;
+MPRINT(EM_DIAGRAM):   end;
+49909     +else
+49910     +if (P_Attrition_Flag1 ge 0.00052822458656) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00052822458656) then do;
+49911     +b_Attrition_Flag = 87;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 87;
+49912     +end;
+MPRINT(EM_DIAGRAM):   end;
+49913     +else
+49914     +if (P_Attrition_Flag1 ge 0.00050364655753) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00050364655753) then do;
+49915     +b_Attrition_Flag = 88;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 88;
+49916     +end;
+MPRINT(EM_DIAGRAM):   end;
+49917     +else
+49918     +if (P_Attrition_Flag1 ge 0.00047152651059) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00047152651059) then do;
+49919     +b_Attrition_Flag = 89;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 89;
+49920     +end;
+MPRINT(EM_DIAGRAM):   end;
+49921     +else
+49922     +if (P_Attrition_Flag1 ge 0.00043646007079) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00043646007079) then do;
+49923     +b_Attrition_Flag = 90;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 90;
+49924     +end;
+MPRINT(EM_DIAGRAM):   end;
+49925     +else
+49926     +if (P_Attrition_Flag1 ge 0.00039948960554) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00039948960554) then do;
+49927     +b_Attrition_Flag = 91;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 91;
+49928     +end;
+MPRINT(EM_DIAGRAM):   end;
+49929     +else
+49930     +if (P_Attrition_Flag1 ge 0.00036092211382) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00036092211382) then do;
+49931     +b_Attrition_Flag = 92;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 92;
+49932     +end;
+MPRINT(EM_DIAGRAM):   end;
+49933     +else
+49934     +if (P_Attrition_Flag1 ge 0.00032034310403) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00032034310403) then do;
+49935     +b_Attrition_Flag = 93;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 93;
+49936     +end;
+MPRINT(EM_DIAGRAM):   end;
+49937     +else
+49938     +if (P_Attrition_Flag1 ge 0.00027852018756) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00027852018756) then do;
+49939     +b_Attrition_Flag = 94;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 94;
+49940     +end;
+MPRINT(EM_DIAGRAM):   end;
+49941     +else
+49942     +if (P_Attrition_Flag1 ge 0.0002218440242) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.0002218440242) then do;
+49943     +b_Attrition_Flag = 95;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 95;
+49944     +end;
+MPRINT(EM_DIAGRAM):   end;
+49945     +else
+49946     +if (P_Attrition_Flag1 ge 0.00015411598571) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00015411598571) then do;
+49947     +b_Attrition_Flag = 96;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 96;
+49948     +end;
+MPRINT(EM_DIAGRAM):   end;
+49949     +else
+49950     +if (P_Attrition_Flag1 ge 0.00011243952293) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00011243952293) then do;
+49951     +b_Attrition_Flag = 97;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 97;
+49952     +end;
+MPRINT(EM_DIAGRAM):   end;
+49953     +else
+49954     +if (P_Attrition_Flag1 ge 0.00008042897946) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00008042897946) then do;
+49955     +b_Attrition_Flag = 98;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 98;
+49956     +end;
+MPRINT(EM_DIAGRAM):   end;
+49957     +else
+49958     +if (P_Attrition_Flag1 ge 0.00005934359105) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00005934359105) then do;
+49959     +b_Attrition_Flag = 99;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 99;
+49960     +end;
+MPRINT(EM_DIAGRAM):   end;
+49961     +else
+49962     +do;
+MPRINT(EM_DIAGRAM):   else do;
+49963     +b_Attrition_Flag = 100;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 100;
+49964     +end;
+MPRINT(EM_DIAGRAM):   end;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+49965      run;
+
+NOTE: DATA STEP view saved on file EMWS1.MDLCOMP5_VALIDATE.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.AUTONEURAL2_VALIDATE.VIEW used (Total process time):
+      real time           0.12 seconds
+      cpu time            0.10 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.13 seconds
+      cpu time            0.14 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+49966      quit;
+49967      filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+49968      filename emflow
+49968    ! "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * MdlComp5: Scoring AUTONEURAL2_TEST data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+49969      *------------------------------------------------------------*;
+49970      * MdlComp5: Scoring AUTONEURAL2_TEST data;
+49971      *------------------------------------------------------------*;
+49972      data EMWS1.MdlComp5_TEST
+49973      / view=EMWS1.MdlComp5_TEST
+49974      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.MdlComp5_TEST / view=EMWS1.MdlComp5_TEST ;
+49975      set EMWS1.AutoNeural2_TEST
+49976      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.AutoNeural2_TEST ;
+49977      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file 
+      D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\MdlComp5\EMFLOWSCORE.sas.
+49978     +if (P_Attrition_Flag1 ge 0.99744906578271) then do;
+MPRINT(EM_DIAGRAM):   if (P_Attrition_Flag1 ge 0.99744906578271) then do;
+49979     +b_Attrition_Flag = 1;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 1;
+49980     +end;
+MPRINT(EM_DIAGRAM):   end;
+49981     +else
+49982     +if (P_Attrition_Flag1 ge 0.99635450737983) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99635450737983) then do;
+49983     +b_Attrition_Flag = 2;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 2;
+49984     +end;
+MPRINT(EM_DIAGRAM):   end;
+49985     +else
+49986     +if (P_Attrition_Flag1 ge 0.99437261953019) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99437261953019) then do;
+49987     +b_Attrition_Flag = 3;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 3;
+49988     +end;
+MPRINT(EM_DIAGRAM):   end;
+49989     +else
+49990     +if (P_Attrition_Flag1 ge 0.99063741196581) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.99063741196581) then do;
+49991     +b_Attrition_Flag = 4;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 4;
+49992     +end;
+MPRINT(EM_DIAGRAM):   end;
+49993     +else
+49994     +if (P_Attrition_Flag1 ge 0.98539358541825) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.98539358541825) then do;
+49995     +b_Attrition_Flag = 5;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 5;
+49996     +end;
+MPRINT(EM_DIAGRAM):   end;
+49997     +else
+49998     +if (P_Attrition_Flag1 ge 0.9775346553137) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9775346553137) then do;
+49999     +b_Attrition_Flag = 6;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 6;
+50000     +end;
+MPRINT(EM_DIAGRAM):   end;
+50001     +else
+50002     +if (P_Attrition_Flag1 ge 0.9698197297622) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9698197297622) then do;
+50003     +b_Attrition_Flag = 7;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 7;
+50004     +end;
+MPRINT(EM_DIAGRAM):   end;
+50005     +else
+50006     +if (P_Attrition_Flag1 ge 0.95490307363698) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.95490307363698) then do;
+50007     +b_Attrition_Flag = 8;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 8;
+50008     +end;
+MPRINT(EM_DIAGRAM):   end;
+50009     +else
+50010     +if (P_Attrition_Flag1 ge 0.93555736238583) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.93555736238583) then do;
+50011     +b_Attrition_Flag = 9;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 9;
+50012     +end;
+MPRINT(EM_DIAGRAM):   end;
+50013     +else
+50014     +if (P_Attrition_Flag1 ge 0.9117344640871) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.9117344640871) then do;
+50015     +b_Attrition_Flag = 10;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 10;
+50016     +end;
+MPRINT(EM_DIAGRAM):   end;
+50017     +else
+50018     +if (P_Attrition_Flag1 ge 0.87759911828806) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.87759911828806) then do;
+50019     +b_Attrition_Flag = 11;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 11;
+50020     +end;
+MPRINT(EM_DIAGRAM):   end;
+50021     +else
+50022     +if (P_Attrition_Flag1 ge 0.81563589824461) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.81563589824461) then do;
+50023     +b_Attrition_Flag = 12;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 12;
+50024     +end;
+MPRINT(EM_DIAGRAM):   end;
+50025     +else
+50026     +if (P_Attrition_Flag1 ge 0.72836896896857) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.72836896896857) then do;
+50027     +b_Attrition_Flag = 13;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 13;
+50028     +end;
+MPRINT(EM_DIAGRAM):   end;
+50029     +else
+50030     +if (P_Attrition_Flag1 ge 0.63146309002052) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.63146309002052) then do;
+50031     +b_Attrition_Flag = 14;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 14;
+50032     +end;
+MPRINT(EM_DIAGRAM):   end;
+50033     +else
+50034     +if (P_Attrition_Flag1 ge 0.5168705244164) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.5168705244164) then do;
+50035     +b_Attrition_Flag = 15;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 15;
+50036     +end;
+MPRINT(EM_DIAGRAM):   end;
+50037     +else
+50038     +if (P_Attrition_Flag1 ge 0.40115281182836) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.40115281182836) then do;
+50039     +b_Attrition_Flag = 16;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 16;
+50040     +end;
+MPRINT(EM_DIAGRAM):   end;
+50041     +else
+50042     +if (P_Attrition_Flag1 ge 0.31333911153947) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.31333911153947) then do;
+50043     +b_Attrition_Flag = 17;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 17;
+50044     +end;
+MPRINT(EM_DIAGRAM):   end;
+50045     +else
+50046     +if (P_Attrition_Flag1 ge 0.24967818471111) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.24967818471111) then do;
+50047     +b_Attrition_Flag = 18;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 18;
+50048     +end;
+MPRINT(EM_DIAGRAM):   end;
+50049     +else
+50050     +if (P_Attrition_Flag1 ge 0.19401820248423) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.19401820248423) then do;
+50051     +b_Attrition_Flag = 19;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 19;
+50052     +end;
+MPRINT(EM_DIAGRAM):   end;
+50053     +else
+50054     +if (P_Attrition_Flag1 ge 0.14748182403371) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.14748182403371) then do;
+50055     +b_Attrition_Flag = 20;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 20;
+50056     +end;
+MPRINT(EM_DIAGRAM):   end;
+50057     +else
+50058     +if (P_Attrition_Flag1 ge 0.11706762768184) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.11706762768184) then do;
+50059     +b_Attrition_Flag = 21;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 21;
+50060     +end;
+MPRINT(EM_DIAGRAM):   end;
+50061     +else
+50062     +if (P_Attrition_Flag1 ge 0.09637265170113) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.09637265170113) then do;
+50063     +b_Attrition_Flag = 22;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 22;
+50064     +end;
+MPRINT(EM_DIAGRAM):   end;
+50065     +else
+50066     +if (P_Attrition_Flag1 ge 0.07767934671078) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.07767934671078) then do;
+50067     +b_Attrition_Flag = 23;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 23;
+50068     +end;
+MPRINT(EM_DIAGRAM):   end;
+50069     +else
+50070     +if (P_Attrition_Flag1 ge 0.06234548749853) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.06234548749853) then do;
+50071     +b_Attrition_Flag = 24;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 24;
+50072     +end;
+MPRINT(EM_DIAGRAM):   end;
+50073     +else
+50074     +if (P_Attrition_Flag1 ge 0.05214745505164) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.05214745505164) then do;
+50075     +b_Attrition_Flag = 25;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 25;
+50076     +end;
+MPRINT(EM_DIAGRAM):   end;
+50077     +else
+50078     +if (P_Attrition_Flag1 ge 0.04344024187792) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.04344024187792) then do;
+50079     +b_Attrition_Flag = 26;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 26;
+50080     +end;
+MPRINT(EM_DIAGRAM):   end;
+50081     +else
+50082     +if (P_Attrition_Flag1 ge 0.03720230250312) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.03720230250312) then do;
+50083     +b_Attrition_Flag = 27;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 27;
+50084     +end;
+MPRINT(EM_DIAGRAM):   end;
+50085     +else
+50086     +if (P_Attrition_Flag1 ge 0.03065733069929) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.03065733069929) then do;
+50087     +b_Attrition_Flag = 28;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 28;
+50088     +end;
+MPRINT(EM_DIAGRAM):   end;
+50089     +else
+50090     +if (P_Attrition_Flag1 ge 0.02609968304744) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.02609968304744) then do;
+50091     +b_Attrition_Flag = 29;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 29;
+50092     +end;
+MPRINT(EM_DIAGRAM):   end;
+50093     +else
+50094     +if (P_Attrition_Flag1 ge 0.02207471064273) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.02207471064273) then do;
+50095     +b_Attrition_Flag = 30;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 30;
+50096     +end;
+MPRINT(EM_DIAGRAM):   end;
+50097     +else
+50098     +if (P_Attrition_Flag1 ge 0.01883540999836) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01883540999836) then do;
+50099     +b_Attrition_Flag = 31;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 31;
+50100     +end;
+MPRINT(EM_DIAGRAM):   end;
+50101     +else
+50102     +if (P_Attrition_Flag1 ge 0.01672922649221) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01672922649221) then do;
+50103     +b_Attrition_Flag = 32;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 32;
+50104     +end;
+MPRINT(EM_DIAGRAM):   end;
+50105     +else
+50106     +if (P_Attrition_Flag1 ge 0.01425470740608) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01425470740608) then do;
+50107     +b_Attrition_Flag = 33;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 33;
+50108     +end;
+MPRINT(EM_DIAGRAM):   end;
+50109     +else
+50110     +if (P_Attrition_Flag1 ge 0.01243011017591) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01243011017591) then do;
+50111     +b_Attrition_Flag = 34;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 34;
+50112     +end;
+MPRINT(EM_DIAGRAM):   end;
+50113     +else
+50114     +if (P_Attrition_Flag1 ge 0.01085445023656) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.01085445023656) then do;
+50115     +b_Attrition_Flag = 35;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 35;
+50116     +end;
+MPRINT(EM_DIAGRAM):   end;
+50117     +else
+50118     +if (P_Attrition_Flag1 ge 0.00953364481037) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00953364481037) then do;
+50119     +b_Attrition_Flag = 36;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 36;
+50120     +end;
+MPRINT(EM_DIAGRAM):   end;
+50121     +else
+50122     +if (P_Attrition_Flag1 ge 0.00832999171096) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00832999171096) then do;
+50123     +b_Attrition_Flag = 37;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 37;
+50124     +end;
+MPRINT(EM_DIAGRAM):   end;
+50125     +else
+50126     +if (P_Attrition_Flag1 ge 0.00751449329062) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00751449329062) then do;
+50127     +b_Attrition_Flag = 38;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 38;
+50128     +end;
+MPRINT(EM_DIAGRAM):   end;
+50129     +else
+50130     +if (P_Attrition_Flag1 ge 0.00669341459008) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00669341459008) then do;
+50131     +b_Attrition_Flag = 39;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 39;
+50132     +end;
+MPRINT(EM_DIAGRAM):   end;
+50133     +else
+50134     +if (P_Attrition_Flag1 ge 0.00604407948841) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00604407948841) then do;
+50135     +b_Attrition_Flag = 40;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 40;
+50136     +end;
+MPRINT(EM_DIAGRAM):   end;
+50137     +else
+50138     +if (P_Attrition_Flag1 ge 0.00535521690733) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00535521690733) then do;
+50139     +b_Attrition_Flag = 41;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 41;
+50140     +end;
+MPRINT(EM_DIAGRAM):   end;
+50141     +else
+50142     +if (P_Attrition_Flag1 ge 0.00495430177513) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00495430177513) then do;
+50143     +b_Attrition_Flag = 42;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 42;
+50144     +end;
+MPRINT(EM_DIAGRAM):   end;
+50145     +else
+50146     +if (P_Attrition_Flag1 ge 0.00451620799226) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00451620799226) then do;
+50147     +b_Attrition_Flag = 43;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 43;
+50148     +end;
+MPRINT(EM_DIAGRAM):   end;
+50149     +else
+50150     +if (P_Attrition_Flag1 ge 0.00416705234237) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00416705234237) then do;
+50151     +b_Attrition_Flag = 44;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 44;
+50152     +end;
+MPRINT(EM_DIAGRAM):   end;
+50153     +else
+50154     +if (P_Attrition_Flag1 ge 0.00385307939378) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00385307939378) then do;
+50155     +b_Attrition_Flag = 45;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 45;
+50156     +end;
+MPRINT(EM_DIAGRAM):   end;
+50157     +else
+50158     +if (P_Attrition_Flag1 ge 0.00349685893116) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00349685893116) then do;
+50159     +b_Attrition_Flag = 46;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 46;
+50160     +end;
+MPRINT(EM_DIAGRAM):   end;
+50161     +else
+50162     +if (P_Attrition_Flag1 ge 0.00322334850518) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00322334850518) then do;
+50163     +b_Attrition_Flag = 47;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 47;
+50164     +end;
+MPRINT(EM_DIAGRAM):   end;
+50165     +else
+50166     +if (P_Attrition_Flag1 ge 0.00302132378211) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00302132378211) then do;
+50167     +b_Attrition_Flag = 48;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 48;
+50168     +end;
+MPRINT(EM_DIAGRAM):   end;
+50169     +else
+50170     +if (P_Attrition_Flag1 ge 0.00282290213484) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00282290213484) then do;
+50171     +b_Attrition_Flag = 49;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 49;
+50172     +end;
+MPRINT(EM_DIAGRAM):   end;
+50173     +else
+50174     +if (P_Attrition_Flag1 ge 0.00266569075658) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00266569075658) then do;
+50175     +b_Attrition_Flag = 50;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 50;
+50176     +end;
+MPRINT(EM_DIAGRAM):   end;
+50177     +else
+50178     +if (P_Attrition_Flag1 ge 0.00250062447579) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00250062447579) then do;
+50179     +b_Attrition_Flag = 51;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 51;
+50180     +end;
+MPRINT(EM_DIAGRAM):   end;
+50181     +else
+50182     +if (P_Attrition_Flag1 ge 0.00232349462332) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00232349462332) then do;
+50183     +b_Attrition_Flag = 52;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 52;
+50184     +end;
+MPRINT(EM_DIAGRAM):   end;
+50185     +else
+50186     +if (P_Attrition_Flag1 ge 0.00219545691642) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00219545691642) then do;
+50187     +b_Attrition_Flag = 53;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 53;
+50188     +end;
+MPRINT(EM_DIAGRAM):   end;
+50189     +else
+50190     +if (P_Attrition_Flag1 ge 0.00207637716027) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00207637716027) then do;
+50191     +b_Attrition_Flag = 54;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 54;
+50192     +end;
+MPRINT(EM_DIAGRAM):   end;
+50193     +else
+50194     +if (P_Attrition_Flag1 ge 0.00196833017842) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00196833017842) then do;
+50195     +b_Attrition_Flag = 55;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 55;
+50196     +end;
+MPRINT(EM_DIAGRAM):   end;
+50197     +else
+50198     +if (P_Attrition_Flag1 ge 0.00186363081978) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00186363081978) then do;
+50199     +b_Attrition_Flag = 56;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 56;
+50200     +end;
+MPRINT(EM_DIAGRAM):   end;
+50201     +else
+50202     +if (P_Attrition_Flag1 ge 0.00178424620068) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00178424620068) then do;
+50203     +b_Attrition_Flag = 57;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 57;
+50204     +end;
+MPRINT(EM_DIAGRAM):   end;
+50205     +else
+50206     +if (P_Attrition_Flag1 ge 0.00170685474161) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00170685474161) then do;
+50207     +b_Attrition_Flag = 58;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 58;
+50208     +end;
+MPRINT(EM_DIAGRAM):   end;
+50209     +else
+50210     +if (P_Attrition_Flag1 ge 0.00164048328418) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00164048328418) then do;
+50211     +b_Attrition_Flag = 59;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 59;
+50212     +end;
+MPRINT(EM_DIAGRAM):   end;
+50213     +else
+50214     +if (P_Attrition_Flag1 ge 0.00156540263436) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00156540263436) then do;
+50215     +b_Attrition_Flag = 60;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 60;
+50216     +end;
+MPRINT(EM_DIAGRAM):   end;
+50217     +else
+50218     +if (P_Attrition_Flag1 ge 0.00150192939819) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00150192939819) then do;
+50219     +b_Attrition_Flag = 61;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 61;
+50220     +end;
+MPRINT(EM_DIAGRAM):   end;
+50221     +else
+50222     +if (P_Attrition_Flag1 ge 0.00144881858959) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00144881858959) then do;
+50223     +b_Attrition_Flag = 62;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 62;
+50224     +end;
+MPRINT(EM_DIAGRAM):   end;
+50225     +else
+50226     +if (P_Attrition_Flag1 ge 0.00139791042541) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00139791042541) then do;
+50227     +b_Attrition_Flag = 63;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 63;
+50228     +end;
+MPRINT(EM_DIAGRAM):   end;
+50229     +else
+50230     +if (P_Attrition_Flag1 ge 0.00133988878528) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00133988878528) then do;
+50231     +b_Attrition_Flag = 64;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 64;
+50232     +end;
+MPRINT(EM_DIAGRAM):   end;
+50233     +else
+50234     +if (P_Attrition_Flag1 ge 0.00128268626103) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00128268626103) then do;
+50235     +b_Attrition_Flag = 65;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 65;
+50236     +end;
+MPRINT(EM_DIAGRAM):   end;
+50237     +else
+50238     +if (P_Attrition_Flag1 ge 0.00123359384492) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00123359384492) then do;
+50239     +b_Attrition_Flag = 66;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 66;
+50240     +end;
+MPRINT(EM_DIAGRAM):   end;
+50241     +else
+50242     +if (P_Attrition_Flag1 ge 0.00118857576201) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00118857576201) then do;
+50243     +b_Attrition_Flag = 67;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 67;
+50244     +end;
+MPRINT(EM_DIAGRAM):   end;
+50245     +else
+50246     +if (P_Attrition_Flag1 ge 0.00113350823534) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00113350823534) then do;
+50247     +b_Attrition_Flag = 68;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 68;
+50248     +end;
+MPRINT(EM_DIAGRAM):   end;
+50249     +else
+50250     +if (P_Attrition_Flag1 ge 0.00108857863621) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00108857863621) then do;
+50251     +b_Attrition_Flag = 69;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 69;
+50252     +end;
+MPRINT(EM_DIAGRAM):   end;
+50253     +else
+50254     +if (P_Attrition_Flag1 ge 0.0010453684503) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.0010453684503) then do;
+50255     +b_Attrition_Flag = 70;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 70;
+50256     +end;
+MPRINT(EM_DIAGRAM):   end;
+50257     +else
+50258     +if (P_Attrition_Flag1 ge 0.00100559812363) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00100559812363) then do;
+50259     +b_Attrition_Flag = 71;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 71;
+50260     +end;
+MPRINT(EM_DIAGRAM):   end;
+50261     +else
+50262     +if (P_Attrition_Flag1 ge 0.00096690729781) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00096690729781) then do;
+50263     +b_Attrition_Flag = 72;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 72;
+50264     +end;
+MPRINT(EM_DIAGRAM):   end;
+50265     +else
+50266     +if (P_Attrition_Flag1 ge 0.00093405125846) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00093405125846) then do;
+50267     +b_Attrition_Flag = 73;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 73;
+50268     +end;
+MPRINT(EM_DIAGRAM):   end;
+50269     +else
+50270     +if (P_Attrition_Flag1 ge 0.00089527626304) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00089527626304) then do;
+50271     +b_Attrition_Flag = 74;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 74;
+50272     +end;
+MPRINT(EM_DIAGRAM):   end;
+50273     +else
+50274     +if (P_Attrition_Flag1 ge 0.00085556765593) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00085556765593) then do;
+50275     +b_Attrition_Flag = 75;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 75;
+50276     +end;
+MPRINT(EM_DIAGRAM):   end;
+50277     +else
+50278     +if (P_Attrition_Flag1 ge 0.00082280755792) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00082280755792) then do;
+50279     +b_Attrition_Flag = 76;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 76;
+50280     +end;
+MPRINT(EM_DIAGRAM):   end;
+50281     +else
+50282     +if (P_Attrition_Flag1 ge 0.00078930983097) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00078930983097) then do;
+50283     +b_Attrition_Flag = 77;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 77;
+50284     +end;
+MPRINT(EM_DIAGRAM):   end;
+50285     +else
+50286     +if (P_Attrition_Flag1 ge 0.00076316709915) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00076316709915) then do;
+50287     +b_Attrition_Flag = 78;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 78;
+50288     +end;
+MPRINT(EM_DIAGRAM):   end;
+50289     +else
+50290     +if (P_Attrition_Flag1 ge 0.00073594842937) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00073594842937) then do;
+50291     +b_Attrition_Flag = 79;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 79;
+50292     +end;
+MPRINT(EM_DIAGRAM):   end;
+50293     +else
+50294     +if (P_Attrition_Flag1 ge 0.00071206594174) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00071206594174) then do;
+50295     +b_Attrition_Flag = 80;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 80;
+50296     +end;
+MPRINT(EM_DIAGRAM):   end;
+50297     +else
+50298     +if (P_Attrition_Flag1 ge 0.00068602350784) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00068602350784) then do;
+50299     +b_Attrition_Flag = 81;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 81;
+50300     +end;
+MPRINT(EM_DIAGRAM):   end;
+50301     +else
+50302     +if (P_Attrition_Flag1 ge 0.00065676604604) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00065676604604) then do;
+50303     +b_Attrition_Flag = 82;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 82;
+50304     +end;
+MPRINT(EM_DIAGRAM):   end;
+50305     +else
+50306     +if (P_Attrition_Flag1 ge 0.00062876264318) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00062876264318) then do;
+50307     +b_Attrition_Flag = 83;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 83;
+50308     +end;
+MPRINT(EM_DIAGRAM):   end;
+50309     +else
+50310     +if (P_Attrition_Flag1 ge 0.00060574868527) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00060574868527) then do;
+50311     +b_Attrition_Flag = 84;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 84;
+50312     +end;
+MPRINT(EM_DIAGRAM):   end;
+50313     +else
+50314     +if (P_Attrition_Flag1 ge 0.00058102646487) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00058102646487) then do;
+50315     +b_Attrition_Flag = 85;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 85;
+50316     +end;
+MPRINT(EM_DIAGRAM):   end;
+50317     +else
+50318     +if (P_Attrition_Flag1 ge 0.00055228175174) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00055228175174) then do;
+50319     +b_Attrition_Flag = 86;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 86;
+50320     +end;
+MPRINT(EM_DIAGRAM):   end;
+50321     +else
+50322     +if (P_Attrition_Flag1 ge 0.00052822458656) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00052822458656) then do;
+50323     +b_Attrition_Flag = 87;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 87;
+50324     +end;
+MPRINT(EM_DIAGRAM):   end;
+50325     +else
+50326     +if (P_Attrition_Flag1 ge 0.00050364655753) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00050364655753) then do;
+50327     +b_Attrition_Flag = 88;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 88;
+50328     +end;
+MPRINT(EM_DIAGRAM):   end;
+50329     +else
+50330     +if (P_Attrition_Flag1 ge 0.00047152651059) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00047152651059) then do;
+50331     +b_Attrition_Flag = 89;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 89;
+50332     +end;
+MPRINT(EM_DIAGRAM):   end;
+50333     +else
+50334     +if (P_Attrition_Flag1 ge 0.00043646007079) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00043646007079) then do;
+50335     +b_Attrition_Flag = 90;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 90;
+50336     +end;
+MPRINT(EM_DIAGRAM):   end;
+50337     +else
+50338     +if (P_Attrition_Flag1 ge 0.00039948960554) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00039948960554) then do;
+50339     +b_Attrition_Flag = 91;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 91;
+50340     +end;
+MPRINT(EM_DIAGRAM):   end;
+50341     +else
+50342     +if (P_Attrition_Flag1 ge 0.00036092211382) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00036092211382) then do;
+50343     +b_Attrition_Flag = 92;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 92;
+50344     +end;
+MPRINT(EM_DIAGRAM):   end;
+50345     +else
+50346     +if (P_Attrition_Flag1 ge 0.00032034310403) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00032034310403) then do;
+50347     +b_Attrition_Flag = 93;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 93;
+50348     +end;
+MPRINT(EM_DIAGRAM):   end;
+50349     +else
+50350     +if (P_Attrition_Flag1 ge 0.00027852018756) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00027852018756) then do;
+50351     +b_Attrition_Flag = 94;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 94;
+50352     +end;
+MPRINT(EM_DIAGRAM):   end;
+50353     +else
+50354     +if (P_Attrition_Flag1 ge 0.0002218440242) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.0002218440242) then do;
+50355     +b_Attrition_Flag = 95;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 95;
+50356     +end;
+MPRINT(EM_DIAGRAM):   end;
+50357     +else
+50358     +if (P_Attrition_Flag1 ge 0.00015411598571) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00015411598571) then do;
+50359     +b_Attrition_Flag = 96;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 96;
+50360     +end;
+MPRINT(EM_DIAGRAM):   end;
+50361     +else
+50362     +if (P_Attrition_Flag1 ge 0.00011243952293) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00011243952293) then do;
+50363     +b_Attrition_Flag = 97;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 97;
+50364     +end;
+MPRINT(EM_DIAGRAM):   end;
+50365     +else
+50366     +if (P_Attrition_Flag1 ge 0.00008042897946) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00008042897946) then do;
+50367     +b_Attrition_Flag = 98;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 98;
+50368     +end;
+MPRINT(EM_DIAGRAM):   end;
+50369     +else
+50370     +if (P_Attrition_Flag1 ge 0.00005934359105) then do;
+MPRINT(EM_DIAGRAM):   else if (P_Attrition_Flag1 ge 0.00005934359105) then do;
+50371     +b_Attrition_Flag = 99;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 99;
+50372     +end;
+MPRINT(EM_DIAGRAM):   end;
+50373     +else
+50374     +do;
+MPRINT(EM_DIAGRAM):   else do;
+50375     +b_Attrition_Flag = 100;
+MPRINT(EM_DIAGRAM):   b_Attrition_Flag = 100;
+50376     +end;
+MPRINT(EM_DIAGRAM):   end;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+50377      run;
+
+NOTE: DATA STEP view saved on file EMWS1.MDLCOMP5_TEST.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.AUTONEURAL2_TEST.VIEW used (Total process time):
+      real time           0.14 seconds
+      cpu time            0.14 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.15 seconds
+      cpu time            0.15 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+50378      quit;
+50379      filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+50380      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+50381      * MdlComp5: Computing metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   * MdlComp5: Computing metadata for TRAIN data;
+50382      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+NOTE: View EMWS1.MDLCOMP5_TRAIN.VIEW used (Total process time):
+      real time           0.19 seconds
+      cpu time            0.20 seconds
+      
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EMADVISECOLUMNS):   proc display c=sashelp.emmeta.advisecolumns.scl;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    options validvarname=any;
+MPRINT(EMADVISECOLUMNS):   proc contents data=EMWS1.MdlComp5_TRAIN out=_tempAdvisor noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   options validvarname=V7;
+MPRINT(EMADVISECOLUMNS):    data _null_;
+MPRINT(EMADVISECOLUMNS):   dsid = open('EMWS1.MdlComp5_TRAIN');
+MPRINT(EMADVISECOLUMNS):   call symput('_dsidTable', strip(put(dsid, best.)));
+MPRINT(EMADVISECOLUMNS):   if dsid then do;
+MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
+MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.MdlComp5_TRAIN out=WORK.M23ELCW_ noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M23ELCW_;
+MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 
+INDEX $ 1 INDEXTYPE $ 9;
+MPRINT(EMADVISECOLUMNS):   label NAME =;
+MPRINT(EMADVISECOLUMNS):   set WORK.M23ELCW_(keep=name type length label format formatl 
+formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
+MPRINT(EMADVISECOLUMNS):   else type = 'C';
+MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if format ne '' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then format = strip(format)!!strip(put(formatl, 
+best12.))!!'.'!!strip(put(formatd, best12.));
+MPRINT(EMADVISECOLUMNS):   else format = strip(format)!!strip(put(formatl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else format = strip(put(formatl, best12.))!!'.'!!strip(put(formatd, 
+best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if format ne '' then format = strip(format)!!'.';
+MPRINT(EMADVISECOLUMNS):   if informl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if informat ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then informat = strip(informat)!!strip(put(informl, 
+best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   else informat = strip(informat)!!strip(put(informl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else informat = strip(put(informl, 
+best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if informat ne '' then informat = strip(informat)!!'.';
+MPRINT(EMADVISECOLUMNS):   if idxusage = 'NONE' then index ="N";
+MPRINT(EMADVISECOLUMNS):   else index = "Y";
+MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
+MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M23ELCW_;
+MPRINT(EMADVISECOLUMNS):   length UNAME $64;
+MPRINT(EMADVISECOLUMNS):   set WORK.M23ELCW_;
+MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M1KUWP77 NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by UNAME;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M1KUWP77;
+MPRINT(EMADVISECOLUMNS):   drop UNAME;
+MPRINT(EMADVISECOLUMNS):   set WORK.M1KUWP77;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M0JC1F1U(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
+MPRINT(EMADVISECOLUMNS):   set WORK.M1KUWP77;
+MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
+MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' and formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'FORMATTYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ROLE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'LEVEL';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if type = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'TYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if index = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'INDEX';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if report = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'REPORT';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by attr;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M1KUWP77;
+MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 
+FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
+MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
+MPRINT(EMADVISECOLUMNS):   set WORK.M1KUWP77;
+MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   pos = indexc(format,'.1234567890');
+MPRINT(EMADVISECOLUMNS):   if pos > 1 then tempfmt = substr(format,1, pos-1);
+MPRINT(EMADVISECOLUMNS):   else tempfmt = ' ';
+MPRINT(EMADVISECOLUMNS):   flen = length(tempfmt);
+MPRINT(EMADVISECOLUMNS):   select;
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATE" "DAY" "DDMMYY" "DOWNAME" "JULDAY" "JULIAN" 
+"MMDDYY" "MMDDYYD" "MMDDYYC" "MMDDYYN" "MMDDYYP" "MMDDYYS" "MONNAME" "MONTH" "MONYY" "NENGO" 
+"QTR" "QTRR" "WEEKDATE" "WEEKDATX" "WEEKDAY" "WORDDATE" "WORDDATX" "YEAR" "YYMMDD" "YYMON" 
+"YYMMDDC" "YYMMDDD" "YYMMDDN" "YYMMDDP" "YYMMDDS" "EURDFDE" "NJDATE" "NLDATE" "EURDFDD" 
+"EURDFDWN" "EURDFMN" "EURDFMY" "EURDFWK" "EURDFWKX" "EURDFWDX" "EURDFDN" "EURDFDE" )) 
+formattype = 'DATE';
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATETIME" "EURDFDT" "TOD" )) formattype = 
+"DATETIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("HHMM" "HOUR" "MMSS" "TIME" "TIMEAMPM" )) 
+formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("COMMA" "COMMAX" "DOLLAR" "DOLLARX" "E" "FRACT" 
+"NEGPAREN" "PERCENT")) formattype="QUANTITY";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("BINARY" "HEX" "IB" "OCTAL" "PD" "PIB" "PK" "RB" 
+"SSN" "Z" "ZD")) formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   formattype = "USER";
+MPRINT(EMADVISECOLUMNS):   if compress(tempfmt, '0123456789.', '') = '' then formattype='NUM';
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATE' then formattype = "DATE";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATM' then formattype = "DATETIME";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 4)='NLTIM' then formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   else if flen >= 4 then do;
+MPRINT(EMADVISECOLUMNS):   str = substr(tempfmt,1,4);
+MPRINT(EMADVISECOLUMNS):   if str in ("MMYY" "YYMM" "YYQR") then formattype ="DATE";
+MPRINT(EMADVISECOLUMNS):   else if str = "S370" then formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   else if str = "BEST" then formattype = "NUM";
+MPRINT(EMADVISECOLUMNS):   drop str;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if flen >=3 and substr(tempfmt,1,3) = "YYQ" then formatType = 
+"DATE";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   drop flen tempfmt pos;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   formatType = "CATEGORY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if formatType = "NUM" then do;
+MPRINT(EMADVISECOLUMNS):   if index = "Y" then formatType = "DISCRETE";
+MPRINT(EMADVISECOLUMNS):   else formatType = "QUANTITY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formatType in ("CATEGORY", "CODING", "ID") or type = "C" then 
+level = "NOMINAL";
+MPRINT(EMADVISECOLUMNS):   else level = "INTERVAL";
+MPRINT(EMADVISECOLUMNS):   levelAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else level = upcase(level);
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   length name_prefix $8 _uname $64;
+MPRINT(EMADVISECOLUMNS):   drop name_prefix _uname _freqflag;
+MPRINT(EMADVISECOLUMNS):   retain _freqflag;
+MPRINT(EMADVISECOLUMNS):   if LENGTH> 80 then ROLE = 'TEXT';
+MPRINT(EMADVISECOLUMNS):   _uname = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   select(_uname);
+MPRINT(EMADVISECOLUMNS):   when('_PARTIND_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_WARN_') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_SEGMENT') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_NODE_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSTARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_VALUETARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_PREDICTION') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_EVENTPROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSIFICATION') ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   when('EM_DECISION') ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROFIT') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_LOSS') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_ROI') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('URI') ROLE = 'URL';
+MPRINT(EMADVISECOLUMNS):   when('FILTERED') ROLE = 'TEXTLOC';
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   if upcase(NAME) =: 'ZIP' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'REJECTED';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   COMMENT = 'Rejected by: Exceed the maximum class level of %s';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if upcase(NAME) in('FREQ', 'FREQUENCY') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'FREQ';
+MPRINT(EMADVISECOLUMNS):   if TYPE = 'C' then ROLE = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   else if _freqflag =1 then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   name_prefix = scan(_uname, 1, '_');
+MPRINT(EMADVISECOLUMNS):   if scan(_uname, 2, '_') = '' then name_prefix='';
+MPRINT(EMADVISECOLUMNS):   if name_prefix in('F', 'I', 'U') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('Q') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('P', 'V') then ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('R', 'RS', 'RT', 'RD', 'RDS', 'RDT', 'RA', 
+'RAS', 'RAT') then ROLE = 'RESIDUAL';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='D' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='B' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('EP', 'BP', 'CP', 'EL', 'CL', 'BL', 'W', 
+'ROI', 'IC') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   array _ROLE_ (19) $32 _TEMPORARY_ 
+('ASSESS','CLASSIFICATION','CENSOR', 'COST', 'CROSSID', 'DECISION', 'ID','INPUT', 'LABEL', 
+'MISSING','PREDICT','REFERRER','REJECTED', 'RESIDUAL','SEGMENT', 'SEQUENCE','TARGET', 'TEXT', 
+'TIMEID');
+MPRINT(EMADVISECOLUMNS):   drop _found_ i;
+MPRINT(EMADVISECOLUMNS):   _found_=0;
+MPRINT(EMADVISECOLUMNS):   do i=1 to 19 until(_found_=1);
+MPRINT(EMADVISECOLUMNS):   if index(_uname, trim(_ROLE_{i}))=1 then do;
+MPRINT(EMADVISECOLUMNS):   ROLE=_ROLE_{i};
+MPRINT(EMADVISECOLUMNS):   if ROLE = 'ID' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'SEGMENT' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'TIMEID' and TYPE='N' then LEVEL = 'INTERVAL';
+MPRINT(EMADVISECOLUMNS):   _found_=1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if length(_uname)>2 then do;
+MPRINT(EMADVISECOLUMNS):   if substr(reverse(trim(_uname)), 1, 3) = 'DI_' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if ROLE='FREQ' then _freqflag=1;
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'CLASSIFICATION' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   if symexist('RATEMKG_ROLE') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('RATEMKG_ROLE')) in('Y', 'YES') then do;
+MPRINT(EMADVISECOLUMNS):   if _uname =: 'POLICY' then ROLE = 'POLICYID';
+MPRINT(EMADVISECOLUMNS):   else if _uname in ('PARTITION', '_PARTIND_') then ROLE = 
+'PARTITION';
+MPRINT(EMADVISECOLUMNS):   else if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   if _uname = 'EXPOSURE' then ROLE = 'EXPOSURE';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'YEAR' then ROLE = 'YEAR';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'WEIGHT' then ROLE = 'WEIGHT';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'OFFSET' then ROLE = 'OFFSET';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formattype in('DATE', 'DATETIME', 'TIME') then role = 'TIMEID';
+MPRINT(EMADVISECOLUMNS):   else role = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   roleAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else role = upcase(role);
+MPRINT(EMADVISECOLUMNS):   if REPORT = '' then REPORT = 'N';
+MPRINT(EMADVISECOLUMNS):   if symexist('dmwb_product') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('dmwb_product')) = 'FACTORYMINER_DATASOURCE' then 
+do;
+MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT', 'FREQ', 'ID', 
+'KEY') then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M1KUWP77;
+MPRINT(EMADVISECOLUMNS):   set WORK.M1KUWP77;
+MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= 
+"Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= 
+"Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower limit" UPPERLIMIT= 
+"Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= 
+"Label" LENGTH= "Length";
+MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.COLUMNMETA;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Merge incoming metadata;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc contents data=EMWS1.AutoNeural2_TRAIN noprint out=_temp2(keep=NAME);
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp2;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.AutoNeural2_CMeta_TRAIN out=_temp;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.MdlComp5_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   merge WORK.COLUMNMETA(in=_a) _temp2(in=_b) _temp(drop=FORMAT INFORMAT 
+LENGTH INDEX INDEXTYPE in=_c) end=_eof_;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   if (^_a and _b) or (^_c and _a and _b) then delete;
+MPRINT(EM_DIAGRAM):   if ^_b then CREATOR = "MdlComp5";
+MPRINT(EM_DIAGRAM):   run;
+NOTE: View EMWS1.MDLCOMP5_TRAIN.VIEW used (Total process time):
+      real time           0.19 seconds
+      cpu time            0.18 seconds
+      
+NOTE: View EMWS1.MDLCOMP5_VALIDATE.VIEW used (Total process time):
+      real time           0.21 seconds
+      cpu time            0.20 seconds
+      
+NOTE: View EMWS1.MDLCOMP5_TEST.VIEW used (Total process time):
+      real time           0.22 seconds
+      cpu time            0.21 seconds
+      
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

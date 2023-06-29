@@ -1,0 +1,1411 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "April 09, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:40:21" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Training Log
+Date:                April 09, 2022
+Time:                15:40:21
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O1FO8MXU "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O1FO8MXU new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOG "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMLOG.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "April 09, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:40:21" );
+MPRINT(EM_DIAGRAM):   file _LOG;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                Kevin";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "Site:                70135990";
+MPRINT(EM_DIAGRAM):   put "Platform:            X64_10HOME";
+MPRINT(EM_DIAGRAM):   put "Maintenance Release: 9.04.01M4P110916";
+MPRINT(EM_DIAGRAM):   put "EM Version:          14.2";
+MPRINT(EM_DIAGRAM):   put "* ";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _LOG MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_LOGIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _LOGIN "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMSCORE.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMREPORT.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    filename _LOG;
+MPRINT(EM_DIAGRAM):    filename _OUT "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMOUTPUT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "April 09, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:40:21" );
+MPRINT(EM_DIAGRAM):   file _OUT;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                Kevin";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   ;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _OUT MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_OUTIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    filename _OUT;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+29184      proc freq data=EMWS1.HPNNA_VariableSet noprint;
+MPRINT(EM_DIAGRAM):    proc freq data=EMWS1.HPNNA_VariableSet noprint;
+29185      table ROLE*LEVEL/out=WORK.HPNNAMETA;
+MPRINT(EM_DIAGRAM):   table ROLE*LEVEL/out=WORK.HPNNAMETA;
+29186      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 27 observations read from the data set EMWS1.HPNNA_VARIABLESET.
+NOTE: The data set WORK.HPNNAMETA has 11 observations and 4 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.03 seconds
+      
+
+29187      proc print data=WORK.HPNNAMETA label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.HPNNAMETA label noobs;
+29188      var ROLE LEVEL COUNT;
+MPRINT(EM_DIAGRAM):   var ROLE LEVEL COUNT;
+29189      label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label ROLE = "Role" LEVEL = "Measurement Level" COUNT = "Frequency Count";
+29190      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+29191      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Variable Summary";
+MPRINT(EM_DIAGRAM):   run;
+29192      run;
+
+NOTE: There were 11 observations read from the data set WORK.HPNNAMETA.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+29193      title10;
+MPRINT(EM_DIAGRAM):   title10;
+29194      %let EMNORLEN = %DMNORLEN;
+MPRINT(EM_DIAGRAM):   
+EMWS1.MdlComp2_TRAIN EMWS1.MdlComp2_TRAIN 
+EMWS1.MdlComp2_TRAIN EMWS1.MdlComp2_TRAIN EMWS1 MdlComp2_TRAIN 
+EMWS1.MdlComp2_TRAIN EMWS1.MdlComp2_TRAIN 
+EMWS1.MdlComp2_TRAIN EMWS1.MdlComp2_TRAIN EMWS1 MdlComp2_TRAIN 
+MPRINT(EM_DIAGRAM):    proc dmdb data=EMWS1.MdlComp2_TRAIN classout=WORK._DMDBCLASSTARGET(keep=NAME NRAW CRAW LEVEL FREQUENCY NMISSPERCENT);
+MPRINT(EM_DIAGRAM):   class Attrition_Flag(DESC) ;
+MPRINT(EM_DIAGRAM):   run;
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL setMetaData >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL setMetaData >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   set WORK._DMDBCLASSTARGET;
+MPRINT(EM_DIAGRAM):   where ^(NRAW eq . and CRAW eq '') and NAME="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   if _N_=1 then call symput('_newevent', strip(LEVEL));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK._DMDBCLASSTARGET out=_TEMPCLASS(keep=LEVEL FREQUENCY NMISSPERCENT rename=(LEVEL=Attrition_Flag));
+MPRINT(EM_DIAGRAM):   by LEVEL;
+MPRINT(EM_DIAGRAM):   where ^(NRAW eq . and CRAW eq '') and NAME="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _TEMPCLASS;
+MPRINT(EM_DIAGRAM):   set _TEMPCLASS;
+MPRINT(EM_DIAGRAM):   NMISSPERCENT= NMISSPERCENT/100;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    proc sort data=EMWS1.Ids_Attrition_Flag_DD out=_sortedDecdata;
+MPRINT(EM_DIAGRAM):   by Attrition_Flag;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   merge _TEMPCLASS(in=_a) _sortedDecdata(in=_b);
+MPRINT(EM_DIAGRAM):   by Attrition_Flag;
+MPRINT(EM_DIAGRAM):   if (_a and ^_b) or (^_a and _b) then call symput('_emresetDec', '1');
+MPRINT(EM_DIAGRAM):   run;
+29223      data WORK.HPNNA_EVENT(KEEP=VARIABLE LABEL LEVEL EVENT NUMLEVELS ORDER);
+MPRINT(EM_DIAGRAM):    data WORK.HPNNA_EVENT(KEEP=VARIABLE LABEL LEVEL EVENT NUMLEVELS ORDER);
+29224      length ORDER $20;
+MPRINT(EM_DIAGRAM):   length ORDER $20;
+29225      label VARIABLE = "%sysfunc(sasmsg(sashelp.dmine, rpt_target_vlabel,  NOQUOTE))" EVENT = "%sysfunc(sasmsg(sashelp.dmine, assmt_event_vlabel, NOQUOTE))" NUMLEVELS = "%sysfunc(sasmsg(sashelp.dmine, rpt_numcat_vlabel, NOQUOTE))" LEVEL =
+29226         "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" ORDER = "%sysfunc(sasmsg(sashelp.dmine, meta_order_vlabel, NOQUOTE))" LABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label VARIABLE = "Target" EVENT = "Event" NUMLEVELS = "Number of Levels" LEVEL = "Measurement Level" ORDER = "Order" LABEL = "Label";
+29227      set EMWS1.IDS_ATTRITION_FLAG_DM( where=(_TYPE_="TARGET"));
+MPRINT(EM_DIAGRAM):   set EMWS1.IDS_ATTRITION_FLAG_DM( where=(_TYPE_="TARGET"));
+29228      NumLevels=2;
+MPRINT(EM_DIAGRAM):   NumLevels=2;
+29229      select(upcase(ORDER));
+MPRINT(EM_DIAGRAM):   select(upcase(ORDER));
+29230      when('DESC') ORDER = 'Descending';
+MPRINT(EM_DIAGRAM):   when('DESC') ORDER = 'Descending';
+29231      when('ASC') ORDER = 'Ascending';
+MPRINT(EM_DIAGRAM):   when('ASC') ORDER = 'Ascending';
+29232      when('FMTDESC') ORDER = 'Formatted Descending';
+MPRINT(EM_DIAGRAM):   when('FMTDESC') ORDER = 'Formatted Descending';
+29233      when('FMTASC') ORDER = 'Formatted Ascending';
+MPRINT(EM_DIAGRAM):   when('FMTASC') ORDER = 'Formatted Ascending';
+29234      otherwise ORDER = 'Descending';
+MPRINT(EM_DIAGRAM):   otherwise ORDER = 'Descending';
+29235      end;
+MPRINT(EM_DIAGRAM):   end;
+29236      output;
+MPRINT(EM_DIAGRAM):   output;
+29237      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 1 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_='TARGET';
+NOTE: The data set WORK.HPNNA_EVENT has 1 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.03 seconds
+      
+
+29238      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+29239      proc print data=WORK.HPNNA_EVENT noobs label;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.HPNNA_EVENT noobs label;
+29240      var VARIABLE EVENT LEVEL NUMLEVELS ORDER LABEL;
+MPRINT(EM_DIAGRAM):   var VARIABLE EVENT LEVEL NUMLEVELS ORDER LABEL;
+29241      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+29242      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_modelEvent_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Model Events";
+MPRINT(EM_DIAGRAM):   run;
+29243      run;
+
+NOTE: There were 1 observations read from the data set WORK.HPNNA_EVENT.
+NOTE: The PROCEDURE PRINT printed page 2.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+29244      title10;
+MPRINT(EM_DIAGRAM):   title10;
+"No decisions defined for target "Attrition_Flag"." 
+29245      proc print data = EMWS1.Ids_Attrition_Flag_DM noobs label;
+MPRINT(EM_DIAGRAM):    proc print data = EMWS1.Ids_Attrition_Flag_DM noobs label;
+29246      var _type_ variable label;
+MPRINT(EM_DIAGRAM):   var _type_ variable label;
+29247      where _type_ ^in('MATRIX', 'DECISION', 'TRAINPRIOR', 'DATAPRIOR', 'DECPRIOR');
+MPRINT(EM_DIAGRAM):   where _type_ ^in('MATRIX', 'DECISION', 'TRAINPRIOR', 'DATAPRIOR', 'DECPRIOR');
+29248      label _TYPE_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_type_vlabel,     NOQUOTE))" VARIABLE = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" LABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label _TYPE_ = "Type" VARIABLE = "Variable" LABEL = "Label";
+29249      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+29250      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_predDecVars_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Predicted and decision variables";
+MPRINT(EM_DIAGRAM):   run;
+29251      run;
+
+NOTE: There were 7 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _type_ not in ('DATAPRIOR', 'DECISION', 'DECPRIOR', 'MATRIX', 'TRAINPRIOR');
+NOTE: The PROCEDURE PRINT printed page 3.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.03 seconds
+      
+
+29252      title10;
+MPRINT(EM_DIAGRAM):   title10;
+29253      %let EMEXCEPTIONSTRING=;
+MPRINT(EM_DIAGRAM):     proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   modify Attrition_Flag(type=PROFIT label= Attrition_Flag);
+MPRINT(EM_DIAGRAM):   label DECISION1= "1";
+MPRINT(EM_DIAGRAM):   label DECISION2= "0";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * HPNNA: Generation of macros and macro variables;
+MPRINT(EM_DIAGRAM):   * To see the code generated, set the EM_DEBUG macro variable to SOURCE or _ALL_;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * HPNNA: EM Macro Variables and Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * System Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   length string $2000;
+MPRINT(EM_DIAGRAM):   string = 'CreditCard_ChurnRate';
+MPRINT(EM_DIAGRAM):   call symput('EM_PROJECTNAME', trim(string));
+MPRINT(EM_DIAGRAM):   string = 'CreditCard_ChurnRate';
+MPRINT(EM_DIAGRAM):   call symput('EM_WSNAME', trim(string));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * Properties Macro Variables ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Files Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Import Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Export Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Decision Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_decdata.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DECDATA):   proc display cat=sashelp.emutil.makedecdata.scl;
+MPRINT(EM_DECDATA):   run;
+MPRINT(EM_DECDATA):   *------------------------------------------------------------*;
+MPRINT(EM_DECDATA):   * HPNNA: Create decision matrix;
+MPRINT(EM_DECDATA):   *------------------------------------------------------------*;
+MPRINT(EM_DECDATA):   data WORK.Attrition_Flag;
+MPRINT(EM_DECDATA):   length Attrition_Flag $ 32 COUNT 8 DATAPRIOR 8 TRAINPRIOR 8 DECPRIOR 8 DECISION1 8 DECISION2 8 ;
+MPRINT(EM_DECDATA):   label COUNT= "Level Counts" DATAPRIOR= "Data Proportions" TRAINPRIOR= "Training Proportions" DECPRIOR= "Decision Priors" DECISION1= "1" DECISION2= "0" ;
+MPRINT(EM_DECDATA):   format COUNT 10. ;
+MPRINT(EM_DECDATA):   Attrition_Flag="1";
+MPRINT(EM_DECDATA):   COUNT=1627;
+MPRINT(EM_DECDATA):   DATAPRIOR=0.16065962279055;
+MPRINT(EM_DECDATA):   TRAINPRIOR=0.16065962279055;
+MPRINT(EM_DECDATA):   DECPRIOR=.;
+MPRINT(EM_DECDATA):   DECISION1=1;
+MPRINT(EM_DECDATA):   DECISION2=0;
+MPRINT(EM_DECDATA):   output;
+MPRINT(EM_DECDATA):   Attrition_Flag="0";
+MPRINT(EM_DECDATA):   COUNT=8500;
+MPRINT(EM_DECDATA):   DATAPRIOR=0.83934037720944;
+MPRINT(EM_DECDATA):   TRAINPRIOR=0.83934037720944;
+MPRINT(EM_DECDATA):   DECPRIOR=.;
+MPRINT(EM_DECDATA):   DECISION1=0;
+MPRINT(EM_DECDATA):   DECISION2=1;
+MPRINT(EM_DECDATA):   output;
+MPRINT(EM_DECDATA):   ;
+MPRINT(EM_DECDATA):   run;
+MPRINT(EM_DECDATA):   proc datasets lib=work nolist;
+MPRINT(EM_DECDATA):   modify Attrition_Flag(type=PROFIT label= Attrition_Flag);
+MPRINT(EM_DECDATA):   label DECISION1= '1';
+MPRINT(EM_DECDATA):   label DECISION2= '0';
+MPRINT(EM_DECDATA):   run;
+MPRINT(EM_DECDATA):   quit;
+MPRINT(EM_DECDATA):   
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   modify Attrition_Flag(type=PROFIT label= Attrition_Flag);
+MPRINT(EM_DIAGRAM):   label DECISION1= "1";
+MPRINT(EM_DIAGRAM):   label DECISION2= "0";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Statement Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   set EMWS1.Tree4_EMINFO;
+MPRINT(EM_DIAGRAM):   where key in('HPDMSAMPLE', 'IDSTABLE');
+MPRINT(EM_DIAGRAM):   if key = 'HPDMSAMPLE' then call symput('_ForceGrid', '1');
+MPRINT(EM_DIAGRAM):   else call symput('_IDS_TABLE', DATA);
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(HPDM_PERFORMANCE):  ;
+PERFORMANCE  DETAILS
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * General Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Target Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Input Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Rejected Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Misc Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * End Create EM Macro Variables and Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   data EM_TARGETDECINFO;
+MPRINT(EM_DIAGRAM):   length TARGET $32 DECDATA DECMETA $43;
+MPRINT(EM_DIAGRAM):   TARGET="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   DECDATA="EMWS1.Ids_Attrition_Flag_DD";
+MPRINT(EM_DIAGRAM):   DECMETA="EMWS1.Ids_Attrition_Flag_DM";
+MPRINT(EM_DIAGRAM):   output;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EM_TARGETDECINFO;
+MPRINT(EM_DIAGRAM):   length TARGET $32 DECDATA DECMETA $43;
+MPRINT(EM_DIAGRAM):   TARGET="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   DECDATA="EMWS1.Ids_Attrition_Flag_DD";
+MPRINT(EM_DIAGRAM):   DECMETA="EMWS1.Ids_Attrition_Flag_DM";
+MPRINT(EM_DIAGRAM):   output;
+MPRINT(EM_DIAGRAM):   run;
+29742      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+29743      * HPNNA: Generation of macros and macro variables;
+MPRINT(EM_DIAGRAM):   * HPNNA: Generation of macros and macro variables;
+29744      * To see the code generated, set the EM_DEBUG macro variable to SOURCE or _ALL_;
+MPRINT(EM_DIAGRAM):   * To see the code generated, set the EM_DEBUG macro variable to SOURCE or _ALL_;
+29745      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+29746      %let EMEXCEPTIONSTRING=;
+29747      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+29748      * TRAIN: HPNNA;
+MPRINT(EM_DIAGRAM):   * TRAIN: HPNNA;
+29749      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+29750      %let EM_ACTION = TRAIN;
+29751      %let syscc = 0;
+29752      %macro main;
+29753      
+29754         %if %upcase(&EM_ACTION) = CREATE %then %do;
+29755             filename temp catalog 'sashelp.hpdm.hpdmneural_create.source';
+29756             %include temp;
+29757             filename temp;
+29758             %hpdm_Neural_create;
+29759         %end;
+29760         %else
+29761         %if %upcase(&EM_ACTION) = TRAIN %then %do;
+29762             filename temp catalog 'sashelp.hpdm.hpdmneural_train.source';
+29763             %include temp;
+29764             filename temp;
+29765             %hpdm_Neural_train;
+29766         %end;
+29767         %else
+29768         %if %upcase(&EM_ACTION) = REPORT %then %do;
+29769             filename temp catalog 'sashelp.hpdm.hpdmneural_report.source';
+29770             %include temp;
+29771             filename temp;
+29772             %hpdm_Neural_report;
+29773         %end;
+29774         %else
+29775            %if %upcase(&EM_ACTION) = OPENTABLE  %then %do;
+29776                 filename temp catalog 'sashelp.hpdm.hpdmneural_actions.source';
+29777                 %include temp;
+29778                 filename temp;
+29779                 %hpdm_Neural_OpenTable;
+29780         %end;
+29781         %else
+29782         %if %upcase(&EM_ACTION) = CLOSETABLE  %then %do;
+29783                filename temp catalog 'sashelp.hpdm.hpdmneural_actions.source';
+29784                 %include temp;
+29785                 filename temp;
+29786                 %hpdm_Neural_CloseTable ;
+29787         %end;
+29788      
+29789      %mend main;
+29790      
+29791      %main;
+MPRINT(EM_DIAGRAM):    
+MPRINT(MAIN):   filename temp catalog 'sashelp.hpdm.hpdmneural_train.source';
+NOTE: %INCLUDE (level 1) file TEMP is file SASHELP.HPDM.HPDMNEURAL_TRAIN.SOURCE.
+29792     +%Macro hpdm_Neural_Train;
+29794     +   /* retrieve data to model based on presence of grid processing */
+29795     +   %em_getname(key=HPDS2SCORE, type=FILE, extension=sas);
+29796     +   %hpdm_dataprep(data=, out=, metadata=, code=, ROLE=TRAIN, where=,
+29797     +        outDS2Code=&em_user_HPDS2SCORE, append=N, host=, nodes=, nthreads=, details=);
+29799     +   /* check for the existence of EM_HPDM_TRAIN table */
+29800     +   %if &EM_HPDM_TRAIN eq  %then %do;
+29801     +       %let EMEXCEPTIONSTRING = exception.server.IMPORT.NOTRAIN,1;
+29802     +       %put &em_codebar;
+29803     +       %let errormsg = %sysfunc(sasmsg(sashelp.dmine, error_nodeTrainRawData_note, NOQUOTE));
+29804     +       %put &errormsg;
+29805     +       %put &em_codebar;
+29806     +       %goto doendm;
+29807     +   %end;
+29808     +   %else
+29809     +       %let EMEXCEPTIONSTRING =;
+29811     +   %if ^%sysfunc(exist(&EM_HPDM_TRAIN)) AND ^%sysfunc(exist(&EM_HPDM_TRAIN, VIEW)) %then %do;
+29812     +       %let EMEXCEPTIONSTRING = exception.server.IMPORT.NOTRAIN,1;
+29813     +       %put &em_codebar;
+29814     +       %let errormsg = %sysfunc(sasmsg(sashelp.dmine, error_nodeTrainRawData_note, NOQUOTE));
+29815     +       %put &errormsg;
+29816     +       %put &em_codebar;
+29817     +       %goto doendm;
+29818     +   %end;
+29819     +   %else
+29820     +       %let EMEXCEPTIONSTRING =;
+29822     +   /* Check for the existence of at least one target variable*/
+29823     +   %if  &EM_NUM_TARGET < 1 %then %do;
+29824     +        %let EMEXCEPTIONSTRING = exception.server.USE1TARGET;
+29825     +        %put &em_codebar;
+29826     +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, metadata.use01target_err, NOQUOTE));
+29827     +        %put &errormsg;
+29828     +        %put &em_codebar;
+29829     +        %goto doendm;
+29830     +   %end;
+29831     +   %else
+29832     +       %let EMEXCEPTIONSTRING =;
+29834     +   /* if only 1 target and target level is ORDINAL, throw run time exception -- proc hpneural does not support ordinal target */
+29835     +   %if ((&EM_NUM_TARGET eq 1) and (&EM_NUM_ORDINAL_TARGET eq 1)) %then %do;
+29836     +        %let EMEXCEPTIONSTRING = exception.server.METADATA.INVALIDORDINALTARGET;
+29837     +        %put &em_codebar;
+29838     +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine,ORDINALTARGETPRESENT_NOTE, NOQUOTE));
+29839     +        %put &errormsg;
+29840     +        %put &em_codebar;
+29841     +        %goto doendm;
+29842     +   %end;
+29843     +   %else
+29844     +       %let EMEXCEPTIONSTRING =;
+29846     +   /* Check for the existence of one input variable*/
+29847     +   %if  (&EM_NUM_INTERVAL_INPUT < 1) and (&EM_NUM_BINARY_INPUT < 1) and (&EM_NUM_NOMINAL_INPUT < 1)
+29848     +         and (&EM_NUM_ORDINAL_INPUT < 1) and (&EM_NUM_INTERVAL_REJECTED < 1) and (&EM_NUM_BINARY_REJECTED < 1)
+29849     +         and (&EM_NUM_NOMINAL_REJECTED < 1) and (&EM_NUM_ORDINAL_REJECTED < 1) %then %do;
+29850     +        %let EMEXCEPTIONSTRING = exception.server.USEATLEAST1INPUTREJECT;
+29851     +        %put &em_codebar;
+29852     +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, error_noInput_note, NOQUOTE));
+29853     +        %put &errormsg;
+29854     +        %put &em_codebar;
+29855     +        %goto doendm;
+29856     +   %end;
+29857     +   %else
+29858     +       %let EMEXCEPTIONSTRING =;
+29860     +   /* data sets */
+29861     +   %EM_GETNAME(KEY=OUTMODEL, type=DATA);
+29862     +   %EM_GETNAME(key=SCOREDOUT, type=DATA);
+29863     +   %EM_GETNAME(key=HPOUTFIT, type=DATA);
+29864     +   %EM_GETNAME(key=TRAINHIST, type=DATA);
+29865     +   %EM_GETNAME(key=ITERHIST, type=DATA);
+29866     +   %EM_GETNAME(key=HIDDENOPTIONS, type=DATA);
+29868     +   /* load hpneural macros */
+29869     +   filename temp catalog 'sashelp.hpdm.hpdmneural_macros.source';
+29870     +   %include temp;
+29871     +   filename temp;
+29873     +    /* run HPNeural model */
+29874     +    %let out=;
+29875     +    %let traindata = &EM_HPDM_TRAIN;
+29876     +    %if "&em_hpdm_train" ne "&em_import_data" %then %do;
+29877     +       %let out = &em_hpdm_train_score;
+29878     +    %end;
+29879     +    %else %do;
+29880     +      /* check if a training and validate table are passed in as 2 seperate tables; if so, */
+29881     +      /* create one table containing the _partind_ variable to be used for modelling       */
+29882     +      %if (%sysfunc(exist(&em_import_data)) or %sysfunc(exist(&em_import_data, VIEW))) and
+29883     +          ("&EM_IMPORT_VALIDATE" ne "") and (%sysfunc(exist(&EM_IMPORT_VALIDATE)) or %sysfunc(exist(&EM_IMPORT_VALIDATE, VIEW))) %then %do;
+29884     +          %let traindata = work.&EM_NODEID._traindata;
+29885     +          data &traindata  / view=&traindata;
+29886     +             set &em_import_data(in=_a) &em_import_validate(in=_b);
+29887     +             if _a then _PartInd_ = 1;
+29888     +             else _PartInd_=0;
+29889     +          run;
+29890     +      %end;
+29891     +   %end;
+29893     +   %em_checkmacro(name=EM_PROPERTY_ARCHITECTURE, value=LAYER1, global=Y);
+29894     +   %em_checkmacro(name=EM_PROPERTY_HIDDEN,   value=3, global=Y);
+29895     +   %em_checkmacro(name=EM_PROPERTY_InputStd, value=RANGE, global=Y);
+29896     +   %em_checkmacro(name=EM_PROPERTY_HIDDENLAYERS, value=3, global=Y);
+29897     +   %em_checkmacro(name=EM_PROPERTY_DIRECTCONN, value=N, global=Y);
+29898     +   %em_checkmacro(name=EM_PROPERTY_TargetActivation, value=IDENTITY, global=Y);
+29899     +   %em_checkmacro(name=EM_PROPERTY_TargetError, value=NORMAL, global=Y);
+29900     +   %em_checkmacro(name=EM_PROPERTY_TargetStd, value=RANGE, global=Y);
+29902     +   %em_checkmacro(name=EM_PROPERTY_NUMTRIES, value=2, global=Y);
+29903     +   %em_checkmacro(name=EM_PROPERTY_MAXITER,  value=300, global=Y);
+29904     +   %em_checkmacro(name=EM_PROPERTY_OPTMETHOD, value=LBFGS, global=Y);
+29905     +   %em_checkmacro(name=EM_PROPERTY_USEVALID,  value=N, global=Y);
+29906     +   %em_checkmacro(name=EM_PROPERTY_USEINVERSE, value=N, global=Y);
+29907     +   %em_checkmacro(name=EM_PROPERTY_MISSASLVL, value=N, global=Y);
+29909     +   %if &EM_NUM_INTERVAL_TARGET %then %do;
+29910     +      %if "&EM_PROPERTY_TargetActivation" eq "EXP" and "&EM_PROPERTY_TargetError" eq "NORMAL" %then %do;
+29911     +        %let EMEXCEPTIONSTRING = exception.server.hpneural.targetacterror;
+29912     +        %put &em_codebar;
+29913     +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, hpneural_targetacterror_err, NOQUOTE));
+29914     +        %put &errormsg;
+29915     +        %put &em_codebar;
+29916     +        %goto doendm;
+29917     +      %end;
+29918     +      %else %if "&EM_PROPERTY_TargetActivation" ne "EXP" and "&EM_PROPERTY_TargetError" ne "NORMAL" %then %do;
+29919     +        %let EMEXCEPTIONSTRING = exception.server.hpneural.targetacterror;
+29920     +        %put &em_codebar;
+29921     +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, hpneural_targetacterror_err, NOQUOTE));
+29922     +        %put &errormsg;
+29923     +        %put &em_codebar;
+29924     +        %goto doendm;
+29925     +      %end;
+29926     +      %else %if ("&EM_PROPERTY_TargetStd" eq "ZSCORE" or "&EM_PROPERTY_TargetStd" eq "NONE") and "&EM_PROPERTY_TargetActivation" ne "IDENTITY" %then %do;
+29927     +        %let EMEXCEPTIONSTRING = exception.server.hpneural.targetstdact;
+29928     +        %put &em_codebar;
+29929     +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, hpneural_targetstdact_err, NOQUOTE));
+29930     +        %put &errormsg;
+29931     +        %put &em_codebar;
+29932     +        %goto doendm;
+29933     +      %end;
+29935     +      %else %let EMEXCEPTIONSTRING =;
+29936     +   %end;
+29937     +   %else %let EMEXCEPTIONSTRING =;
+29940     +    filename flowref "&EM_FILE_EMFLOWSCORECODE";
+29941     +    %HPDM_HPNeural(indata=&traindata,
+29942     +           IntTarget=%EM_INTERVAL_TARGET,
+29943     +           NomTarget=%EM_NOMINAL_TARGET %EM_BINARY_TARGET,
+29944     +           FreqVar = %EM_FREQ,
+29945     +           outmodel=&EM_USER_OUTMODEL,
+29946     +           inputstd=&EM_PROPERTY_InputStd,
+29947     +           architecture=&EM_PROPERTY_ARCHITECTURE,
+29948     +           hidden=&EM_PROPERTY_HIDDEN,
+29949     +           hiddenlayers=&EM_PROPERTY_HIDDENLAYERS,
+29950     +           directconn=&EM_PROPERTY_DIRECTCONN,
+29951     +           hoptsds=&EM_USER_HIDDENOPTIONS,
+29952     +           targetact=&EM_PROPERTY_TargetActivation,
+29953     +           targeterror=&EM_PROPERTY_TargetError,
+29954     +           targetstd=&EM_PROPERTY_TargetStd,
+29955     +           numtries=&EM_PROPERTY_NUMTRIES,
+29956     +           maxiter=&EM_PROPERTY_MAXITER,
+29957     +           optmethod=&EM_PROPERTY_OPTMETHOD,
+29958     +           usevalid=&EM_PROPERTY_USEVALID,
+29959     +           useinverse=&EM_PROPERTY_USEINVERSE,
+29960     +           missaslvl=&EM_PROPERTY_MISSASLVL,
+29961     +           %if &out ne "" %then %do;
+29962     +             out=&out,
+29963     +           %end;
+29964     +           hpoutfit=&EM_USER_HPOUTFIT,
+29965     +           trainhist=&EM_USER_TRAINHIST,
+29966     +           iterhist=&EM_USER_ITERHIST,
+29967     +           fileref=flowref
+29968     +           );
+29970     +    %if &syserr >4 %then %do;
+29971     +       %let EMEXCEPTIONSTRING = exception.server.EMTOOL.GENERICRUNTIMEEXCEPTION;
+29972     +       %goto doendm;
+29973     +    %end;
+29975     +    /* delete temporary traindata is training and validate are both passed into the node */
+29976     +    %if "&traindata" ne "&em_hpdm_train" %then %do;
+29977     +      proc datasets lib=work nolist;
+29978     +        delete &EM_NODEID._traindata /mt=view;
+29979     +      run;
+29980     +    %end;
+29982     +    /* create publish scoring code from flow score code */
+29983     +    filename pubref  "&EM_FILE_EMPUBLISHSCORECODE";
+29984     +    %em_copyfile(infref=flowref, outfref=pubref, append=N);
+29986     +    %if "&out" ne "" %then %do;
+29987     +        %if "&EM_NUM_TARGET" = "1" %then %do;
+29989     +           /* retrieve name of prevdar created by hpneural */
+29990     +           data _null_;
+29991     +             set &EM_DEC_DECMETA(where=(_type_="TARGET"));
+29992     +             call symput('targetEvent', event);
+29993     +             call symput('targetLvl', level);
+29994     +           run;
+29995     +           %if &targetLvl ne INTERVAL %then %do;
+29996     +             %let newtargetEvent = %nrbquote(%sysfunc(tranwrd(&targetEvent, %str(%"),"")));
+29997     +             data _null_;
+29998     +               set &EM_DEC_DECMETA(where=(Level="&newtargetEvent" and _type_="PREDICTED"));
+29999     +               call symput('predVar', strip(Variable));
+30000     +             run;
+30001     +           %end;
+30002     +           %else %do;
+30003     +             data _null_;
+30004     +               set &EM_DEC_DECMETA(where=(_type_="PREDICTED"));
+30005     +               call symput('predVar', strip(Variable));
+30006     +             run;
+30007     +           %end;
+30008     +           %hpdm_node_assess(data=&out, DECMETA=&EM_DEC_DECMETA, predVar=&predvar);
+30009     +        %end;
+30010     +        %else %do;
+30011     +           %let _hpdmDecmeta =;
+30012     +           %let hpdmTarget= ;
+30013     +           data _hpneuralTarget;
+30014     +              set &em_data_variableset;
+30015     +              where ROLE='TARGET' and USE in('D','Y') and LEVEL^='ORDINAL';
+30016     +              keep NAME;
+30017     +           run;
+30018     +           proc sort data=_hpneuralTarget;
+30019     +              by NAME;
+30020     +           run;
+30021     +           proc sort data=EM_TARGETDECINFO;
+30022     +              by TARGET;
+30023     +           run;
+30024     +           %let hpdmDecmeta =;
+30025     +           data _hpNeuralTarget;
+30026     +              merge _hpNeuralTarget(in=_a) EM_TARGETDECINFO(rename=(TARGET=NAME));
+30027     +              by NAME;
+30028     +              if _a then do;
+30029     +                 call symput('_hpdmDecmeta', strip(symget('_hpdmDecMeta'))!!' '!!trim(DECMETA));
+30030     +              end;
+30031     +           run;
+30032     +           proc delete data=_hpNeuralTarget;run;
+30034     +           %do ik= 1 %to %eval(&EM_NUM_TARGET - &EM_NUM_ORDINAL_TARGET);
+30035     +               %let decmeta = %scan(&_hpdmDecmeta, &ik, %str( ));
+30037     +               /* retrieve name of prevdar created by hpneural */
+30038     +               data _null_;
+30039     +                 set &decmeta(where=(_type_="TARGET"));
+30040     +                 call symput('targetEvent', event);
+30041     +                 call symput('target_name', variable);
+30042     +                 call symput('targetLvl', level);
+30043     +               run;
+30044     +               %if &TargetLvl ne INTERVAL %then %do;
+30045     +                 %let newtargetEvent = %nrbquote(%sysfunc(tranwrd(&targetEvent, %str(%"),"")));
+30046     +                 data _null_;
+30047     +                   set &decmeta(where=(Level="&newtargetEvent" and _type_="PREDICTED"));
+30048     +                   call symput('predVar', strip(Variable));
+30049     +                 run;
+30050     +               %end;
+30051     +               %else %do;
+30052     +                 data _null_;
+30053     +                   set &decmeta(where=(_type_="PREDICTED"));
+30054     +                   call symput('predVar', strip(Variable));
+30055     +                 run;
+30056     +               %end;
+30057     +               %hpdm_node_assess(data=&out, DECMETA=&decmeta, predvar=&predVar, targetIndex=&ik);
+30058     +           %end;
+30059     +         %end;
+30060     +         proc delete data=&out;run;
+30061     +    %end;
+30063     +    %if &sysrc >4 %then %do;
+30064     +      %goto doendem;
+30065     +    %end;
+30067     +    /* create decmeta to pass into assessment macro, em_model to generate scoring code and fit stats; */
+30068     +    %if "&EM_NUM_TARGET" = "1" %then %do;
+30069     +      %em_model(DATA=, TARGET=&EM_DEC_TARGET, DECSCORECODE=Y, CLASSIFICATION=Y, FITSTATISTICS=Y, RESIDUALS=Y);
+30070     +    %end;
+30071     +    %else %do;
+30072     +      %do i= 1 %to &em_num_binary_target;
+30073     +         %let tarname = %scan(%EM_BINARY_TARGET, &i);
+30074     +         %em_model(DATA=, TARGET=&tarname, DECSCORECODE=Y, CLASSIFICATION=Y, FITSTATISTICS=Y, RESIDUALS=Y);
+30075     +      %end;
+30076     +      %do i= 1 %to &em_num_nominal_target;
+30077     +         %let tarname = %scan(%EM_NOMINAL_TARGET, &i);
+30078     +         %em_model(DATA=, TARGET=&tarname, DECSCORECODE=Y, CLASSIFICATION=Y, FITSTATISTICS=Y, RESIDUALS=Y);
+30079     +      %end;
+30080     +      %do i= 1 %to &em_num_interval_target;
+30081     +         %let tarname = %scan(%EM_INTERVAL_TARGET, &i);
+30082     +         %em_model(DATA=, TARGET=&tarname, DECSCORECODE=Y, CLASSIFICATION=Y, FITSTATISTICS=Y, RESIDUALS=Y);
+30083     +      %end;
+30084     +    %end;
+30086     +    filename pubref;
+30087     +    filename flowref;
+30089     +    %doendm:
+30091     +%Mend hpdm_Neural_Train;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(MAIN):   filename temp;
+NOTE: Fileref TEMP has been deassigned.
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_DATAPREP):   options validvarname=ANY;
+MPRINT(HPDM_DATAPREP):   filename _hpflow catalog 'sashelp.emutil.em_pathscorecode.source';
+NOTE: %INCLUDE (level 1) file _HPFLOW is file SASHELP.EMUTIL.EM_PATHSCORECODE.SOURCE.
+30093     +%macro EM_PATHSCORECODE(NODEID=, STARTNODEID=, FLOW=, PUBLISH=, HPDM=, OUTPATH=);
+30094     +   proc display c=sashelp.emcore.pathscorecode.scl;
+30095     +   run;
+30096     +%mend EM_PATHSCORECODE;
+30097     +
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(HPDM_DATAPREP):   filename _hpflow;
+NOTE: Fileref _HPFLOW has been deassigned.
+MPRINT(EM_PATHSCORECODE):   proc display c=sashelp.emcore.pathscorecode.scl;
+MPRINT(EM_PATHSCORECODE):   run;
+
+30098      data WORK._SCORECODE;
+MPRINT(EM_PATHSCORECODE):   data WORK._SCORECODE;
+30099      length Parent $32 nodelabel $32 description $200 tooltype $32 component $32 FlowScoreCodeFormat PublishScoreCode $16 PublishScoreCodeFormat $8 accumulatedScoreCode $1;
+MPRINT(EM_PATHSCORECODE):   length Parent $32 nodelabel $32 description $200 tooltype $32 component $32 FlowScoreCodeFormat PublishScoreCode $16 PublishScoreCodeFormat $8 accumulatedScoreCode $1;
+30100      nodelabel="Ids";
+MPRINT(EM_PATHSCORECODE):   nodelabel="Ids";
+30101      parent=" ";
+MPRINT(EM_PATHSCORECODE):   parent=" ";
+30102      description="Input Data Source";
+MPRINT(EM_PATHSCORECODE):   description="Input Data Source";
+30103      component="DataSource";
+MPRINT(EM_PATHSCORECODE):   component="DataSource";
+30104      tooltype="SAMPLE";
+MPRINT(EM_PATHSCORECODE):   tooltype="SAMPLE";
+30105      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30106      PublishScoreCode="EMPUBLISHSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMPUBLISHSCORECODE";
+30107      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30108      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30109      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30110      nodelabel="Varsel";
+MPRINT(EM_PATHSCORECODE):   nodelabel="Varsel";
+30111      parent="Ids";
+MPRINT(EM_PATHSCORECODE):   parent="Ids";
+30112      description="Variable selection  Class";
+MPRINT(EM_PATHSCORECODE):   description="Variable selection  Class";
+30113      component="VariableSelection";
+MPRINT(EM_PATHSCORECODE):   component="VariableSelection";
+30114      tooltype="EXPLORE";
+MPRINT(EM_PATHSCORECODE):   tooltype="EXPLORE";
+30115      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30116      PublishScoreCode="EMFLOWSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMFLOWSCORECODE";
+30117      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30118      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30119      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30120      nodelabel="Trans";
+MPRINT(EM_PATHSCORECODE):   nodelabel="Trans";
+30121      parent="Varsel";
+MPRINT(EM_PATHSCORECODE):   parent="Varsel";
+30122      description="Transform";
+MPRINT(EM_PATHSCORECODE):   description="Transform";
+30123      component="Transform";
+MPRINT(EM_PATHSCORECODE):   component="Transform";
+30124      tooltype="MODIFY";
+MPRINT(EM_PATHSCORECODE):   tooltype="MODIFY";
+30125      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30126      PublishScoreCode="EMPUBLISHSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMPUBLISHSCORECODE";
+30127      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30128      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30129      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30130      nodelabel="Meta";
+MPRINT(EM_PATHSCORECODE):   nodelabel="Meta";
+30131      parent="Trans";
+MPRINT(EM_PATHSCORECODE):   parent="Trans";
+30132      description="Metadata Node";
+MPRINT(EM_PATHSCORECODE):   description="Metadata Node";
+30133      component="Metadata";
+MPRINT(EM_PATHSCORECODE):   component="Metadata";
+30134      tooltype="UTILITY";
+MPRINT(EM_PATHSCORECODE):   tooltype="UTILITY";
+30135      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30136      PublishScoreCode="EMPUBLISHSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMPUBLISHSCORECODE";
+30137      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30138      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30139      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30140      nodelabel="Trans2";
+MPRINT(EM_PATHSCORECODE):   nodelabel="Trans2";
+30141      parent="Meta";
+MPRINT(EM_PATHSCORECODE):   parent="Meta";
+30142      description="Transform";
+MPRINT(EM_PATHSCORECODE):   description="Transform";
+30143      component="Transform";
+MPRINT(EM_PATHSCORECODE):   component="Transform";
+30144      tooltype="MODIFY";
+MPRINT(EM_PATHSCORECODE):   tooltype="MODIFY";
+30145      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30146      PublishScoreCode="EMPUBLISHSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMPUBLISHSCORECODE";
+30147      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30148      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30149      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30150      nodelabel="Meta2";
+MPRINT(EM_PATHSCORECODE):   nodelabel="Meta2";
+30151      parent="Trans2";
+MPRINT(EM_PATHSCORECODE):   parent="Trans2";
+30152      description="Metadata Node";
+MPRINT(EM_PATHSCORECODE):   description="Metadata Node";
+30153      component="Metadata";
+MPRINT(EM_PATHSCORECODE):   component="Metadata";
+30154      tooltype="UTILITY";
+MPRINT(EM_PATHSCORECODE):   tooltype="UTILITY";
+30155      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30156      PublishScoreCode="EMPUBLISHSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMPUBLISHSCORECODE";
+30157      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30158      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30159      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30160      nodelabel="Part2";
+MPRINT(EM_PATHSCORECODE):   nodelabel="Part2";
+30161      parent="Meta2";
+MPRINT(EM_PATHSCORECODE):   parent="Meta2";
+30162      description="Partition Class";
+MPRINT(EM_PATHSCORECODE):   description="Partition Class";
+30163      component="Partition";
+MPRINT(EM_PATHSCORECODE):   component="Partition";
+30164      tooltype="SAMPLE";
+MPRINT(EM_PATHSCORECODE):   tooltype="SAMPLE";
+30165      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30166      PublishScoreCode="EMFLOWSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMFLOWSCORECODE";
+30167      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30168      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30169      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30170      nodelabel="Tree4";
+MPRINT(EM_PATHSCORECODE):   nodelabel="Tree4";
+30171      parent="Part2";
+MPRINT(EM_PATHSCORECODE):   parent="Part2";
+30172      description="Extension Class";
+MPRINT(EM_PATHSCORECODE):   description="Extension Class";
+30173      component="DecisionTree";
+MPRINT(EM_PATHSCORECODE):   component="DecisionTree";
+30174      tooltype="MODEL";
+MPRINT(EM_PATHSCORECODE):   tooltype="MODEL";
+30175      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30176      PublishScoreCode="EMPUBLISHSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMPUBLISHSCORECODE";
+30177      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30178      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30179      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30180      nodelabel="MdlComp2";
+MPRINT(EM_PATHSCORECODE):   nodelabel="MdlComp2";
+30181      parent="Tree4";
+MPRINT(EM_PATHSCORECODE):   parent="Tree4";
+30182      description="Model Compare Class";
+MPRINT(EM_PATHSCORECODE):   description="Model Compare Class";
+30183      component="ModelCompare";
+MPRINT(EM_PATHSCORECODE):   component="ModelCompare";
+30184      tooltype="ASSESS";
+MPRINT(EM_PATHSCORECODE):   tooltype="ASSESS";
+30185      FlowScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   FlowScoreCodeFormat="DATASTEP";
+30186      PublishScoreCode="EMFLOWSCORECODE";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCode="EMFLOWSCORECODE";
+30187      PublishScoreCodeFormat="DATASTEP";
+MPRINT(EM_PATHSCORECODE):   PublishScoreCodeFormat="DATASTEP";
+30188      accumulatedScoreCode= "N";
+MPRINT(EM_PATHSCORECODE):   accumulatedScoreCode= "N";
+30189      output;
+MPRINT(EM_PATHSCORECODE):   output;
+30190      run;
+MPRINT(EM_PATHSCORECODE):   run;
+
+NOTE: The data set WORK._SCORECODE has 9 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+NOTE: PROCEDURE DISPLAY used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.04 seconds
+      
+
+MPRINT(EM_PATHSCORECODE):   
+MPRINT(HPDM_DATAPREP):  ;
+MPRINT(HPDM_DATAPREP):   data _null_;
+MPRINT(HPDM_DATAPREP):   set WORK._SCORECODE end=eof;
+MPRINT(HPDM_DATAPREP):   where upcase(component) in('DATASOURCE', 'HPTMINE', 'HPDMPARTITION');
+MPRINT(HPDM_DATAPREP):   if upcase(component) = 'DATASOURCE' then call symput('idsNodeid', trim(upcase(nodelabel)));
+MPRINT(HPDM_DATAPREP):   if eof then do;
+MPRINT(HPDM_DATAPREP):   call symput('hp_lastNodeid', trim(nodelabel));
+MPRINT(HPDM_DATAPREP):   call symput('hp_lastComponent', trim(upcase(Component)));
+MPRINT(HPDM_DATAPREP):   end;
+MPRINT(HPDM_DATAPREP):   run;
+
+NOTE: There were 1 observations read from the data set WORK._SCORECODE.
+      WHERE UPCASE(component) in ('DATASOURCE', 'HPDMPARTITION', 'HPTMINE');
+NOTE: DATA statement used (Total process time):
+      real time           0.18 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(HPDM_DATAPREP):   data _null_;
+MPRINT(HPDM_DATAPREP):   set EMWS1.Tree4_EMINFO;
+MPRINT(HPDM_DATAPREP):   where KEY in("IDSTABLE", "HPDMSAMPLE", "HPPART_DATA", "HPPART");
+MPRINT(HPDM_DATAPREP):   select(upcase(KEY));
+MPRINT(HPDM_DATAPREP):   when("HPPART_DATA") do;
+MPRINT(HPDM_DATAPREP):   call symput('hpdm_partdata', trim(DATA));
+MPRINT(HPDM_DATAPREP):   call symput('hpdm_partitionvar', '_PartInd_');
+MPRINT(HPDM_DATAPREP):   end;
+MPRINT(HPDM_DATAPREP):   when("IDSTABLE") call symput('inData', trim(DATA));
+MPRINT(HPDM_DATAPREP):   when("HPDMSAMPLE") call symput('hpdmSample', trim(DATA));
+MPRINT(HPDM_DATAPREP):   when("HPPART") call symput('hpdm_partid', trim(DATA));
+MPRINT(HPDM_DATAPREP):   otherwise;
+MPRINT(HPDM_DATAPREP):   end;
+MPRINT(HPDM_DATAPREP):   run;
+
+NOTE: There were 1 observations read from the data set EMWS1.TREE4_EMINFO.
+      WHERE KEY in ('HPDMSAMPLE', 'HPPART', 'HPPART_DATA', 'IDSTABLE');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(HPDM_DATAPREP):   data _null_;
+MPRINT(HPDM_DATAPREP):   set EMWS1.Tree4_EMINFO end=eof;
+MPRINT(HPDM_DATAPREP):   where TARGET eq "HPDM" or KEY="HPPART_DATA";
+MPRINT(HPDM_DATAPREP):   call symput('HPDM_DATA'!!strip(put(_N_, best.)), trim(DATA));
+MPRINT(HPDM_DATAPREP):   if eof then do;
+MPRINT(HPDM_DATAPREP):   call symput('HPDM_GRIDNUM', strip(put(_N_, best.)));
+MPRINT(HPDM_DATAPREP):   end;
+MPRINT(HPDM_DATAPREP):   run;
+
+NOTE: There were 0 observations read from the data set EMWS1.TREE4_EMINFO.
+      WHERE (TARGET='HPDM') or (KEY='HPPART_DATA');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(HPDM_DATAPREP):  ;
+MPRINT(HPDM_DATAPREP):   options validvarname=V7;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):   filename temp catalog 'sashelp.hpdm.hpdmneural_macros.source';
+NOTE: %INCLUDE (level 1) file TEMP is file SASHELP.HPDM.HPDMNEURAL_MACROS.SOURCE.
+30191     +%macro HPDM_HPNEURAL(indata=,
+30192     +                   IntTarget=,
+30193     +                   NomTarget=,
+30194     +                   freqvar=,
+30195     +                   outmodel=,
+30196     +                   inputstd=,
+30197     +                   architecture=,
+30198     +                   hidden=,
+30199     +                   hiddenlayers=,
+30200     +                   directconn=,
+30201     +                   hoptsds=,
+30202     +                   targetact=,
+30203     +                   targeterror=,
+30204     +                   targetstd=,
+30205     +                   numtries=,
+30206     +                   maxiter=,
+30207     +                   optmethod=,
+30208     +                   usevalid=,
+30209     +                   useinverse=,
+30210     +                   missaslvl=,
+30211     +                   out=,
+30212     +                   hpoutfit=,
+30213     +                   trainhist=,
+30214     +                   iterhist=,
+30215     +                   fileref=
+30216     +                   );
+30218     +    /* run the HPNeural procedure */
+30220     +   %if "&architecture" eq "USERDEFINED" and %sysfunc(exist(&hoptsds)) %then %do;
+30221     +      proc sort data=&hoptsds;
+30222     +         by layer;
+30223     +      run;
+30224     +   %end;
+30226     +    proc hpneural data=&indata;
+30228     +    %if %EM_INTERVAL_INPUT %EM_INTERVAL_REJECTED ne  %then %do;
+30229     +      input %EM_INTERVAL_INPUT %EM_INTERVAL_REJECTED/ level=int std=&inputstd;
+30230     +    %end;
+30232     +    %if %EM_BINARY_INPUT %EM_NOMINAL_INPUT %EM_ORDINAL_INPUT %EM_BINARY_REJECTED %EM_NOMINAL_REJECTED %EM_ORDINAL_REJECTED ne  %then %do;
+30233     +      input %EM_BINARY_INPUT %EM_BINARY_REJECTED %EM_NOMINAL_INPUT %EM_NOMINAL_REJECTED %EM_ORDINAL_INPUT %EM_ORDINAL_REJECTED/ level = nom
+30234     +      %if &missAsLvl eq Y %then %do;
+30235     +        missing=map
+30236     +      %end;
+30237     +      ;
+30238     +    %end;
+30240     +    /* Partition variable */
+30241     +    %if ("&hpdm_partitionVar" ne "") %then %do;
+30242     +        partition rolevar=&hpdm_partitionVar(train=1);
+30243     +    %end;
+30244     +    %else %if "&indata" ne "&em_hpdm_train" %then %do;
+30245     +       partition rolevar=_partInd_(train=1);
+30246     +    %end;
+30248     +    /* ID Variables */
+30249     +    %if ("&hpdm_partitionVar" ne "") %then %do;
+30250     +        id &hpdm_partitionVar %em_key &IntTarget &NomTarget;
+30251     +    %end;
+30252     +    %else
+30253     +    %if &EM_NUM_KEY  %then %do;
+30254     +       ID %EM_KEY  &IntTarget &NomTarget;
+30255     +    %end;
+30256     +    %else %do;
+30257     +       ID  &IntTarget &NomTarget;
+30258     +    %end;
+30260     +    /* Freq Statement */
+30261     +    %if ((&useInverse eq Y) AND (&NomTarget ne )) %then %do;
+30262     +      freq _inverse_priors_;
+30263     +    %end;
+30264     +    %else %do;
+30265     +      %if "%EM_FREQ" ne "" %then %do;
+30266     +        freq %EM_FREQ;
+30267     +      %end;
+30268     +    %end;
+30270     +    /* Target Statements - Multiple targets are supported with level of either INT or NOM */
+30271     +    %if &IntTarget ne %then %do;
+30272     +       target &IntTarget / level=INT act=&targetact error=&targeterror std=&targetstd;
+30273     +    %end;
+30274     +    %if &NomTarget ne %then %do;
+30276     +       %let dsid = %sysfunc(open(&EM_DATA_VARIABLESET(where=(role="TARGET" and USE in("Y","D") and level in("NOMINAL","BINARY")))));
+30277     +       %let tnamenum = %sysfunc(VARNUM(&dsid, NAME));
+30278     +       %let onamenum = %sysfunc(VARNUM(&dsid, ORDER));
+30279     +       %let obs = %sysfunc(fetch(&dsid));
+30281     +       %do %while(&obs=0);
+30282     +         %let tname = %sysfunc(getvarc(&dsid, &tnamenum));
+30283     +         %let oname = %sysfunc(getvarc(&dsid, &onamenum));
+30284     +         %if %length(&oname)=0 %then %let oname=DESC;
+30286     +         target &tname / level=NOM order=&oname ;
+30287     +         %let obs = %sysfunc(fetch(&dsid));
+30288     +       %end;
+30289     +       %let rc = %sysfunc(close(&dsid));
+30290     +    %end;
+30292     +    %let hiddennote = 0;
+30293     +    %if "&architecture" ne "USERDEFINED" %then %do;
+30294     +       /* Architecture Statement - pre-13.1 options */
+30295     +       %if "&architecture" eq "LOGISTIC" %then %do;
+30296     +         architecture &architecture;
+30297     +       %end;
+30298     +       %else %do;
+30299     +          architecture MLP %if %index(&architecture,SKIP) %then DIRECT;;
+30300     +          /* Hidden Statement*/
+30302     +          %if &hidden ne %then %do;
+30303     +            /* hidden must be at least 2 for 2-layer architectures */
+30304     +            %if %index(&architecture,2) %then %do;
+30305     +               %if &hidden=1 %then %do;
+30306     +                  hidden 1;
+30307     +                  hidden 1;
+30308     +                  %let hiddennote=1;
+30309     +               %end;
+30310     +               %else %do;
+30311     +                  hidden %sysevalf(&hidden / 2, ceil);
+30312     +                  hidden %sysevalf(&hidden / 2, floor);
+30313     +               %end;
+30314     +            %end;
+30315     +            %else %do;
+30316     +               hidden &hidden;
+30317     +            %end;
+30318     +          %end;
+30319     +       %end;
+30320     +    %end;
+30321     +    %else %do; /* user-defined */
+30322     +       architecture MLP %if "&directconn"="Y" %then DIRECT;;
+30323     +       %let hds=0;
+30324     +       %do h=1 %to &hiddenlayers;
+30325     +         %if &h=1 %then %do;
+30326     +            %let hlobs=0;
+30327     +            %if "&hoptsds" ne "" %then %do;
+30328     +               %if %sysfunc(exist(&hoptsds)) %then %do;
+30329     +                  %let hds=%sysfunc(open(&hoptsds));
+30330     +                  %let hlobs=%sysfunc(attrn(&hds,nobs));
+30331     +                  %let neuronnum = %sysfunc(VARNUM(&hds, NEURONS));
+30332     +                  %let actnum = %sysfunc(VARNUM(&hds, ACTFUNC));
+30333     +               %end;
+30334     +            %end;
+30335     +         %end;
+30336     +         %if &hlobs ge &h %then %do;
+30337     +            %let obs = %sysfunc(fetchobs(&hds,&h));
+30338     +            %let neurons = %sysfunc(getvarn(&hds, &neuronnum));
+30339     +            %let hactf   = %sysfunc(getvarc(&hds, &actnum));
+30340     +         %end;
+30341     +         %else %do;
+30342     +            /* not a row in HIDDENOPTIONS table for this layer, use defaults */
+30343     +            %let neurons = 3;
+30344     +            %let hactf = TANH;
+30345     +         %end;
+30346     +         hidden &neurons / act=&hactf;
+30347     +      %end;
+30348     +      %if &hds %then %let hds = %sysfunc(close(&hds));
+30349     +   %end;
+30351     +    /* Train Statement */
+30352     +    %if &outmodel ne %then %do;
+30353     +      train outmodel=&outmodel numtries=&numtries maxiter=&maxiter /* opt=&optmethod */
+30354     +      %if &useValid eq N and ("&hpdm_partitionVar" eq "") and ("&indata" eq "&em_hpdm_train") %then %do;
+30355     +         valid=_none_
+30356     +      %end;
+30357     +      ;
+30358     +    %end;
+30360     +    /* code statement */
+30361     +    code file=&fileref;
+30363     +    /* output statement */
+30364     +    ods output Training=&trainhist Iteration=&iterhist;
+30366     +    /* Score Statement */
+30367     +    %if "&out" ne "" %then %do;
+30368     +        score out=&out;
+30369     +    %end;
+30371     +    /* Performance Statements */
+30372     +    &hpdm_performance;
+30374     +    run;
+30375     +    quit;
+30377     +    %if &hiddennote %then %do;
+30378     +       %put &EM_CODEBAR;
+30379     +       %put %sysfunc(sasmsg(sashelp.dmine, hpneural_hidden_note, NOQUOTE));
+30380     +       %put &EM_CODEBAR;
+30381     +   %end;
+30382     +%mend HPDM_HPNEURAL;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(HPDM_NEURAL_TRAIN):   filename temp;
+NOTE: Fileref TEMP has been deassigned.
+MPRINT(HPDM_NEURAL_TRAIN):   data work.HPNNA_traindata / view=work.HPNNA_traindata;
+MPRINT(HPDM_NEURAL_TRAIN):   set EMWS1.MdlComp2_TRAIN(in=_a) EMWS1.MdlComp2_VALIDATE(in=_b);
+MPRINT(HPDM_NEURAL_TRAIN):   if _a then _PartInd_ = 1;
+MPRINT(HPDM_NEURAL_TRAIN):   else _PartInd_=0;
+MPRINT(HPDM_NEURAL_TRAIN):   run;
+
+NOTE: DATA STEP view saved on file WORK.HPNNA_TRAINDATA.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.MDLCOMP2_VALIDATE.VIEW used (Total process time):
+      real time           0.23 seconds
+      cpu time            0.23 seconds
+      
+NOTE: View EMWS1.MDLCOMP2_TRAIN.VIEW used (Total process time):
+      real time           0.44 seconds
+      cpu time            0.45 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.46 seconds
+      cpu time            0.47 seconds
+      
+
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):   filename flowref "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMFLOWSCORE.sas";
+MPRINT(HPDM_HPNEURAL):   proc hpneural data=work.HPNNA_traindata;
+MPRINT(HPDM_HPNEURAL):   input
+MPRINT(EM_INTERVAL_INPUT):   RANGE_LOG_Total_Trans_Amt RANGE_SQRT_Avg_Utilization_Ratio RANGE_SQRT_Total_Amt_Chng_Q4_Q1 RANGE_SQRT_Total_Ct_Chng_Q4_Q1 RANGE_Total_Revolving_Bal
+MPRINT(HPDM_HPNEURAL):  / level=int std=RANGE;
+MPRINT(HPDM_HPNEURAL):   input
+MPRINT(EM_NOMINAL_INPUT):   G_Customer_Age G_Months_Inactive_12_mon G_Total_Relationship_Count G_Total_Trans_Ct
+MPRINT(HPDM_HPNEURAL):  / level = nom ;
+MPRINT(HPDM_HPNEURAL):   partition rolevar=_partInd_(train=1);
+MPRINT(HPDM_HPNEURAL):   ID Attrition_Flag;
+MPRINT(HPDM_HPNEURAL):   target Attrition_Flag / level=NOM order=DESC ;
+MPRINT(HPDM_HPNEURAL):   architecture MLP;
+MPRINT(HPDM_HPNEURAL):   hidden 3;
+MPRINT(HPDM_HPNEURAL):   train outmodel=EMWS1.HPNNA_OUTMODEL numtries=2 maxiter=300 ;
+MPRINT(HPDM_HPNEURAL):   code file=flowref;
+MPRINT(HPDM_HPNEURAL):   ods output Training=EMWS1.HPNNA_TRAINHIST Iteration=EMWS1.HPNNA_ITERHIST;
+MPRINT(HPDM_HPNEURAL):   PERFORMANCE DETAILS;
+MPRINT(HPDM_HPNEURAL):   run;
+
+NOTE: The HPNEURAL procedure is executing in single-machine mode.
+NOTE: Reading data...
+NOTE: 9113 usable observations in input data set.
+NOTE: Training...
+NOTE: Try 1 complete after 69 iterations. Reason for stopping: Validation error=0.185563
+NOTE: Try 2 complete after 80 iterations. Reason for stopping: Validation error=0.185266
+NOTE: Scoring...
+NOTE: Misclassification Error for target Attrition_Flag:  6.52%; Maximum Error: 22.15% for level 1
+NOTE: Writing Model File...
+NOTE: Writing Code File...
+NOTE: There were 2025 observations read from the data set EMWS1.PART2_VALIDATE.
+NOTE: There were 2025 observations read from the data set EMWS1.TREE4_VALIDATE.
+NOTE: There were 7088 observations read from the data set EMWS1.PART2_TRAIN.
+NOTE: There were 7088 observations read from the data set EMWS1.TREE4_TRAIN.
+NOTE: View WORK.HPNNA_TRAINDATA.VIEW used (Total process time):
+      real time           1.04 seconds
+      cpu time            1.53 seconds
+      
+NOTE: There were 7088 observations read from the data set EMWS1.MDLCOMP2_TRAIN.
+NOTE: There were 2025 observations read from the data set EMWS1.MDLCOMP2_VALIDATE.
+NOTE: The data set EMWS1.HPNNA_ITERHIST has 81 observations and 4 variables.
+NOTE: The data set EMWS1.HPNNA_TRAINHIST has 2 observations and 6 variables.
+NOTE: There were 9113 observations read from the data set WORK.HPNNA_TRAINDATA.
+NOTE: The data set EMWS1.HPNNA_OUTMODEL has 39 observations and 18 variables.
+NOTE: The PROCEDURE HPNEURAL printed page 4.
+NOTE: PROCEDURE HPNEURAL used (Total process time):
+      real time           1.18 seconds
+      cpu time            1.56 seconds
+      
+
+MPRINT(HPDM_HPNEURAL):   quit;
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):   proc datasets lib=work nolist;
+MPRINT(HPDM_NEURAL_TRAIN):   delete HPNNA_traindata /mt=view;
+MPRINT(HPDM_NEURAL_TRAIN):   run;
+
+NOTE: Deleting WORK.HPNNA_TRAINDATA (memtype=VIEW).
+MPRINT(HPDM_NEURAL_TRAIN):   filename pubref "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMPUBLISHSCORE.sas";
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file pubref lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("flowref",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+
+NOTE: The file PUBREF is:
+      Filename=D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPNNA\EMPUBLISHSCORE.sas,
+      RECFM=V,LRECL=20000,File Size (bytes)=0,
+      Last Modified=09Apr2022:15:40:29,
+      Create Time=09Apr2022:15:40:29
+
+NOTE: 326 records were written to the file PUBREF.
+      The minimum record length was 1.
+      The maximum record length was 80.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(EM_MODEL):   data WORK.EM_USER_MODEL;
+MPRINT(EM_MODEL):   length DATA $65 TARGET $32 PREDICTED ASSESS DECSCORECODE FITSTATISTICS CLASSIFICATION RESIDUALS $1;
+MPRINT(EM_MODEL):   data = "";
+MPRINT(EM_MODEL):   target = "Attrition_Flag";
+MPRINT(EM_MODEL):   predicted = "Y";
+MPRINT(EM_MODEL):   assess = "Y";
+MPRINT(EM_MODEL):   decscorecode = "Y";
+MPRINT(EM_MODEL):   fitstatistics = "Y";
+MPRINT(EM_MODEL):   classification = "Y";
+MPRINT(EM_MODEL):   residuals = "Y";
+MPRINT(EM_MODEL):   run;
+
+NOTE: The data set WORK.EM_USER_MODEL has 1 observations and 8 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(HPDM_NEURAL_TRAIN):  ;
+MPRINT(HPDM_NEURAL_TRAIN):   filename pubref;
+NOTE: Fileref PUBREF has been deassigned.
+MPRINT(HPDM_NEURAL_TRAIN):   filename flowref;
+NOTE: Fileref FLOWREF has been deassigned.
+MPRINT(MAIN):  ;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * End TRAIN: HPNNA;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+30384      
+30385      *------------------------------------------------------------*;
+30386      * End TRAIN: HPNNA;
+30387      *------------------------------------------------------------*;
+
+30388      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+30389      * Close any missing semi colons;
+MPRINT(EM_DIAGRAM):   * Close any missing semi colons;
+30390      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+30391      ;
+MPRINT(EM_DIAGRAM):   ;
+30392      ;
+MPRINT(EM_DIAGRAM):   ;
+30393      ;
+MPRINT(EM_DIAGRAM):   ;
+30394      ;
+MPRINT(EM_DIAGRAM):   ;
+30395      quit;
+MPRINT(EM_DIAGRAM):   quit;
+30396      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+30397      * Close any unbalanced quotes;
+MPRINT(EM_DIAGRAM):   * Close any unbalanced quotes;
+30398      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+30399      /*; *"; *'; */
+30400      ;
+MPRINT(EM_DIAGRAM):   ;
+30401      run;
+MPRINT(EM_DIAGRAM):   run;
+30402      quit;
+MPRINT(EM_DIAGRAM):   quit;
+30403      /* Reset EM Options */
+30404      options formchar="|----|+|---+=|-/\<>*";
+MPRINT(EM_DIAGRAM):   options formchar="|----|+|---+=|-/\<>*";
+30405      options nocenter ls=256 ps=10000;
+MPRINT(EM_DIAGRAM):   options nocenter ls=256 ps=10000;
+30406      goptions reset=all device=GIF NODISPLAY;
+MPRINT(EM_DIAGRAM):   goptions reset=all device=GIF NODISPLAY;
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

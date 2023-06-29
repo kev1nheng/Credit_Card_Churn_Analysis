@@ -1,0 +1,26 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+INPUT      INTERVAL          5    
+INPUT      NOMINAL           6    
+TARGET     BINARY            1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+Computed Transformations
+(maximum 500 observations printed)
+
+                                        Input
+        Input Name            Role      Level                    Name                   Level                        Formula
+
+LOG_Total_Trans_Amt           INPUT    INTERVAL    RANGE_LOG_Total_Trans_Amt           INTERVAL    (LOG_Total_Trans_Amt - 0) / (0.6931471806-0)
+SQRT_Avg_Utilization_Ratio    INPUT    INTERVAL    RANGE_SQRT_Avg_Utilization_Ratio    INTERVAL    (SQRT_Avg_Utilization_Ratio - 0) / (1-0)    
+SQRT_Total_Amt_Chng_Q4_Q1     INPUT    INTERVAL    RANGE_SQRT_Total_Amt_Chng_Q4_Q1     INTERVAL    (SQRT_Total_Amt_Chng_Q4_Q1 - 0) / (1-0)     
+SQRT_Total_Ct_Chng_Q4_Q1      INPUT    INTERVAL    RANGE_SQRT_Total_Ct_Chng_Q4_Q1      INTERVAL    (SQRT_Total_Ct_Chng_Q4_Q1 - 0) / (1-0)      
+Total_Revolving_Bal           INPUT    INTERVAL    RANGE_Total_Revolving_Bal           INTERVAL    (Total_Revolving_Bal - 0) / (2517-0)        

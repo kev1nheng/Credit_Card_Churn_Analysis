@@ -1,0 +1,25 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+ASSESS     NOMINAL           1    
+INPUT      INTERVAL          5    
+INPUT      NOMINAL           6    
+TARGET     BINARY            1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Partition Summary
+
+                                     Number of
+Type             Data Set          Observations
+
+DATA        EMWS1.Meta2_TRAIN          10127   
+TRAIN       EMWS1.Part_TRAIN            7594   
+VALIDATE    EMWS1.Part_VALIDATE         2533   

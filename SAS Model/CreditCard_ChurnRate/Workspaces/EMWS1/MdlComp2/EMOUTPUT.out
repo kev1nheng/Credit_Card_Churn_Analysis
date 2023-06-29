@@ -1,0 +1,201 @@
+*------------------------------------------------------------*
+User:                Kevin
+Date:                April 09, 2022
+Time:                15:25:40
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+TARGET      BINARY           1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fit Statistics
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+ 
+                                                         Train:                     Valid:
+                                            Valid:       Average       Train:       Average
+Selected Model                        Misclassification  Squared Misclassification  Squared
+ Model   Node    Model Description           Rate         Error         Rate         Error
+ 
+   Y     Tree4 Modified Tree 3             0.045926     0.037029      0.044441     0.039966
+         Tree3 Modified Tree 2             0.055802     0.039422      0.052906     0.048759
+         Tree2 Modified Tree 1             0.059753     0.038202      0.048674     0.050880
+         Tree  Standard Decision Tree      0.066173     0.052236      0.062077     0.055974
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fit Statistics Table
+Target: Attrition_Flag
+ 
+Data Role=Train
+ 
+Statistics
+ 
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Train: Kolmogorov-Smirnov Statistic
+Train: Average Squared Error
+Train: Roc Index
+Train: Cumulative Percent Captured Response
+Train: Percent Captured Response
+Selection Criterion: Valid: Misclassification Rate
+Train: Total Degrees of Freedom
+Train: Divisor for ASE
+Train: Gain
+Train: Gini Coefficient
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic
+Train: Kolmogorov-Smirnov Probability Cutoff
+Train: Cumulative Lift
+Train: Lift
+Train: Maximum Absolute Error
+Train: Misclassification Rate
+Train: Sum of Frequencies
+Train: Root Average Squared Error
+Train: Cumulative Percent Response
+Train: Percent Response
+Train: Sum of Squared Errors
+ 
+   Tree4       Tree3       Tree2        Tree
+ 
+    0.17        0.18        0.20        0.17
+    0.84        0.85        0.84        0.75
+    0.04        0.04        0.04        0.05
+    0.97        0.98        0.97        0.92
+   59.24       58.17       59.15       56.96
+    5.54        5.36        5.55        5.38
+    0.05        0.06        0.06        0.07
+ 7088.00     7088.00     7088.00     7088.00
+14176.00    14176.00    14176.00    14176.00
+  492.28      481.57      491.34      469.40
+    0.94        0.96        0.95        0.85
+    0.84        0.85        0.84        0.75
+    0.16        0.15        0.16        0.17
+    5.92        5.82        5.91        5.69
+    5.53        5.36        5.54        5.37
+    1.00        1.00        1.00        0.99
+    0.04        0.05        0.05        0.06
+ 7088.00     7088.00     7088.00     7088.00
+    0.19        0.20        0.20        0.23
+   95.18       93.46       95.03       91.50
+   88.87       86.06       88.99       86.31
+  524.93      558.85      541.55      740.50
+ 
+ 
+Data Role=Valid
+ 
+Statistics                                                       Tree4   Tree3   Tree2    Tree
+ 
+Valid: Kolmogorov-Smirnov Statistic                               0.84    0.82    0.81    0.76
+Valid: Average Squared Error                                      0.04    0.05    0.05    0.06
+Valid: Roc Index                                                  0.97    0.95    0.95    0.92
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff    0.11    0.24    0.21    0.16
+Valid: Cumulative Percent Captured Response                      58.21   54.52   53.79   54.81
+Valid: Percent Captured Response                                  5.10    5.07    4.93    5.15
+Valid: Divisor for VASE                                        4050.00 4050.00 4050.00 4050.00
+Valid: Gain                                                     480.62  443.82  436.60  446.78
+Valid: Gini Coefficient                                           0.93    0.90    0.90    0.84
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic             0.83    0.81    0.81    0.76
+Valid: Kolmogorov-Smirnov Probability Cutoff                      0.10    0.23    0.16    0.07
+Valid: Cumulative Lift                                            5.81    5.44    5.37    5.47
+Valid: Lift                                                       5.16    5.13    4.99    5.22
+Valid: Maximum Absolute Error                                     1.00    1.00    1.00    0.99
+Valid: Misclassification Rate                                     0.05    0.06    0.06    0.07
+Valid: Sum of Frequencies                                      2025.00 2025.00 2025.00 2025.00
+Valid: Root Average Squared Error                                 0.20    0.22    0.23    0.24
+Valid: Cumulative Percent Response                               93.19   87.28   86.12   87.76
+Valid: Percent Response                                          82.83   82.35   80.10   83.71
+Valid: Sum of Squared Errors                                    161.86  197.47  206.06  226.69
+ 
+ 
+Data Role=Test
+ 
+Statistics                                                       Tree4   Tree3   Tree2    Tree
+ 
+Test:  Kolmogorov-Smirnov Statistic                               0.83    0.75    0.79    0.75
+Test: Average Squared Error                                       0.05    0.06    0.06    0.06
+Test:  Roc Index                                                  0.97    0.91    0.94    0.91
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff    0.12    0.34    0.19    0.16
+Test: Cumulative Percent Captured Response                       58.28   53.26   54.91   55.37
+Test: Percent Captured Response                                   5.70    4.11    4.86    5.33
+Test: Divisor for TASE                                         2028.00 2028.00 2028.00 2028.00
+Test: Gain                                                      479.39  429.49  445.85  450.49
+Test:  Gini Coefficient                                           0.93    0.83    0.87    0.83
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Statistic             0.82    0.75    0.79    0.75
+Test:  Kolmogorov-Smirnov Probability Cutoff                      0.11    0.27    0.17    0.07
+Test: Cumulative Lift                                             5.79    5.29    5.46    5.50
+Test: Lift                                                        5.78    4.17    4.93    5.41
+Test: Maximum Absolute Error                                      0.99    1.00    1.00    0.99
+Test: Misclassification Rate                                      0.07    0.07    0.07    0.08
+Test: Sum of Frequencies                                       1014.00 1014.00 1014.00 1014.00
+Test: Root Average Squared Error                                  0.22    0.25    0.23    0.25
+Test: Cumulative Percent Response                                93.14   85.12   87.75   88.49
+Test: Percent Response                                           92.86   67.07   79.29   86.96
+Test: Sum of Squared Errors                                     101.64  122.79  111.79  127.89
+Test: Sum of Weights Times Freqs                               2028.00 2028.00 2028.00 2028.00
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event Classification Table
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+ 
+Model                        Data                    Target   False    True     False    True
+Node    Model Description    Role         Target     Label  Negative Negative Positive Positive
+ 
+Tree  Standard Decision Tree TRAIN    Attrition_Flag           323     5832      117      816
+Tree  Standard Decision Tree VALIDATE Attrition_Flag            85     1651       49      240
+Tree2 Modified Tree 1        TRAIN    Attrition_Flag           210     5814      135      929
+Tree2 Modified Tree 1        VALIDATE Attrition_Flag            65     1644       56      260
+Tree3 Modified Tree 2        TRAIN    Attrition_Flag           208     5782      167      931
+Tree3 Modified Tree 2        VALIDATE Attrition_Flag            58     1645       55      267
+Tree4 Modified Tree 3        TRAIN    Attrition_Flag           191     5825      124      948
+Tree4 Modified Tree 3        VALIDATE Attrition_Flag            51     1658       42      274
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*

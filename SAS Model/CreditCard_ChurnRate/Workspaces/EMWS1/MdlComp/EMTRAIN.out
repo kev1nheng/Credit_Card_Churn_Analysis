@@ -1,0 +1,178 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+TARGET      BINARY           1    
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+
+                                                         Train:                         Valid:
+                                          Valid:         Average         Train:         Average
+Selected   Model       Model        Misclassification    Squared   Misclassification    Squared
+ Model     Node     Description            Rate           Error           Rate           Error
+
+   Y       Reg     FULL LOGIT            0.080537       0.058082        0.076508       0.058589
+           Reg2    BACKWARD LOGIT        0.080537       0.058082        0.076508       0.058589
+           Reg3    STEPWISE LOGIT        0.080537       0.058082        0.076508       0.058589
+           Reg4    FOWARD LOGIT          0.080537       0.058082        0.076508       0.058589
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics Table
+Target: Attrition_Flag
+
+Data Role=Train
+
+Statistics
+
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Train: Kolmogorov-Smirnov Statistic                           
+Train: Akaike's Information Criterion                         
+Train: Average Squared Error                                  
+Train: Roc Index                                              
+Train: Average Error Function                                 
+Train: Cumulative Percent Captured Response                   
+Train: Percent Captured Response                              
+Selection Criterion: Valid: Misclassification Rate            
+Train: Degrees of Freedom for Error                           
+Train: Model Degrees of Freedom                               
+Train: Total Degrees of Freedom                               
+Train: Divisor for ASE                                        
+Train: Error Function                                         
+Train: Final Prediction Error                                 
+Train: Gain                                                   
+Train: Gini Coefficient                                       
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic         
+Train: Kolmogorov-Smirnov Probability Cutoff                  
+Train: Cumulative Lift                                        
+Train: Lift                                                   
+Train: Maximum Absolute Error                                 
+Train: Misclassification Rate                                 
+Train: Mean Square Error                                      
+Train: Sum of Frequencies                                     
+Train: Number of Estimate Weights                             
+Train: Root Average Sum of Squares                            
+Train: Cumulative Percent Response                            
+Train: Percent Response                                       
+Train: Root Final Prediction Error                            
+Train: Root Mean Squared Error                                
+Train: Schwarz's Bayesian Criterion                           
+Train: Sum of Squared Errors                                  
+Train: Sum of Case Weights Times Freq                         
+
+     Reg        Reg2        Reg3        Reg4
+
+    0.23        0.23        0.23        0.23
+    0.74        0.74        0.74        0.74
+ 3234.81     3234.81     3234.81     3234.81
+    0.06        0.06        0.06        0.06
+    0.94        0.94        0.94        0.94
+    0.21        0.21        0.21        0.21
+   56.56       56.56       56.56       56.56
+    4.43        4.43        4.43        4.43
+    0.08        0.08        0.08        0.08
+ 7553.00     7553.00     7553.00     7553.00
+   41.00       41.00       41.00       41.00
+ 7594.00     7594.00     7594.00     7594.00
+15188.00    15188.00    15188.00    15188.00
+ 3152.81     3152.81     3152.81     3152.81
+    0.06        0.06        0.06        0.06
+  465.13      465.13      465.13      465.13
+    0.87        0.87        0.87        0.87
+    0.74        0.74        0.74        0.74
+    0.21        0.21        0.21        0.21
+    5.65        5.65        5.65        5.65
+    4.42        4.42        4.42        4.42
+    1.00        1.00        1.00        1.00
+    0.08        0.08        0.08        0.08
+    0.06        0.06        0.06        0.06
+ 7594.00     7594.00     7594.00     7594.00
+   41.00       41.00       41.00       41.00
+    0.24        0.24        0.24        0.24
+   90.79       90.79       90.79       90.79
+   71.05       71.05       71.05       71.05
+    0.24        0.24        0.24        0.24
+    0.24        0.24        0.24        0.24
+ 3519.15     3519.15     3519.15     3519.15
+  882.15      882.15      882.15      882.15
+15188.00    15188.00    15188.00    15188.00
+
+
+Data Role=Valid
+
+Statistics                                                         Reg    Reg2    Reg3    Reg4
+
+Valid: Kolmogorov-Smirnov Statistic                               0.75    0.75    0.75    0.75
+Valid: Average Squared Error                                      0.06    0.06    0.06    0.06
+Valid: Roc Index                                                  0.95    0.95    0.95    0.95
+Valid: Average Error Function                                     0.20    0.20    0.20    0.20
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff    0.26    0.26    0.26    0.26
+Valid: Cumulative Percent Captured Response                      54.55   54.55   54.55   54.55
+Valid: Percent Captured Response                                  3.69    3.69    3.69    3.69
+Valid: Divisor for VASE                                        5066.00 5066.00 5066.00 5066.00
+Valid: Error Function                                          1002.17 1002.17 1002.17 1002.17
+Valid: Gain                                                     443.95  443.95  443.95  443.95
+Valid: Gini Coefficient                                           0.90    0.90    0.90    0.90
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic             0.75    0.75    0.75    0.75
+Valid: Kolmogorov-Smirnov Probability Cutoff                      0.25    0.25    0.25    0.25
+Valid: Cumulative Lift                                            5.44    5.44    5.44    5.44
+Valid: Lift                                                       3.59    3.59    3.59    3.59
+Valid: Maximum Absolute Error                                     1.00    1.00    1.00    1.00
+Valid: Misclassification Rate                                     0.08    0.08    0.08    0.08
+Valid: Mean Square Error                                          0.06    0.06    0.06    0.06
+Valid: Sum of Frequencies                                      2533.00 2533.00 2533.00 2533.00
+Valid: Root Average Squared Error                                 0.24    0.24    0.24    0.24
+Valid: Cumulative Percent Response                               87.40   87.40   87.40   87.40
+Valid: Percent Response                                          57.69   57.69   57.69   57.69
+Valid: Root Mean Square Error                                     0.24    0.24    0.24    0.24
+Valid: Sum of Square Errors                                     296.81  296.81  296.81  296.81
+Valid: Sum of Case Weights Times Freq                          5066.00 5066.00 5066.00 5066.00
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Event Classification Table
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+
+Model      Model       Data                      Target    False     True      False     True
+Node    Description    Role          Target      Label   Negative  Negative  Positive  Positive
+
+Reg    FULL LOGIT      TRAIN     Attrition_Flag             418      6211       163       802  
+Reg    FULL LOGIT      VALIDATE  Attrition_Flag             131      2053        73       276  
+Reg2   BACKWARD LOGIT  TRAIN     Attrition_Flag             418      6211       163       802  
+Reg2   BACKWARD LOGIT  VALIDATE  Attrition_Flag             131      2053        73       276  
+Reg3   STEPWISE LOGIT  TRAIN     Attrition_Flag             418      6211       163       802  
+Reg3   STEPWISE LOGIT  VALIDATE  Attrition_Flag             131      2053        73       276  
+Reg4   FOWARD LOGIT    TRAIN     Attrition_Flag             418      6211       163       802  
+Reg4   FOWARD LOGIT    VALIDATE  Attrition_Flag             131      2053        73       276  

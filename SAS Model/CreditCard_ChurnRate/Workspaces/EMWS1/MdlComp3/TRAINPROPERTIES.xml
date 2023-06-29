@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  NumberOfReportedLevels="1E-6" NormalizeReportingVariables="Y" DecileBin="20" LiftEpsilon="1E-6"
+ ProfitEpsilon="1E-6" RoiEpsilon="1E-6" ScoreDistBin="20" RocChart="Y" RocEpsilon="0.01"
+ AssessAllTargetLevels="N" SelectionData="DEFAULT" HPCriteria="DEFAULT" intervalViyaCriteria="DEFAULT"
+ classViyaCriteria="DEFAULT" SelectionTable="VALIDATE" SelectionCriteria="_MISC_"
+ SelectionDepth="10" NumberofBins="100" RecomputeAssess="N" TargetName="Attrition_Flag"
+ ModelId="Tree4" ModelDescription="Modified Tree 3" ModelCriteria="Valid: Misclassification Rate"
+ ForceRun="N" RunAction="Train" Component="ModelCompare" RawCreateTime="1964209670.7"
+ CreateTime="29MAR2022:21:47:51" RunId="60888db4-ca64-4553-a08e-ae4f7ce5d00b" StatisticUsed="_VMISC_"
+ TargetLabel="" RawLastTimeRun="1965151959.3" RawRunTime="52.661999941" LastTimeRun="09APR2022:19:32:39"
+ RunTime="0 Hr. 0 Min. 52.66 Sec.">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES/>
+</_ROOT_>

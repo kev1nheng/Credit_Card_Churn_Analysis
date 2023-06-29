@@ -1,0 +1,1060 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "April 09, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:11:56" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Training Log
+Date:                April 09, 2022
+Time:                15:11:56
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O10ODQRK 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMTRAIN.out" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O10ODQRK new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOG 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMLOG.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "April 09, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:11:56" );
+MPRINT(EM_DIAGRAM):   file _LOG;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                Kevin";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "Site:                70135990";
+MPRINT(EM_DIAGRAM):   put "Platform:            X64_10HOME";
+MPRINT(EM_DIAGRAM):   put "Maintenance Release: 9.04.01M4P110916";
+MPRINT(EM_DIAGRAM):   put "EM Version:          14.2";
+MPRINT(EM_DIAGRAM):   put "* ";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMTRAIN.log" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _LOG MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_LOGIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _LOGIN 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMSCORE.log" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMREPORT.log" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    filename _LOG;
+MPRINT(EM_DIAGRAM):    filename _OUT 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMOUTPUT.out" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "April 09, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:11:57" );
+MPRINT(EM_DIAGRAM):   file _OUT;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                Kevin";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMTRAIN.out" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_DIAGRAM):   ;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _OUT MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_OUTIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMSCORE.out" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN 
+"D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMREPORT.out" encoding="UTF-8" 
+NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    filename _OUT;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 
+'D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Boost3\EMRUNSTATUS.xml' encoding="UTF-8" 
+NOBOM;
+306375     proc freq data=EMWS1.Boost3_VariableSet noprint;
+MPRINT(EM_DIAGRAM):    proc freq data=EMWS1.Boost3_VariableSet noprint;
+306376     table ROLE*LEVEL/out=WORK.Boost3META;
+MPRINT(EM_DIAGRAM):   table ROLE*LEVEL/out=WORK.Boost3META;
+306377     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 14 observations read from the data set EMWS1.BOOST3_VARIABLESET.
+NOTE: The data set WORK.BOOST3META has 5 observations and 4 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.01 seconds
+      
+
+306378     proc print data=WORK.Boost3META label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.Boost3META label noobs;
+306379     var ROLE LEVEL COUNT;
+MPRINT(EM_DIAGRAM):   var ROLE LEVEL COUNT;
+306380     label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL =
+306380   ! "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT =
+306380   ! "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label ROLE = "Role" LEVEL = "Measurement Level" COUNT = "Frequency 
+Count";
+306381     title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+306382     title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Variable Summary";
+MPRINT(EM_DIAGRAM):   run;
+306383     run;
+
+NOTE: There were 5 observations read from the data set WORK.BOOST3META.
+NOTE: The PROCEDURE PRINT printed page 152.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+306384     title10;
+MPRINT(EM_DIAGRAM):   title10;
+306385     %let EMNORLEN = %DMNORLEN;
+MPRINT(EM_DIAGRAM):   
+EMWS1.Part2_TRAIN EMWS1.Part2_TRAIN 
+EMWS1.Part2_TRAIN EMWS1.Part2_TRAIN EMWS1 Part2_TRAIN 
+EMWS1.Part2_TRAIN EMWS1.Part2_TRAIN 
+EMWS1.Part2_TRAIN EMWS1.Part2_TRAIN EMWS1 Part2_TRAIN 
+MPRINT(EM_DIAGRAM):    proc dmdb data=EMWS1.Part2_TRAIN 
+classout=WORK._DMDBCLASSTARGET(keep=NAME NRAW CRAW LEVEL FREQUENCY NMISSPERCENT);
+MPRINT(EM_DIAGRAM):   class Attrition_Flag(DESC) ;
+MPRINT(EM_DIAGRAM):   run;
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL setMetaData >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL setMetaData >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >> 
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >> 
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   set WORK._DMDBCLASSTARGET;
+MPRINT(EM_DIAGRAM):   where ^(NRAW eq . and CRAW eq '') and NAME="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   if _N_=1 then call symput('_newevent', strip(LEVEL));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK._DMDBCLASSTARGET out=_TEMPCLASS(keep=LEVEL FREQUENCY 
+NMISSPERCENT rename=(LEVEL=Attrition_Flag));
+MPRINT(EM_DIAGRAM):   by LEVEL;
+MPRINT(EM_DIAGRAM):   where ^(NRAW eq . and CRAW eq '') and NAME="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _TEMPCLASS;
+MPRINT(EM_DIAGRAM):   set _TEMPCLASS;
+MPRINT(EM_DIAGRAM):   NMISSPERCENT= NMISSPERCENT/100;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    proc sort data=EMWS1.Ids_Attrition_Flag_DD out=_sortedDecdata;
+MPRINT(EM_DIAGRAM):   by Attrition_Flag;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   merge _TEMPCLASS(in=_a) _sortedDecdata(in=_b);
+MPRINT(EM_DIAGRAM):   by Attrition_Flag;
+MPRINT(EM_DIAGRAM):   if (_a and ^_b) or (^_a and _b) then call symput('_emresetDec', '1');
+MPRINT(EM_DIAGRAM):   run;
+306414     data WORK.Boost3_EVENT(KEEP=VARIABLE LABEL LEVEL EVENT NUMLEVELS ORDER);
+MPRINT(EM_DIAGRAM):    data WORK.Boost3_EVENT(KEEP=VARIABLE LABEL LEVEL EVENT NUMLEVELS ORDER);
+306415     length ORDER $20;
+MPRINT(EM_DIAGRAM):   length ORDER $20;
+306416     label VARIABLE = "%sysfunc(sasmsg(sashelp.dmine, rpt_target_vlabel,  NOQUOTE))"
+306416   ! EVENT = "%sysfunc(sasmsg(sashelp.dmine, assmt_event_vlabel, NOQUOTE))" NUMLEVELS =
+306416   ! "%sysfunc(sasmsg(sashelp.dmine, rpt_numcat_vlabel, NOQUOTE))" LEVEL =
+306417        "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" ORDER =
+306417   ! "%sysfunc(sasmsg(sashelp.dmine, meta_order_vlabel, NOQUOTE))" LABEL =
+306417   ! "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label VARIABLE = "Target" EVENT = "Event" NUMLEVELS = "Number of Levels" 
+LEVEL = "Measurement Level" ORDER = "Order" LABEL = "Label";
+306418     set EMWS1.IDS_ATTRITION_FLAG_DM( where=(_TYPE_="TARGET"));
+MPRINT(EM_DIAGRAM):   set EMWS1.IDS_ATTRITION_FLAG_DM( where=(_TYPE_="TARGET"));
+306419     NumLevels=2;
+MPRINT(EM_DIAGRAM):   NumLevels=2;
+306420     select(upcase(ORDER));
+MPRINT(EM_DIAGRAM):   select(upcase(ORDER));
+306421     when('DESC') ORDER = 'Descending';
+MPRINT(EM_DIAGRAM):   when('DESC') ORDER = 'Descending';
+306422     when('ASC') ORDER = 'Ascending';
+MPRINT(EM_DIAGRAM):   when('ASC') ORDER = 'Ascending';
+306423     when('FMTDESC') ORDER = 'Formatted Descending';
+MPRINT(EM_DIAGRAM):   when('FMTDESC') ORDER = 'Formatted Descending';
+306424     when('FMTASC') ORDER = 'Formatted Ascending';
+MPRINT(EM_DIAGRAM):   when('FMTASC') ORDER = 'Formatted Ascending';
+306425     otherwise ORDER = 'Descending';
+MPRINT(EM_DIAGRAM):   otherwise ORDER = 'Descending';
+306426     end;
+MPRINT(EM_DIAGRAM):   end;
+306427     output;
+MPRINT(EM_DIAGRAM):   output;
+306428     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 1 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_='TARGET';
+NOTE: The data set WORK.BOOST3_EVENT has 1 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+306429     title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+306430     proc print data=WORK.Boost3_EVENT noobs label;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.Boost3_EVENT noobs label;
+306431     var VARIABLE EVENT LEVEL NUMLEVELS ORDER LABEL;
+MPRINT(EM_DIAGRAM):   var VARIABLE EVENT LEVEL NUMLEVELS ORDER LABEL;
+306432     title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+306433     title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_modelEvent_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Model Events";
+MPRINT(EM_DIAGRAM):   run;
+306434     run;
+
+NOTE: There were 1 observations read from the data set WORK.BOOST3_EVENT.
+NOTE: The PROCEDURE PRINT printed page 153.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+306435     title10;
+MPRINT(EM_DIAGRAM):   title10;
+"No decisions defined for target "Attrition_Flag"." 
+306436     proc print data = EMWS1.Ids_Attrition_Flag_DM noobs label;
+MPRINT(EM_DIAGRAM):    proc print data = EMWS1.Ids_Attrition_Flag_DM noobs label;
+306437     var _type_ variable label;
+MPRINT(EM_DIAGRAM):   var _type_ variable label;
+306438     where _type_ ^in('MATRIX', 'DECISION', 'TRAINPRIOR', 'DATAPRIOR', 'DECPRIOR');
+MPRINT(EM_DIAGRAM):   where _type_ ^in('MATRIX', 'DECISION', 'TRAINPRIOR', 'DATAPRIOR', 
+'DECPRIOR');
+306439     label _TYPE_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_type_vlabel,     NOQUOTE))"
+306439   ! VARIABLE = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" LABEL =
+306439   ! "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label _TYPE_ = "Type" VARIABLE = "Variable" LABEL = "Label";
+306440     title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+306441     title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_predDecVars_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Predicted and decision variables";
+MPRINT(EM_DIAGRAM):   run;
+306442     run;
+
+NOTE: There were 7 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _type_ not in ('DATAPRIOR', 'DECISION', 'DECPRIOR', 'MATRIX', 'TRAINPRIOR');
+NOTE: The PROCEDURE PRINT printed page 154.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+306443     title10;
+MPRINT(EM_DIAGRAM):   title10;
+306444     %let EMEXCEPTIONSTRING=;
+MPRINT(EM_DIAGRAM):     proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   modify Attrition_Flag(type=PROFIT label= Attrition_Flag);
+MPRINT(EM_DIAGRAM):   label DECISION1= "1";
+MPRINT(EM_DIAGRAM):   label DECISION2= "0";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Boost3: Generation of macros and macro variables;
+MPRINT(EM_DIAGRAM):   * To see the code generated, set the EM_DEBUG macro variable to SOURCE 
+or _ALL_;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Boost3: EM Macro Variables and Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * System Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   length string $2000;
+MPRINT(EM_DIAGRAM):   string = 'CreditCard_ChurnRate';
+MPRINT(EM_DIAGRAM):   call symput('EM_PROJECTNAME', trim(string));
+MPRINT(EM_DIAGRAM):   string = 'CreditCard_ChurnRate';
+MPRINT(EM_DIAGRAM):   call symput('EM_WSNAME', trim(string));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * Properties Macro Variables ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Files Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Import Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Export Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Decision Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_decdata.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DECDATA):   proc display cat=sashelp.emutil.makedecdata.scl;
+MPRINT(EM_DECDATA):   run;
+MPRINT(EM_DECDATA):   *------------------------------------------------------------*;
+MPRINT(EM_DECDATA):   * Boost3: Create decision matrix;
+MPRINT(EM_DECDATA):   *------------------------------------------------------------*;
+MPRINT(EM_DECDATA):   data WORK.Attrition_Flag;
+MPRINT(EM_DECDATA):   length Attrition_Flag $ 32 COUNT 8 DATAPRIOR 8 TRAINPRIOR 8 DECPRIOR 8 
+DECISION1 8 DECISION2 8 ;
+MPRINT(EM_DECDATA):   label COUNT= "Level Counts" DATAPRIOR= "Data Proportions" TRAINPRIOR= 
+"Training Proportions" DECPRIOR= "Decision Priors" DECISION1= "1" DECISION2= "0" ;
+MPRINT(EM_DECDATA):   format COUNT 10. ;
+MPRINT(EM_DECDATA):   Attrition_Flag="1";
+MPRINT(EM_DECDATA):   COUNT=1627;
+MPRINT(EM_DECDATA):   DATAPRIOR=0.16065962279055;
+MPRINT(EM_DECDATA):   TRAINPRIOR=0.16065962279055;
+MPRINT(EM_DECDATA):   DECPRIOR=.;
+MPRINT(EM_DECDATA):   DECISION1=1;
+MPRINT(EM_DECDATA):   DECISION2=0;
+MPRINT(EM_DECDATA):   output;
+MPRINT(EM_DECDATA):   Attrition_Flag="0";
+MPRINT(EM_DECDATA):   COUNT=8500;
+MPRINT(EM_DECDATA):   DATAPRIOR=0.83934037720944;
+MPRINT(EM_DECDATA):   TRAINPRIOR=0.83934037720944;
+MPRINT(EM_DECDATA):   DECPRIOR=.;
+MPRINT(EM_DECDATA):   DECISION1=0;
+MPRINT(EM_DECDATA):   DECISION2=1;
+MPRINT(EM_DECDATA):   output;
+MPRINT(EM_DECDATA):   ;
+MPRINT(EM_DECDATA):   run;
+MPRINT(EM_DECDATA):   proc datasets lib=work nolist;
+MPRINT(EM_DECDATA):   modify Attrition_Flag(type=PROFIT label= Attrition_Flag);
+MPRINT(EM_DECDATA):   label DECISION1= '1';
+MPRINT(EM_DECDATA):   label DECISION2= '0';
+MPRINT(EM_DECDATA):   run;
+MPRINT(EM_DECDATA):   quit;
+MPRINT(EM_DECDATA):   
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   modify Attrition_Flag(type=PROFIT label= Attrition_Flag);
+MPRINT(EM_DIAGRAM):   label DECISION1= "1";
+MPRINT(EM_DIAGRAM):   label DECISION2= "0";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Statement Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids_EMINFO;
+MPRINT(EM_DIAGRAM):   where key in('HPDMSAMPLE', 'IDSTABLE');
+MPRINT(EM_DIAGRAM):   if key = 'HPDMSAMPLE' then call symput('_ForceGrid', '1');
+MPRINT(EM_DIAGRAM):   else call symput('_IDS_TABLE', DATA);
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(HPDM_PERFORMANCE):  ;
+PERFORMANCE  DETAILS
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * General Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Target Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Input Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Rejected Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Misc Variable Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * End Create EM Macro Variables and Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   data EM_TARGETDECINFO;
+MPRINT(EM_DIAGRAM):   length TARGET $32 DECDATA DECMETA $43;
+MPRINT(EM_DIAGRAM):   TARGET="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   DECDATA="EMWS1.Ids_Attrition_Flag_DD";
+MPRINT(EM_DIAGRAM):   DECMETA="EMWS1.Ids_Attrition_Flag_DM";
+MPRINT(EM_DIAGRAM):   output;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EM_TARGETDECINFO;
+MPRINT(EM_DIAGRAM):   length TARGET $32 DECDATA DECMETA $43;
+MPRINT(EM_DIAGRAM):   TARGET="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   DECDATA="EMWS1.Ids_Attrition_Flag_DD";
+MPRINT(EM_DIAGRAM):   DECMETA="EMWS1.Ids_Attrition_Flag_DM";
+MPRINT(EM_DIAGRAM):   output;
+MPRINT(EM_DIAGRAM):   run;
+306926     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+306927     * Boost3: Generation of macros and macro variables;
+MPRINT(EM_DIAGRAM):   * Boost3: Generation of macros and macro variables;
+306928     * To see the code generated, set the EM_DEBUG macro variable to SOURCE or _ALL_;
+MPRINT(EM_DIAGRAM):   * To see the code generated, set the EM_DEBUG macro variable to SOURCE 
+or _ALL_;
+306929     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+306930     %let EMEXCEPTIONSTRING=;
+306931     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+306932     * TRAIN: Boost3;
+MPRINT(EM_DIAGRAM):   * TRAIN: Boost3;
+306933     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+306934     %let EM_ACTION = TRAIN;
+306935     %let syscc = 0;
+306936     %macro main;
+306937     
+306938       filename temp catalog 'sashelp.emmodl.boost_macros.source';
+306939       %include temp;
+306940       filename temp;
+306941     
+306942       %setProperties;
+306943     
+306944       %if %upcase(&EM_ACTION) = CREATE %then %do;
+306945         filename temp catalog 'sashelp.emmodl.boost_create.source';
+306946         %include temp;
+306947         filename temp;
+306948     
+306949         %create;
+306950       %end;
+306951     
+306952        %else
+306953        %if %upcase(&EM_ACTION) = TRAIN %then %do;
+306954     
+306955            filename temp catalog 'sashelp.emmodl.boost_train.source';
+306956            %include temp;
+306957            filename temp;
+306958            %train;
+306959        %end;
+306960     
+306961       %else
+306962       %if %upcase(&EM_ACTION) = SCORE %then %do;
+306963         filename temp catalog 'sashelp.emmodl.boost_score.source';
+306964         %include temp;
+306965         filename temp;
+306966     
+306967         %score;
+306968     
+306969       %end;
+306970     
+306971       %else
+306972       %if %upcase(&EM_ACTION) = REPORT %then %do;
+306973     
+306974            filename temp catalog 'sashelp.emmodl.boost_report.source';
+306975            %include temp;
+306976            filename temp;
+306977     
+306978            %report;
+306979        %end;
+306980     
+306981        %doendm:
+306982     %mend main;
+306983     
+306984     %main;
+MPRINT(EM_DIAGRAM):    
+MPRINT(MAIN):   filename temp catalog 'sashelp.emmodl.boost_macros.source';
+NOTE: %INCLUDE (level 1) file TEMP is file SASHELP.EMMODL.BOOST_MACROS.SOURCE.
+306985    +
+306986    +%macro SetProperties;
+306987    +
+306988    +     /* boost options */
+306989    +     %em_checkmacro(name=EM_PROPERTY_ITERATIONS,   value=50, global=Y);
+306990    +     %em_checkmacro(name=EM_PROPERTY_TRAINPROPORTION,   value=60, global=Y);
+306991    +     %em_checkmacro(name=EM_PROPERTY_CATEGORICALBINS, value=30, global=Y);
+306992    +     %em_checkmacro(name=EM_PROPERTY_INTERVALBINS, value=100, global=Y);
+306993    +     %em_checkmacro(name=EM_PROPERTY_HUBER, value=NO, global=Y);
+306994    +     %em_checkmacro(name=EM_PROPERTY_SEED,   value=12345, global=Y);
+306995    +     %em_checkmacro(name=EM_PROPERTY_SHRINKAGE,   value=0.1, global=Y);
+306996    +     %em_checkmacro(name=EM_PROPERTY_LEAFFRACTION,   value=0.1, global=Y);
+306997    +     %em_checkmacro(name=EM_PROPERTY_SPLITSIZE,   value=., global=Y);
+306998    +     %em_checkmacro(name=EM_PROPERTY_NODESIZE,   value=20000, global=Y);
+306999    +     %em_checkmacro(name=EM_PROPERTY_SUBSERIES,   value=BEST, global=Y);
+307000    +     %em_checkmacro(name=EM_PROPERTY_ITERATIONNUM,   value=1, global=Y);
+307001    +
+307002    +     %em_checkmacro(name=EM_PROPERTY_PRECISION,    value=0, global=Y);
+307003    +     %em_checkmacro(name=EM_PROPERTY_MISSING,      value=USEINSEARCH, global=Y);
+307004    +     %em_checkmacro(name=EM_PROPERTY_MINCATSIZE, value=5, global=Y);
+307005    +     %em_checkmacro(name=EM_PROPERTY_MAXBRANCH,  value=2, global=Y);
+307006    +     %em_checkmacro(name=EM_PROPERTY_MAXDEPTH,   value=2, global=Y);
+307007    +     %em_checkmacro(name=EM_PROPERTY_REUSEVAR,   value=1, global=Y);
+307008    +     %em_checkmacro(name=EM_PROPERTY_EXHAUSTIVE,   value=5000, global=Y);
+307009    +     %em_checkmacro(name=EM_PROPERTY_PERFORMANCE,   value=DISK, global=Y);
+307010    +
+307011    +     %em_checkmacro(name=EM_PROPERTY_ASSESSMEASURE, value=PROFIT, global=Y);
+307012    +     %em_checkmacro(name=EM_PROPERTY_MEASURE, value=PROFIT, global=Y);
+307013    +     %em_checkmacro(name=EM_PROPERTY_NSURRS, value=0, global=Y);
+307014    +     %em_checkmacro(name=EM_PROPERTY_VARSELECTION, value=Y, global=Y);
+307015    +
+307016    +     %em_checkmacro(name=EM_PROPERTY_OBSIMPORTANCE, value=N, global=Y);
+307017    +     %em_checkmacro(name=EM_PROPERTY_NUMSINGLEIMP, value=5, global=Y);
+307018    +     %em_checkmacro(name=EM_PROPERTY_NUMPAIRIMP, value=0, global=Y);
+307019    +
+307020    +%mend SetProperties;
+307021    +
+307022    +
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(MAIN):   filename temp;
+NOTE: Fileref TEMP has been deassigned.
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(MAIN):  ;
+MPRINT(MAIN):   filename temp catalog 'sashelp.emmodl.boost_train.source';
+NOTE: %INCLUDE (level 1) file TEMP is file SASHELP.EMMODL.BOOST_TRAIN.SOURCE.
+307024    +%macro train;
+307026    +   filename temp catalog 'sashelp.emmodl.boost_trainmacros.source';
+307027    +   %include temp;
+307028    +   filename temp;
+307030    +   %if &EM_IMPORT_DATA eq %then %do;
+307031    +       %let EMEXCEPTIONSTRING = exception.server.IMPORT.NOTRAIN,1;
+307032    +       %put &em_codebar;
+307033    +       %let errormsg = %sysfunc(sasmsg(sashelp.dmine, error_nodeTrainRawData_note,
+307033   !+NOQUOTE));
+307034    +       %put &errormsg;
+307035    +       %put &em_codebar;
+307036    +       %goto doendm;
+307037    +   %end;
+307038    +   %else
+307039    +       %let EMEXCEPTIONSTRING =;
+307041    +   %if  &EM_NUM_TARGET ne 1 %then %do;
+307042    +        %let EMEXCEPTIONSTRING = exception.server.USE1TARGET;
+307043    +        %put &em_codebar;
+307044    +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, metadata.use01target_err,
+307044   !+NOQUOTE));
+307045    +        %put &errormsg;
+307046    +        %put &em_codebar;
+307047    +        %goto doendm;
+307048    +   %end;
+307050    +   %let target_level = %EM_TARGET_LEVEL;
+307051    +   %let target_var = %EM_TARGET;
+307053    +   %if ("&target_Level" ne "INTERVAL") %then %do;
+307054    +       %em_boost_makeDMDB(indata=&EM_IMPORT_DATA, target=&target_Var,
+307055    +                             nLevel=_nTargetLevel);
+307056    +   %end;
+307058    +   /* check actual num of target levels */
+307059    +   %if (&target_Level eq BINARY) %then %do;
+307060    +      %if &_nTargetLevel  > 2 %then %do;
+307061    +        %let EMEXCEPTIONSTRING =
+307061   !+exception.server.METADATA.WRONGTARGETLEVEL,&target_Var;
+307062    +        %put &em_codebar;
+307063    +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, metadata.wrongtargetlevel,
+307063   !+NOQUOTE));
+307064    +        %put &errormsg;
+307065    +        %put &em_codebar;
+307066    +        %goto doendm;
+307067    +      %end;
+307068    +   %end;
+307070    +   %if  (&EM_NUM_INTERVAL_INPUT < 1) and (&EM_NUM_BINARY_INPUT < 1) and
+307070   !+(&EM_NUM_ORDINAL_INPUT < 1)
+307071    +        and (&EM_NUM_NOMINAL_INPUT < 1) %then %do;
+307072    +        %let EMEXCEPTIONSTRING = exception.server.USEATLEAST1INPUTREJECT;
+307073    +        %put &em_codebar;
+307074    +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, error_noInput_note, NOQUOTE))
+307074   !+;
+307075    +        %put &errormsg;
+307076    +        %put &em_codebar;
+307077    +        %goto doendm;
+307078    +   %end;
+307080    +   /* Initialize property macro variables */
+307081    +   %SetProperties;
+307083    +   /* data sets */
+307084    +   %EM_GETNAME(key=MODEL, type=DATA);
+307085    +   %EM_GETNAME(key=IMPORTANCE, type=DATA);
+307086    +   %EM_GETNAME(key=SUBFIT, type=DATA);
+307087    +   %EM_GETNAME(key=EMOUTFIT, type=DATA);
+307089    +   /* files
+307090    +   %EM_GETNAME(key=BINNINGCODE, type=FILE, extension=sas);*/
+307092    +   /* retrieve target information */
+307093    +   %let dsid=%sysfunc(open(&EM_DEC_DECMETA(where=(_TYPE_='TARGET'))));
+307095    +   %let vn_event =%sysfunc(varnum(&dsid, EVENT));
+307096    +   %let vn_target_type = %sysfunc(varnum(&dsid, TYPE));
+307097    +   %let vn_target_format = %sysfunc(varnum(&dsid, FORMAT));
+307098    +   %let vn_target_level  = %sysfunc(varnum(&dsid, LEVEL));
+307099    +   %do %while(^ %sysfunc(fetch(&dsid)));
+307100    +      %let temp = %nrbquote(%sysfunc(getvarc(&dsid, &vn_event)));
+307101    +      %let Target_Event = %nrbquote(%sysfunc(tranwrd(&temp, %str(%"),"")));
+307102    +      %let Target_Type =  %sysfunc(getvarc(&dsid, &vn_target_type));
+307103    +      %let Target_Format = %sysfunc(getvarc(&dsid, &vn_target_format));
+307104    +      %let Target_Level = %sysfunc(getvarc(&dsid, &vn_target_level));
+307105    +   %end;
+307106    +   %let dsid = %sysfunc(close(&dsid));
+307108    +   /* if target level is ORDINAL, throw run time exception -- proc boost does not
+307108   !+support ordinal target */
+307109    +   %if &Target_Level eq ORDINAL %then %do;
+307110    +        %let EMEXCEPTIONSTRING = exception.server.METADATA.INVALIDORDINALTARGET;
+307111    +        %put &em_codebar;
+307112    +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine,
+307112   !+error_invalidordinaltarget_note, NOQUOTE));
+307113    +        %put &errormsg;
+307114    +        %put &em_codebar;
+307115    +        %goto doendm;
+307116    +   %end;
+307118    +   /* if subSeries=ITERATIONS and iterationNum not specified, exception should be
+307118   !+thrown */
+307119    +   %if ((&EM_PROPERTY_SUBSERIES eq ITERATIONS) and (&EM_PROPERTY_ITERATIONNUM eq .
+307119   !+)) %then %do;
+307120    +        %let EMEXCEPTIONSTRING = exception.server.EMTOOL.BOOST.NOITERATIONNUM;
+307121    +        %put &em_codebar;
+307122    +        %let errormsg = %sysfunc(sasmsg(sashelp.dmine, error_noiterationnum_note,
+307122   !+NOQUOTE));
+307123    +        %put &errormsg;
+307124    +        %put &em_codebar;
+307125    +        %goto doendm;
+307126    +   %end;
+307128    +   %runBoostProcedure;
+307131    +   %doendm:
+307132    +%mend train;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(MAIN):   filename temp;
+NOTE: Fileref TEMP has been deassigned.
+MPRINT(TRAIN):   filename temp catalog 'sashelp.emmodl.boost_trainmacros.source';
+NOTE: %INCLUDE (level 1) file TEMP is file SASHELP.EMMODL.BOOST_TRAINMACROS.SOURCE.
+307133    +%Macro em_boost_makeDMDB(indata=, target=,  nLevel= );
+307134    +  %global &nLevel;
+307136    +  %let targetLevel=;
+307137    +  data _null_;
+307138    +     length orderString $64;
+307139    +     set &em_data_variableset end=eof;
+307140    +     where NAME="&target";
+307141    +     select(order);
+307142    +            when('')        order ='DESC';
+307143    +            when('FMTASC')  order='ASCFMT';
+307144    +            when('FMTDESC') order='DESFMT';
+307145    +            otherwise;
+307146    +     end;
+307147    +     if eof then do;
+307148    +        call symput("targetOrder", trim(order));
+307149    +        call symput("targetLevel", trim(Level));
+307150    +     end;
+307151    +  run;
+307153    +  %if "&targetLevel" ne "INTERVAL" %then %do;
+307154    +  proc dmdb batch data=&indata dmdbCat=_BoostDMDB
+307155    +    classout=_tmp_dmdbout;
+307156    +    class &target(&targetOrder);
+307157    +    target &target;
+307158    +  run;
+307159    +  data _tmp_dmdbout;
+307160    +    set _tmp_dmdbout;
+307161    +    if strip(TYPE) = 'N' and  strip(LEVEL) = '.' then delete;
+307162    +    if strip(TYPE) = 'C' and  strip(LEVEL) = '' then delete;
+307163    +  run;
+307164    +  data _null_;
+307165    +    %let dsid = %sysfunc(open(work._tmp_dmdbout));
+307166    +    %let _obs = %sysfunc(attrn(&dsid, NOBS));
+307167    +    %let dsid = %sysfunc(close(&dsid));
+307168    +     call symput("&nLevel", put(&_obs, Best12.));
+307169    +  run;
+307171    +  proc datasets lib=work nolist;
+307172    +     delete _tmp_dmdbout;
+307173    +  run;
+307174    +  quit;
+307175    +  %end;
+307177    +%Mend em_boost_makeDMDB;
+307179    +%macro runBoostProcedure;
+307181    +  proc sql;
+307182    +    reset noprint;
+307183    +    select count(*) into :nobs from &EM_IMPORT_DATA;
+307184    +  quit;
+307186    +  %let arborkluge= "work._BoostDMDB";
+307187    +  proc arbor proc=treeboost data=&EM_IMPORT_DATA
+307189    +    %if &EM_PROPERTY_ITERATIONS ne %then %do;
+307190    +      iterations = &EM_PROPERTY_ITERATIONS
+307191    +    %end;
+307193    +    %if &EM_PROPERTY_TRAINPROPORTION ne %then %do;
+307194    +       %let tprop = %sysevalf(&EM_PROPERTY_TRAINPROPORTION / 100);
+307195    +       trainproportion = &tprop
+307196    +    %end;
+307198    +    %if &EM_PROPERTY_SEED ne %then %do;
+307199    +       seed = &EM_PROPERTY_SEED
+307200    +    %end;
+307202    +    %if &EM_PROPERTY_SHRINKAGE ne %then %do;
+307203    +       shrinkage = &EM_PROPERTY_SHRINKAGE
+307204    +    %end;
+307206    +    %if &EM_PROPERTY_LEAFFRACTION ne %then %do;
+307207    +      leaffraction = &EM_PROPERTY_LEAFFRACTION
+307208    +    %end;
+307210    +    %let splitsize = &EM_PROPERTY_SPLITSIZE;
+307211    +    %if &splitsize ge &nobs %then %do;
+307212    +       %let splitsize= .;
+307213    +    %end;
+307214    +    %if &splitsize ne . %then %do;
+307215    +      splitsize = &splitsize
+307216    +    %end;
+307218    +    %if &EM_PROPERTY_MINCATSIZE ne %then %do;
+307219    +      mincatsize = &EM_PROPERTY_MINCATSIZE
+307220    +    %end;
+307222    +    %if &EM_PROPERTY_MAXBRANCH ne %then %do;
+307223    +       maxbranch = &EM_PROPERTY_MAXBRANCH
+307224    +    %end;
+307226    +    %if &EM_PROPERTY_MAXDEPTH ne %then %do;
+307227    +       maxdepth = &EM_PROPERTY_MAXDEPTH
+307228    +    %end;
+307230    +    %let nsurrs = ;
+307231    +    %if &EM_PROPERTY_NSURRS ne %then %do;
+307232    +      %let numInputs = %sysevalf(&EM_NUM_BINARY_INPUT + &EM_NUM_ORDINAL_INPUT +
+307232   !+&EM_NUM_INTERVAL_INPUT + &EM_NUM_NOMINAL_INPUT);
+307233    +      %let nsurrs = %sysevalf(%sysfunc(min(&EM_PROPERTY_NSURRS, (&numInputs -1 ))));
+307234    +      maxsurrs = &nsurrs
+307235    +    %end;
+307237    +    %if &EM_PROPERTY_MISSING ne %then %do;
+307238    +      Missing = &EM_PROPERTY_MISSING
+307239    +    %end;
+307241    +    %if &EM_PROPERTY_REUSEVAR ne %then %do;
+307242    +      reusevar = &EM_PROPERTY_REUSEVAR
+307243    +    %end;
+307244    +/*
+307245    +    %if &EM_PROPERTY_PRECISION ne %then %do;
+307246    +      intervaldecimals=&EM_PROPERTY_PRECISION
+307247    +    %end;
+307248    +*/
+307249    +    %if &EM_PROPERTY_EXHAUSTIVE ne %then %do;
+307250    +      Exhaustive = &EM_PROPERTY_EXHAUSTIVE
+307251    +    %end;
+307253    +    %if &Target_Event ne %then %do;
+307254    +      Event="&Target_Event"
+307255    +    %end;
+307257    +    %if &EM_PROPERTY_CATEGORICALBINS ne %then %do;
+307258    +      CategoricalBins = &EM_PROPERTY_CATEGORICALBINS
+307259    +    %end;
+307261    +    %if &EM_PROPERTY_INTERVALBINS ne %then %do;
+307262    +      IntervalBins = &EM_PROPERTY_INTERVALBINS
+307263    +    %end;
+307265    +    %if &TARGET_LEVEL eq INTERVAL %then %do;
+307266    +      %if &EM_PROPERTY_HUBER ne %then %do;
+307267    +        Huber=&EM_PROPERTY_HUBER
+307268    +      %end;
+307269    +    %end;
+307270    +    ;
+307272    +    %if %EM_INTERVAL_INPUT %EM_INTERVAL_REJECTED ne %then %do;
+307273    +      input %EM_INTERVAL_INPUT %EM_INTERVAL_REJECTED/ level = interval;
+307274    +    %end;
+307276    +    %if %EM_BINARY_INPUT %EM_NOMINAL_INPUT %EM_BINARY_REJECTED %EM_NOMINAL_REJECTED
+307276   !+ne  %then %do;
+307277    +      input %EM_BINARY_INPUT %EM_BINARY_REJECTED %EM_NOMINAL_INPUT
+307277   !+%EM_NOMINAL_REJECTED / level = nominal;
+307278    +    %end;
+307280    +    %if %EM_ORDINAL_INPUT %EM_ORDINAL_REJECTED ne %then %do;
+307281    +      input %EM_ORDINAL_INPUT %EM_ORDINAL_REJECTED/ level = ordinal;
+307282    +    %end;
+307284    +    %if %EM_FREQ ne %then %do;
+307285    +       freq %EM_FREQ;
+307286    +    %end;
+307288    +    target %EM_TARGET / level = &TARGET_LEVEL;
+307290    +    &EM_DEC_STATEMENT;
+307292    +    %if &EM_PROPERTY_PERFORMANCE ne %then %do;
+307293    +      performance  workdatalocation = &EM_PROPERTY_PERFORMANCE
+307294    +    %end;
+307295    +    %if &EM_PROPERTY_NODESIZE ne %then %do;
+307296    +       nodesize = &EM_PROPERTY_NODESIZE
+307297    +    %end;
+307298    +    ;
+307299    +    save model=&EM_USER_MODEL;
+307300    +  run;
+307301    +  quit;
+307302    +  %em_checkerror();
+307304    +%mend runBoostProcedure;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(TRAIN):   filename temp;
+NOTE: Fileref TEMP has been deassigned.
+MPRINT(EM_BOOST_MAKEDMDB):   data _null_;
+MPRINT(EM_BOOST_MAKEDMDB):   length orderString $64;
+MPRINT(EM_BOOST_MAKEDMDB):   set EMWS1.Boost3_VariableSet end=eof;
+MPRINT(EM_BOOST_MAKEDMDB):   where NAME="Attrition_Flag";
+MPRINT(EM_BOOST_MAKEDMDB):   select(order);
+MPRINT(EM_BOOST_MAKEDMDB):   when('') order ='DESC';
+MPRINT(EM_BOOST_MAKEDMDB):   when('FMTASC') order='ASCFMT';
+MPRINT(EM_BOOST_MAKEDMDB):   when('FMTDESC') order='DESFMT';
+MPRINT(EM_BOOST_MAKEDMDB):   otherwise;
+MPRINT(EM_BOOST_MAKEDMDB):   end;
+MPRINT(EM_BOOST_MAKEDMDB):   if eof then do;
+MPRINT(EM_BOOST_MAKEDMDB):   call symput("targetOrder", trim(order));
+MPRINT(EM_BOOST_MAKEDMDB):   call symput("targetLevel", trim(Level));
+MPRINT(EM_BOOST_MAKEDMDB):   end;
+MPRINT(EM_BOOST_MAKEDMDB):   run;
+
+NOTE: Variable orderString is uninitialized.
+NOTE: There were 1 observations read from the data set EMWS1.BOOST3_VARIABLESET.
+      WHERE NAME='Attrition_Flag';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_BOOST_MAKEDMDB):   proc dmdb batch data=EMWS1.Part2_TRAIN dmdbCat=_BoostDMDB 
+classout=_tmp_dmdbout;
+MPRINT(EM_BOOST_MAKEDMDB):   class Attrition_Flag(DESC);
+MPRINT(EM_BOOST_MAKEDMDB):   target Attrition_Flag;
+MPRINT(EM_BOOST_MAKEDMDB):   run;
+
+NOTE: Records processed = 7088   Memory used = 511K.
+NOTE: There were 7088 observations read from the data set EMWS1.PART2_TRAIN.
+NOTE: The data set WORK._TMP_DMDBOUT has 2 observations and 9 variables.
+NOTE: PROCEDURE DMDB used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_BOOST_MAKEDMDB):   data _tmp_dmdbout;
+MPRINT(EM_BOOST_MAKEDMDB):   set _tmp_dmdbout;
+MPRINT(EM_BOOST_MAKEDMDB):   if strip(TYPE) = 'N' and strip(LEVEL) = '.' then delete;
+MPRINT(EM_BOOST_MAKEDMDB):   if strip(TYPE) = 'C' and strip(LEVEL) = '' then delete;
+MPRINT(EM_BOOST_MAKEDMDB):   run;
+
+NOTE: There were 2 observations read from the data set WORK._TMP_DMDBOUT.
+NOTE: The data set WORK._TMP_DMDBOUT has 2 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_BOOST_MAKEDMDB):   data _null_;
+MPRINT(EM_BOOST_MAKEDMDB):   call symput("_nTargetLevel", put(2, Best12.));
+MPRINT(EM_BOOST_MAKEDMDB):   run;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_BOOST_MAKEDMDB):   proc datasets lib=work nolist;
+MPRINT(EM_BOOST_MAKEDMDB):   delete _tmp_dmdbout;
+MPRINT(EM_BOOST_MAKEDMDB):   run;
+
+NOTE: Deleting WORK._TMP_DMDBOUT (memtype=DATA).
+MPRINT(EM_BOOST_MAKEDMDB):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(TRAIN):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(SETPROPERTIES):  ;
+MPRINT(TRAIN):  ;
+MPRINT(TRAIN):  ;
+MPRINT(TRAIN):  ;
+MPRINT(TRAIN):  ;
+MPRINT(TRAIN):  ;
+MPRINT(RUNBOOSTPROCEDURE):   proc sql;
+MPRINT(RUNBOOSTPROCEDURE):   reset noprint;
+MPRINT(RUNBOOSTPROCEDURE):   select count(*) into :nobs from EMWS1.Part2_TRAIN;
+MPRINT(RUNBOOSTPROCEDURE):   quit;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(RUNBOOSTPROCEDURE):   proc arbor proc=treeboost data=EMWS1.Part2_TRAIN iterations = 50 
+trainproportion = 0.6 seed = 78354 shrinkage = 0.1 leaffraction = 0.1 mincatsize = 5 maxbranch 
+= 4 maxdepth = 6 maxsurrs = 0 Missing = USEINSEARCH reusevar = 1 Exhaustive = 5000 Event="1    
+                           " CategoricalBins = 30 IntervalBins = 100 ;
+MPRINT(RUNBOOSTPROCEDURE):   input
+MPRINT(EM_INTERVAL_INPUT):   RANGE_LOG_Total_Trans_Amt RANGE_SQRT_Avg_Utilization_Ratio 
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1 RANGE_SQRT_Total_Ct_Chng_Q4_Q1 RANGE_Total_Revolving_Bal
+MPRINT(RUNBOOSTPROCEDURE):  / level = interval;
+MPRINT(RUNBOOSTPROCEDURE):   input
+MPRINT(EM_NOMINAL_INPUT):   G_Contacts_Count_12_mon G_Customer_Age G_Months_Inactive_12_mon 
+G_Months_on_book G_Total_Relationship_Count G_Total_Trans_Ct
+MPRINT(RUNBOOSTPROCEDURE):   / level = nominal;
+MPRINT(RUNBOOSTPROCEDURE):   target
+MPRINT(EM_TARGET):   Attrition_Flag
+MPRINT(RUNBOOSTPROCEDURE):   / level = BINARY;
+MPRINT(RUNBOOSTPROCEDURE):   ;
+MPRINT(RUNBOOSTPROCEDURE):   performance workdatalocation = DISK nodesize = 20000 ;
+MPRINT(RUNBOOSTPROCEDURE):   save model=EMWS1.Boost3_MODEL;
+NOTE: 1612152 kilobytes of physical memory.
+NOTE: Will use 7088 out of 7088 training cases.
+NOTE: Using memory pool with 140559360 bytes.
+NOTE: Passed training data 304 times.
+NOTE: Current TREEBOOST model contains 50 trees.
+NOTE: Training used 1303544 bytes of work memory.
+NOTE: The data set EMWS1.BOOST3_MODEL has 7272 observations and 4 variables.
+MPRINT(RUNBOOSTPROCEDURE):   run;
+
+MPRINT(RUNBOOSTPROCEDURE):   quit;
+
+NOTE: There were 7088 observations read from the data set EMWS1.PART2_TRAIN.
+NOTE: PROCEDURE ARBOR used (Total process time):
+      real time           5.34 seconds
+      cpu time            5.29 seconds
+      
+
+MPRINT(EM_CHECKERROR):   proc display c=sashelp.emutil.checkerror.scl;
+MPRINT(EM_CHECKERROR):   run;
+
+307307     %let SYSCC = 0;
+NOTE: PROCEDURE DISPLAY used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_CHECKERROR):   
+MPRINT(RUNBOOSTPROCEDURE):  ;
+MPRINT(TRAIN):  ;
+MPRINT(MAIN):  ;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * End TRAIN: Boost3;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+307308     *------------------------------------------------------------*;
+307309     * End TRAIN: Boost3;
+307310     *------------------------------------------------------------*;
+307311     
+
+307312     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+307313     * Close any missing semi colons;
+MPRINT(EM_DIAGRAM):   * Close any missing semi colons;
+307314     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+307315     ;
+MPRINT(EM_DIAGRAM):   ;
+307316     ;
+MPRINT(EM_DIAGRAM):   ;
+307317     ;
+MPRINT(EM_DIAGRAM):   ;
+307318     ;
+MPRINT(EM_DIAGRAM):   ;
+307319     quit;
+MPRINT(EM_DIAGRAM):   quit;
+307320     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+307321     * Close any unbalanced quotes;
+MPRINT(EM_DIAGRAM):   * Close any unbalanced quotes;
+307322     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+307323     /*; *"; *'; */
+307324     ;
+MPRINT(EM_DIAGRAM):   ;
+307325     run;
+MPRINT(EM_DIAGRAM):   run;
+307326     quit;
+MPRINT(EM_DIAGRAM):   quit;
+307327     /* Reset EM Options */
+307328     options formchar="|----|+|---+=|-/\<>*";
+MPRINT(EM_DIAGRAM):   options formchar="|----|+|---+=|-/\<>*";
+307329     options nocenter ls=256 ps=10000;
+MPRINT(EM_DIAGRAM):   options nocenter ls=256 ps=10000;
+307330     goptions reset=all device=GIF NODISPLAY;
+MPRINT(EM_DIAGRAM):   goptions reset=all device=GIF NODISPLAY;
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

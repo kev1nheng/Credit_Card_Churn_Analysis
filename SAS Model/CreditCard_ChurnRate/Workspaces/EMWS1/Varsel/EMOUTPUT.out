@@ -1,0 +1,316 @@
+*------------------------------------------------------------*
+User:                Kevin
+Date:                March 31, 2022
+Time:                18:13:32
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+INPUT      BINARY             1
+INPUT      INTERVAL           7
+INPUT      NOMINAL           11
+TARGET     BINARY             1
+ 
+ 
+ 
+ 
+ 
+The DMINE Procedure
+ 
+                 R-Squares for Target Variable: Attrition_Flag
+ 
+Effect                                       DF        R-Square
+ 
+Class: Customer_Age*Total_Trans_Ct          3E3        0.506088
+Group: Customer_Age*Total_Trans_Ct            5        0.497641
+Class: Months_on_book*Total_Trans_Ct        3E3        0.468532
+Group: Months_on_book*Total_Trans_Ct          5        0.461222
+Class: Total_Relationship_Count*Total_Tr    673        0.413366
+Group: Total_Relationship_Count*Total_Tr      6        0.405532
+Class: Months_Inactive_12_mon*Total_Tran    623        0.325117
+Group: Months_Inactive_12_mon*Total_Tran      7        0.319789
+Class: Contacts_Count_12_mon*Total_Trans    661        0.317346
+Group: Contacts_Count_12_mon*Total_Trans      7        0.312191
+Class: Income_Category*Total_Trans_Ct       698        0.296716
+Group: Income_Category*Total_Trans_Ct         7        0.291388
+Class: Education_Level*Total_Trans_Ct       792        0.288619
+Class: Dependent_count*Total_Trans_Ct       683        0.286456
+Group: Education_Level*Total_Trans_Ct         8        0.284133
+Class: Marital_Status*Total_Trans_Ct        453        0.283644
+Group: Dependent_count*Total_Trans_Ct         7        0.281832
+Group: Marital_Status*Total_Trans_Ct          7        0.278971
+Class: Gender*Total_Trans_Ct                245        0.278969
+Group: Gender*Total_Trans_Ct                  7        0.274168
+Class: Card_Category*Total_Trans_Ct         327        0.259103
+Group: Card_Category*Total_Trans_Ct           7        0.254577
+Class: Total_Trans_Ct                       125        0.239960
+Group: Total_Trans_Ct                         7        0.236101
+AOV16: Total_Trans_Amt                       15        0.205763
+AOV16: Total_Revolving_Bal                   15        0.176095
+AOV16: Total_Ct_Chng_Q4_Q1                   14        0.150658
+Class: Contacts_Count_12_mon*Total_Relat     41        0.133808
+Group: Contacts_Count_12_mon*Total_Relat      5        0.132056
+Class: Months_Inactive_12_mon*Months_on_    251        0.128727
+Group: Months_Inactive_12_mon*Months_on_      9        0.126525
+Class: Contacts_Count_12_mon*Months_Inac     47        0.101805
+Group: Contacts_Count_12_mon*Months_Inac      7        0.100277
+Class: Customer_Age*Months_Inactive_12_m    250        0.085439
+Var:   Total_Ct_Chng_Q4_Q1                    1        0.084131
+Class: Contacts_Count_12_mon*Customer_Ag    271        0.084023
+Group: Customer_Age*Months_Inactive_12_m      9        0.083823
+Class: Contacts_Count_12_mon*Months_on_b    280        0.082980
+Group: Contacts_Count_12_mon*Customer_Ag      9        0.082596
+Group: Contacts_Count_12_mon*Months_on_b      9        0.081688
+AOV16: Avg_Utilization_Ratio                 15        0.079649
+Class: Months_Inactive_12_mon*Total_Rela     40        0.079288
+Group: Months_Inactive_12_mon*Total_Rela      6        0.077879
+Var:   Total_Revolving_Bal                    1        0.069197
+Class: Customer_Age*Months_on_book          674        0.066372
+Group: Customer_Age*Months_on_book           11        0.065275
+Class: Contacts_Count_12_mon*Income_Cate     41        0.063862
+Group: Contacts_Count_12_mon*Income_Cate      7        0.062606
+Class: Contacts_Count_12_mon*Education_L     48        0.062115
+Class: Contacts_Count_12_mon*Dependent_c     41        0.061436
+AOV16: Total_Amt_Chng_Q4_Q1                  13        0.061189
+Group: Contacts_Count_12_mon*Education_L      7        0.061171
+Class: Contacts_Count_12_mon*Gender          13        0.061060
+Group: Contacts_Count_12_mon*Dependent_c      8        0.060616
+Class: Contacts_Count_12_mon*Marital_Sta     27        0.060484
+Group: Contacts_Count_12_mon*Gender           6        0.059995
+Group: Contacts_Count_12_mon*Marital_Sta      6        0.059796
+Class: Customer_Age*Total_Relationship_C    244        0.059398
+Class: Card_Category*Contacts_Count_12_m     24        0.058816
+Group: Customer_Age*Total_Relationship_C     11        0.058360
+Group: Card_Category*Contacts_Count_12_m      5        0.058072
+Class: Contacts_Count_12_mon                  6        0.057928
+Group: Contacts_Count_12_mon                  4        0.056798
+Class: Months_on_book*Total_Relationship    262        0.055598
+Group: Months_on_book*Total_Relationship     11        0.054493
+Class: Dependent_count*Months_Inactive_1     41        0.047352
+Group: Dependent_count*Months_Inactive_1      8        0.046603
+Class: Income_Category*Months_Inactive_1     41        0.043389
+Class: Education_Level*Months_Inactive_1     48        0.043207
+Group: Income_Category*Months_Inactive_1      7        0.042847
+Group: Education_Level*Months_Inactive_1      6        0.042394
+Class: Gender*Months_Inactive_12_mon         13        0.041591
+Class: Card_Category*Months_Inactive_12_     23        0.041169
+Group: Gender*Months_Inactive_12_mon          5        0.041081
+Class: Marital_Status*Months_Inactive_12     25        0.040667
+Group: Card_Category*Months_Inactive_12_      4        0.040627
+Group: Marital_Status*Months_Inactive_12      4        0.039892
+Class: Months_Inactive_12_mon                 6        0.039148
+Group: Months_Inactive_12_mon                 4        0.039065
+Class: Education_Level*Months_on_book       302        0.034657
+Group: Education_Level*Months_on_book        12        0.034041
+Class: Income_Category*Total_Relationshi     35        0.033304
+Group: Income_Category*Total_Relationshi      5        0.032696
+Class: Gender*Total_Relationship_Count       11        0.031870
+Var:   Avg_Utilization_Ratio                  1        0.031830
+Group: Gender*Total_Relationship_Count        4        0.031611
+Class: Education_Level*Total_Relationshi     41        0.031178
+Class: Card_Category*Total_Relationship_     22        0.030852
+Group: Education_Level*Total_Relationshi      7        0.030747
+Class: Dependent_count*Total_Relationshi     35        0.030378
+Group: Card_Category*Total_Relationship_      4        0.030312
+Class: Marital_Status*Total_Relationship     23        0.030036
+Group: Dependent_count*Total_Relationshi      4        0.029835
+Group: Marital_Status*Total_Relationship      4        0.029461
+Class: Customer_Age*Education_Level         280        0.028818
+Var:   Total_Trans_Amt                        1        0.028425
+Group: Customer_Age*Education_Level          11        0.028245
+Class: Total_Relationship_Count               5        0.028051
+Class: Customer_Age*Income_Category         237        0.027790
+Group: Total_Relationship_Count               2        0.027680
+Group: Customer_Age*Income_Category          12        0.027310
+Class: Income_Category*Months_on_book       261        0.027288
+Group: Income_Category*Months_on_book        12        0.026820
+Class: Dependent_count*Months_on_book       243        0.025817
+Group: Dependent_count*Months_on_book        11        0.025385
+Class: Customer_Age*Dependent_count         202        0.021529
+Group: Customer_Age*Dependent_count          13        0.021174
+Class: Customer_Age*Marital_Status          163        0.019909
+Class: Marital_Status*Months_on_book        172        0.019629
+Group: Customer_Age*Marital_Status           13        0.019578
+Group: Marital_Status*Months_on_book         13        0.019280
+Var:   Total_Amt_Chng_Q4_Q1                   1        0.017177
+Class: Card_Category*Months_on_book         133        0.016193
+Group: Card_Category*Months_on_book          10        0.015922
+Class: Card_Category*Customer_Age           124        0.015310
+Group: Card_Category*Customer_Age            12        0.015062
+Class: Customer_Age*Gender                   85        0.011597
+Group: Customer_Age*Gender                   10        0.011380
+Class: Gender*Months_on_book                 87        0.010596
+Group: Gender*Months_on_book                 10        0.010428
+Class: Customer_Age                          44        0.006432
+Group: Customer_Age                          10        0.006333
+Class: Months_on_book                        43        0.005779
+Group: Months_on_book                         8        0.005681
+Class: Education_Level*Income_Category       41        0.005582
+Group: Education_Level*Income_Category        8        0.005492
+Class: Dependent_count*Education_Level       41        0.005441
+Group: Dependent_count*Education_Level        7        0.005356
+Class: Dependent_count*Income_Category       35        0.004054    R2 < MINR2
+Group: Dependent_count*Income_Category        8        0.003982    R2 < MINR2
+Class: Education_Level*Gender                13        0.003710    R2 < MINR2
+Group: Education_Level*Gender                 5        0.003666    R2 < MINR2
+Class: Card_Category*Income_Category         23        0.003100    R2 < MINR2
+Group: Card_Category*Income_Category          8        0.003058    R2 < MINR2
+Class: Dependent_count*Marital_Status        23        0.003034    R2 < MINR2
+Class: Education_Level*Marital_Status        27        0.003032    R2 < MINR2
+Class: Income_Category*Marital_Status        23        0.003016    R2 < MINR2
+Group: Dependent_count*Marital_Status         5        0.003003    R2 < MINR2
+Class: Dependent_count*Gender                11        0.002976    R2 < MINR2
+Group: Education_Level*Marital_Status         7        0.002975    R2 < MINR2
+Group: Income_Category*Marital_Status         6        0.002965    R2 < MINR2
+Group: Dependent_count*Gender                 6        0.002957    R2 < MINR2
+AOV16: Credit_Limit                          15        0.002915    R2 < MINR2
+Class: Card_Category*Education_Level         26        0.002797    R2 < MINR2
+Group: Card_Category*Education_Level          8        0.002763    R2 < MINR2
+AOV16: Avg_Open_To_Buy                       15        0.002703    R2 < MINR2
+Class: Gender*Income_Category                 8        0.002622    R2 < MINR2
+Group: Gender*Income_Category                 3        0.002580    R2 < MINR2
+Class: Card_Category*Gender                   7        0.002242    R2 < MINR2
+Group: Card_Category*Gender                   5        0.002225    R2 < MINR2
+Class: Gender*Marital_Status                  7        0.002077    R2 < MINR2
+Group: Gender*Marital_Status                  3        0.002063    R2 < MINR2
+Class: Card_Category*Dependent_count         22        0.001850    R2 < MINR2
+Group: Card_Category*Dependent_count          7        0.001815    R2 < MINR2
+Class: Card_Category*Marital_Status          15        0.001518    R2 < MINR2
+Group: Card_Category*Marital_Status           6        0.001489    R2 < MINR2
+Class: Gender                                 1        0.001389    R2 < MINR2
+Class: Income_Category                        5        0.001267    R2 < MINR2
+Group: Income_Category                        3        0.001256    R2 < MINR2
+Class: Education_Level                        6        0.001235    R2 < MINR2
+Group: Education_Level                        4        0.001225    R2 < MINR2
+Class: Dependent_count                        5        0.000936    R2 < MINR2
+Group: Dependent_count                        3        0.000928    R2 < MINR2
+Class: Marital_Status                         3        0.000598    R2 < MINR2
+Group: Marital_Status                         2        0.000594    R2 < MINR2
+Var:   Credit_Limit                           1        0.000570    R2 < MINR2
+Class: Card_Category                          3        0.000221    R2 < MINR2
+Var:   Avg_Open_To_Buy                        1    8.1269178E-8    R2 < MINR2
+ 
+ 
+ 
+ 
+ 
+The DMINE Procedure
+ 
+                                        Effects Chosen for Target: Attrition_Flag
+ 
+                                                                                                    Sum of      Error Mean
+Effect                                       DF        R-Square         F Value    p-Value         Squares          Square
+ 
+Group: Total_Trans_Ct                         7        0.236101      446.788518     <.0001      322.421449        0.103092
+Group: Total_Relationship_Count               2        0.052953      376.767862     <.0001       72.312666        0.095964
+Var:   Total_Revolving_Bal                    1        0.050364      771.256936     <.0001       68.776946        0.089175
+Var:   Total_Ct_Chng_Q4_Q1                    1        0.031553      507.389111     <.0001       43.089511        0.084924
+Group: Contacts_Count_12_mon                  4        0.022357       93.152429     <.0001       30.530902        0.081938
+Group: Months_Inactive_12_mon                 4        0.017194       73.702587     <.0001       23.480826        0.079647
+Group: Customer_Age                          10        0.006292       10.893358     <.0001        8.592152        0.078875
+Group: Months_on_book                         8        0.002309        5.012707     <.0001        3.153000        0.078625
+Var:   Total_Trans_Amt                        1        0.000968       16.833856     <.0001        1.321491        0.078502
+Var:   Total_Amt_Chng_Q4_Q1                   1        0.000915       15.940442     <.0001        1.249506        0.078386
+Var:   Avg_Utilization_Ratio                  1        0.000776       13.540253     0.0002        1.060047        0.078289
+ 
+ 
+ 
+ 
+ 
+The DMINE Procedure
+ 
+  The Final ANOVA Table for Target: Attrition_Flag
+ 
+                                              Sum of
+Effect            DF        R-Square         Squares
+ 
+Model             40        0.421782      575.988495
+Error          10086               .      789.618298
+Total          10126               .     1365.606794
+ 
+ 
+ 
+ 
+ 
+The DMINE Procedure
+ 
+         Estimating logistic
+ 
+ Iter           Alpha            Beta
+ 
+    0       -2.114671        4.152358
+    1       -3.716010        6.918109
+    2       -4.923927        8.975843
+    3       -5.452317        9.879552
+    4       -5.528207       10.010089
+    5       -5.529552       10.012412
+    5       -5.529552       10.012412
+ 
+ 
+ 
+ 
+ 
+The DMINE Procedure
+ 
+Classification Table for CUTOFF = 0.5000
+ 
+            Accuracy =  91.43
+ 
+                           Predicted
+Observed                    1           0
+ 
+1                        1015         612
+0                         256        8244
+Missing                     0           0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-------------------------------------------------------------------
+Summary of Variable Selection from Training
+-------------------------------------------------------------------
+ 
+ 
+Target Name : Attrition_Flag
+Target Level : BINARY
+Variable Selection Model : R-Square
+ 
+Total number of inputs : 19
+Total number of used inputs : 19
+Total number of unused inputs : 0
+Total number of rejected inputs : 14
+ 
+Maximum missing percentage : 50
+NOTE: There is no rejected variable by maximum missing percentage
+ 
+Maximum class level : 150
+NOTE:There is no rejected variable by maximum class level
+ 
+NOTE: 6 group variables have been created
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*

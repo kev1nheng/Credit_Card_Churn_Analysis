@@ -1,0 +1,233 @@
+ 
+                                                                                               
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+TARGET      BINARY           1    
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics
+Model Selection based on Test: Misclassification Rate (_TMISC_)
+
+                                                                 Train:
+                                                 Test:           Average
+Selected                      Model        Misclassification     Squared
+ Model      Model Node     Description            Rate            Error
+
+   Y        AutoNeural2    AutoNeural 2         0.057199        0.026467
+            HPNNA          HP Neural            0.062130        0.047023
+            AutoNeural4    AutoNeural 3         0.069034        0.046253
+            AutoNeural     AutoNeural           0.089744        0.060660
+
+                      Valid:
+      Train:          Average          Valid:
+Misclassification     Squared    Misclassification
+       Rate            Error            Rate
+
+     0.033719        0.041664         0.049383    
+     0.060807        0.050837         0.065185    
+     0.062218        0.053345         0.071605    
+     0.079853        0.061241         0.084444    
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics Table
+Target: Attrition_Flag
+
+Data Role=Train
+
+ 
+Statistics
+
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Train: Kolmogorov-Smirnov Statistic                           
+Train: Akaike's Information Criterion                         
+Train: Average Squared Error                                  
+Train: Roc Index                                              
+Train: Average Error Function                                 
+Train: Cumulative Percent Captured Response                   
+Train: Percent Captured Response                              
+Selection Criterion: Test: Misclassification Rate             
+Train: Degrees of Freedom for Error                           
+Train: Model Degrees of Freedom                               
+Train: Total Degrees of Freedom                               
+Train: Frequency of Classified Cases                          
+Train: Divisor for ASE                                        
+Train: Error Function                                         
+Train: Final Prediction Error                                 
+Train: Gain                                                   
+Train: Gini Coefficient                                       
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic         
+Train: Kolmogorov-Smirnov Probability Cutoff                  
+Train: Cumulative Lift                                        
+Train: Lift                                                   
+Train: Maximum Absolute Error                                 
+Train: Misclassification Rate                                 
+Train: Mean Squared Error                                     
+Train: Sum of Frequencies                                     
+Train: Number of Estimated Weights                            
+Train: Root Average Squared Error                             
+Train: Cumulative Percent Response                            
+Train: Percent Response                                       
+Train: Root Final Prediction Error                            
+Train: Root Mean Squared Error                                
+Train: Schwarz's Bayesian Criterion                           
+Train: Sum of Squared Errors                                  
+Train: Sum of Case Weights Times Freq                         
+Train: Number of Wrong Classifications                        
+
+    Auto                    Auto        Auto
+ Neural2       HPNNA     Neural4      Neural
+
+    0.22        0.22        0.13        0.11
+    0.90        0.79        0.81        0.75
+ 2172.37         .       3572.04     3376.71
+    0.03        0.05        0.05        0.06
+    0.99        0.95        0.97        0.93
+    0.10         .          0.16        0.21
+   61.02       58.82       58.47       56.10
+    6.06        5.71        5.09        4.21
+    0.06        0.06        0.07        0.09
+ 6679.00         .       6415.00     6919.00
+  409.00         .        673.00      169.00
+ 7088.00         .       7088.00     7088.00
+     .       7088.00         .           .  
+14176.00    14176.00    14176.00    14176.00
+ 1354.37         .       2226.04     3038.71
+    0.03         .          0.06        0.06
+  510.01      488.07      484.56      460.86
+    0.98        0.91        0.94        0.87
+    0.90        0.79        0.81        0.75
+    0.21        0.18        0.17        0.10
+    6.10        5.88        5.85        5.61
+    6.05        5.70        5.08        4.21
+    1.00        1.00        1.00        1.00
+    0.03        0.06        0.06        0.08
+    0.03         .          0.05        0.06
+ 7088.00     7088.00     7088.00     7088.00
+  409.00         .        673.00      169.00
+    0.16        0.22        0.22        0.25
+   98.03       94.50       93.94       90.13
+   97.18       91.55       81.69       67.61
+    0.17         .          0.24        0.25
+    0.17         .          0.23        0.25
+ 4980.63         .       8192.97     4537.09
+  375.19      666.59      655.69      859.92
+14176.00         .      14176.00    14176.00
+  239.00      431.00      441.00      566.00
+
+
+Data Role=Valid
+
+                                                                 Auto            Auto     Auto
+Statistics                                                     Neural2   HPNNA Neural4  Neural
+
+Valid: Kolmogorov-Smirnov Statistic                               0.84    0.79    0.78    0.76
+Valid: Average Squared Error                                      0.04    0.05    0.05    0.06
+Valid: Roc Index                                                  0.97    0.95    0.96    0.94
+Valid: Average Error Function                                     0.15     .      0.18    0.21
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff    0.14    0.22    0.12    0.10
+Valid: Cumulative Percent Captured Response                      59.08   56.92   56.31   55.69
+Valid: Percent Captured Response                                  6.15    4.62    5.54    3.38
+Valid: Frequency of Classified Cases                               .   2025.00     .       .  
+Valid: Divisor for VASE                                        4050.00 4050.00 4050.00 4050.00
+Valid: Error Function                                           603.84     .    741.36  845.75
+Valid: Gain                                                     489.31  467.83  461.69  455.55
+Valid: Gini Coefficient                                           0.95    0.90    0.91    0.89
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic             0.83    0.78    0.78    0.76
+Valid: Kolmogorov-Smirnov Probability Cutoff                      0.12    0.22    0.17    0.16
+Valid: Cumulative Lift                                            5.89    5.68    5.62    5.56
+Valid: Lift                                                       6.23    4.67    5.61    3.43
+Valid: Maximum Absolute Error                                     1.00    1.00    1.00    1.00
+Valid: Misclassification Rate                                     0.05    0.07    0.07    0.08
+Valid: Mean Squared Error                                         0.04     .      0.05    0.06
+Valid: Sum of Frequencies                                      2025.00 2025.00 2025.00 2025.00
+Valid: Root Average Squared Error                                 0.20    0.23    0.23    0.25
+Valid: Cumulative Percent Response                               94.58   91.13   90.15   89.16
+Valid: Percent Response                                         100.00   75.00   90.00   55.00
+Valid: Root Mean Squared Error                                    0.20     .      0.23    0.25
+Valid: Sum of Squared Errors                                    168.74  205.89  216.05  248.03
+Valid: Sum of Case Weights Times Freq                          4050.00     .   4050.00 4050.00
+Valid: Number of Wrong Classifications                          100.00  132.00  145.00  171.00
+
+
+Data Role=Test
+
+                                                                 Auto            Auto     Auto
+Statistics                                                     Neural2   HPNNA Neural4  Neural
+
+Test:  Kolmogorov-Smirnov Statistic                               0.89    0.83    0.80    0.77
+Test: Average Squared Error                                       0.04    0.05    0.05    0.06
+Test:  Roc Index                                                  0.98    0.97    0.97    0.95
+Test: Average Error Function                                      0.13     .      0.17    0.20
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff    0.24    0.16    0.22    0.08
+Test: Cumulative Percent Captured Response                       60.12   58.28   57.06   56.44
+Test: Percent Captured Response                                   6.13    4.29    4.29    3.68
+Test: Frequency of Classified Cases                                .   1014.00     .       .  
+Test: Divisor for TASE                                         2028.00 2028.00 2028.00 2028.00
+Test: Error Function                                            266.18     .    340.73  406.83
+Test: Gain                                                      497.69  479.39  467.20  461.10
+Test:  Gini Coefficient                                           0.96    0.93    0.93    0.90
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Statistic             0.89    0.83    0.79    0.78
+Test:  Kolmogorov-Smirnov Probability Cutoff                      0.19    0.15    0.20    0.07
+Test: Cumulative Lift                                             5.98    5.79    5.67    5.61
+Test: Lift                                                        6.22    4.35    4.35    3.73
+Test: Maximum Absolute Error                                      1.00    0.99    0.99    1.00
+Test: Misclassification Rate                                      0.06    0.06    0.07    0.09
+Test: Lower 95% Conf. Limit for TMISC                              .       .       .       .  
+Test: Upper 95% Conf. Limit for TMISC                              .       .       .       .  
+Test: Mean Squared Error                                          0.04     .      0.05    0.06
+Test: Sum of Frequencies                                       1014.00 1014.00 1014.00 1014.00
+Test: Root Average Squared Error                                  0.20    0.21    0.23    0.25
+Test: Cumulative Percent Response                                96.08   93.14   91.18   90.20
+Test: Percent Response                                          100.00   70.00   70.00   60.00
+Test: Root Mean Squared Error                                     0.20     .      0.23    0.25
+Test: Sum of Squared Errors                                      80.77   92.73  104.25  126.04
+Test: Sum of Case Weights Times Freq                           2028.00     .   2028.00 2028.00
+Test: Number of Wrong Classifications                            58.00   63.00   70.00   91.00
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Event Classification Table
+Model Selection based on Test: Misclassification Rate (_TMISC_)
+
+               Model     Data                    Target   False    True     False    True
+Model Node  Description  Role         Target     Label  Negative Negative Positive Positive
+
+AutoNeural  AutoNeural   TRAIN    Attrition_Flag           342     5725      224      797  
+AutoNeural  AutoNeural   VALIDATE Attrition_Flag            88     1617       83      237  
+AutoNeural2 AutoNeural 2 TRAIN    Attrition_Flag           152     5862       87      987  
+AutoNeural2 AutoNeural 2 VALIDATE Attrition_Flag            48     1648       52      277  
+AutoNeural4 AutoNeural 3 TRAIN    Attrition_Flag           312     5820      129      827  
+AutoNeural4 AutoNeural 3 VALIDATE Attrition_Flag            84     1639       61      241  
+HPNNA       HP Neural    TRAIN    Attrition_Flag           282     5800      149      857  
+HPNNA       HP Neural    VALIDATE Attrition_Flag            72     1640       60      253  

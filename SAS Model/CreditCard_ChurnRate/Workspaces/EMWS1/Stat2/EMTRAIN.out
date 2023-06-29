@@ -1,0 +1,210 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+INPUT      INTERVAL          5    
+INPUT      NOMINAL           6    
+TARGET     BINARY            1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+Variable Levels Summary
+(maximum 500 observations printed)
+
+                            Frequency
+   Variable        Role       Count
+
+Attrition_Flag    TARGET        2    
+ 
+                                                                                                                                                                                                                                                                
+ 
+Class Variable Summary Statistics
+(maximum 500 observations printed)
+
+Data Role=TRAIN
+
+                                                 Number
+Data                                               of                            Mode                  Mode2
+Role     Variable Name                  Role     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+TRAIN    G_Contacts_Count_12_mon       INPUT        5         0        2        47.12         3        31.87   
+TRAIN    G_Customer_Age                INPUT       11         0        6        28.46         4        17.49   
+TRAIN    G_Months_Inactive_12_mon      INPUT        5         0        2        37.98         3        35.39   
+TRAIN    G_Months_on_book              INPUT        9         0        3        34.49         6        17.24   
+TRAIN    G_Total_Relationship_Count    INPUT        3         0        2        55.98         1        22.76   
+TRAIN    G_Total_Trans_Ct              INPUT        8         0        7        39.95         6        20.72   
+TRAIN    Attrition_Flag                TARGET       2         0        0        83.93         1        16.07   
+ 
+                                                                                                                                                                                                                                                                
+ 
+Distribution of Class Target and Segment Variables
+(maximum 500 observations printed)
+
+Data Role=TRAIN
+
+Data                                           Frequency
+Role     Variable Name      Role     Level         Count    Percent
+
+TRAIN    Attrition_Flag    TARGET      0            8500    83.9340
+TRAIN    Attrition_Flag    TARGET      1            1627    16.0660
+ 
+                                                                                                                                                                                                                                                                
+ 
+Interval Variable Summary Statistics
+(maximum 500 observations printed)
+
+Data Role=TRAIN
+
+                                                         Standard          Non
+            Variable                Role         Mean    Deviation     Missing     Missing     Minimum      Median     Maximum    Skewness    Kurtosis
+
+RANGE_LOG_Total_Trans_Amt           INPUT    0.268128      0.1987        10127           0           0    0.249203           1    1.671657     2.62919
+RANGE_SQRT_Avg_Utilization_Ratio    INPUT    0.421134    0.312769        10127           0           0    0.419733           1    0.003291    -1.31133
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1     INPUT    0.468348    0.066027        10127           0           0    0.465469           1    0.389287    4.797003
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1      INPUT    0.432081    0.071227        10127           0           0    0.434758           1    0.224686    5.018649
+RANGE_Total_Revolving_Bal           INPUT    0.461984    0.323793        10127           0           0    0.506953           1    -0.14884    -1.14599
+ 
+                                                                                                                                                                                                                                                                
+ 
+Class Variable Summary Statistics by Class Target
+(maximum 500 observations printed)
+
+Data Role=TRAIN Variable Name=G_Contacts_Count_12_mon
+
+                            Number
+                  Target      of                            Mode                  Mode2
+Target            Level     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+Attrition_Flag      0          4         0        2        44.42         3        33.22   
+Attrition_Flag      1          5         0        2        61.22         3        24.77   
+_OVERALL_                      5         0        2        47.12         3        31.87   
+
+
+Data Role=TRAIN Variable Name=G_Customer_Age
+
+                            Number
+                  Target      of                            Mode                  Mode2
+Target            Level     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+Attrition_Flag      0         11         0        6        28.60         7        17.41   
+Attrition_Flag      1         11         0        6        27.72         4        19.61   
+_OVERALL_                     11         0        6        28.46         4        17.49   
+
+
+Data Role=TRAIN Variable Name=G_Months_Inactive_12_mon
+
+                            Number
+                  Target      of                            Mode                  Mode2
+Target            Level     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+Attrition_Flag      0          5         0        3        35.62         2        35.53   
+Attrition_Flag      1          5         0        2        50.77         3        34.17   
+_OVERALL_                      5         0        2        37.98         3        35.39   
+
+
+Data Role=TRAIN Variable Name=G_Months_on_book
+
+                            Number
+                  Target      of                            Mode                  Mode2
+Target            Level     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+Attrition_Flag      0          9         0        3        33.94         6        17.71   
+Attrition_Flag      1          9         0        3        37.37         2        17.15   
+_OVERALL_                      9         0        3        34.49         6        17.24   
+
+
+Data Role=TRAIN Variable Name=G_Total_Relationship_Count
+
+                            Number
+                  Target      of                            Mode                  Mode2
+Target            Level     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+Attrition_Flag      0          3         0        2        59.07         1        22.41   
+Attrition_Flag      1          3         0        2        39.83         0        35.59   
+_OVERALL_                      3         0        2        55.98         1        22.76   
+
+
+Data Role=TRAIN Variable Name=G_Total_Trans_Ct
+
+                            Number
+                  Target      of                            Mode                  Mode2
+Target            Level     Levels    Missing    Mode    Percentage    Mode2    Percentage
+
+Attrition_Flag      0          8         0        7        46.60         6        22.87   
+Attrition_Flag      1          8         0        2        21.88         1        19.42   
+_OVERALL_                      8         0        7        39.95         6        20.72   
+ 
+                                                                                                                                                                                                                                                                
+ 
+Interval Variable Summary Statistics by Class Target
+(maximum 500 observations printed)
+
+Data Role=TRAIN Variable=RANGE_LOG_Total_Trans_Amt
+
+                  Target                                 Non                                        Standard
+Target            Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role                      Label
+
+Attrition_Flag      0       0.262713           0        8500    0.024355           1    0.283906    0.203016     1.654437    2.447247    INPUT    Transformed: Transformed Total_Trans_Amt
+Attrition_Flag      1       0.139079           0        1627           0    0.641935    0.185699    0.149478     1.552856    1.303384    INPUT    Transformed: Transformed Total_Trans_Amt
+_OVERALL_                   0.249203           0       10127           0           1    0.268128      0.1987     1.671657     2.62919    INPUT    Transformed: Transformed Total_Trans_Amt
+
+
+Data Role=TRAIN Variable=RANGE_SQRT_Avg_Utilization_Ratio
+
+                  Target                                 Non                                        Standard
+Target            Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role                         Label
+
+Attrition_Flag      0       0.459577           0        8500           0    0.997494    0.454859    0.299704     -0.13012    -1.19699    INPUT    Transformed: Transformed Avg_Utilization_Ratio
+Attrition_Flag      1              0           0        1627           0           1    0.244943    0.320474     0.942683     -0.5687    INPUT    Transformed: Transformed Avg_Utilization_Ratio
+_OVERALL_                   0.419733           0       10127           0           1    0.421134    0.312769     0.003291    -1.31133    INPUT    Transformed: Transformed Avg_Utilization_Ratio
+
+
+Data Role=TRAIN Variable=RANGE_SQRT_Total_Amt_Chng_Q4_Q1
+
+                  Target                                 Non                                        Standard
+Target            Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role                         Label
+
+Attrition_Flag      0       0.467678           0        8500    0.274519           1    0.472746     0.06262     1.097359    4.202105    INPUT    Transformed: Transformed Total_Amt_Chng_Q4_Q1
+Attrition_Flag      1       0.454267           0        1627           0     0.66273    0.445375    0.077614     -1.18626    3.811948    INPUT    Transformed: Transformed Total_Amt_Chng_Q4_Q1
+_OVERALL_                   0.465469           0       10127           0           1    0.468348    0.066027     0.389287    4.797003    INPUT    Transformed: Transformed Total_Amt_Chng_Q4_Q1
+
+
+Data Role=TRAIN Variable=RANGE_SQRT_Total_Ct_Chng_Q4_Q1
+
+                  Target                                 Non                                        Standard
+Target            Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role                        Label
+
+Attrition_Flag      0       0.440602           0        8500    0.086828           1     0.44251    0.063926     0.936371    6.191776    INPUT    Transformed: Transformed Total_Ct_Chng_Q4_Q1
+Attrition_Flag      1       0.378117           0        1627           0    0.820444    0.377596    0.081822     -0.34886    2.498599    INPUT    Transformed: Transformed Total_Ct_Chng_Q4_Q1
+_OVERALL_                   0.434758           0       10127           0           1    0.432081    0.071227     0.224686    5.018649    INPUT    Transformed: Transformed Total_Ct_Chng_Q4_Q1
+
+
+Data Role=TRAIN Variable=RANGE_Total_Revolving_Bal
+
+                  Target                                 Non                                        Standard
+Target            Level       Median     Missing     Missing     Minimum     Maximum        Mean    Deviation    Skewness    Kurtosis    Role                  Label
+
+Attrition_Flag      0       0.541915           0        8500           0           1    0.499247    0.301051     -0.34518    -0.82814    INPUT    Transformed Total_Revolving_Bal
+Attrition_Flag      1              0           0        1627           0           1    0.267311    0.366065     1.024055    -0.53447    INPUT    Transformed Total_Revolving_Bal
+_OVERALL_                   0.506953           0       10127           0           1    0.461984    0.323793     -0.14884    -1.14599    INPUT    Transformed Total_Revolving_Bal
+ 
+                                                                                                                                                                                                                                                                
+ 
+Chi-Square Statistics
+(maximum 500 observations printed)
+
+Data Role=TRAIN Target=Attrition_Flag
+
+Input                         Chi-Square    Df      Prob
+
+G_Total_Trans_Ct               2390.9972     7    <.0001
+G_Contacts_Count_12_mon         575.1944     4    <.0001
+G_Months_Inactive_12_mon        395.6124     4    <.0001
+G_Total_Relationship_Count      280.3161     2    <.0001
+G_Customer_Age                   64.1342    10    <.0001
+G_Months_on_book                 57.5277     8    <.0001

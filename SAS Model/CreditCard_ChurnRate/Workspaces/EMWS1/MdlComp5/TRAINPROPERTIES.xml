@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  NumberOfReportedLevels="1E-6" NormalizeReportingVariables="Y" DecileBin="20" LiftEpsilon="1E-6"
+ ProfitEpsilon="1E-6" RoiEpsilon="1E-6" ScoreDistBin="20" RocChart="Y" RocEpsilon="0.01"
+ AssessAllTargetLevels="N" SelectionData="DEFAULT" HPCriteria="_MISC_" intervalViyaCriteria="DEFAULT"
+ classViyaCriteria="DEFAULT" SelectionTable="TEST" SelectionCriteria="_MISC_" SelectionDepth="10"
+ NumberofBins="100" RecomputeAssess="N" TargetName="Attrition_Flag" ModelId="AutoNeural2"
+ ModelDescription="AutoNeural 2" ModelCriteria="Test: Misclassification Rate" ForceRun="N"
+ RunAction="Train" Component="ModelCompare" RawCreateTime="1964357355.6" CreateTime="31MAR2022:14:49:16"
+ StatisticUsed="_TMISC_" TargetLabel="" RunId="d647e841-5c4a-497a-ab02-61ba2ca4b7b1"
+ RawLastTimeRun="1965138044.3" RawRunTime="30.999000072" LastTimeRun="09APR2022:15:40:44"
+ RunTime="0 Hr. 0 Min. 31.00 Sec.">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES ><![CDATA[
+EMNOTES
+]]>
+</FILEPROPERTIES><EMTARGETATTRIBUTES/>
+</_ROOT_>

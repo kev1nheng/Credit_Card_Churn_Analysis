@@ -1,0 +1,253 @@
+ 
+                                                                                               
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+TARGET      BINARY           1    
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics
+Model Selection based on Test: Misclassification Rate (_TMISC_)
+
+ 
+                                                      Test:
+Selected                                        Misclassification
+ Model      Model Node     Model Description           Rate
+
+   Y        HPDMForest3    Modified Forest 1         0.058185    
+            HPDMForest     Standard Forest           0.060158    
+            HPDMForest4    Modified Forest 2         0.060158    
+            HPDMForest2    Modified Forest 3         0.060158    
+
+ Train:                           Valid:
+ Average          Train:          Average          Valid:
+ Squared    Misclassification     Squared    Misclassification
+  Error            Rate            Error            Rate
+
+0.038908         0.050226        0.046729         0.065679    
+0.038595         0.048392        0.045670         0.063210    
+0.038879         0.050085        0.046217         0.064691    
+0.038798         0.049661        0.046237         0.063210    
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics Table
+Target: Attrition_Flag
+
+Data Role=Train
+
+Statistics
+
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Train: Kolmogorov-Smirnov Statistic                           
+Train: Average Squared Error                                  
+Train: Roc Index                                              
+Train: Cumulative Percent Captured Response                   
+Train: Percent Captured Response                              
+Selection Criterion: Test: Misclassification Rate             
+Train: Frequency of Classified Cases                          
+Train: Divisor for ASE                                        
+Train: Gain                                                   
+Train: Gini Coefficient                                       
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic         
+Train: Kolmogorov-Smirnov Probability Cutoff                  
+Train: Cumulative Lift                                        
+Train: Lift                                                   
+Train: Maximum Absolute Error                                 
+Train: Misclassification Rate                                 
+Train: Sum of Frequencies                                     
+Train: Root Average Squared Error                             
+Train: Cumulative Percent Response                            
+Train: Percent Response                                       
+Train: Sum of Squared Errors                                  
+Train: Number of Wrong Classifications                        
+
+HPDMForest3    HPDMForest    HPDMForest4    HPDMForest2
+
+      0.25          0.25           0.25           0.25 
+      0.90          0.89           0.90           0.90 
+      0.04          0.04           0.04           0.04 
+      0.99          0.99           0.99           0.99 
+     59.88         59.79          59.70          59.88 
+      5.53          5.71           5.71           5.71 
+      0.06          0.06           0.06           0.06 
+   7088.00       7088.00        7088.00        7088.00 
+  14176.00      14176.00       14176.00       14176.00 
+    498.60        497.72         496.85         498.60 
+      0.97          0.97           0.97           0.97 
+      0.90          0.89           0.89           0.90 
+      0.22          0.23           0.23           0.24 
+      5.99          5.98           5.97           5.99 
+      5.52          5.70           5.70           5.70 
+      0.99          0.98           0.99           0.99 
+      0.05          0.05           0.05           0.05 
+   7088.00       7088.00        7088.00        7088.00 
+      0.20          0.20           0.20           0.20 
+     96.19         96.05          95.91          96.19 
+     88.73         91.55          91.55          91.55 
+    551.56        547.12         551.14         550.00 
+    356.00        343.00         355.00         352.00 
+
+
+Data Role=Valid
+
+Statistics
+
+Valid: Kolmogorov-Smirnov Statistic                           
+Valid: Average Squared Error                                  
+Valid: Roc Index                                              
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Valid: Cumulative Percent Captured Response                   
+Valid: Percent Captured Response                              
+Valid: Frequency of Classified Cases                          
+Valid: Divisor for ASE                                        
+Valid: Gain                                                   
+Valid: Gini Coefficient                                       
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic         
+Valid: Kolmogorov-Smirnov Probability Cutoff                  
+Valid: Cumulative Lift                                        
+Valid: Lift                                                   
+Valid: Maximum Absolute Error                                 
+Valid: Misclassification Rate                                 
+Valid: Sum of Frequencies                                     
+Valid: Root Average Squared Error                             
+Valid: Cumulative Percent Response                            
+Valid: Percent Response                                       
+Valid: Sum of Squared Errors                                  
+Valid: Number of Wrong Classifications                        
+
+HPDMForest3    HPDMForest    HPDMForest4    HPDMForest2
+
+     0.87           0.88          0.87           0.87  
+     0.05           0.05          0.05           0.05  
+     0.98           0.98          0.98           0.98  
+     0.21           0.24          0.24           0.24  
+    57.54          57.54         56.62          57.23  
+     5.23           5.54          4.31           4.92  
+  2025.00        2025.00       2025.00        2025.00  
+  4050.00        4050.00       4050.00        4050.00  
+   473.97         473.97        464.76         470.90  
+     0.95           0.96          0.95           0.95  
+     0.87           0.88          0.87           0.87  
+     0.21           0.22          0.23           0.23  
+     5.74           5.74          5.65           5.71  
+     5.30           5.61          4.36           4.98  
+     0.98           0.98          0.98           0.98  
+     0.07           0.06          0.06           0.06  
+  2025.00        2025.00       2025.00        2025.00  
+     0.22           0.21          0.21           0.22  
+    92.12          92.12         90.64          91.63  
+    85.00          90.00         70.00          80.00  
+   189.25         184.96        187.18         187.26  
+   133.00         128.00        131.00         128.00  
+
+
+Data Role=Test
+
+Statistics
+
+Test:  Kolmogorov-Smirnov Statistic                           
+Test: Average Squared Error                                   
+Test:  Roc Index                                              
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Test: Cumulative Percent Captured Response                    
+Test: Percent Captured Response                               
+Test: Frequency of Classified Cases                           
+Test: Divisor for ASE                                         
+Test: Gain                                                    
+Test:  Gini Coefficient                                       
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Statistic         
+Test:  Kolmogorov-Smirnov Probability Cutoff                  
+Test: Cumulative Lift                                         
+Test: Lift                                                    
+Test: Maximum Absolute Error                                  
+Test: Misclassification Rate                                  
+Test: Sum of Frequencies                                      
+Test: Root Average Squared Error                              
+Test: Cumulative Percent Response                             
+Test: Percent Response                                        
+Test: Sum of Squared Errors                                   
+Test: Number of Wrong Classifications                         
+
+HPDMForest3    HPDMForest    HPDMForest4    HPDMForest2
+
+     0.87           0.88          0.88           0.87  
+     0.05           0.04          0.05           0.05  
+     0.98           0.98          0.98           0.98  
+     0.24           0.24          0.24           0.24  
+    58.28          58.28         58.28          58.90  
+     4.91           4.29          4.29           4.91  
+  1014.00        1014.00       1014.00        1014.00  
+  2028.00        2028.00       2028.00        2028.00  
+   479.39         479.39        479.39         485.49  
+     0.96           0.96          0.96           0.96  
+     0.87           0.87          0.87           0.87  
+     0.23           0.23          0.23           0.22  
+     5.79           5.79          5.79           5.85  
+     4.98           4.35          4.35           4.98  
+     0.94           0.93          0.95           0.95  
+     0.06           0.06          0.06           0.06  
+  1014.00        1014.00       1014.00        1014.00  
+     0.21           0.21          0.21           0.21  
+    93.14          93.14         93.14          94.12  
+    80.00          70.00         70.00          80.00  
+    92.35          91.13         91.76          91.54  
+    59.00          61.00         61.00          61.00  
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Event Classification Table
+Model Selection based on Test: Misclassification Rate (_TMISC_)
+
+                                    Data
+Model Node     Model Description    Role            Target
+
+HPDMForest     Standard Forest      TRAIN       Attrition_Flag
+HPDMForest     Standard Forest      VALIDATE    Attrition_Flag
+HPDMForest3    Modified Forest 1    TRAIN       Attrition_Flag
+HPDMForest3    Modified Forest 1    VALIDATE    Attrition_Flag
+HPDMForest4    Modified Forest 2    TRAIN       Attrition_Flag
+HPDMForest4    Modified Forest 2    VALIDATE    Attrition_Flag
+HPDMForest2    Modified Forest 3    TRAIN       Attrition_Flag
+HPDMForest2    Modified Forest 3    VALIDATE    Attrition_Flag
+
+Target      False       True        False       True
+Label     Negative    Negative    Positive    Positive
+
+             266        5872         77          873  
+              85        1657         43          240  
+             273        5866         83          866  
+              88        1655         45          237  
+             272        5866         83          867  
+              86        1655         45          239  
+             271        5868         81          868  
+              84        1656         44          241  

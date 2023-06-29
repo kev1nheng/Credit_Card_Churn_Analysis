@@ -1,0 +1,1202 @@
+*------------------------------------------------------------*
+ Node = 2
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.03869
+then 
+ Tree Node Identifier   = 2
+ Number of Observations = 114
+ Predicted: Attrition_Flag=1 = 0.90
+ Predicted: Attrition_Flag=0 = 0.10
+ 
+*------------------------------------------------------------*
+ Node = 20
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt >= 0.68217
+then 
+ Tree Node Identifier   = 20
+ Number of Observations = 527
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 26
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.3774 or MISSING
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 0
+then 
+ Tree Node Identifier   = 26
+ Number of Observations = 54
+ Predicted: Attrition_Flag=1 = 0.94
+ Predicted: Attrition_Flag=0 = 0.06
+ 
+*------------------------------------------------------------*
+ Node = 27
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.39381 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.3774
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 0
+then 
+ Tree Node Identifier   = 27
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.20
+ Predicted: Attrition_Flag=0 = 0.80
+ 
+*------------------------------------------------------------*
+ Node = 29
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.51193
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 0
+then 
+ Tree Node Identifier   = 29
+ Number of Observations = 14
+ Predicted: Attrition_Flag=1 = 0.14
+ Predicted: Attrition_Flag=0 = 0.86
+ 
+*------------------------------------------------------------*
+ Node = 31
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.73555 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.06895 or MISSING
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 31
+ Number of Observations = 194
+ Predicted: Attrition_Flag=1 = 0.07
+ Predicted: Attrition_Flag=0 = 0.93
+ 
+*------------------------------------------------------------*
+ Node = 32
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.93802 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.73555
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 32
+ Number of Observations = 74
+ Predicted: Attrition_Flag=1 = 0.08
+ Predicted: Attrition_Flag=0 = 0.92
+ 
+*------------------------------------------------------------*
+ Node = 33
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Avg_Utilization_Ratio >= 0.93802
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 33
+ Number of Observations = 7
+ Predicted: Attrition_Flag=1 = 0.71
+ Predicted: Attrition_Flag=0 = 0.29
+ 
+*------------------------------------------------------------*
+ Node = 34
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.30596
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 34
+ Number of Observations = 12
+ Predicted: Attrition_Flag=1 = 0.67
+ Predicted: Attrition_Flag=0 = 0.33
+ 
+*------------------------------------------------------------*
+ Node = 37
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.40293 or MISSING
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 37
+ Number of Observations = 694
+ Predicted: Attrition_Flag=1 = 0.03
+ Predicted: Attrition_Flag=0 = 0.97
+ 
+*------------------------------------------------------------*
+ Node = 38
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed Total_Revolving_Bal < 0.23123 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 6, 7
+then 
+ Tree Node Identifier   = 38
+ Number of Observations = 50
+ Predicted: Attrition_Flag=1 = 0.04
+ Predicted: Attrition_Flag=0 = 0.96
+ 
+*------------------------------------------------------------*
+ Node = 39
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed Total_Revolving_Bal < 0.23123 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 5
+then 
+ Tree Node Identifier   = 39
+ Number of Observations = 62
+ Predicted: Attrition_Flag=1 = 0.71
+ Predicted: Attrition_Flag=0 = 0.29
+ 
+*------------------------------------------------------------*
+ Node = 40
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed Total_Revolving_Bal < 0.23123 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 3, 4
+then 
+ Tree Node Identifier   = 40
+ Number of Observations = 114
+ Predicted: Attrition_Flag=1 = 0.89
+ Predicted: Attrition_Flag=0 = 0.11
+ 
+*------------------------------------------------------------*
+ Node = 43
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed Total_Revolving_Bal < 0.43365 AND Transformed Total_Revolving_Bal >= 0.23123
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 2
+then 
+ Tree Node Identifier   = 43
+ Number of Observations = 27
+ Predicted: Attrition_Flag=1 = 0.52
+ Predicted: Attrition_Flag=0 = 0.48
+ 
+*------------------------------------------------------------*
+ Node = 45
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed Total_Revolving_Bal < 0.43365 AND Transformed Total_Revolving_Bal >= 0.23123
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 5, 4, 6 or MISSING
+then 
+ Tree Node Identifier   = 45
+ Number of Observations = 63
+ Predicted: Attrition_Flag=1 = 0.06
+ Predicted: Attrition_Flag=0 = 0.94
+ 
+*------------------------------------------------------------*
+ Node = 46
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.57735 or MISSING
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+then 
+ Tree Node Identifier   = 46
+ Number of Observations = 216
+ Predicted: Attrition_Flag=1 = 0.13
+ Predicted: Attrition_Flag=0 = 0.88
+ 
+*------------------------------------------------------------*
+ Node = 47
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.67857 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.57735
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+then 
+ Tree Node Identifier   = 47
+ Number of Observations = 53
+ Predicted: Attrition_Flag=1 = 0.34
+ Predicted: Attrition_Flag=0 = 0.66
+ 
+*------------------------------------------------------------*
+ Node = 50
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.38148 or MISSING
+AND Transformed Total_Revolving_Bal >= 0.94656
+then 
+ Tree Node Identifier   = 50
+ Number of Observations = 43
+ Predicted: Attrition_Flag=1 = 0.95
+ Predicted: Attrition_Flag=0 = 0.05
+ 
+*------------------------------------------------------------*
+ Node = 51
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.43212 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.38148
+AND Transformed Total_Revolving_Bal >= 0.94656
+then 
+ Tree Node Identifier   = 51
+ Number of Observations = 22
+ Predicted: Attrition_Flag=1 = 0.64
+ Predicted: Attrition_Flag=0 = 0.36
+ 
+*------------------------------------------------------------*
+ Node = 52
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.45174 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.43212
+AND Transformed Total_Revolving_Bal >= 0.94656
+then 
+ Tree Node Identifier   = 52
+ Number of Observations = 12
+ Predicted: Attrition_Flag=1 = 0.50
+ Predicted: Attrition_Flag=0 = 0.50
+ 
+*------------------------------------------------------------*
+ Node = 55
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.33904 AND Transformed: Transformed Total_Trans_Amt >= 0.18181 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 4
+then 
+ Tree Node Identifier   = 55
+ Number of Observations = 52
+ Predicted: Attrition_Flag=1 = 0.27
+ Predicted: Attrition_Flag=0 = 0.73
+ 
+*------------------------------------------------------------*
+ Node = 56
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.33904 AND Transformed: Transformed Total_Trans_Amt >= 0.18181 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 5
+then 
+ Tree Node Identifier   = 56
+ Number of Observations = 196
+ Predicted: Attrition_Flag=1 = 0.09
+ Predicted: Attrition_Flag=0 = 0.91
+ 
+*------------------------------------------------------------*
+ Node = 57
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.33904 AND Transformed: Transformed Total_Trans_Amt >= 0.18181 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 6, 7 or MISSING
+then 
+ Tree Node Identifier   = 57
+ Number of Observations = 2991
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 60
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 5 or MISSING
+then 
+ Tree Node Identifier   = 60
+ Number of Observations = 14
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 61
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.68217 AND Transformed: Transformed Total_Trans_Amt >= 0.52927
+AND Transformed Total_Revolving_Bal < 0.25129
+then 
+ Tree Node Identifier   = 61
+ Number of Observations = 43
+ Predicted: Attrition_Flag=1 = 0.98
+ Predicted: Attrition_Flag=0 = 0.02
+ 
+*------------------------------------------------------------*
+ Node = 62
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.68217 AND Transformed: Transformed Total_Trans_Amt >= 0.52927
+AND Transformed Total_Revolving_Bal < 0.39174 AND Transformed Total_Revolving_Bal >= 0.25129
+then 
+ Tree Node Identifier   = 62
+ Number of Observations = 9
+ Predicted: Attrition_Flag=1 = 0.56
+ Predicted: Attrition_Flag=0 = 0.44
+ 
+*------------------------------------------------------------*
+ Node = 64
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.68217 AND Transformed: Transformed Total_Trans_Amt >= 0.52927
+AND Transformed Total_Revolving_Bal >= 0.8681
+then 
+ Tree Node Identifier   = 64
+ Number of Observations = 20
+ Predicted: Attrition_Flag=1 = 0.65
+ Predicted: Attrition_Flag=0 = 0.35
+ 
+*------------------------------------------------------------*
+ Node = 71
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.51193 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.39381
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.37367
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 0
+then 
+ Tree Node Identifier   = 71
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.80
+ Predicted: Attrition_Flag=0 = 0.20
+ 
+*------------------------------------------------------------*
+ Node = 72
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.51193 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.39381
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.49244 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.37367 or MISSING
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 0
+then 
+ Tree Node Identifier   = 72
+ Number of Observations = 16
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 73
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.51193 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.39381
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.52686 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.49244
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 0
+then 
+ Tree Node Identifier   = 73
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.60
+ Predicted: Attrition_Flag=0 = 0.40
+ 
+*------------------------------------------------------------*
+ Node = 74
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.51193 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.39381
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.52686
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 0
+then 
+ Tree Node Identifier   = 74
+ Number of Observations = 7
+ Predicted: Attrition_Flag=1 = 0.14
+ Predicted: Attrition_Flag=0 = 0.86
+ 
+*------------------------------------------------------------*
+ Node = 77
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.26278
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 77
+ Number of Observations = 6
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 79
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.46047 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.41754
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 79
+ Number of Observations = 6
+ Predicted: Attrition_Flag=1 = 0.33
+ Predicted: Attrition_Flag=0 = 0.67
+ 
+*------------------------------------------------------------*
+ Node = 80
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.46047
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 80
+ Number of Observations = 14
+ Predicted: Attrition_Flag=1 = 0.07
+ Predicted: Attrition_Flag=0 = 0.93
+ 
+*------------------------------------------------------------*
+ Node = 91
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.08966 AND Transformed: Transformed Total_Trans_Amt >= 0.03869 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.32936 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.30596
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 91
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 92
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.08966
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.32936 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.30596
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 92
+ Number of Observations = 6
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 93
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.07868 AND Transformed: Transformed Total_Trans_Amt >= 0.03869 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.40293 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.32936
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 93
+ Number of Observations = 115
+ Predicted: Attrition_Flag=1 = 0.05
+ Predicted: Attrition_Flag=0 = 0.95
+ 
+*------------------------------------------------------------*
+ Node = 94
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.09309 AND Transformed: Transformed Total_Trans_Amt >= 0.07868
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.40293 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.32936
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 94
+ Number of Observations = 47
+ Predicted: Attrition_Flag=1 = 0.11
+ Predicted: Attrition_Flag=0 = 0.89
+ 
+*------------------------------------------------------------*
+ Node = 96
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.10594
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.40293 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.32936
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 96
+ Number of Observations = 14
+ Predicted: Attrition_Flag=1 = 0.79
+ Predicted: Attrition_Flag=0 = 0.21
+ 
+*------------------------------------------------------------*
+ Node = 113
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed Total_Revolving_Bal < 0.23123 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 2 or MISSING
+AND Grouped Levels for  Customer_Age IS ONE OF: 9
+then 
+ Tree Node Identifier   = 113
+ Number of Observations = 6
+ Predicted: Attrition_Flag=1 = 0.17
+ Predicted: Attrition_Flag=0 = 0.83
+ 
+*------------------------------------------------------------*
+ Node = 115
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed Total_Revolving_Bal < 0.23123 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 2 or MISSING
+AND Grouped Levels for  Customer_Age IS ONE OF: 6, 2
+then 
+ Tree Node Identifier   = 115
+ Number of Observations = 72
+ Predicted: Attrition_Flag=1 = 0.93
+ Predicted: Attrition_Flag=0 = 0.07
+ 
+*------------------------------------------------------------*
+ Node = 116
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed Total_Revolving_Bal < 0.23123 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 2 or MISSING
+AND Grouped Levels for  Customer_Age IS ONE OF: 5, 4, 7, 3 or MISSING
+then 
+ Tree Node Identifier   = 116
+ Number of Observations = 159
+ Predicted: Attrition_Flag=1 = 0.98
+ Predicted: Attrition_Flag=0 = 0.02
+ 
+*------------------------------------------------------------*
+ Node = 117
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.4459
+AND Transformed Total_Revolving_Bal < 0.43365 AND Transformed Total_Revolving_Bal >= 0.23123
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1
+then 
+ Tree Node Identifier   = 117
+ Number of Observations = 6
+ Predicted: Attrition_Flag=1 = 0.83
+ Predicted: Attrition_Flag=0 = 0.17
+ 
+*------------------------------------------------------------*
+ Node = 118
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.49071 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.4459 or MISSING
+AND Transformed Total_Revolving_Bal < 0.43365 AND Transformed Total_Revolving_Bal >= 0.23123
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1
+then 
+ Tree Node Identifier   = 118
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 119
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.49071
+AND Transformed Total_Revolving_Bal < 0.43365 AND Transformed Total_Revolving_Bal >= 0.23123
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1
+then 
+ Tree Node Identifier   = 119
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.20
+ Predicted: Attrition_Flag=0 = 0.80
+ 
+*------------------------------------------------------------*
+ Node = 123
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.40123
+AND Transformed Total_Revolving_Bal < 0.43365 AND Transformed Total_Revolving_Bal >= 0.23123
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 3
+then 
+ Tree Node Identifier   = 123
+ Number of Observations = 10
+ Predicted: Attrition_Flag=1 = 0.80
+ Predicted: Attrition_Flag=0 = 0.20
+ 
+*------------------------------------------------------------*
+ Node = 124
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.40123 or MISSING
+AND Transformed Total_Revolving_Bal < 0.43365 AND Transformed Total_Revolving_Bal >= 0.23123
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 3
+then 
+ Tree Node Identifier   = 124
+ Number of Observations = 12
+ Predicted: Attrition_Flag=1 = 0.08
+ Predicted: Attrition_Flag=0 = 0.92
+ 
+*------------------------------------------------------------*
+ Node = 137
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.88447 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.67857
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+AND Grouped Levels for  Customer_Age IS ONE OF: 7
+then 
+ Tree Node Identifier   = 137
+ Number of Observations = 25
+ Predicted: Attrition_Flag=1 = 0.08
+ Predicted: Attrition_Flag=0 = 0.92
+ 
+*------------------------------------------------------------*
+ Node = 138
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.88447 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.67857
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+AND Grouped Levels for  Customer_Age IS ONE OF: 9, 8 or MISSING
+then 
+ Tree Node Identifier   = 138
+ Number of Observations = 65
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 139
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.42823
+AND Transformed: Transformed Avg_Utilization_Ratio >= 0.88447
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+then 
+ Tree Node Identifier   = 139
+ Number of Observations = 9
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 140
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.46117 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.42823
+AND Transformed: Transformed Avg_Utilization_Ratio >= 0.88447
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+then 
+ Tree Node Identifier   = 140
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 0.50
+ Predicted: Attrition_Flag=0 = 0.50
+ 
+*------------------------------------------------------------*
+ Node = 142
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.55834
+AND Transformed: Transformed Avg_Utilization_Ratio >= 0.88447
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+then 
+ Tree Node Identifier   = 142
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 150
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.45174
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.43249
+AND Transformed Total_Revolving_Bal >= 0.94656
+then 
+ Tree Node Identifier   = 150
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.60
+ Predicted: Attrition_Flag=0 = 0.40
+ 
+*------------------------------------------------------------*
+ Node = 151
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.45174
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.47205 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.43249
+AND Transformed Total_Revolving_Bal >= 0.94656
+then 
+ Tree Node Identifier   = 151
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.40
+ Predicted: Attrition_Flag=0 = 0.60
+ 
+*------------------------------------------------------------*
+ Node = 152
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.45174
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.53326 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.47205 or MISSING
+AND Transformed Total_Revolving_Bal >= 0.94656
+then 
+ Tree Node Identifier   = 152
+ Number of Observations = 11
+ Predicted: Attrition_Flag=1 = 0.09
+ Predicted: Attrition_Flag=0 = 0.91
+ 
+*------------------------------------------------------------*
+ Node = 153
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.45174
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.53326
+AND Transformed Total_Revolving_Bal >= 0.94656
+then 
+ Tree Node Identifier   = 153
+ Number of Observations = 10
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 154
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.33904 AND Transformed: Transformed Total_Trans_Amt >= 0.18181 or MISSING
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.39857 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 3, 2
+then 
+ Tree Node Identifier   = 154
+ Number of Observations = 19
+ Predicted: Attrition_Flag=1 = 0.95
+ Predicted: Attrition_Flag=0 = 0.05
+ 
+*------------------------------------------------------------*
+ Node = 155
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.33904 AND Transformed: Transformed Total_Trans_Amt >= 0.18181 or MISSING
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.4737 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.39857
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 3, 2
+then 
+ Tree Node Identifier   = 155
+ Number of Observations = 17
+ Predicted: Attrition_Flag=1 = 0.47
+ Predicted: Attrition_Flag=0 = 0.53
+ 
+*------------------------------------------------------------*
+ Node = 156
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.33904 AND Transformed: Transformed Total_Trans_Amt >= 0.18181 or MISSING
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.50815 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.4737
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 3, 2
+then 
+ Tree Node Identifier   = 156
+ Number of Observations = 9
+ Predicted: Attrition_Flag=1 = 0.22
+ Predicted: Attrition_Flag=0 = 0.78
+ 
+*------------------------------------------------------------*
+ Node = 157
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.33904 AND Transformed: Transformed Total_Trans_Amt >= 0.18181 or MISSING
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.50815
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 3, 2
+then 
+ Tree Node Identifier   = 157
+ Number of Observations = 14
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 171
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.22033 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.15337
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 7
+then 
+ Tree Node Identifier   = 171
+ Number of Observations = 34
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 172
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.23141 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.22033
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 7
+then 
+ Tree Node Identifier   = 172
+ Number of Observations = 7
+ Predicted: Attrition_Flag=1 = 0.57
+ Predicted: Attrition_Flag=0 = 0.43
+ 
+*------------------------------------------------------------*
+ Node = 173
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed: Transformed Avg_Utilization_Ratio >= 0.23141 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 7
+then 
+ Tree Node Identifier   = 173
+ Number of Observations = 257
+ Predicted: Attrition_Flag=1 = 0.02
+ Predicted: Attrition_Flag=0 = 0.98
+ 
+*------------------------------------------------------------*
+ Node = 174
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed Total_Revolving_Bal < 0.36373 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 6
+then 
+ Tree Node Identifier   = 174
+ Number of Observations = 43
+ Predicted: Attrition_Flag=1 = 0.98
+ Predicted: Attrition_Flag=0 = 0.02
+ 
+*------------------------------------------------------------*
+ Node = 175
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed Total_Revolving_Bal < 0.49841 AND Transformed Total_Revolving_Bal >= 0.36373
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 6
+then 
+ Tree Node Identifier   = 175
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 0.75
+ Predicted: Attrition_Flag=0 = 0.25
+ 
+*------------------------------------------------------------*
+ Node = 176
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed Total_Revolving_Bal < 0.98987 AND Transformed Total_Revolving_Bal >= 0.49841
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 6
+then 
+ Tree Node Identifier   = 176
+ Number of Observations = 20
+ Predicted: Attrition_Flag=1 = 0.30
+ Predicted: Attrition_Flag=0 = 0.70
+ 
+*------------------------------------------------------------*
+ Node = 177
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed Total_Revolving_Bal >= 0.98987
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 6
+then 
+ Tree Node Identifier   = 177
+ Number of Observations = 10
+ Predicted: Attrition_Flag=1 = 0.60
+ Predicted: Attrition_Flag=0 = 0.40
+ 
+*------------------------------------------------------------*
+ Node = 180
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.68217 AND Transformed: Transformed Total_Trans_Amt >= 0.52927
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.4304
+AND Transformed Total_Revolving_Bal < 0.8681 AND Transformed Total_Revolving_Bal >= 0.39174 or MISSING
+then 
+ Tree Node Identifier   = 180
+ Number of Observations = 17
+ Predicted: Attrition_Flag=1 = 0.12
+ Predicted: Attrition_Flag=0 = 0.88
+ 
+*------------------------------------------------------------*
+ Node = 181
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.68217 AND Transformed: Transformed Total_Trans_Amt >= 0.52927
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.47045 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.4304 or MISSING
+AND Transformed Total_Revolving_Bal < 0.8681 AND Transformed Total_Revolving_Bal >= 0.39174 or MISSING
+then 
+ Tree Node Identifier   = 181
+ Number of Observations = 21
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 182
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.68217 AND Transformed: Transformed Total_Trans_Amt >= 0.52927
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.48468 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.47045
+AND Transformed Total_Revolving_Bal < 0.8681 AND Transformed Total_Revolving_Bal >= 0.39174 or MISSING
+then 
+ Tree Node Identifier   = 182
+ Number of Observations = 7
+ Predicted: Attrition_Flag=1 = 0.43
+ Predicted: Attrition_Flag=0 = 0.57
+ 
+*------------------------------------------------------------*
+ Node = 183
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.68217 AND Transformed: Transformed Total_Trans_Amt >= 0.52927
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.48468
+AND Transformed Total_Revolving_Bal < 0.8681 AND Transformed Total_Revolving_Bal >= 0.39174 or MISSING
+then 
+ Tree Node Identifier   = 183
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 186
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.41754 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.26278 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.35659
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 186
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 0.88
+ Predicted: Attrition_Flag=0 = 0.13
+ 
+*------------------------------------------------------------*
+ Node = 188
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.41754 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.26278 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.504 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.4386
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 188
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 0.25
+ Predicted: Attrition_Flag=0 = 0.75
+ 
+*------------------------------------------------------------*
+ Node = 189
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.41754 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.26278 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.504
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 189
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 209
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.10594 AND Transformed: Transformed Total_Trans_Amt >= 0.09309
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.40293 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.32936
+AND Transformed Total_Revolving_Bal < 0.37882 or MISSING
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 209
+ Number of Observations = 12
+ Predicted: Attrition_Flag=1 = 0.92
+ Predicted: Attrition_Flag=0 = 0.08
+ 
+*------------------------------------------------------------*
+ Node = 210
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.10594 AND Transformed: Transformed Total_Trans_Amt >= 0.09309
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.40293 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.32936
+AND Transformed Total_Revolving_Bal < 0.50258 AND Transformed Total_Revolving_Bal >= 0.37882
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 210
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.20
+ Predicted: Attrition_Flag=0 = 0.80
+ 
+*------------------------------------------------------------*
+ Node = 211
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.10594 AND Transformed: Transformed Total_Trans_Amt >= 0.09309
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.40293 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.32936
+AND Transformed Total_Revolving_Bal >= 0.50258
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 2 or MISSING
+then 
+ Tree Node Identifier   = 211
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 0.13
+ Predicted: Attrition_Flag=0 = 0.88
+ 
+*------------------------------------------------------------*
+ Node = 237
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.14718 AND Transformed: Transformed Total_Trans_Amt >= 0.11189 or MISSING
+AND Transformed Total_Revolving_Bal < 0.23123 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 2 or MISSING
+AND Grouped Levels for  Customer_Age IS ONE OF: 8
+then 
+ Tree Node Identifier   = 237
+ Number of Observations = 7
+ Predicted: Attrition_Flag=1 = 0.29
+ Predicted: Attrition_Flag=0 = 0.71
+ 
+*------------------------------------------------------------*
+ Node = 238
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.14718
+AND Transformed Total_Revolving_Bal < 0.23123 or MISSING
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 1, 2 or MISSING
+AND Grouped Levels for  Customer_Age IS ONE OF: 8
+then 
+ Tree Node Identifier   = 238
+ Number of Observations = 6
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 266
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.88447 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.67857
+AND Transformed Total_Revolving_Bal < 0.63568 AND Transformed Total_Revolving_Bal >= 0.43365 or MISSING
+AND Grouped Levels for  Customer_Age IS ONE OF: 5
+then 
+ Tree Node Identifier   = 266
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.80
+ Predicted: Attrition_Flag=0 = 0.20
+ 
+*------------------------------------------------------------*
+ Node = 267
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.88447 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.67857
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.63568
+AND Grouped Levels for  Customer_Age IS ONE OF: 5
+then 
+ Tree Node Identifier   = 267
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.20
+ Predicted: Attrition_Flag=0 = 0.80
+ 
+*------------------------------------------------------------*
+ Node = 268
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.35479
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.88447 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.67857
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+AND Grouped Levels for  Customer_Age IS ONE OF: 6, 4
+then 
+ Tree Node Identifier   = 268
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.80
+ Predicted: Attrition_Flag=0 = 0.20
+ 
+*------------------------------------------------------------*
+ Node = 269
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.39279 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.35479
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.88447 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.67857
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+AND Grouped Levels for  Customer_Age IS ONE OF: 6, 4
+then 
+ Tree Node Identifier   = 269
+ Number of Observations = 9
+ Predicted: Attrition_Flag=1 = 0.44
+ Predicted: Attrition_Flag=0 = 0.56
+ 
+*------------------------------------------------------------*
+ Node = 270
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.46338 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.39279 or MISSING
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.88447 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.67857
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+AND Grouped Levels for  Customer_Age IS ONE OF: 6, 4
+then 
+ Tree Node Identifier   = 270
+ Number of Observations = 26
+ Predicted: Attrition_Flag=1 = 0.15
+ Predicted: Attrition_Flag=0 = 0.85
+ 
+*------------------------------------------------------------*
+ Node = 271
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.46338
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.88447 AND Transformed: Transformed Avg_Utilization_Ratio >= 0.67857
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+AND Grouped Levels for  Customer_Age IS ONE OF: 6, 4
+then 
+ Tree Node Identifier   = 271
+ Number of Observations = 14
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 274
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.13809 AND Transformed: Transformed Total_Trans_Amt >= 0.11189
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.55834 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.46117 or MISSING
+AND Transformed: Transformed Avg_Utilization_Ratio >= 0.88447
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+then 
+ Tree Node Identifier   = 274
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.40
+ Predicted: Attrition_Flag=0 = 0.60
+ 
+*------------------------------------------------------------*
+ Node = 275
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.15557 AND Transformed: Transformed Total_Trans_Amt >= 0.13809 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.55834 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.46117 or MISSING
+AND Transformed: Transformed Avg_Utilization_Ratio >= 0.88447
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+then 
+ Tree Node Identifier   = 275
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 0.88
+ Predicted: Attrition_Flag=0 = 0.13
+ 
+*------------------------------------------------------------*
+ Node = 276
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.18181 AND Transformed: Transformed Total_Trans_Amt >= 0.15557
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.55834 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.46117 or MISSING
+AND Transformed: Transformed Avg_Utilization_Ratio >= 0.88447
+AND Transformed Total_Revolving_Bal < 0.94656 AND Transformed Total_Revolving_Bal >= 0.43365
+then 
+ Tree Node Identifier   = 276
+ Number of Observations = 8
+ Predicted: Attrition_Flag=1 = 1.00
+ Predicted: Attrition_Flag=0 = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 300
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.42306
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.15337
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 7
+then 
+ Tree Node Identifier   = 300
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.60
+ Predicted: Attrition_Flag=0 = 0.40
+ 
+*------------------------------------------------------------*
+ Node = 301
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.46815 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.42306 or MISSING
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.15337
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 7
+then 
+ Tree Node Identifier   = 301
+ Number of Observations = 26
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 303
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.49668
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.15337
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 7
+then 
+ Tree Node Identifier   = 303
+ Number of Observations = 26
+ Predicted: Attrition_Flag=1 = 0.65
+ Predicted: Attrition_Flag=0 = 0.35
+ 
+*------------------------------------------------------------*
+ Node = 319
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.07602 AND Transformed: Transformed Total_Trans_Amt >= 0.03869
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.41754 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.26278 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.4386 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.35659 or MISSING
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 319
+ Number of Observations = 7
+ Predicted: Attrition_Flag=1 = 0.29
+ Predicted: Attrition_Flag=0 = 0.71
+ 
+*------------------------------------------------------------*
+ Node = 320
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.08498 AND Transformed: Transformed Total_Trans_Amt >= 0.07602
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.41754 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.26278 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.4386 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.35659 or MISSING
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 320
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.80
+ Predicted: Attrition_Flag=0 = 0.20
+ 
+*------------------------------------------------------------*
+ Node = 321
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.11189 AND Transformed: Transformed Total_Trans_Amt >= 0.08498 or MISSING
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.41754 AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.26278 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.4386 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.35659 or MISSING
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.06895
+AND Grouped Levels for  Total_Relationship_Count IS ONE OF: 1
+then 
+ Tree Node Identifier   = 321
+ Number of Observations = 12
+ Predicted: Attrition_Flag=1 = 0.92
+ Predicted: Attrition_Flag=0 = 0.08
+ 
+*------------------------------------------------------------*
+ Node = 365
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 < 0.46885 or MISSING
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.49668 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.46815
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.15337
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 7
+then 
+ Tree Node Identifier   = 365
+ Number of Observations = 15
+ Predicted: Attrition_Flag=1 = 0.00
+ Predicted: Attrition_Flag=0 = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 366
+*------------------------------------------------------------*
+if Transformed: Transformed Total_Trans_Amt < 0.52927 AND Transformed: Transformed Total_Trans_Amt >= 0.33904
+AND Transformed: Transformed Total_Ct_Chng_Q4_Q1 >= 0.46885
+AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 < 0.49668 AND Transformed: Transformed Total_Amt_Chng_Q4_Q1 >= 0.46815
+AND Transformed: Transformed Avg_Utilization_Ratio < 0.15337
+AND Grouped Levels for  Total_Trans_Ct IS ONE OF: 7
+then 
+ Tree Node Identifier   = 366
+ Number of Observations = 5
+ Predicted: Attrition_Flag=1 = 0.80
+ Predicted: Attrition_Flag=0 = 0.20
+ 

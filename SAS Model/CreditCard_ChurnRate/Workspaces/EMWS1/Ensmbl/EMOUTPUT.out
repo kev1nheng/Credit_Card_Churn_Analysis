@@ -1,0 +1,278 @@
+*------------------------------------------------------------*
+User:                Kevin
+Date:                April 09, 2022
+Time:                15:41:48
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+            Measurement    Frequency
+Role           Level         Count
+ 
+INPUT        INTERVAL          5
+INPUT        NOMINAL           5
+REJECTED     NOMINAL           1
+TARGET       BINARY            1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Model Events
+ 
+                                          Number
+                           Measurement      of
+    Target        Event       Level       Levels      Order       Label
+ 
+Attrition_Flag      1        BINARY          2      Descending
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Predicted and decision variables
+ 
+Type             Variable                    Label
+ 
+TARGET       Attrition_Flag
+PREDICTED    P_Attrition_Flag1    Predicted: Attrition_Flag=1
+RESIDUAL     R_Attrition_Flag1    Residual: Attrition_Flag=1
+PREDICTED    P_Attrition_Flag0    Predicted: Attrition_Flag=0
+RESIDUAL     R_Attrition_Flag0    Residual: Attrition_Flag=0
+FROM         F_Attrition_Flag     From: Attrition_Flag
+INTO         I_Attrition_Flag     Into: Attrition_Flag
+ 
+ 
+ 
+Imported Models to be Combined
+Probability Function: Average
+ 
+Node Id        rpt_modeltype
+ 
+REG            Regression
+AUTONEURAL2    AutoNeural
+BOOST2         Extension Class
+TREE4          Extension Class
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Fit Statistics
+ 
+Target=Attrition_Flag Target Label=' '
+ 
+   Fit
+Statistics    Statistics Label                      Train    Validation       Test
+ 
+ _ASE_        Average Squared Error                  0.04         0.04        0.04
+ _DIV_        Divisor for ASE                    15188.00      5066.00     2028.00
+ _MAX_        Maximum Absolute Error                 0.98         0.98        0.95
+ _NOBS_       Sum of Frequencies                  7594.00      2533.00     1014.00
+ _RASE_       Root Average Squared Error             0.19         0.20        0.20
+ _SSE_        Sum of Squared Errors                534.65       201.43       80.45
+ _DISF_       Frequency of Classified Cases       7594.00      2533.00     1014.00
+ _MISC_       Misclassification Rate                 0.04         0.05        0.05
+ _WRONG_      Number of Wrong Classifications      330.00       129.00       52.00
+ 
+ 
+ 
+ 
+Classification Table
+ 
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+  0          0         96.0110       98.9332        6306        83.0392
+  1          0          3.9890       21.4754         262         3.4501
+  0          1          6.6277        1.0668          68         0.8954
+  1          1         93.3723       78.5246         958        12.6152
+ 
+ 
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+  0          0         96.1627       97.8363        2080        82.1161
+  1          0          3.8373       20.3931          83         3.2767
+  0          1         12.4324        2.1637          46         1.8160
+  1          1         87.5676       79.6069         324        12.7912
+ 
+ 
+ 
+ 
+Event Classification Table
+ 
+Data Role=TRAIN Target=Attrition_Flag Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   262        6306         68          958
+ 
+ 
+Data Role=VALIDATE Target=Attrition_Flag Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+   83         2080         46          324
+ 
+ 
+ 
+ 
+Assessment Score Rankings
+ 
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    515.907   6.15907     6.15907     98.9474     98.9474         380         0.90968
+  10    501.983   5.88060     6.01983     94.4737     96.7105         380         0.78292
+  15    467.857   4.99605     5.67857     80.2632     91.2281         380         0.55913
+  20    371.249   1.80661     4.71249     29.0237     75.7077         379         0.31259
+  25    287.767   0.54056     3.87767      8.6842     62.2959         380         0.17737
+  30    226.661   0.21295     3.26661      3.4211     52.4792         380         0.11480
+  35    182.191   0.14781     2.82191      2.3747     45.3348         379         0.07899
+  40    147.918   0.08190     2.47918      1.3158     39.8288         380         0.05971
+  45    120.720   0.03276     2.20720      0.5263     35.4593         380         0.04586
+  50     98.852   0.01642     1.98852      0.2639     31.9463         379         0.03594
+  55     81.507   0.08190     1.81507      1.3158     29.1597         380         0.02906
+  60     66.372   0.00000     1.66372      0.0000     26.7281         380         0.02362
+  65     53.692   0.01638     1.53692      0.2632     24.6911         380         0.01950
+  70     42.852   0.01642     1.42852      0.2639     22.9496         379         0.01631
+  75     33.322   0.00000     1.33322      0.0000     21.4185         380         0.01302
+  80     24.984   0.00000     1.24984      0.0000     20.0790         380         0.00977
+  85     17.645   0.00000     1.17645      0.0000     18.9001         379         0.00691
+  90     11.105   0.00000     1.11105      0.0000     17.8493         380         0.00475
+  95      5.253   0.00000     1.05253      0.0000     16.9092         380         0.00329
+ 100      0.000   0.00000     1.00000      0.0000     16.0653         379         0.00216
+ 
+ 
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+ 
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+ 
+   5    512.558   6.12558     6.12558     98.4252     98.4252         127         0.90696
+  10    495.406   5.78255     5.95406     92.9134     95.6693         127         0.78210
+  15    438.832   4.24785     5.38832     68.2540     86.5789         126         0.58383
+  20    362.780   2.35222     4.62780     37.7953     74.3590         127         0.38042
+  25    283.821   0.68606     3.83821     11.0236     61.6719         127         0.21711
+  30    226.738   0.39515     3.26738      6.3492     52.5000         126         0.12584
+  35    182.763   0.19602     2.82763      3.1496     45.4340         127         0.08525
+  40    147.961   0.04900     2.47961      0.7874     39.8422         127         0.06197
+  45    121.101   0.04939     2.21101      0.7937     35.5263         126         0.04734
+  50     99.430   0.04900     1.99430      0.7874     32.0442         127         0.03649
+  55     81.261   0.00000     1.81261      0.0000     29.1248         127         0.02871
+  60     66.235   0.00000     1.66235      0.0000     26.7105         126         0.02317
+  65     53.417   0.00000     1.53417      0.0000     24.6509         127         0.01928
+  70     42.785   0.04900     1.42785      0.7874     22.9425         127         0.01566
+  75     33.316   0.00000     1.33316      0.0000     21.4211         126         0.01277
+  80     24.963   0.00000     1.24963      0.0000     20.0789         127         0.00989
+  85     17.595   0.00000     1.17595      0.0000     18.8951         127         0.00723
+  90     11.096   0.00000     1.11096      0.0000     17.8509         126         0.00518
+  95      5.235   0.00000     1.05235      0.0000     16.9090         127         0.00369
+ 100      0.000   0.00000     1.00000      0.0000     16.0679         126         0.00243
+ 
+ 
+ 
+ 
+Assessment Score Distribution
+ 
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00        30           0        0.95498         0.3950
+ 0.90-0.95       200           1        0.92339         2.6468
+ 0.85-0.90       185           5        0.87621         2.5020
+ 0.80-0.85       113           5        0.82593         1.5539
+ 0.75-0.80        93           9        0.77488         1.3432
+ 0.70-0.75       109           5        0.72345         1.5012
+ 0.65-0.70        64           9        0.67427         0.9613
+ 0.60-0.65        60           9        0.62583         0.9086
+ 0.55-0.60        52          10        0.57668         0.8164
+ 0.50-0.55        52          15        0.52536         0.8823
+ 0.45-0.50        61          18        0.47491         1.0403
+ 0.40-0.45        39          23        0.41993         0.8164
+ 0.35-0.40        30          49        0.37595         1.0403
+ 0.30-0.35        24          72        0.32361         1.2642
+ 0.25-0.30        32          99        0.27186         1.7250
+ 0.20-0.25        19         111        0.22399         1.7119
+ 0.15-0.20        17         212        0.17346         3.0155
+ 0.10-0.15        14         385        0.12187         5.2541
+ 0.05-0.10        17         844        0.06977        11.3379
+ 0.00-0.05         9        4493        0.01712        59.2836
+ 
+ 
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00        6            0        0.95392         0.2369
+ 0.90-0.95       70            0        0.92338         2.7635
+ 0.85-0.90       57            3        0.87553         2.3687
+ 0.80-0.85       47            3        0.82146         1.9739
+ 0.75-0.80       27            3        0.77860         1.1844
+ 0.70-0.75       30            0        0.72141         1.1844
+ 0.65-0.70       25            4        0.67424         1.1449
+ 0.60-0.65       20           12        0.62402         1.2633
+ 0.55-0.60       25            8        0.57388         1.3028
+ 0.50-0.55       17           13        0.52378         1.1844
+ 0.45-0.50       18           15        0.47649         1.3028
+ 0.40-0.45       13           17        0.42843         1.1844
+ 0.35-0.40       10           13        0.36953         0.9080
+ 0.30-0.35        9           31        0.32469         1.5792
+ 0.25-0.30       11           37        0.27316         1.8950
+ 0.20-0.25        4           37        0.21828         1.6186
+ 0.15-0.20        3           55        0.17366         2.2898
+ 0.10-0.15        8          116        0.12250         4.8954
+ 0.05-0.10        4          281        0.06998        11.2515
+ 0.00-0.05        3         1478        0.01678        58.4682

@@ -1,0 +1,1973 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "April 09, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:37:40" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                April 09, 2022
+Time:                15:37:40
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O0KMDZMU "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O0KMDZMU new;
+MPRINT(EM_DIAGRAM):   run;
+24067      %let EMEXCEPTIONSTRING=;
+24068      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+24069      * SCORE: HPDMForest2;
+MPRINT(EM_DIAGRAM):   * SCORE: HPDMForest2;
+24070      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24071      %let EM_ACTION = SCORE;
+24072      %let syscc = 0;
+24073      %macro main;
+24074      
+24075         %if %upcase(&EM_ACTION) = CREATE %then %do;
+24076             filename temp catalog 'sashelp.hpdm.hpdmforest_create.source';
+24077             %include temp;
+24078             filename temp;
+24079             %hpdm_Forest_create;
+24080         %end;
+24081         %else
+24082         %if %upcase(&EM_ACTION) = TRAIN %then %do;
+24083             filename temp catalog 'sashelp.hpdm.hpdmforest_train.source';
+24084             %include temp;
+24085             filename temp;
+24086             %hpdm_Forest_train;
+24087         %end;
+24088         %else
+24089         %if %upcase(&EM_ACTION) = SCORE %then %do;
+24090             filename temp catalog 'sashelp.hpdm.hpdmforest_score.source';
+24091             %include temp;
+24092             filename temp;
+24093             %hpdm_Forest_score;
+24094         %end;
+24095         %else
+24096         %if %upcase(&EM_ACTION) = REPORT %then %do;
+24097             filename temp catalog 'sashelp.hpdm.hpdmforest_report.source';
+24098             %include temp;
+24099             filename temp;
+24100             %hpdm_Forest_report;
+24101         %end;
+24102         %else
+24103      
+24104      %mend main;
+24105      
+24106      %main;
+MPRINT(EM_DIAGRAM):    
+MPRINT(MAIN):   filename temp catalog 'sashelp.hpdm.hpdmforest_score.source';
+NOTE: %INCLUDE (level 1) file TEMP is file SASHELP.HPDM.HPDMFOREST_SCORE.SOURCE.
+24107     +%Macro hpdm_Forest_score;
+24109     +   filename _cdt "&EM_FILE_CDELTA_TRAIN";
+24110     +   data _null_;
+24111     +     file _cdt;
+24112     +     put ' ';
+24113     +   run;
+24114     +   filename _cdt;
+24116     +   %em_checkmacro(name=EM_PROPERTY_VARSELECT, value=Y, global=Y);
+24117     +   %em_checkmacro(name=EM_PROPERTY_VIMETHOD, value=LOSSREDUCTION);
+24118     +   %em_checkmacro(name=EM_PROPERTY_RBATOPNUM, value=25);
+24119     +   %em_checkmacro(name=EM_PROPERTY_RBACUT, value=0.01);
+24121     +   /* variable selection */
+24122     +   %if "&EM_PROPERTY_VARSELECT" eq "Y" %then %do;
+24124     +      %if &em_num_interval_Target %then %let rbameasure = AAE;
+24125     +      %else %let rbameasure = Margin;
+24127     +      %EM_GETNAME(key=VARIMPORT);
+24129     +      %let measure=;
+24130     +      %let dsid = %sysfunc(open(&EM_USER_VARIMPORT));
+24131     +      %if "%EM_TARGET_LEVEL" eq "INTERVAL" %then %do;
+24132     +         %let mnum = %sysfunc(varnum(&dsid, AAEValid));
+24133     +         %if &mnum %then %let measure = AAEValid;
+24134     +         %else %do;
+24135     +            %let mnum = %sysfunc(varnum(&dsid, AAEOOB));
+24136     +            %if &mnum %then %let measure = AAEOOB;
+24137     +         %end;
+24138     +      %end;
+24139     +      %else %do;
+24140     +         %let mnum = %sysfunc(varnum(&dsid, MarginValid));
+24141     +         %if &mnum %then %let measure = MarginValid;
+24142     +         %else %do;
+24143     +            %let mnum = %sysfunc(varnum(&dsid, MARGINOOB));
+24144     +            %if &mnum %then %let measure = MARGINOOB;
+24145     +         %end;
+24146     +      %end;
+24147     +      %if &dsid %then %let dsid=%sysfunc(close(&dsid));
+24149     +      %if %length(&measure) %then %do;
+24150     +         /* loss reduction */
+24151     +         %if "&EM_PROPERTY_VIMETHOD" = "LOSSREDUCTION" %then %do;
+24153     +            %let dsid = %sysfunc(open(&EM_USER_VARIMPORT(where=(&measure le 0))));
+24154     +            %let varnum = %sysfunc(varnum(&dsid, variable));
+24155     +            /* check for RBA columns from previous run */
+24156     +            %let rbavarnum = %sysfunc(varnum(&dsid,MSERBA));
+24157     +            %let obs = %sysfunc(fetch(&dsid));
+24158     +            %do %while(&obs=0);
+24159     +               %let temp = %nrbquote(%sysfunc(getvarc(&dsid, &varnum)));
+24160     +               %let varname = %nrbquote(%sysfunc(tranwrd(&temp,  %str(%"),"")));
+24161     +               %EM_METACHANGE(name=&varname, role=REJECTED);
+24162     +               %let obs = %sysfunc(fetch(&dsid));
+24163     +            %end;
+24164     +            %if &dsid %then %let dsid=%sysfunc(close(&dsid));
+24166     +            %if &rbavarnum %then %do;
+24167     +               data &EM_USER_VARIMPORT;
+24168     +                  set &EM_USER_VARIMPORT;
+24169     +                  drop mserba &rbameasure.rba label;
+24170     +               run;
+24171     +            %end;
+24173     +         %end;
+24175     +         %else %do;/* RBA */
+24176     +            /*
+24177     +               reject the variables that didn't make cut for hp4score - do this even if less inputs than RBATOPNUM
+24178     +               to get them in importance order
+24179     +            */
+24180     +            proc sort data=&EM_USER_VARIMPORT out=VARIMP;
+24181     +               by descending &measure;
+24182     +            run;
+24184     +            data varimp;
+24185     +               set varimp(obs=&EM_PROPERTY_RBATOPNUM);
+24186     +            run;
+24188     +            %em_varmacro(name=em_rba_input, metadata=VARIMP, key=variable);
+24190     +            %em_getname(key=OUTMDLFILE, type=FILE, extension=bin);
+24192     +            %if %symexist(em_hpdm_train)=0 %then %do;
+24193     +               %hpdm_dataprep(data=, out=, metadata=_exportMeta, code=, ROLE=TRAIN, append=Y);
+24194     +            %end;
+24196     +            %let validflag = 0;
+24197     +            %if "&em_hpdm_train" eq "&em_import_data" %then %do;
+24198     +               /* data not on grid - use validation data if available */
+24199     +               %if ("&EM_IMPORT_VALIDATE" ne "") and (%sysfunc(exist(&em_import_validate)) or %sysfunc(exist(&em_import_validate, VIEW))) %then %do;
+24200     +                  %let data_rba = &em_import_validate;
+24201     +                  %let validflag = 1;
+24202     +               %end;
+24203     +               %else %let data_rba = &em_import_data;
+24204     +            %end;
+24205     +            %else %let data_rba = &em_hpdm_train;
+24207     +            ods output VariableImportance=work.VIRBA;
+24208     +            proc hp4score data=&data_rba;
+24209     +                /* Use validation data when partitionVar exists on grid */
+24210     +                %if "&em_hpdm_train" ne "&em_import_data" and "&hpdm_partitionVar" ne "" %then %do;
+24211     +                    where &hpdm_partitionVar=0;
+24212     +                    %let validflag = 1;
+24213     +                %end;
+24214     +               importance file="&EM_USER_OUTMDLFILE" vars=(%em_rba_input) maxdepth=6 %if &validflag %then role=VALID;;
+24215     +               %if %symexist(EM_HPFOREST_RBANTHREADS1) %then %do;
+24216     +                  %if %qupcase(&EM_HPFOREST_RBANTHREADS1)=%str(Y) %then %do;
+24217     +                     performance nthreads=1;
+24218     +                  %end;
+24219     +                  %else %do;
+24220     +                     &hpdm_performance;
+24221     +                  %end;
+24222     +               %end;
+24223     +               %else %do;
+24224     +                  &hpdm_performance;
+24225     +               %end;
+24226     +            run;
+24228     +            %if %sysfunc(exist(VIRBA)) %then %do;
+24230     +               /* merge with other var imp table so all measures in a single table for results */
+24231     +               /* need to have drop in case they are in there from previous run */
+24232     +               proc sort data=&EM_USER_VARIMPORT out=vi1(drop=&rbameasure.rba mserba label);
+24233     +                  by variable;
+24234     +               run;
+24236     +               proc sort data=virba;
+24237     +                  by variable;
+24238     +               run;
+24240     +               data &EM_USER_VARIMPORT;
+24241     +                  merge vi1 virba(rename=(&rbameasure=&rbameasure.RBA mse=MSERBA));
+24242     +                  by variable;
+24243     +               run;
+24245     +               proc sql noprint;
+24246     +                 select max(&rbameasure) format=best12. into :rbamax trimmed from virba;
+24247     +               quit;
+24249     +               %let minvi = %sysevalf(&rbamax * &EM_PROPERTY_RBACUT);
+24250     +               %put max of &rbameasure is &rbamax;
+24252     +               filename dlttemp "&EM_FILE_CDELTA_TRAIN";
+24254     +                data _null_;
+24255     +                   length varname $64 string $200 ;
+24256     +                   file dlttemp;
+24257     +                   set &EM_USER_VARIMPORT;
+24258     +                   if &rbameasure.RBA < &minvi then do;
+24259     +                       varname = tranwrd(variable, '"', '""');
+24260     +                       string = 'if upcase(name) eq "'!!upcase(trim(varname))!!'"'!!' then ROLE="REJECTED";';
+24261     +                       put string;
+24262     +                   end;
+24263     +                run;
+24265     +                filename dlttemp;
+24266     +            %end;
+24268     +         %end; /* end RBA */
+24270     +      %end;
+24272     +   %end;
+24274     +%Mend hpdm_Forest_score;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(MAIN):   filename temp;
+NOTE: Fileref TEMP has been deassigned.
+MPRINT(HPDM_FOREST_SCORE):   filename _cdt "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\CDELTA_TRAIN.sas";
+MPRINT(HPDM_FOREST_SCORE):   data _null_;
+MPRINT(HPDM_FOREST_SCORE):   file _cdt;
+MPRINT(HPDM_FOREST_SCORE):   put ' ';
+MPRINT(HPDM_FOREST_SCORE):   run;
+
+NOTE: The file _CDT is:
+      Filename=D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\CDELTA_TRAIN.sas,
+      RECFM=V,LRECL=32767,File Size (bytes)=0,
+      Last Modified=09Apr2022:15:37:40,
+      Create Time=09Apr2022:15:36:52
+
+NOTE: 1 record was written to the file _CDT.
+      The minimum record length was 1.
+      The maximum record length was 1.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(HPDM_FOREST_SCORE):   filename _cdt;
+NOTE: Fileref _CDT has been deassigned.
+MPRINT(HPDM_FOREST_SCORE):  ;
+MPRINT(HPDM_FOREST_SCORE):  ;
+MPRINT(HPDM_FOREST_SCORE):  ;
+MPRINT(HPDM_FOREST_SCORE):  ;
+MPRINT(HPDM_FOREST_SCORE):  ;
+MPRINT(MAIN):  ;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * End SCORE: HPDMForest2;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24279      
+24280      *------------------------------------------------------------*;
+24281      * End SCORE: HPDMForest2;
+24282      *------------------------------------------------------------*;
+
+24283      filename _emscr "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename _emscr "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas";
+24284      %let em_score_output = _ScoreTrain;
+24285      data _ScoreTrain;
+MPRINT(EM_DIAGRAM):   data _ScoreTrain;
+24286      set EMWS1.Part2_TRAIN;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part2_TRAIN;
+24287      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 7088 observations read from the data set EMWS1.PART2_TRAIN.
+NOTE: The data set WORK._SCORETRAIN has 7088 observations and 37 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+24288      %inc _emscr;
+NOTE: %INCLUDE (level 1) file _EMSCR is file D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas.
+24289     +%macro em_hpfst_score;
+24290     +
+24291     +  %if %sysfunc(exist(work._score_temp)) %then %do;
+24292     +     proc delete data=work._score_temp;
+24293     +     run;
+24294     +  %end;
+24295     +
+24296     +  %if %symexist(hpfst_score_input)=0 %then %let hpfst_score_input=&em_score_output;
+24297     +  %if %symexist(hpfst_score_output)=0 %then %let hpfst_score_output=&em_score_output;
+24298     +
+24299     +%let hpvvn= %sysfunc(getoption(VALIDVARNAME));
+24300     +options validvarname=V7;
+24301     +  proc hp4score data=&hpfst_score_input(keep=
+24302     +G_Contacts_Count_12_mon
+24303     +G_Customer_Age
+24304     +G_Months_Inactive_12_mon
+24305     +G_Months_on_book
+24306     +G_Total_Relationship_Count
+24307     +G_Total_Trans_Ct
+24308     +RANGE_LOG_Total_Trans_Amt
+24309     +RANGE_SQRT_Avg_Utilization_Ratio
+24310     +RANGE_SQRT_Total_Amt_Chng_Q4_Q1
+24311     +RANGE_SQRT_Total_Ct_Chng_Q4_Q1
+24312     +RANGE_Total_Revolving_Bal
+24313     +  );
+24314     +  %if %symexist(EM_USER_OUTMDLFILE)=0 %then %do;
+24315     +    score file="D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\OUTMDLFILE.bin" out=work._outtemp;
+24316     +  %end;
+24317     +  %else %do;
+24318     +    score file="&EM_USER_OUTMDLFILE" out=work._outtemp;
+24319     +  %end;
+24320     +    PERFORMANCE  DETAILS nthreads=1;
+24321     +  run;
+24322     +
+24323     +options validvarname=&hpvvn;
+24324     +  data work._score_temp;
+24325     +     merge &hpfst_score_input work._outtemp;
+24326     +  run;
+24327     +
+24328     +  proc delete data=work._outtemp;
+24329     +  run;
+24330     +
+24331     +  data &hpfst_score_output;
+24332     +    set work._score_temp;
+24333     +%mend;
+24334     +
+24335     +%em_hpfst_score;
+MPRINT(EM_HPFST_SCORE):   options validvarname=V7;
+MPRINT(EM_HPFST_SCORE):   proc hp4score data=_ScoreTrain(keep= G_Contacts_Count_12_mon G_Customer_Age G_Months_Inactive_12_mon G_Months_on_book G_Total_Relationship_Count G_Total_Trans_Ct RANGE_LOG_Total_Trans_Amt RANGE_SQRT_Avg_Utilization_Ratio 
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1 RANGE_SQRT_Total_Ct_Chng_Q4_Q1 RANGE_Total_Revolving_Bal );
+MPRINT(EM_HPFST_SCORE):   score file="D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\OUTMDLFILE.bin" out=work._outtemp;
+MPRINT(EM_HPFST_SCORE):   PERFORMANCE DETAILS nthreads=1;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: The HP4SCORE procedure is executing in single-machine mode.
+NOTE: There were 7088 observations read from the data set WORK._SCORETRAIN.
+NOTE: The data set WORK._OUTTEMP has 7088 observations and 4 variables.
+NOTE: The PROCEDURE HP4SCORE printed page 9.
+NOTE: PROCEDURE HP4SCORE used (Total process time):
+      real time           0.21 seconds
+      cpu time            0.18 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   options validvarname=V7;
+MPRINT(EM_HPFST_SCORE):   data work._score_temp;
+MPRINT(EM_HPFST_SCORE):   merge _ScoreTrain work._outtemp;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: There were 7088 observations read from the data set WORK._SCORETRAIN.
+NOTE: There were 7088 observations read from the data set WORK._OUTTEMP.
+NOTE: The data set WORK._SCORE_TEMP has 7088 observations and 40 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   proc delete data=work._outtemp;
+MPRINT(EM_HPFST_SCORE):   run;
+NOTE: Deleting WORK._OUTTEMP (memtype=DATA).
+NOTE: PROCEDURE DELETE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   data _ScoreTrain;
+MPRINT(EM_HPFST_SCORE):   set work._score_temp;
+MPRINT(EM_DIAGRAM):  ;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+24336      run;
+
+NOTE: There were 7088 observations read from the data set WORK._SCORE_TEMP.
+NOTE: The data set WORK._SCORETRAIN has 7088 observations and 40 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+24337      filename _emscr;
+MPRINT(EM_DIAGRAM):   filename _emscr;
+NOTE: Fileref _EMSCR has been deassigned.
+24338      filename _emscr "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas" MOD;
+MPRINT(EM_DIAGRAM):    filename _emscr "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas" MOD;
+24339      %makeClassificationVars(target=Attrition_Flag, data=_ScoreTrain, decmeta=EMWS1.Ids_Attrition_Flag_DM, publish=N, fref=_emscr);
+MPRINT(MAKECLASSIFICATIONVARS):   data _null_;
+MPRINT(MAKECLASSIFICATIONVARS):   set EMWS1.Ids_Attrition_Flag_DM end=eof;
+MPRINT(MAKECLASSIFICATIONVARS):   where _TYPE_='PREDICTED';
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('pred_vars'!!strip(put(_N_,BEST.)), strip(Variable));
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('pred_levels'!!strip(put(_N_,BEST.)), strip(tranwrd(LEVEL,"'","''")));
+MPRINT(MAKECLASSIFICATIONVARS):   if eof then call symput('numLevels', strip(put(_N_,BEST.)));
+MPRINT(MAKECLASSIFICATIONVARS):   run;
+
+NOTE: There were 2 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_='PREDICTED';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(MAKECLASSIFICATIONVARS):   data _null_;
+MPRINT(MAKECLASSIFICATIONVARS):   set EMWS1.Ids_Attrition_Flag_DM;
+MPRINT(MAKECLASSIFICATIONVARS):   where _TYPE_ in('INTO', 'FROM');
+MPRINT(MAKECLASSIFICATIONVARS):   if _TYPE_ = 'INTO' then do;
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('into_var', strip(Variable));
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('into_label', strip(tranwrd(LABEL,"'","''")));
+MPRINT(MAKECLASSIFICATIONVARS):   end;
+MPRINT(MAKECLASSIFICATIONVARS):   else do;
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('from_var', strip(Variable));
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('from_label', strip(tranwrd(LABEL,"'","''")));
+MPRINT(MAKECLASSIFICATIONVARS):   end;
+MPRINT(MAKECLASSIFICATIONVARS):   run;
+
+NOTE: There were 2 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_ in ('FROM', 'INTO');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(MAKECLASSIFICATIONVARS):   data _null_;
+MPRINT(MAKECLASSIFICATIONVARS):   set sashelp.vformat;
+MPRINT(MAKECLASSIFICATIONVARS):   where upcase(fmtname)="$CHAR17";
+MPRINT(MAKECLASSIFICATIONVARS):   if libname ne '' and memname ne '' then call symput('_fmtcat', strip(libname)!!'.'!!memname);
+MPRINT(MAKECLASSIFICATIONVARS):   run;
+
+NOTE: There were 0 observations read from the data set SASHELP.VFORMAT.
+      WHERE UPCASE(fmtname)='$CHAR17';
+NOTE: DATA statement used (Total process time):
+      real time           0.15 seconds
+      cpu time            0.15 seconds
+      
+
+MPRINT(MAKECLASSIFICATIONVARS):   data _null_;
+MPRINT(MAKECLASSIFICATIONVARS):   file _emscr MOD;
+MPRINT(MAKECLASSIFICATIONVARS):   put "*------------------------------------------------------------*;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "*Computing Classification Vars: Attrition_Flag;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "*------------------------------------------------------------*;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "length _format200 $200;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "drop _format200;";
+MPRINT(MAKECLASSIFICATIONVARS):  ;
+MPRINT(MAKECLASSIFICATIONVARS):   put "length F_Attrition_Flag $17;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "label  F_Attrition_Flag = 'From: Attrition_Flag';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "_format200= PUT( Attrition_Flag, $CHAR17. );";
+MPRINT(MAKECLASSIFICATIONVARS):   put
+MPRINT(MAKECLASSIFICATIONVARS):   "F_Attrition_Flag=dmnorm(_format200,32); ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "_format200= ' ' ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "length _p_ 8;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "_p_= 0 ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "drop _p_ ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "if P_Attrition_Flag1 - _p_ > 1e-8 then do ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "   _p_= P_Attrition_Flag1 ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "   _format200='1';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "end;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "if P_Attrition_Flag0 - _p_ > 1e-8 then do ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "   _p_= P_Attrition_Flag0 ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "   _format200='0';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "end;";
+MPRINT(MAKECLASSIFICATIONVARS):   put
+MPRINT(MAKECLASSIFICATIONVARS):   "I_Attrition_Flag=dmnorm(_format200,32); ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "length U_Attrition_Flag $17;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "label U_Attrition_Flag = 'Unnormalized Into: Attrition_Flag';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "format U_Attrition_Flag $CHAR17.;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "if I_Attrition_Flag='1' then";
+MPRINT(MAKECLASSIFICATIONVARS):   put "U_Attrition_Flag='1';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "if I_Attrition_Flag='0' then";
+MPRINT(MAKECLASSIFICATIONVARS):   put "U_Attrition_Flag='0';";
+MPRINT(MAKECLASSIFICATIONVARS):   run;
+
+NOTE: The file _EMSCR is:
+      Filename=D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas,
+      RECFM=V,LRECL=32767,File Size (bytes)=1279,
+      Last Modified=09Apr2022:15:37:39,
+      Create Time=09Apr2022:15:37:39
+
+NOTE: 29 records were written to the file _EMSCR.
+      The minimum record length was 4.
+      The maximum record length was 63.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+24340      filename _emscr;
+MPRINT(EM_DIAGRAM):   filename _emscr;
+NOTE: Fileref _EMSCR has been deassigned.
+24341      filename _emscr "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\POSTEPSCORECODE.sas" MOD;
+MPRINT(EM_DIAGRAM):    filename _emscr "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\POSTEPSCORECODE.sas" MOD;
+24342      %makeClassificationVars(target=Attrition_Flag, data=_ScoreTrain, decmeta=EMWS1.Ids_Attrition_Flag_DM, publish=Y, fref=_emscr);
+MPRINT(MAKECLASSIFICATIONVARS):   data _null_;
+MPRINT(MAKECLASSIFICATIONVARS):   set EMWS1.Ids_Attrition_Flag_DM end=eof;
+MPRINT(MAKECLASSIFICATIONVARS):   where _TYPE_='PREDICTED';
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('pred_vars'!!strip(put(_N_,BEST.)), strip(Variable));
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('pred_levels'!!strip(put(_N_,BEST.)), strip(tranwrd(LEVEL,"'","''")));
+MPRINT(MAKECLASSIFICATIONVARS):   if eof then call symput('numLevels', strip(put(_N_,BEST.)));
+MPRINT(MAKECLASSIFICATIONVARS):   run;
+
+NOTE: There were 2 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_='PREDICTED';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(MAKECLASSIFICATIONVARS):   data _null_;
+MPRINT(MAKECLASSIFICATIONVARS):   set EMWS1.Ids_Attrition_Flag_DM;
+MPRINT(MAKECLASSIFICATIONVARS):   where _TYPE_ in('INTO', 'FROM');
+MPRINT(MAKECLASSIFICATIONVARS):   if _TYPE_ = 'INTO' then do;
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('into_var', strip(Variable));
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('into_label', strip(tranwrd(LABEL,"'","''")));
+MPRINT(MAKECLASSIFICATIONVARS):   end;
+MPRINT(MAKECLASSIFICATIONVARS):   else do;
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('from_var', strip(Variable));
+MPRINT(MAKECLASSIFICATIONVARS):   call symput('from_label', strip(tranwrd(LABEL,"'","''")));
+MPRINT(MAKECLASSIFICATIONVARS):   end;
+MPRINT(MAKECLASSIFICATIONVARS):   run;
+
+NOTE: There were 2 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_ in ('FROM', 'INTO');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(MAKECLASSIFICATIONVARS):   data _null_;
+MPRINT(MAKECLASSIFICATIONVARS):   set sashelp.vformat;
+MPRINT(MAKECLASSIFICATIONVARS):   where upcase(fmtname)="$CHAR17";
+MPRINT(MAKECLASSIFICATIONVARS):   if libname ne '' and memname ne '' then call symput('_fmtcat', strip(libname)!!'.'!!memname);
+MPRINT(MAKECLASSIFICATIONVARS):   run;
+
+NOTE: There were 0 observations read from the data set SASHELP.VFORMAT.
+      WHERE UPCASE(fmtname)='$CHAR17';
+NOTE: DATA statement used (Total process time):
+      real time           0.14 seconds
+      cpu time            0.14 seconds
+      
+
+MPRINT(MAKECLASSIFICATIONVARS):   data _null_;
+MPRINT(MAKECLASSIFICATIONVARS):   file _emscr MOD;
+MPRINT(MAKECLASSIFICATIONVARS):   put "*------------------------------------------------------------*;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "*Computing Classification Vars: Attrition_Flag;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "*------------------------------------------------------------*;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "length _format200 $200;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "drop _format200;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "_format200= ' ' ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "length _p_ 8;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "_p_= 0 ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "drop _p_ ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "if P_Attrition_Flag1 - _p_ > 1e-8 then do ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "   _p_= P_Attrition_Flag1 ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "   _format200='1';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "end;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "if P_Attrition_Flag0 - _p_ > 1e-8 then do ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "   _p_= P_Attrition_Flag0 ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "   _format200='0';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "end;";
+MPRINT(MAKECLASSIFICATIONVARS):   put
+MPRINT(MAKECLASSIFICATIONVARS):   "I_Attrition_Flag=dmnorm(_format200,32); ;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "length U_Attrition_Flag $17;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "label U_Attrition_Flag = 'Unnormalized Into: Attrition_Flag';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "format U_Attrition_Flag $CHAR17.;";
+MPRINT(MAKECLASSIFICATIONVARS):   put "if I_Attrition_Flag='1' then";
+MPRINT(MAKECLASSIFICATIONVARS):   put "U_Attrition_Flag='1';";
+MPRINT(MAKECLASSIFICATIONVARS):   put "if I_Attrition_Flag='0' then";
+MPRINT(MAKECLASSIFICATIONVARS):   put "U_Attrition_Flag='0';";
+MPRINT(MAKECLASSIFICATIONVARS):   run;
+
+NOTE: The file _EMSCR is:
+      Filename=D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\POSTEPSCORECODE.sas,
+      RECFM=V,LRECL=32767,File Size (bytes)=0,
+      Last Modified=09Apr2022:15:37:40,
+      Create Time=09Apr2022:15:37:40
+
+NOTE: 25 records were written to the file _EMSCR.
+      The minimum record length was 4.
+      The maximum record length was 63.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+24343      filename _emscr;
+MPRINT(EM_DIAGRAM):   filename _emscr;
+NOTE: Fileref _EMSCR has been deassigned.
+24344      filename _f1 "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\POSTEPSCORECODE.sas";
+MPRINT(EM_DIAGRAM):    filename _f1 "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\POSTEPSCORECODE.sas";
+24345      filename _f2 "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMPUBLISHSCORE.sas";
+MPRINT(EM_DIAGRAM):   filename _f2 "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMPUBLISHSCORE.sas";
+24346      %em_copyfile(infref=_f1, outfref=_f2, append=Y);
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _f2 MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_f1",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+
+NOTE: The file _F2 is:
+      Filename=D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMPUBLISHSCORE.sas,
+      RECFM=V,LRECL=20000,File Size (bytes)=841,
+      Last Modified=09Apr2022:15:37:39,
+      Create Time=09Apr2022:15:37:39
+
+NOTE: 25 records were written to the file _F2.
+      The minimum record length was 4.
+      The maximum record length was 63.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+24347      filename _f1;
+MPRINT(EM_DIAGRAM):   filename _f1;
+NOTE: Fileref _F1 has been deassigned.
+24348      filename _f2;
+MPRINT(EM_DIAGRAM):   filename _f2;
+NOTE: Fileref _F2 has been deassigned.
+24349      filename _emscr "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas" MOD;
+MPRINT(EM_DIAGRAM):    filename _emscr "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas" MOD;
+24350      %makeResidualVars(target=Attrition_Flag, decmeta=EMWS1.Ids_Attrition_Flag_DM, fref=_emscr);
+MPRINT(MAKERESIDUALVARS):   data _null_;
+MPRINT(MAKERESIDUALVARS):   set EMWS1.Ids_Attrition_Flag_DM end=eof;
+MPRINT(MAKERESIDUALVARS):   where _TYPE_ in('TARGET', 'FROM');
+MPRINT(MAKERESIDUALVARS):   if _TYPE_='TARGET' then call symput('target_level', strip(LEVEL));
+MPRINT(MAKERESIDUALVARS):   else call symput('from_var', strip(VARIABLE));
+MPRINT(MAKERESIDUALVARS):   run;
+
+NOTE: There were 2 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_ in ('FROM', 'TARGET');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(MAKERESIDUALVARS):   data _null_;
+MPRINT(MAKERESIDUALVARS):   set EMWS1.Ids_Attrition_Flag_DM;
+MPRINT(MAKERESIDUALVARS):   where _TYPE_ ='PREDICTED';
+MPRINT(MAKERESIDUALVARS):   call symput('pred_vars'!!strip(put(_N_,BEST.)), strip(Variable));
+MPRINT(MAKERESIDUALVARS):   run;
+
+NOTE: There were 2 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_='PREDICTED';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(MAKERESIDUALVARS):   data _null_;
+MPRINT(MAKERESIDUALVARS):   set EMWS1.Ids_Attrition_Flag_DM end=eof;
+MPRINT(MAKERESIDUALVARS):   where _TYPE_ ='RESIDUAL';
+MPRINT(MAKERESIDUALVARS):   call symput('res_vars'!!strip(put(_N_,BEST.)), strip(Variable));
+MPRINT(MAKERESIDUALVARS):   call symput('res_labels'!!strip(put(_N_,BEST.)), strip(tranwrd(LABEL,"'","''")));
+MPRINT(MAKERESIDUALVARS):   call symput('res_levels'!!strip(put(_N_,BEST.)), strip(tranwrd(LEVEL,"'","''")));
+MPRINT(MAKERESIDUALVARS):   if eof then call symput('numLevels', strip(put(_N_,BEST.)));
+MPRINT(MAKERESIDUALVARS):   run;
+
+NOTE: There were 2 observations read from the data set EMWS1.IDS_ATTRITION_FLAG_DM.
+      WHERE _TYPE_='RESIDUAL';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(MAKERESIDUALVARS):   data _null_;
+MPRINT(MAKERESIDUALVARS):   file _emscr;
+MPRINT(MAKERESIDUALVARS):   put "*------------------------------------------------------------*;";
+MPRINT(MAKERESIDUALVARS):   put "*Computing Residual Vars: Attrition_Flag;";
+MPRINT(MAKERESIDUALVARS):   put "*------------------------------------------------------------*;";
+MPRINT(MAKERESIDUALVARS):   put "Length R_Attrition_Flag1 8;";
+MPRINT(MAKERESIDUALVARS):   put "Label R_Attrition_Flag1='Residual: Attrition_Flag=1';";
+MPRINT(MAKERESIDUALVARS):   put "Length R_Attrition_Flag0 8;";
+MPRINT(MAKERESIDUALVARS):   put "Label R_Attrition_Flag0='Residual: Attrition_Flag=0';";
+MPRINT(MAKERESIDUALVARS):   put "if ";
+MPRINT(MAKERESIDUALVARS):   put " F_Attrition_Flag ne '1'";
+MPRINT(MAKERESIDUALVARS):   put "and F_Attrition_Flag ne '0'";
+MPRINT(MAKERESIDUALVARS):   put " then do;";
+MPRINT(MAKERESIDUALVARS):   put "R_Attrition_Flag1=.;";
+MPRINT(MAKERESIDUALVARS):   put "R_Attrition_Flag0=.;";
+MPRINT(MAKERESIDUALVARS):   put "end;";
+MPRINT(MAKERESIDUALVARS):   put "else do;";
+MPRINT(MAKERESIDUALVARS):   put "R_Attrition_Flag1= - P_Attrition_Flag1;";
+MPRINT(MAKERESIDUALVARS):   put "R_Attrition_Flag0= - P_Attrition_Flag0;";
+MPRINT(MAKERESIDUALVARS):   put "select(F_Attrition_Flag);";
+MPRINT(MAKERESIDUALVARS):   put "when('1')R_Attrition_Flag1= R_Attrition_Flag1+1;";
+MPRINT(MAKERESIDUALVARS):   put "when('0')R_Attrition_Flag0= R_Attrition_Flag0+1;";
+MPRINT(MAKERESIDUALVARS):   put 'otherwise;';
+MPRINT(MAKERESIDUALVARS):   put 'end;';
+MPRINT(MAKERESIDUALVARS):   put 'end;';
+MPRINT(MAKERESIDUALVARS):   run;
+
+NOTE: The file _EMSCR is:
+      Filename=D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas,
+      RECFM=V,LRECL=32767,File Size (bytes)=2204,
+      Last Modified=09Apr2022:15:37:40,
+      Create Time=09Apr2022:15:37:39
+
+NOTE: 23 records were written to the file _EMSCR.
+      The minimum record length was 3.
+      The maximum record length was 63.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+24351      filename _emscr;
+MPRINT(EM_DIAGRAM):   filename _emscr;
+NOTE: Fileref _EMSCR has been deassigned.
+24352      filename emflow "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * HPDMForest2: Scoring DATA data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24353      *------------------------------------------------------------*;
+24354      * HPDMForest2: Scoring DATA data;
+24355      *------------------------------------------------------------*;
+24356      %let em_score_output = EMWS1.HPDMForest2_TRAIN;
+24357      data EMWS1.HPDMForest2_TRAIN;
+MPRINT(EM_DIAGRAM):   data EMWS1.HPDMForest2_TRAIN;
+24358      set EMWS1.Part2_TRAIN
+24359      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part2_TRAIN ;
+24360      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas.
+24361     +%macro em_hpfst_score;
+24362     +
+24363     +  %if %sysfunc(exist(work._score_temp)) %then %do;
+24364     +     proc delete data=work._score_temp;
+24365     +     run;
+24366     +  %end;
+24367     +
+24368     +  %if %symexist(hpfst_score_input)=0 %then %let hpfst_score_input=&em_score_output;
+24369     +  %if %symexist(hpfst_score_output)=0 %then %let hpfst_score_output=&em_score_output;
+24370     +
+24371     +%let hpvvn= %sysfunc(getoption(VALIDVARNAME));
+24372     +options validvarname=V7;
+24373     +  proc hp4score data=&hpfst_score_input(keep=
+24374     +G_Contacts_Count_12_mon
+24375     +G_Customer_Age
+24376     +G_Months_Inactive_12_mon
+24377     +G_Months_on_book
+24378     +G_Total_Relationship_Count
+24379     +G_Total_Trans_Ct
+24380     +RANGE_LOG_Total_Trans_Amt
+24381     +RANGE_SQRT_Avg_Utilization_Ratio
+24382     +RANGE_SQRT_Total_Amt_Chng_Q4_Q1
+24383     +RANGE_SQRT_Total_Ct_Chng_Q4_Q1
+24384     +RANGE_Total_Revolving_Bal
+24385     +  );
+24386     +  %if %symexist(EM_USER_OUTMDLFILE)=0 %then %do;
+24387     +    score file="D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\OUTMDLFILE.bin" out=work._outtemp;
+24388     +  %end;
+24389     +  %else %do;
+24390     +    score file="&EM_USER_OUTMDLFILE" out=work._outtemp;
+24391     +  %end;
+24392     +    PERFORMANCE  DETAILS nthreads=1;
+24393     +  run;
+24394     +
+24395     +options validvarname=&hpvvn;
+24396     +  data work._score_temp;
+24397     +     merge &hpfst_score_input work._outtemp;
+24398     +  run;
+24399     +
+24400     +  proc delete data=work._outtemp;
+24401     +  run;
+24402     +
+24403     +  data &hpfst_score_output;
+24404     +    set work._score_temp;
+24405     +%mend;
+24406     +
+24407     +%em_hpfst_score;
+
+NOTE: There were 7088 observations read from the data set EMWS1.PART2_TRAIN.
+NOTE: The data set EMWS1.HPDMFOREST2_TRAIN has 7088 observations and 37 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   proc delete data=work._score_temp;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: Deleting WORK._SCORE_TEMP (memtype=DATA).
+NOTE: PROCEDURE DELETE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   options validvarname=V7;
+MPRINT(EM_HPFST_SCORE):   proc hp4score data=EMWS1.HPDMForest2_TRAIN(keep= G_Contacts_Count_12_mon G_Customer_Age G_Months_Inactive_12_mon G_Months_on_book G_Total_Relationship_Count G_Total_Trans_Ct RANGE_LOG_Total_Trans_Amt 
+RANGE_SQRT_Avg_Utilization_Ratio RANGE_SQRT_Total_Amt_Chng_Q4_Q1 RANGE_SQRT_Total_Ct_Chng_Q4_Q1 RANGE_Total_Revolving_Bal );
+MPRINT(EM_HPFST_SCORE):   score file="D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\OUTMDLFILE.bin" out=work._outtemp;
+MPRINT(EM_HPFST_SCORE):   PERFORMANCE DETAILS nthreads=1;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: The HP4SCORE procedure is executing in single-machine mode.
+NOTE: There were 7088 observations read from the data set EMWS1.HPDMFOREST2_TRAIN.
+NOTE: The data set WORK._OUTTEMP has 7088 observations and 4 variables.
+NOTE: The PROCEDURE HP4SCORE printed page 10.
+NOTE: PROCEDURE HP4SCORE used (Total process time):
+      real time           0.21 seconds
+      cpu time            0.21 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   options validvarname=V7;
+MPRINT(EM_HPFST_SCORE):   data work._score_temp;
+MPRINT(EM_HPFST_SCORE):   merge EMWS1.HPDMForest2_TRAIN work._outtemp;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: There were 7088 observations read from the data set EMWS1.HPDMFOREST2_TRAIN.
+NOTE: There were 7088 observations read from the data set WORK._OUTTEMP.
+NOTE: The data set WORK._SCORE_TEMP has 7088 observations and 40 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   proc delete data=work._outtemp;
+MPRINT(EM_HPFST_SCORE):   run;
+NOTE: Deleting WORK._OUTTEMP (memtype=DATA).
+NOTE: PROCEDURE DELETE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   data EMWS1.HPDMForest2_TRAIN;
+MPRINT(EM_HPFST_SCORE):   set work._score_temp;
+MPRINT(EM_DIAGRAM):  ;
+24408     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24409     +*Computing Classification Vars: Attrition_Flag;
+MPRINT(EM_DIAGRAM):   *Computing Classification Vars: Attrition_Flag;
+24410     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24411     +length _format200 $200;
+MPRINT(EM_DIAGRAM):   length _format200 $200;
+24412     +drop _format200;
+MPRINT(EM_DIAGRAM):   drop _format200;
+24413     +length F_Attrition_Flag $17;
+MPRINT(EM_DIAGRAM):   length F_Attrition_Flag $17;
+24414     +label  F_Attrition_Flag = 'From: Attrition_Flag';
+MPRINT(EM_DIAGRAM):   label F_Attrition_Flag = 'From: Attrition_Flag';
+24415     +_format200= PUT( Attrition_Flag, $CHAR17. );
+MPRINT(EM_DIAGRAM):   _format200= PUT( Attrition_Flag, $CHAR17. );
+24416     +F_Attrition_Flag=dmnorm(_format200,32); ;
+MPRINT(EM_DIAGRAM):   F_Attrition_Flag=dmnorm(_format200,32);
+MPRINT(EM_DIAGRAM):   ;
+24417     +_format200= ' ' ;
+MPRINT(EM_DIAGRAM):   _format200= ' ' ;
+24418     +length _p_ 8;
+MPRINT(EM_DIAGRAM):   length _p_ 8;
+24419     +_p_= 0 ;
+MPRINT(EM_DIAGRAM):   _p_= 0 ;
+24420     +drop _p_ ;
+MPRINT(EM_DIAGRAM):   drop _p_ ;
+24421     +if P_Attrition_Flag1 - _p_ > 1e-8 then do ;
+MPRINT(EM_DIAGRAM):   if P_Attrition_Flag1 - _p_ > 1e-8 then do ;
+24422     +   _p_= P_Attrition_Flag1 ;
+MPRINT(EM_DIAGRAM):   _p_= P_Attrition_Flag1 ;
+24423     +   _format200='1';
+MPRINT(EM_DIAGRAM):   _format200='1';
+24424     +end;
+MPRINT(EM_DIAGRAM):   end;
+24425     +if P_Attrition_Flag0 - _p_ > 1e-8 then do ;
+MPRINT(EM_DIAGRAM):   if P_Attrition_Flag0 - _p_ > 1e-8 then do ;
+24426     +   _p_= P_Attrition_Flag0 ;
+MPRINT(EM_DIAGRAM):   _p_= P_Attrition_Flag0 ;
+24427     +   _format200='0';
+MPRINT(EM_DIAGRAM):   _format200='0';
+24428     +end;
+MPRINT(EM_DIAGRAM):   end;
+24429     +I_Attrition_Flag=dmnorm(_format200,32); ;
+MPRINT(EM_DIAGRAM):   I_Attrition_Flag=dmnorm(_format200,32);
+MPRINT(EM_DIAGRAM):   ;
+24430     +length U_Attrition_Flag $17;
+MPRINT(EM_DIAGRAM):   length U_Attrition_Flag $17;
+24431     +label U_Attrition_Flag = 'Unnormalized Into: Attrition_Flag';
+MPRINT(EM_DIAGRAM):   label U_Attrition_Flag = 'Unnormalized Into: Attrition_Flag';
+24432     +format U_Attrition_Flag $CHAR17.;
+MPRINT(EM_DIAGRAM):   format U_Attrition_Flag $CHAR17.;
+24433     +if I_Attrition_Flag='1' then
+24434     +U_Attrition_Flag='1';
+MPRINT(EM_DIAGRAM):   if I_Attrition_Flag='1' then U_Attrition_Flag='1';
+24435     +if I_Attrition_Flag='0' then
+24436     +U_Attrition_Flag='0';
+MPRINT(EM_DIAGRAM):   if I_Attrition_Flag='0' then U_Attrition_Flag='0';
+24437     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24438     +*Computing Residual Vars: Attrition_Flag;
+MPRINT(EM_DIAGRAM):   *Computing Residual Vars: Attrition_Flag;
+24439     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24440     +Length R_Attrition_Flag1 8;
+MPRINT(EM_DIAGRAM):   Length R_Attrition_Flag1 8;
+24441     +Label R_Attrition_Flag1='Residual: Attrition_Flag=1';
+MPRINT(EM_DIAGRAM):   Label R_Attrition_Flag1= 'Residual: Attrition_Flag=1';
+24442     +Length R_Attrition_Flag0 8;
+MPRINT(EM_DIAGRAM):   Length R_Attrition_Flag0 8;
+24443     +Label R_Attrition_Flag0='Residual: Attrition_Flag=0';
+MPRINT(EM_DIAGRAM):   Label R_Attrition_Flag0= 'Residual: Attrition_Flag=0';
+24444     +if
+24445     + F_Attrition_Flag ne '1'
+24446     +and F_Attrition_Flag ne '0'
+24447     + then do;
+MPRINT(EM_DIAGRAM):   if F_Attrition_Flag ne '1' and F_Attrition_Flag ne '0' then do;
+24448     +R_Attrition_Flag1=.;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag1=.;
+24449     +R_Attrition_Flag0=.;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag0=.;
+24450     +end;
+MPRINT(EM_DIAGRAM):   end;
+24451     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+24452     +R_Attrition_Flag1= - P_Attrition_Flag1;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag1= - P_Attrition_Flag1;
+24453     +R_Attrition_Flag0= - P_Attrition_Flag0;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag0= - P_Attrition_Flag0;
+24454     +select(F_Attrition_Flag);
+MPRINT(EM_DIAGRAM):   select(F_Attrition_Flag);
+24455     +when('1')R_Attrition_Flag1= R_Attrition_Flag1+1;
+MPRINT(EM_DIAGRAM):   when('1')R_Attrition_Flag1= R_Attrition_Flag1+1;
+24456     +when('0')R_Attrition_Flag0= R_Attrition_Flag0+1;
+MPRINT(EM_DIAGRAM):   when('0')R_Attrition_Flag0= R_Attrition_Flag0+1;
+24457     +otherwise;
+MPRINT(EM_DIAGRAM):   otherwise;
+24458     +end;
+MPRINT(EM_DIAGRAM):   end;
+24459     +end;
+MPRINT(EM_DIAGRAM):   end;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+24460      run;
+
+NOTE: There were 7088 observations read from the data set WORK._SCORE_TEMP.
+NOTE: The data set EMWS1.HPDMFOREST2_TRAIN has 7088 observations and 44 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.03 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+24461      quit;
+
+24462      filename emflow "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * HPDMForest2: Scoring VALIDATE data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24463      *------------------------------------------------------------*;
+24464      * HPDMForest2: Scoring VALIDATE data;
+24465      *------------------------------------------------------------*;
+24466      %let em_score_output = EMWS1.HPDMForest2_VALIDATE;
+24467      data EMWS1.HPDMForest2_VALIDATE;
+MPRINT(EM_DIAGRAM):   data EMWS1.HPDMForest2_VALIDATE;
+24468      set EMWS1.Part2_VALIDATE
+24469      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part2_VALIDATE ;
+24470      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas.
+24471     +%macro em_hpfst_score;
+24472     +
+24473     +  %if %sysfunc(exist(work._score_temp)) %then %do;
+24474     +     proc delete data=work._score_temp;
+24475     +     run;
+24476     +  %end;
+24477     +
+24478     +  %if %symexist(hpfst_score_input)=0 %then %let hpfst_score_input=&em_score_output;
+24479     +  %if %symexist(hpfst_score_output)=0 %then %let hpfst_score_output=&em_score_output;
+24480     +
+24481     +%let hpvvn= %sysfunc(getoption(VALIDVARNAME));
+24482     +options validvarname=V7;
+24483     +  proc hp4score data=&hpfst_score_input(keep=
+24484     +G_Contacts_Count_12_mon
+24485     +G_Customer_Age
+24486     +G_Months_Inactive_12_mon
+24487     +G_Months_on_book
+24488     +G_Total_Relationship_Count
+24489     +G_Total_Trans_Ct
+24490     +RANGE_LOG_Total_Trans_Amt
+24491     +RANGE_SQRT_Avg_Utilization_Ratio
+24492     +RANGE_SQRT_Total_Amt_Chng_Q4_Q1
+24493     +RANGE_SQRT_Total_Ct_Chng_Q4_Q1
+24494     +RANGE_Total_Revolving_Bal
+24495     +  );
+24496     +  %if %symexist(EM_USER_OUTMDLFILE)=0 %then %do;
+24497     +    score file="D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\OUTMDLFILE.bin" out=work._outtemp;
+24498     +  %end;
+24499     +  %else %do;
+24500     +    score file="&EM_USER_OUTMDLFILE" out=work._outtemp;
+24501     +  %end;
+24502     +    PERFORMANCE  DETAILS nthreads=1;
+24503     +  run;
+24504     +
+24505     +options validvarname=&hpvvn;
+24506     +  data work._score_temp;
+24507     +     merge &hpfst_score_input work._outtemp;
+24508     +  run;
+24509     +
+24510     +  proc delete data=work._outtemp;
+24511     +  run;
+24512     +
+24513     +  data &hpfst_score_output;
+24514     +    set work._score_temp;
+24515     +%mend;
+24516     +
+24517     +%em_hpfst_score;
+
+NOTE: There were 2025 observations read from the data set EMWS1.PART2_VALIDATE.
+NOTE: The data set EMWS1.HPDMFOREST2_VALIDATE has 2025 observations and 37 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   proc delete data=work._score_temp;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: Deleting WORK._SCORE_TEMP (memtype=DATA).
+NOTE: PROCEDURE DELETE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   options validvarname=V7;
+MPRINT(EM_HPFST_SCORE):   proc hp4score data=EMWS1.HPDMForest2_VALIDATE(keep= G_Contacts_Count_12_mon G_Customer_Age G_Months_Inactive_12_mon G_Months_on_book G_Total_Relationship_Count G_Total_Trans_Ct RANGE_LOG_Total_Trans_Amt 
+RANGE_SQRT_Avg_Utilization_Ratio RANGE_SQRT_Total_Amt_Chng_Q4_Q1 RANGE_SQRT_Total_Ct_Chng_Q4_Q1 RANGE_Total_Revolving_Bal );
+MPRINT(EM_HPFST_SCORE):   score file="D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\OUTMDLFILE.bin" out=work._outtemp;
+MPRINT(EM_HPFST_SCORE):   PERFORMANCE DETAILS nthreads=1;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: The HP4SCORE procedure is executing in single-machine mode.
+NOTE: There were 2025 observations read from the data set EMWS1.HPDMFOREST2_VALIDATE.
+NOTE: The data set WORK._OUTTEMP has 2025 observations and 4 variables.
+NOTE: The PROCEDURE HP4SCORE printed page 11.
+NOTE: PROCEDURE HP4SCORE used (Total process time):
+      real time           0.13 seconds
+      cpu time            0.14 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   options validvarname=V7;
+MPRINT(EM_HPFST_SCORE):   data work._score_temp;
+MPRINT(EM_HPFST_SCORE):   merge EMWS1.HPDMForest2_VALIDATE work._outtemp;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: There were 2025 observations read from the data set EMWS1.HPDMFOREST2_VALIDATE.
+NOTE: There were 2025 observations read from the data set WORK._OUTTEMP.
+NOTE: The data set WORK._SCORE_TEMP has 2025 observations and 40 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   proc delete data=work._outtemp;
+MPRINT(EM_HPFST_SCORE):   run;
+NOTE: Deleting WORK._OUTTEMP (memtype=DATA).
+NOTE: PROCEDURE DELETE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   data EMWS1.HPDMForest2_VALIDATE;
+MPRINT(EM_HPFST_SCORE):   set work._score_temp;
+MPRINT(EM_DIAGRAM):  ;
+24518     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24519     +*Computing Classification Vars: Attrition_Flag;
+MPRINT(EM_DIAGRAM):   *Computing Classification Vars: Attrition_Flag;
+24520     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24521     +length _format200 $200;
+MPRINT(EM_DIAGRAM):   length _format200 $200;
+24522     +drop _format200;
+MPRINT(EM_DIAGRAM):   drop _format200;
+24523     +length F_Attrition_Flag $17;
+MPRINT(EM_DIAGRAM):   length F_Attrition_Flag $17;
+24524     +label  F_Attrition_Flag = 'From: Attrition_Flag';
+MPRINT(EM_DIAGRAM):   label F_Attrition_Flag = 'From: Attrition_Flag';
+24525     +_format200= PUT( Attrition_Flag, $CHAR17. );
+MPRINT(EM_DIAGRAM):   _format200= PUT( Attrition_Flag, $CHAR17. );
+24526     +F_Attrition_Flag=dmnorm(_format200,32); ;
+MPRINT(EM_DIAGRAM):   F_Attrition_Flag=dmnorm(_format200,32);
+MPRINT(EM_DIAGRAM):   ;
+24527     +_format200= ' ' ;
+MPRINT(EM_DIAGRAM):   _format200= ' ' ;
+24528     +length _p_ 8;
+MPRINT(EM_DIAGRAM):   length _p_ 8;
+24529     +_p_= 0 ;
+MPRINT(EM_DIAGRAM):   _p_= 0 ;
+24530     +drop _p_ ;
+MPRINT(EM_DIAGRAM):   drop _p_ ;
+24531     +if P_Attrition_Flag1 - _p_ > 1e-8 then do ;
+MPRINT(EM_DIAGRAM):   if P_Attrition_Flag1 - _p_ > 1e-8 then do ;
+24532     +   _p_= P_Attrition_Flag1 ;
+MPRINT(EM_DIAGRAM):   _p_= P_Attrition_Flag1 ;
+24533     +   _format200='1';
+MPRINT(EM_DIAGRAM):   _format200='1';
+24534     +end;
+MPRINT(EM_DIAGRAM):   end;
+24535     +if P_Attrition_Flag0 - _p_ > 1e-8 then do ;
+MPRINT(EM_DIAGRAM):   if P_Attrition_Flag0 - _p_ > 1e-8 then do ;
+24536     +   _p_= P_Attrition_Flag0 ;
+MPRINT(EM_DIAGRAM):   _p_= P_Attrition_Flag0 ;
+24537     +   _format200='0';
+MPRINT(EM_DIAGRAM):   _format200='0';
+24538     +end;
+MPRINT(EM_DIAGRAM):   end;
+24539     +I_Attrition_Flag=dmnorm(_format200,32); ;
+MPRINT(EM_DIAGRAM):   I_Attrition_Flag=dmnorm(_format200,32);
+MPRINT(EM_DIAGRAM):   ;
+24540     +length U_Attrition_Flag $17;
+MPRINT(EM_DIAGRAM):   length U_Attrition_Flag $17;
+24541     +label U_Attrition_Flag = 'Unnormalized Into: Attrition_Flag';
+MPRINT(EM_DIAGRAM):   label U_Attrition_Flag = 'Unnormalized Into: Attrition_Flag';
+24542     +format U_Attrition_Flag $CHAR17.;
+MPRINT(EM_DIAGRAM):   format U_Attrition_Flag $CHAR17.;
+24543     +if I_Attrition_Flag='1' then
+24544     +U_Attrition_Flag='1';
+MPRINT(EM_DIAGRAM):   if I_Attrition_Flag='1' then U_Attrition_Flag='1';
+24545     +if I_Attrition_Flag='0' then
+24546     +U_Attrition_Flag='0';
+MPRINT(EM_DIAGRAM):   if I_Attrition_Flag='0' then U_Attrition_Flag='0';
+24547     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24548     +*Computing Residual Vars: Attrition_Flag;
+MPRINT(EM_DIAGRAM):   *Computing Residual Vars: Attrition_Flag;
+24549     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24550     +Length R_Attrition_Flag1 8;
+MPRINT(EM_DIAGRAM):   Length R_Attrition_Flag1 8;
+24551     +Label R_Attrition_Flag1='Residual: Attrition_Flag=1';
+MPRINT(EM_DIAGRAM):   Label R_Attrition_Flag1= 'Residual: Attrition_Flag=1';
+24552     +Length R_Attrition_Flag0 8;
+MPRINT(EM_DIAGRAM):   Length R_Attrition_Flag0 8;
+24553     +Label R_Attrition_Flag0='Residual: Attrition_Flag=0';
+MPRINT(EM_DIAGRAM):   Label R_Attrition_Flag0= 'Residual: Attrition_Flag=0';
+24554     +if
+24555     + F_Attrition_Flag ne '1'
+24556     +and F_Attrition_Flag ne '0'
+24557     + then do;
+MPRINT(EM_DIAGRAM):   if F_Attrition_Flag ne '1' and F_Attrition_Flag ne '0' then do;
+24558     +R_Attrition_Flag1=.;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag1=.;
+24559     +R_Attrition_Flag0=.;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag0=.;
+24560     +end;
+MPRINT(EM_DIAGRAM):   end;
+24561     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+24562     +R_Attrition_Flag1= - P_Attrition_Flag1;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag1= - P_Attrition_Flag1;
+24563     +R_Attrition_Flag0= - P_Attrition_Flag0;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag0= - P_Attrition_Flag0;
+24564     +select(F_Attrition_Flag);
+MPRINT(EM_DIAGRAM):   select(F_Attrition_Flag);
+24565     +when('1')R_Attrition_Flag1= R_Attrition_Flag1+1;
+MPRINT(EM_DIAGRAM):   when('1')R_Attrition_Flag1= R_Attrition_Flag1+1;
+24566     +when('0')R_Attrition_Flag0= R_Attrition_Flag0+1;
+MPRINT(EM_DIAGRAM):   when('0')R_Attrition_Flag0= R_Attrition_Flag0+1;
+24567     +otherwise;
+MPRINT(EM_DIAGRAM):   otherwise;
+24568     +end;
+MPRINT(EM_DIAGRAM):   end;
+24569     +end;
+MPRINT(EM_DIAGRAM):   end;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+24570      run;
+
+NOTE: There were 2025 observations read from the data set WORK._SCORE_TEMP.
+NOTE: The data set EMWS1.HPDMFOREST2_VALIDATE has 2025 observations and 44 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+24571      quit;
+
+24572      filename emflow "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * HPDMForest2: Scoring TEST data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24573      *------------------------------------------------------------*;
+24574      * HPDMForest2: Scoring TEST data;
+24575      *------------------------------------------------------------*;
+24576      %let em_score_output = EMWS1.HPDMForest2_TEST;
+24577      data EMWS1.HPDMForest2_TEST;
+MPRINT(EM_DIAGRAM):   data EMWS1.HPDMForest2_TEST;
+24578      set EMWS1.Part2_TEST
+24579      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part2_TEST ;
+24580      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\EMFLOWSCORE.sas.
+24581     +%macro em_hpfst_score;
+24582     +
+24583     +  %if %sysfunc(exist(work._score_temp)) %then %do;
+24584     +     proc delete data=work._score_temp;
+24585     +     run;
+24586     +  %end;
+24587     +
+24588     +  %if %symexist(hpfst_score_input)=0 %then %let hpfst_score_input=&em_score_output;
+24589     +  %if %symexist(hpfst_score_output)=0 %then %let hpfst_score_output=&em_score_output;
+24590     +
+24591     +%let hpvvn= %sysfunc(getoption(VALIDVARNAME));
+24592     +options validvarname=V7;
+24593     +  proc hp4score data=&hpfst_score_input(keep=
+24594     +G_Contacts_Count_12_mon
+24595     +G_Customer_Age
+24596     +G_Months_Inactive_12_mon
+24597     +G_Months_on_book
+24598     +G_Total_Relationship_Count
+24599     +G_Total_Trans_Ct
+24600     +RANGE_LOG_Total_Trans_Amt
+24601     +RANGE_SQRT_Avg_Utilization_Ratio
+24602     +RANGE_SQRT_Total_Amt_Chng_Q4_Q1
+24603     +RANGE_SQRT_Total_Ct_Chng_Q4_Q1
+24604     +RANGE_Total_Revolving_Bal
+24605     +  );
+24606     +  %if %symexist(EM_USER_OUTMDLFILE)=0 %then %do;
+24607     +    score file="D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\OUTMDLFILE.bin" out=work._outtemp;
+24608     +  %end;
+24609     +  %else %do;
+24610     +    score file="&EM_USER_OUTMDLFILE" out=work._outtemp;
+24611     +  %end;
+24612     +    PERFORMANCE  DETAILS nthreads=1;
+24613     +  run;
+24614     +
+24615     +options validvarname=&hpvvn;
+24616     +  data work._score_temp;
+24617     +     merge &hpfst_score_input work._outtemp;
+24618     +  run;
+24619     +
+24620     +  proc delete data=work._outtemp;
+24621     +  run;
+24622     +
+24623     +  data &hpfst_score_output;
+24624     +    set work._score_temp;
+24625     +%mend;
+24626     +
+24627     +%em_hpfst_score;
+
+NOTE: There were 1014 observations read from the data set EMWS1.PART2_TEST.
+NOTE: The data set EMWS1.HPDMFOREST2_TEST has 1014 observations and 37 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   proc delete data=work._score_temp;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: Deleting WORK._SCORE_TEMP (memtype=DATA).
+NOTE: PROCEDURE DELETE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   options validvarname=V7;
+MPRINT(EM_HPFST_SCORE):   proc hp4score data=EMWS1.HPDMForest2_TEST(keep= G_Contacts_Count_12_mon G_Customer_Age G_Months_Inactive_12_mon G_Months_on_book G_Total_Relationship_Count G_Total_Trans_Ct RANGE_LOG_Total_Trans_Amt 
+RANGE_SQRT_Avg_Utilization_Ratio RANGE_SQRT_Total_Amt_Chng_Q4_Q1 RANGE_SQRT_Total_Ct_Chng_Q4_Q1 RANGE_Total_Revolving_Bal );
+MPRINT(EM_HPFST_SCORE):   score file="D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\OUTMDLFILE.bin" out=work._outtemp;
+MPRINT(EM_HPFST_SCORE):   PERFORMANCE DETAILS nthreads=1;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: The HP4SCORE procedure is executing in single-machine mode.
+NOTE: There were 1014 observations read from the data set EMWS1.HPDMFOREST2_TEST.
+NOTE: The data set WORK._OUTTEMP has 1014 observations and 4 variables.
+NOTE: The PROCEDURE HP4SCORE printed page 12.
+NOTE: PROCEDURE HP4SCORE used (Total process time):
+      real time           0.12 seconds
+      cpu time            0.12 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   options validvarname=V7;
+MPRINT(EM_HPFST_SCORE):   data work._score_temp;
+MPRINT(EM_HPFST_SCORE):   merge EMWS1.HPDMForest2_TEST work._outtemp;
+MPRINT(EM_HPFST_SCORE):   run;
+
+NOTE: There were 1014 observations read from the data set EMWS1.HPDMFOREST2_TEST.
+NOTE: There were 1014 observations read from the data set WORK._OUTTEMP.
+NOTE: The data set WORK._SCORE_TEMP has 1014 observations and 40 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   proc delete data=work._outtemp;
+MPRINT(EM_HPFST_SCORE):   run;
+NOTE: Deleting WORK._OUTTEMP (memtype=DATA).
+NOTE: PROCEDURE DELETE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_HPFST_SCORE):   data EMWS1.HPDMForest2_TEST;
+MPRINT(EM_HPFST_SCORE):   set work._score_temp;
+MPRINT(EM_DIAGRAM):  ;
+24628     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24629     +*Computing Classification Vars: Attrition_Flag;
+MPRINT(EM_DIAGRAM):   *Computing Classification Vars: Attrition_Flag;
+24630     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24631     +length _format200 $200;
+MPRINT(EM_DIAGRAM):   length _format200 $200;
+24632     +drop _format200;
+MPRINT(EM_DIAGRAM):   drop _format200;
+24633     +length F_Attrition_Flag $17;
+MPRINT(EM_DIAGRAM):   length F_Attrition_Flag $17;
+24634     +label  F_Attrition_Flag = 'From: Attrition_Flag';
+MPRINT(EM_DIAGRAM):   label F_Attrition_Flag = 'From: Attrition_Flag';
+24635     +_format200= PUT( Attrition_Flag, $CHAR17. );
+MPRINT(EM_DIAGRAM):   _format200= PUT( Attrition_Flag, $CHAR17. );
+24636     +F_Attrition_Flag=dmnorm(_format200,32); ;
+MPRINT(EM_DIAGRAM):   F_Attrition_Flag=dmnorm(_format200,32);
+MPRINT(EM_DIAGRAM):   ;
+24637     +_format200= ' ' ;
+MPRINT(EM_DIAGRAM):   _format200= ' ' ;
+24638     +length _p_ 8;
+MPRINT(EM_DIAGRAM):   length _p_ 8;
+24639     +_p_= 0 ;
+MPRINT(EM_DIAGRAM):   _p_= 0 ;
+24640     +drop _p_ ;
+MPRINT(EM_DIAGRAM):   drop _p_ ;
+24641     +if P_Attrition_Flag1 - _p_ > 1e-8 then do ;
+MPRINT(EM_DIAGRAM):   if P_Attrition_Flag1 - _p_ > 1e-8 then do ;
+24642     +   _p_= P_Attrition_Flag1 ;
+MPRINT(EM_DIAGRAM):   _p_= P_Attrition_Flag1 ;
+24643     +   _format200='1';
+MPRINT(EM_DIAGRAM):   _format200='1';
+24644     +end;
+MPRINT(EM_DIAGRAM):   end;
+24645     +if P_Attrition_Flag0 - _p_ > 1e-8 then do ;
+MPRINT(EM_DIAGRAM):   if P_Attrition_Flag0 - _p_ > 1e-8 then do ;
+24646     +   _p_= P_Attrition_Flag0 ;
+MPRINT(EM_DIAGRAM):   _p_= P_Attrition_Flag0 ;
+24647     +   _format200='0';
+MPRINT(EM_DIAGRAM):   _format200='0';
+24648     +end;
+MPRINT(EM_DIAGRAM):   end;
+24649     +I_Attrition_Flag=dmnorm(_format200,32); ;
+MPRINT(EM_DIAGRAM):   I_Attrition_Flag=dmnorm(_format200,32);
+MPRINT(EM_DIAGRAM):   ;
+24650     +length U_Attrition_Flag $17;
+MPRINT(EM_DIAGRAM):   length U_Attrition_Flag $17;
+24651     +label U_Attrition_Flag = 'Unnormalized Into: Attrition_Flag';
+MPRINT(EM_DIAGRAM):   label U_Attrition_Flag = 'Unnormalized Into: Attrition_Flag';
+24652     +format U_Attrition_Flag $CHAR17.;
+MPRINT(EM_DIAGRAM):   format U_Attrition_Flag $CHAR17.;
+24653     +if I_Attrition_Flag='1' then
+24654     +U_Attrition_Flag='1';
+MPRINT(EM_DIAGRAM):   if I_Attrition_Flag='1' then U_Attrition_Flag='1';
+24655     +if I_Attrition_Flag='0' then
+24656     +U_Attrition_Flag='0';
+MPRINT(EM_DIAGRAM):   if I_Attrition_Flag='0' then U_Attrition_Flag='0';
+24657     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24658     +*Computing Residual Vars: Attrition_Flag;
+MPRINT(EM_DIAGRAM):   *Computing Residual Vars: Attrition_Flag;
+24659     +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+24660     +Length R_Attrition_Flag1 8;
+MPRINT(EM_DIAGRAM):   Length R_Attrition_Flag1 8;
+24661     +Label R_Attrition_Flag1='Residual: Attrition_Flag=1';
+MPRINT(EM_DIAGRAM):   Label R_Attrition_Flag1= 'Residual: Attrition_Flag=1';
+24662     +Length R_Attrition_Flag0 8;
+MPRINT(EM_DIAGRAM):   Length R_Attrition_Flag0 8;
+24663     +Label R_Attrition_Flag0='Residual: Attrition_Flag=0';
+MPRINT(EM_DIAGRAM):   Label R_Attrition_Flag0= 'Residual: Attrition_Flag=0';
+24664     +if
+24665     + F_Attrition_Flag ne '1'
+24666     +and F_Attrition_Flag ne '0'
+24667     + then do;
+MPRINT(EM_DIAGRAM):   if F_Attrition_Flag ne '1' and F_Attrition_Flag ne '0' then do;
+24668     +R_Attrition_Flag1=.;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag1=.;
+24669     +R_Attrition_Flag0=.;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag0=.;
+24670     +end;
+MPRINT(EM_DIAGRAM):   end;
+24671     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+24672     +R_Attrition_Flag1= - P_Attrition_Flag1;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag1= - P_Attrition_Flag1;
+24673     +R_Attrition_Flag0= - P_Attrition_Flag0;
+MPRINT(EM_DIAGRAM):   R_Attrition_Flag0= - P_Attrition_Flag0;
+24674     +select(F_Attrition_Flag);
+MPRINT(EM_DIAGRAM):   select(F_Attrition_Flag);
+24675     +when('1')R_Attrition_Flag1= R_Attrition_Flag1+1;
+MPRINT(EM_DIAGRAM):   when('1')R_Attrition_Flag1= R_Attrition_Flag1+1;
+24676     +when('0')R_Attrition_Flag0= R_Attrition_Flag0+1;
+MPRINT(EM_DIAGRAM):   when('0')R_Attrition_Flag0= R_Attrition_Flag0+1;
+24677     +otherwise;
+MPRINT(EM_DIAGRAM):   otherwise;
+24678     +end;
+MPRINT(EM_DIAGRAM):   end;
+24679     +end;
+MPRINT(EM_DIAGRAM):   end;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+24680      run;
+
+NOTE: There were 1014 observations read from the data set WORK._SCORE_TEMP.
+NOTE: The data set EMWS1.HPDMFOREST2_TEST has 1014 observations and 44 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+24681      quit;
+
+MPRINT(EM_DIAGRAM):    
+MPRINT(CALFITSTATSNOMINAL):   data _tmpTrainFitTable(keep=_TARGET_ _ASE_ _DIV_ _MAX_ _NOBS_ _RASE_ _SSE_ _DISF_ _MISC_ _WRONG_ rename=(_TARGET_=TARGET));
+MPRINT(CALFITSTATSNOMINAL):   set EMWS1.HPDMForest2_TRAIN end=eof;
+MPRINT(CALFITSTATSNOMINAL):   length _TARGET_ $32;
+MPRINT(CALFITSTATSNOMINAL):   length _ASE_ _DIV_ _MAX_ _NOBS_ _RASE_ _SSE_ _DISF_ _MISC_ _WRONG_ 8;
+MPRINT(CALFITSTATSNOMINAL):   label _TARGET_ = "Train: Target Variable" _NOBS_= "Train: Sum of Frequencies" _SSE_= "Train: Sum of Squared Errors" _MAX_= "Train: Maximum Absolute Error" _DIV_ = "Train: Divisor for ASE" _WRONG_= "Train: Number of Wrong 
+Classifications" _DISF_= "Train: Frequency of Classified Cases" _MISC_= "Train: Misclassification Rate" _ASE_ = "Train: Average Squared Error" _RASE_ = "Train: Root Average Squared Error";
+MPRINT(CALFITSTATSNOMINAL):   retain _TARGET_ _WRONG_ _DIV_ _MAX_ _SSE_ _DISF_ _MISC_ _ASE_ _RASE_ ;
+MPRINT(CALFITSTATSNOMINAL):   if R_Attrition_Flag1 ne . then do;
+MPRINT(CALFITSTATSNOMINAL):   _SSE_ +(R_Attrition_Flag1)*(R_Attrition_Flag1);
+MPRINT(CALFITSTATSNOMINAL):   _DIV_ +1;
+MPRINT(CALFITSTATSNOMINAL):   _MAX_ =max(_MAX_ ,abs(R_Attrition_Flag1));
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if R_Attrition_Flag0 ne . then do;
+MPRINT(CALFITSTATSNOMINAL):   _SSE_ +(R_Attrition_Flag0)*(R_Attrition_Flag0);
+MPRINT(CALFITSTATSNOMINAL):   _DIV_ +1;
+MPRINT(CALFITSTATSNOMINAL):   _MAX_ =max(_MAX_ ,abs(R_Attrition_Flag0));
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if trim(F_Attrition_Flag) ^in("", ".") then do;
+MPRINT(CALFITSTATSNOMINAL):   _DISF_+ 1;
+MPRINT(CALFITSTATSNOMINAL):   _WRONG_+(F_Attrition_Flag ne I_Attrition_Flag);
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if eof then do;
+MPRINT(CALFITSTATSNOMINAL):   _TARGET_ = "Attrition_Flag";
+MPRINT(CALFITSTATSNOMINAL):   _MAX = 0;
+MPRINT(CALFITSTATSNOMINAL):   if _DISF_ ne 0 then do;
+MPRINT(CALFITSTATSNOMINAL):   _MISC_=_WRONG_/_DISF_;
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   _NOBS_ = _DIV_/2;
+MPRINT(CALFITSTATSNOMINAL):   _ASE_=_SSE_/_DIV_;
+MPRINT(CALFITSTATSNOMINAL):   _RASE_=sqrt(_ASE_);
+MPRINT(CALFITSTATSNOMINAL):   output;
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data WORK.OUTFITDATA;
+MPRINT(EM_DIAGRAM):   set _tmpTrainFitTable;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   
+MPRINT(CALFITSTATSNOMINAL):   data _tmpValidFitTable(keep=_TARGET_ _ASE_ _DIV_ _MAX_ _NOBS_ _RASE_ _SSE_ _DISF_ _MISC_ _WRONG_ rename=(_TARGET_=TARGET));
+MPRINT(CALFITSTATSNOMINAL):   set EMWS1.HPDMForest2_VALIDATE end=eof;
+MPRINT(CALFITSTATSNOMINAL):   length _TARGET_ $32;
+MPRINT(CALFITSTATSNOMINAL):   length _ASE_ _DIV_ _MAX_ _NOBS_ _RASE_ _SSE_ _DISF_ _MISC_ _WRONG_ 8;
+MPRINT(CALFITSTATSNOMINAL):   label _TARGET_ = "Valid: Target Variable" _NOBS_= "Valid: Sum of Frequencies" _SSE_= "Valid: Sum of Squared Errors" _MAX_= "Valid: Maximum Absolute Error" _DIV_ = "Valid: Divisor for ASE" _WRONG_= "Valid: Number of Wrong 
+Classifications" _DISF_= "Valid: Frequency of Classified Cases" _MISC_= "Valid: Misclassification Rate" _ASE_ = "Valid: Average Squared Error" _RASE_ = "Valid: Root Average Squared Error";
+MPRINT(CALFITSTATSNOMINAL):   retain _TARGET_ _WRONG_ _DIV_ _MAX_ _SSE_ _DISF_ _MISC_ _ASE_ _RASE_ ;
+MPRINT(CALFITSTATSNOMINAL):   if R_Attrition_Flag1 ne . then do;
+MPRINT(CALFITSTATSNOMINAL):   _SSE_ +(R_Attrition_Flag1)*(R_Attrition_Flag1);
+MPRINT(CALFITSTATSNOMINAL):   _DIV_ +1;
+MPRINT(CALFITSTATSNOMINAL):   _MAX_ =max(_MAX_ ,abs(R_Attrition_Flag1));
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if R_Attrition_Flag0 ne . then do;
+MPRINT(CALFITSTATSNOMINAL):   _SSE_ +(R_Attrition_Flag0)*(R_Attrition_Flag0);
+MPRINT(CALFITSTATSNOMINAL):   _DIV_ +1;
+MPRINT(CALFITSTATSNOMINAL):   _MAX_ =max(_MAX_ ,abs(R_Attrition_Flag0));
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if trim(F_Attrition_Flag) ^in("", ".") then do;
+MPRINT(CALFITSTATSNOMINAL):   _DISF_+ 1;
+MPRINT(CALFITSTATSNOMINAL):   _WRONG_+(F_Attrition_Flag ne I_Attrition_Flag);
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if eof then do;
+MPRINT(CALFITSTATSNOMINAL):   _TARGET_ = "Attrition_Flag";
+MPRINT(CALFITSTATSNOMINAL):   _MAX = 0;
+MPRINT(CALFITSTATSNOMINAL):   if _DISF_ ne 0 then do;
+MPRINT(CALFITSTATSNOMINAL):   _MISC_=_WRONG_/_DISF_;
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   _NOBS_ = _DIV_/2;
+MPRINT(CALFITSTATSNOMINAL):   _ASE_=_SSE_/_DIV_;
+MPRINT(CALFITSTATSNOMINAL):   _RASE_=sqrt(_ASE_);
+MPRINT(CALFITSTATSNOMINAL):   output;
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _tmpdata_(DROP= TARGET);
+MPRINT(EM_DIAGRAM):   set _tmpValidFitTable;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data _tmpdata_;
+MPRINT(EM_DIAGRAM):   set _tmpdata_;
+MPRINT(EM_DIAGRAM):   rename _ASE_=_VASE_;
+MPRINT(EM_DIAGRAM):   rename _DIV_=_VDIV_;
+MPRINT(EM_DIAGRAM):   rename _MAX_=_VMAX_;
+MPRINT(EM_DIAGRAM):   rename _NOBS_=_VNOBS_;
+MPRINT(EM_DIAGRAM):   rename _RASE_=_VRASE_;
+MPRINT(EM_DIAGRAM):   rename _SSE_=_VSSE_;
+MPRINT(EM_DIAGRAM):   rename _DISF_=_VDISF_;
+MPRINT(EM_DIAGRAM):   rename _MISC_=_VMISC_;
+MPRINT(EM_DIAGRAM):   rename _WRONG_=_VWRONG_;
+MPRINT(EM_DIAGRAM):   data WORK.OUTFITDATA;
+MPRINT(EM_DIAGRAM):   merge WORK.OUTFITDATA _tmpdata_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   
+MPRINT(CALFITSTATSNOMINAL):   data _tmpTestFitTable(keep=_TARGET_ _ASE_ _DIV_ _MAX_ _NOBS_ _RASE_ _SSE_ _DISF_ _MISC_ _WRONG_ rename=(_TARGET_=TARGET));
+MPRINT(CALFITSTATSNOMINAL):   set EMWS1.HPDMForest2_TEST end=eof;
+MPRINT(CALFITSTATSNOMINAL):   length _TARGET_ $32;
+MPRINT(CALFITSTATSNOMINAL):   length _ASE_ _DIV_ _MAX_ _NOBS_ _RASE_ _SSE_ _DISF_ _MISC_ _WRONG_ 8;
+MPRINT(CALFITSTATSNOMINAL):   label _TARGET_ = "Test: Target Variable" _NOBS_= "Test: Sum of Frequencies" _SSE_= "Test: Sum of Squared Errors" _MAX_= "Test: Maximum Absolute Error" _DIV_ = "Test: Divisor for ASE" _WRONG_= "Test: Number of Wrong 
+Classifications" _DISF_= "Test: Frequency of Classified Cases" _MISC_= "Test: Misclassification Rate" _ASE_ = "Test: Average Squared Error" _RASE_ = "Test: Root Average Squared Error";
+MPRINT(CALFITSTATSNOMINAL):   retain _TARGET_ _WRONG_ _DIV_ _MAX_ _SSE_ _DISF_ _MISC_ _ASE_ _RASE_ ;
+MPRINT(CALFITSTATSNOMINAL):   if R_Attrition_Flag1 ne . then do;
+MPRINT(CALFITSTATSNOMINAL):   _SSE_ +(R_Attrition_Flag1)*(R_Attrition_Flag1);
+MPRINT(CALFITSTATSNOMINAL):   _DIV_ +1;
+MPRINT(CALFITSTATSNOMINAL):   _MAX_ =max(_MAX_ ,abs(R_Attrition_Flag1));
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if R_Attrition_Flag0 ne . then do;
+MPRINT(CALFITSTATSNOMINAL):   _SSE_ +(R_Attrition_Flag0)*(R_Attrition_Flag0);
+MPRINT(CALFITSTATSNOMINAL):   _DIV_ +1;
+MPRINT(CALFITSTATSNOMINAL):   _MAX_ =max(_MAX_ ,abs(R_Attrition_Flag0));
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if trim(F_Attrition_Flag) ^in("", ".") then do;
+MPRINT(CALFITSTATSNOMINAL):   _DISF_+ 1;
+MPRINT(CALFITSTATSNOMINAL):   _WRONG_+(F_Attrition_Flag ne I_Attrition_Flag);
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   if eof then do;
+MPRINT(CALFITSTATSNOMINAL):   _TARGET_ = "Attrition_Flag";
+MPRINT(CALFITSTATSNOMINAL):   _MAX = 0;
+MPRINT(CALFITSTATSNOMINAL):   if _DISF_ ne 0 then do;
+MPRINT(CALFITSTATSNOMINAL):   _MISC_=_WRONG_/_DISF_;
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   _NOBS_ = _DIV_/2;
+MPRINT(CALFITSTATSNOMINAL):   _ASE_=_SSE_/_DIV_;
+MPRINT(CALFITSTATSNOMINAL):   _RASE_=sqrt(_ASE_);
+MPRINT(CALFITSTATSNOMINAL):   output;
+MPRINT(CALFITSTATSNOMINAL):   end;
+MPRINT(CALFITSTATSNOMINAL):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _tmpdata_(DROP = TARGET);
+MPRINT(EM_DIAGRAM):   set _tmpTestFitTable;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data _tmpdata_;
+MPRINT(EM_DIAGRAM):   set _tmpdata_;
+MPRINT(EM_DIAGRAM):   rename _ASE_=_TASE_;
+MPRINT(EM_DIAGRAM):   rename _DIV_=_TDIV_;
+MPRINT(EM_DIAGRAM):   rename _MAX_=_TMAX_;
+MPRINT(EM_DIAGRAM):   rename _NOBS_=_TNOBS_;
+MPRINT(EM_DIAGRAM):   rename _RASE_=_TRASE_;
+MPRINT(EM_DIAGRAM):   rename _SSE_=_TSSE_;
+MPRINT(EM_DIAGRAM):   rename _DISF_=_TDISF_;
+MPRINT(EM_DIAGRAM):   rename _MISC_=_TMISC_;
+MPRINT(EM_DIAGRAM):   rename _WRONG_=_TWRONG_;
+MPRINT(EM_DIAGRAM):   data WORK.OUTFITDATA;
+MPRINT(EM_DIAGRAM):   merge WORK.OUTFITDATA _tmpdata_;
+MPRINT(EM_DIAGRAM):   run;
+24778      proc append base=EMWS1.HPDMForest2_EMOUTFIT data=WORK.OUTFITDATA force;
+MPRINT(EM_DIAGRAM):    proc append base=EMWS1.HPDMForest2_EMOUTFIT data=WORK.OUTFITDATA force;
+24779      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Appending WORK.OUTFITDATA to EMWS1.HPDMFOREST2_EMOUTFIT.
+NOTE: BASE data set does not exist. DATA file is being copied to BASE file.
+NOTE: There were 1 observations read from the data set WORK.OUTFITDATA.
+NOTE: The data set EMWS1.HPDMFOREST2_EMOUTFIT has 1 observations and 28 variables.
+NOTE: PROCEDURE APPEND used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+24780      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+24781      * HPDMForest2: Computing metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   * HPDMForest2: Computing metadata for TRAIN data;
+24782      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   filename _delta "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\HPDMForest2\CDELTA_TRAIN.sas";
+MPRINT(EMADVISECOLUMNS):   proc display c=sashelp.emmeta.advisecolumns.scl;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    options validvarname=any;
+MPRINT(EMADVISECOLUMNS):   proc contents data=EMWS1.HPDMForest2_TRAIN out=_tempAdvisor noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   options validvarname=V7;
+MPRINT(EMADVISECOLUMNS):    data _null_;
+MPRINT(EMADVISECOLUMNS):   dsid = open('EMWS1.HPDMForest2_TRAIN');
+MPRINT(EMADVISECOLUMNS):   call symput('_dsidTable', strip(put(dsid, best.)));
+MPRINT(EMADVISECOLUMNS):   if dsid then do;
+MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
+MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    options fmterr;
+MPRINT(EMADVISECOLUMNS):   data _metaTestView;
+MPRINT(EMADVISECOLUMNS):   set EMWS1.HPDMForest2_TRAIN;
+MPRINT(EMADVISECOLUMNS):   if _N_=1 then do;
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   stop;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.HPDMForest2_TRAIN out=WORK.M20NH_TK noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M20NH_TK;
+MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 INDEX $ 1 INDEXTYPE $ 9;
+MPRINT(EMADVISECOLUMNS):   label NAME =;
+MPRINT(EMADVISECOLUMNS):   set WORK.M20NH_TK(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
+MPRINT(EMADVISECOLUMNS):   else type = 'C';
+MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if format ne '' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then format = strip(format)!!strip(put(formatl, best12.))!!'.'!!strip(put(formatd, best12.));
+MPRINT(EMADVISECOLUMNS):   else format = strip(format)!!strip(put(formatl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else format = strip(put(formatl, best12.))!!'.'!!strip(put(formatd, best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if format ne '' then format = strip(format)!!'.';
+MPRINT(EMADVISECOLUMNS):   if informl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if informat ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then informat = strip(informat)!!strip(put(informl, best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   else informat = strip(informat)!!strip(put(informl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else informat = strip(put(informl, best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if informat ne '' then informat = strip(informat)!!'.';
+MPRINT(EMADVISECOLUMNS):   if idxusage = 'NONE' then index ="N";
+MPRINT(EMADVISECOLUMNS):   else index = "Y";
+MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
+MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M20NH_TK;
+MPRINT(EMADVISECOLUMNS):   length UNAME $64;
+MPRINT(EMADVISECOLUMNS):   set WORK.M20NH_TK;
+MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M2M11ZNZ NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by UNAME;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2M11ZNZ;
+MPRINT(EMADVISECOLUMNS):   drop UNAME;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2M11ZNZ;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M0WTLYQE(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2M11ZNZ;
+MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
+MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' and formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'FORMATTYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ROLE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'LEVEL';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if type = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'TYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if index = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'INDEX';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if report = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'REPORT';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by attr;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2M11ZNZ;
+MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
+MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2M11ZNZ;
+MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   pos = indexc(format,'.1234567890');
+MPRINT(EMADVISECOLUMNS):   if pos > 1 then tempfmt = substr(format,1, pos-1);
+MPRINT(EMADVISECOLUMNS):   else tempfmt = ' ';
+MPRINT(EMADVISECOLUMNS):   flen = length(tempfmt);
+MPRINT(EMADVISECOLUMNS):   select;
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATE" "DAY" "DDMMYY" "DOWNAME" "JULDAY" "JULIAN" "MMDDYY" "MMDDYYD" "MMDDYYC" "MMDDYYN" "MMDDYYP" "MMDDYYS" "MONNAME" "MONTH" "MONYY" "NENGO" "QTR" "QTRR" "WEEKDATE" "WEEKDATX" "WEEKDAY" "WORDDATE" "WORDDATX" 
+"YEAR" "YYMMDD" "YYMON" "YYMMDDC" "YYMMDDD" "YYMMDDN" "YYMMDDP" "YYMMDDS" "EURDFDE" "NJDATE" "NLDATE" "EURDFDD" "EURDFDWN" "EURDFMN" "EURDFMY" "EURDFWK" "EURDFWKX" "EURDFWDX" "EURDFDN" "EURDFDE" )) formattype = 'DATE';
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATETIME" "EURDFDT" "TOD" )) formattype = "DATETIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("HHMM" "HOUR" "MMSS" "TIME" "TIMEAMPM" )) formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("COMMA" "COMMAX" "DOLLAR" "DOLLARX" "E" "FRACT" "NEGPAREN" "PERCENT")) formattype="QUANTITY";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("BINARY" "HEX" "IB" "OCTAL" "PD" "PIB" "PK" "RB" "SSN" "Z" "ZD")) formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   formattype = "USER";
+MPRINT(EMADVISECOLUMNS):   if compress(tempfmt, '0123456789.', '') = '' then formattype='NUM';
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATE' then formattype = "DATE";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATM' then formattype = "DATETIME";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 4)='NLTIM' then formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   else if flen >= 4 then do;
+MPRINT(EMADVISECOLUMNS):   str = substr(tempfmt,1,4);
+MPRINT(EMADVISECOLUMNS):   if str in ("MMYY" "YYMM" "YYQR") then formattype ="DATE";
+MPRINT(EMADVISECOLUMNS):   else if str = "S370" then formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   else if str = "BEST" then formattype = "NUM";
+MPRINT(EMADVISECOLUMNS):   drop str;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if flen >=3 and substr(tempfmt,1,3) = "YYQ" then formatType = "DATE";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   drop flen tempfmt pos;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   formatType = "CATEGORY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if formatType = "NUM" then do;
+MPRINT(EMADVISECOLUMNS):   if index = "Y" then formatType = "DISCRETE";
+MPRINT(EMADVISECOLUMNS):   else formatType = "QUANTITY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formatType in ("CATEGORY", "CODING", "ID") or type = "C" then level = "NOMINAL";
+MPRINT(EMADVISECOLUMNS):   else level = "INTERVAL";
+MPRINT(EMADVISECOLUMNS):   levelAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else level = upcase(level);
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   length name_prefix $8 _uname $64;
+MPRINT(EMADVISECOLUMNS):   drop name_prefix _uname _freqflag;
+MPRINT(EMADVISECOLUMNS):   retain _freqflag;
+MPRINT(EMADVISECOLUMNS):   if LENGTH> 80 then ROLE = 'TEXT';
+MPRINT(EMADVISECOLUMNS):   _uname = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   select(_uname);
+MPRINT(EMADVISECOLUMNS):   when('_PARTIND_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_WARN_') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_SEGMENT') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_NODE_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSTARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_VALUETARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_PREDICTION') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_EVENTPROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSIFICATION') ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   when('EM_DECISION') ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROFIT') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_LOSS') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_ROI') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('URI') ROLE = 'URL';
+MPRINT(EMADVISECOLUMNS):   when('FILTERED') ROLE = 'TEXTLOC';
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   if upcase(NAME) =: 'ZIP' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'REJECTED';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   COMMENT = 'Rejected by: Exceed the maximum class level of %s';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if upcase(NAME) in('FREQ', 'FREQUENCY') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'FREQ';
+MPRINT(EMADVISECOLUMNS):   if TYPE = 'C' then ROLE = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   else if _freqflag =1 then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   name_prefix = scan(_uname, 1, '_');
+MPRINT(EMADVISECOLUMNS):   if scan(_uname, 2, '_') = '' then name_prefix='';
+MPRINT(EMADVISECOLUMNS):   if name_prefix in('F', 'I', 'U') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('Q') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('P', 'V') then ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('R', 'RS', 'RT', 'RD', 'RDS', 'RDT', 'RA', 'RAS', 'RAT') then ROLE = 'RESIDUAL';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='D' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='B' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('EP', 'BP', 'CP', 'EL', 'CL', 'BL', 'W', 'ROI', 'IC') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   array _ROLE_ (19) $32 _TEMPORARY_ ('ASSESS','CLASSIFICATION','CENSOR', 'COST', 'CROSSID', 'DECISION', 'ID','INPUT', 'LABEL', 'MISSING','PREDICT','REFERRER','REJECTED', 'RESIDUAL','SEGMENT', 'SEQUENCE','TARGET', 'TEXT', 'TIMEID');
+MPRINT(EMADVISECOLUMNS):   drop _found_ i;
+MPRINT(EMADVISECOLUMNS):   _found_=0;
+MPRINT(EMADVISECOLUMNS):   do i=1 to 19 until(_found_=1);
+MPRINT(EMADVISECOLUMNS):   if index(_uname, trim(_ROLE_{i}))=1 then do;
+MPRINT(EMADVISECOLUMNS):   ROLE=_ROLE_{i};
+MPRINT(EMADVISECOLUMNS):   if ROLE = 'ID' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'SEGMENT' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'TIMEID' and TYPE='N' then LEVEL = 'INTERVAL';
+MPRINT(EMADVISECOLUMNS):   _found_=1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if length(_uname)>2 then do;
+MPRINT(EMADVISECOLUMNS):   if substr(reverse(trim(_uname)), 1, 3) = 'DI_' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if ROLE='FREQ' then _freqflag=1;
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'CLASSIFICATION' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   if symexist('RATEMKG_ROLE') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('RATEMKG_ROLE')) in('Y', 'YES') then do;
+MPRINT(EMADVISECOLUMNS):   if _uname =: 'POLICY' then ROLE = 'POLICYID';
+MPRINT(EMADVISECOLUMNS):   else if _uname in ('PARTITION', '_PARTIND_') then ROLE = 'PARTITION';
+MPRINT(EMADVISECOLUMNS):   else if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   if _uname = 'EXPOSURE' then ROLE = 'EXPOSURE';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'YEAR' then ROLE = 'YEAR';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'WEIGHT' then ROLE = 'WEIGHT';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'OFFSET' then ROLE = 'OFFSET';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formattype in('DATE', 'DATETIME', 'TIME') then role = 'TIMEID';
+MPRINT(EMADVISECOLUMNS):   else role = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   roleAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else role = upcase(role);
+MPRINT(EMADVISECOLUMNS):   if REPORT = '' then REPORT = 'N';
+MPRINT(EMADVISECOLUMNS):   if symexist('dmwb_product') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('dmwb_product')) = 'FACTORYMINER_DATASOURCE' then do;
+MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT', 'FREQ', 'ID', 'KEY') then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2M11ZNZ;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2M11ZNZ;
+MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= "Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= "Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower 
+limit" UPPERLIMIT= "Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= "Label" LENGTH= "Length";
+MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.COLUMNMETA;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Merge incoming metadata;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc contents data=EMWS1.Part2_TRAIN noprint out=_temp2(keep=NAME);
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp2;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Part2_CMeta_TRAIN out=_temp;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.HPDMForest2_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   merge WORK.COLUMNMETA(in=_a) _temp2(in=_b) _temp(drop=FORMAT INFORMAT LENGTH INDEX INDEXTYPE in=_c) end=_eof_;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   if (^_a and _b) or (^_c and _a and _b) then delete;
+MPRINT(EM_DIAGRAM):   if ^_b then CREATOR = "HPDMForest2";
+MPRINT(EM_DIAGRAM):   length model $200;
+MPRINT(EM_DIAGRAM):   label MODEL = "Model Node";
+MPRINT(EM_DIAGRAM):   select(upcase(name));
+MPRINT(EM_DIAGRAM):   when("ATTRITION_FLAG") model = "HPDMForest2";
+MPRINT(EM_DIAGRAM):   when('');
+MPRINT(EM_DIAGRAM):   otherwise;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * HPDMForest2: Apply Delta Code;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _delta;
+25136      data EMWS1.HPDMForest2_EMINFO;
+MPRINT(EM_DIAGRAM):    data EMWS1.HPDMForest2_EMINFO;
+25137      length TARGET KEY $32 DATA $43;
+MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
+25138      input TARGET KEY DATA $;
+MPRINT(EM_DIAGRAM):   input TARGET KEY DATA $;
+25139      cards;
+MPRINT(EM_DIAGRAM):   cards;
+
+NOTE: The data set EMWS1.HPDMFOREST2_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):   run;
+25143      run;
+25144      proc sort data = EMWS1.HPDMForest2_EMINFO NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data = EMWS1.HPDMForest2_EMINFO NOTHREADS;
+25145      by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+25146      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 3 observations read from the data set EMWS1.HPDMFOREST2_EMINFO.
+NOTE: The data set EMWS1.HPDMFOREST2_EMINFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+25147      proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
+MPRINT(EM_DIAGRAM):    proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
+25148      by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+25149      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set EMWS1.IDS_EMINFO.
+NOTE: The data set WORK.SORTEDEMINFO has 4 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+      
+
+25150      proc sort data = EMWS1.HPDMForest2_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data = EMWS1.HPDMForest2_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
+25151      by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+25152      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Input data set is already sorted; it has been copied to the output data set.
+NOTE: There were 3 observations read from the data set EMWS1.HPDMFOREST2_EMINFO.
+NOTE: The data set WORK.TEMP_INFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+25153      data EMWS1.HPDMForest2_EMINFO;
+MPRINT(EM_DIAGRAM):   data EMWS1.HPDMForest2_EMINFO;
+25154      merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
+MPRINT(EM_DIAGRAM):   merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
+25155      by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+25156      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set WORK.SORTEDEMINFO.
+NOTE: There were 3 observations read from the data set WORK.TEMP_INFO.
+NOTE: The data set EMWS1.HPDMFOREST2_EMINFO has 5 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+25157      proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
+25158      delete TEMP_INFO SORTEDEMINFO;
+MPRINT(EM_DIAGRAM):   delete TEMP_INFO SORTEDEMINFO;
+25159      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Deleting WORK.TEMP_INFO (memtype=DATA).
+NOTE: Deleting WORK.SORTEDEMINFO (memtype=DATA).
+25160      quit;
+MPRINT(EM_DIAGRAM):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

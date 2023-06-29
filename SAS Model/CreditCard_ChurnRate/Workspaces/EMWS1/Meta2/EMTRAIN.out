@@ -1,0 +1,15 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+            Measurement    Frequency
+Role           Level         Count
+
+ASSESS       NOMINAL            1   
+INPUT        INTERVAL           5   
+INPUT        NOMINAL            6   
+REJECTED     INTERVAL          18   
+REJECTED     NOMINAL            5   
+TARGET       BINARY             1   

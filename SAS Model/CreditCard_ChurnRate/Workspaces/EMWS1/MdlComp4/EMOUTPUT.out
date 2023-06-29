@@ -1,0 +1,216 @@
+*------------------------------------------------------------*
+User:                Kevin
+Date:                April 09, 2022
+Time:                15:26:12
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+TARGET      BINARY           1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fit Statistics
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+ 
+                                                           Train:                     Valid:
+                                              Valid:       Average       Train:       Average
+Selected Model                          Misclassification  Squared Misclassification  Squared
+ Model    Node  Model Description              Rate         Error         Rate         Error
+ 
+   Y     Boost2 Modifed 1 Boost              0.083457     0.058831      0.077596     0.060935
+         Boost4 Modifed 3 Boost              0.086914     0.063420      0.085779     0.065582
+         Boost  Standard Gradient Boost      0.086914     0.064052      0.081828     0.066410
+         Boost3 Modifed 2 Boost              0.087901     0.063914      0.086484     0.066286
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fit Statistics Table
+Target: Attrition_Flag
+ 
+Data Role=Train
+ 
+Statistics
+ 
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Train: Kolmogorov-Smirnov Statistic
+Train: Average Squared Error
+Train: Roc Index
+Train: Cumulative Percent Captured Response
+Train: Percent Captured Response
+Selection Criterion: Valid: Misclassification Rate
+Train: Total Degrees of Freedom
+Train: Divisor for ASE
+Train: Gain
+Train: Gini Coefficient
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic
+Train: Kolmogorov-Smirnov Probability Cutoff
+Train: Cumulative Lift
+Train: Lift
+Train: Maximum Absolute Error
+Train: Misclassification Rate
+Train: Sum of Frequencies
+Train: Root Average Squared Error
+Train: Cumulative Percent Response
+Train: Percent Response
+Train: Sum of Squared Errors
+Train: Sum of Case Weights Times Freq
+ 
+  Boost2      Boost4       Boost      Boost3
+ 
+    0.25        0.25        0.22        0.25
+    0.77        0.76        0.75        0.76
+    0.06        0.06        0.06        0.06
+    0.96        0.95        0.94        0.95
+   56.37       54.70       55.14       54.61
+    4.74        4.30        4.21        4.21
+    0.08        0.09        0.09        0.09
+ 7088.00     7088.00     7088.00     7088.00
+14176.00    14176.00    14176.00    14176.00
+  463.49      446.82      451.21      445.94
+    0.91        0.91        0.89        0.90
+    0.77        0.76        0.75        0.76
+    0.25        0.24        0.21        0.24
+    5.63        5.47        5.51        5.46
+    4.73        4.29        4.21        4.21
+    0.98        0.96        0.98        0.97
+    0.08        0.09        0.08        0.09
+ 7088.00     7088.00     7088.00     7088.00
+    0.24        0.25        0.25        0.25
+   90.55       87.87       88.58       87.73
+   76.06       69.01       67.61       67.61
+  833.99      899.04      907.99      906.05
+14176.00    14176.00    14176.00    14176.00
+ 
+ 
+Data Role=Valid
+ 
+Statistics                                                      Boost2  Boost4   Boost  Boost3
+ 
+Valid: Kolmogorov-Smirnov Statistic                               0.79    0.77    0.77    0.77
+Valid: Average Squared Error                                      0.06    0.07    0.07    0.07
+Valid: Roc Index                                                  0.96    0.95    0.95    0.95
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff    0.23    0.20    0.18    0.21
+Valid: Cumulative Percent Captured Response                      55.08   53.85   52.92   53.54
+Valid: Percent Captured Response                                  4.92    4.31    2.46    4.31
+Valid: Divisor for VASE                                        4050.00 4050.00 4050.00 4050.00
+Valid: Gain                                                     449.41  437.14  427.93  434.07
+Valid: Gini Coefficient                                           0.92    0.90    0.90    0.90
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic             0.79    0.77    0.77    0.77
+Valid: Kolmogorov-Smirnov Probability Cutoff                      0.22    0.20    0.17    0.21
+Valid: Cumulative Lift                                            5.49    5.37    5.28    5.34
+Valid: Lift                                                       4.98    4.36    2.49    4.36
+Valid: Maximum Absolute Error                                     0.97    0.95    0.98    0.96
+Valid: Misclassification Rate                                     0.08    0.09    0.09    0.09
+Valid: Sum of Frequencies                                      2025.00 2025.00 2025.00 2025.00
+Valid: Root Average Squared Error                                 0.25    0.26    0.26    0.26
+Valid: Cumulative Percent Response                               88.18   86.21   84.73   85.71
+Valid: Percent Response                                          80.00   70.00   40.00   70.00
+Valid: Sum of Squared Errors                                    246.78  265.61  268.96  268.46
+Valid: Sum of Case Weights Times Freq                          4050.00 4050.00 4050.00 4050.00
+ 
+ 
+Data Role=Test
+ 
+Statistics                                                      Boost2  Boost4   Boost  Boost3
+ 
+Test:  Kolmogorov-Smirnov Statistic                               0.82    0.79    0.79    0.79
+Test: Average Squared Error                                       0.06    0.06    0.06    0.06
+Test:  Roc Index                                                  0.97    0.96    0.96    0.96
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff    0.18    0.19    0.22    0.22
+Test: Cumulative Percent Captured Response                       55.21   53.37   55.83   52.76
+Test: Percent Captured Response                                   4.29    4.29    6.13    2.45
+Test: Divisor for TASE                                         2028.00 2028.00 2028.00 2028.00
+Test: Gain                                                      448.90  430.60  455.00  424.50
+Test:  Gini Coefficient                                           0.93    0.92    0.91    0.91
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Statistic             0.82    0.79    0.79    0.78
+Test:  Kolmogorov-Smirnov Probability Cutoff                      0.18    0.19    0.20    0.22
+Test: Cumulative Lift                                             5.49    5.31    5.55    5.25
+Test: Lift                                                        4.35    4.35    6.22    2.49
+Test: Maximum Absolute Error                                      0.93    0.93    0.93    0.93
+Test: Misclassification Rate                                      0.08    0.09    0.08    0.09
+Test: Sum of Frequencies                                       1014.00 1014.00 1014.00 1014.00
+Test: Root Average Squared Error                                  0.24    0.25    0.25    0.25
+Test: Cumulative Percent Response                                88.24   85.29   89.22   84.31
+Test: Percent Response                                           70.00   70.00  100.00   40.00
+Test: Sum of Squared Errors                                     119.06  127.87  126.26  129.18
+Test: Sum of Weights Times Freqs                               2028.00 2028.00 2028.00 2028.00
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event Classification Table
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+ 
+Model                                Data
+ Node     Model Description          Role            Target
+ 
+Boost     Standard Gradient Boost    TRAIN       Attrition_Flag
+Boost     Standard Gradient Boost    VALIDATE    Attrition_Flag
+Boost2    Modifed 1 Boost            TRAIN       Attrition_Flag
+Boost2    Modifed 1 Boost            VALIDATE    Attrition_Flag
+Boost3    Modifed 2 Boost            TRAIN       Attrition_Flag
+Boost3    Modifed 2 Boost            VALIDATE    Attrition_Flag
+Boost4    Modifed 3 Boost            TRAIN       Attrition_Flag
+Boost4    Modifed 3 Boost            VALIDATE    Attrition_Flag
+ 
+Target      False       True        False       True
+Label     Negative    Negative    Positive    Positive
+ 
+             493        5862         87          646
+             141        1665         35          184
+             455        5854         95          684
+             137        1668         32          188
+             535        5871         78          604
+             149        1671         29          176
+             529        5870         79          610
+             147        1671         29          178
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*

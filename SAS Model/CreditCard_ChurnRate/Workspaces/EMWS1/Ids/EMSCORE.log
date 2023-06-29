@@ -1,0 +1,94 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "March 31, 2022" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:46:11" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                March 31, 2022
+Time:                16:46:11
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O3GKRHNW "D:\478\project\CreditCard_ChurnRate\Workspaces\EMWS1\Ids\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O3GKRHNW new;
+MPRINT(EM_DIAGRAM):   run;
+22738      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22739      * Ids: Computing metadata for DATA data;
+MPRINT(EM_DIAGRAM):   * Ids: Computing metadata for DATA data;
+22740      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+22741      data EMWS1.Ids_EMINFO;
+MPRINT(EM_DIAGRAM):    data EMWS1.Ids_EMINFO;
+22742      length TARGET KEY $32 DATA $43;
+MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
+22743      TARGET="";
+MPRINT(EM_DIAGRAM):   TARGET="";
+22744      KEY="IDSTABLE";
+MPRINT(EM_DIAGRAM):   KEY="IDSTABLE";
+22745      DATA="CHURN478.CREDITCARDCHURN";
+MPRINT(EM_DIAGRAM):   DATA="CHURN478.CREDITCARDCHURN";
+22746      output;
+MPRINT(EM_DIAGRAM):   output;
+22747      TARGET="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   TARGET="Attrition_Flag";
+22748      KEY="DECDATA";
+MPRINT(EM_DIAGRAM):   KEY="DECDATA";
+22749      DATA="EMWS1.Ids_Attrition_Flag_DD";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_Attrition_Flag_DD";
+22750      output;
+MPRINT(EM_DIAGRAM):   output;
+22751      TARGET="Attrition_Flag";
+MPRINT(EM_DIAGRAM):   TARGET="Attrition_Flag";
+22752      KEY="DECMETA";
+MPRINT(EM_DIAGRAM):   KEY="DECMETA";
+22753      DATA="EMWS1.Ids_Attrition_Flag_DM";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_Attrition_Flag_DM";
+22754      output;
+MPRINT(EM_DIAGRAM):   output;
+22755      TARGET="";
+MPRINT(EM_DIAGRAM):   TARGET="";
+22756      KEY="STATS";
+MPRINT(EM_DIAGRAM):   KEY="STATS";
+22757      DATA="EMWS1.Ids_EMSTAT";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_EMSTAT";
+22758      output;
+MPRINT(EM_DIAGRAM):   output;
+22759      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set EMWS1.IDS_EMINFO has 4 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+22760      data EMWS1.Ids_CMeta_DATA;
+MPRINT(EM_DIAGRAM):    data EMWS1.Ids_CMeta_DATA;
+22761      set EMWS1.Ids_VariableSet;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids_VariableSet;
+22762      drop DROP;
+MPRINT(EM_DIAGRAM):   drop DROP;
+22763      where DROP='N';
+MPRINT(EM_DIAGRAM):   where DROP='N';
+22764      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 20 observations read from the data set EMWS1.IDS_VARIABLESET.
+      WHERE DROP='N';
+NOTE: The data set EMWS1.IDS_CMETA_DATA has 20 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

@@ -1,0 +1,54 @@
+*------------------------------------------------------------*
+User:                Kevin
+Date:                April 09, 2022
+Time:                15:09:06
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+            Measurement    Frequency
+Role           Level         Count
+ 
+ASSESS       NOMINAL            1
+INPUT        INTERVAL           5
+INPUT        NOMINAL            6
+REJECTED     INTERVAL          18
+REJECTED     NOMINAL            5
+TARGET       BINARY             1
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+Exported Attributes for TRAIN Port
+(maximum 500 observations printed)
+ 
+                                              Measurement
+Variable Name                        Role        Level       Creator    Label
+ 
+Attrition_Flag                      TARGET     BINARY
+G_Contacts_Count_12_mon             INPUT      NOMINAL       Varsel     Grouped Levels for  Contacts_Cou
+G_Customer_Age                      INPUT      NOMINAL       Varsel     Grouped Levels for  Customer_Age
+G_Months_Inactive_12_mon            INPUT      NOMINAL       Varsel     Grouped Levels for  Months_Inact
+G_Months_on_book                    INPUT      NOMINAL       Varsel     Grouped Levels for  Months_on_bo
+G_Total_Relationship_Count          INPUT      NOMINAL       Varsel     Grouped Levels for  Total_Relati
+G_Total_Trans_Ct                    INPUT      NOMINAL       Varsel     Grouped Levels for  Total_Trans_
+RANGE_LOG_Total_Trans_Amt           INPUT      INTERVAL      Trans2     Transformed: Transformed Total_T
+RANGE_SQRT_Avg_Utilization_Ratio    INPUT      INTERVAL      Trans2     Transformed: Transformed Avg_Uti
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1     INPUT      INTERVAL      Trans2     Transformed: Transformed Total_A
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1      INPUT      INTERVAL      Trans2     Transformed: Transformed Total_C
+RANGE_Total_Revolving_Bal           INPUT      INTERVAL      Trans2     Transformed Total_Revolving_Bal
+_WARN_                              ASSESS     NOMINAL       Varsel     Warnings

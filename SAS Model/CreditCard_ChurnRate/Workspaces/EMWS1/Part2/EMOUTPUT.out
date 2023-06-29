@@ -1,0 +1,83 @@
+*------------------------------------------------------------*
+User:                Kevin
+Date:                April 09, 2022
+Time:                15:09:20
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+ASSESS     NOMINAL           1
+INPUT      INTERVAL          5
+INPUT      NOMINAL           6
+TARGET     BINARY            1
+ 
+ 
+ 
+ 
+Partition Summary
+ 
+                                      Number of
+Type              Data Set          Observations
+ 
+DATA        EMWS1.Meta2_TRAIN           10127
+TRAIN       EMWS1.Part2_TRAIN            7088
+VALIDATE    EMWS1.Part2_VALIDATE         2025
+TEST        EMWS1.Part2_TEST             1014
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Summary Statistics for Class Targets
+ 
+Data=DATA
+ 
+                  Numeric    Formatted    Frequency
+   Variable        Value       Value        Count      Percent    Label
+ 
+Attrition_Flag       .           0           8500      83.9340
+Attrition_Flag       .           1           1627      16.0660
+ 
+ 
+Data=TEST
+ 
+                  Numeric    Formatted    Frequency
+   Variable        Value       Value        Count      Percent    Label
+ 
+Attrition_Flag       .           0           851       83.9250
+Attrition_Flag       .           1           163       16.0750
+ 
+ 
+Data=TRAIN
+ 
+                  Numeric    Formatted    Frequency
+   Variable        Value       Value        Count      Percent    Label
+ 
+Attrition_Flag       .           0           5949      83.9306
+Attrition_Flag       .           1           1139      16.0694
+ 
+ 
+Data=VALIDATE
+ 
+                  Numeric    Formatted    Frequency
+   Variable        Value       Value        Count      Percent    Label
+ 
+Attrition_Flag       .           0           1700      83.9506
+Attrition_Flag       .           1            325      16.0494

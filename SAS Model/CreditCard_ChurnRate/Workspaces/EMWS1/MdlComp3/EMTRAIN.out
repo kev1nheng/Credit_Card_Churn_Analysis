@@ -1,0 +1,309 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+TARGET      BINARY           1    
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+
+                                                          Train:                     Valid:
+                                             Valid:       Average       Train:       Average
+Selected                               Misclassification  Squared Misclassification  Squared
+ Model   Model Node  Model Description        Rate         Error         Rate         Error
+
+   Y     Tree4       Modified Tree 3        0.045926     0.037029      0.044441     0.039966
+         AutoNeural2 AutoNeural 2           0.049383     0.026467      0.033719     0.041664
+         Ensmbl      Ensemble               0.050928     0.035202      0.043455     0.039761
+         HPDMForest3 Modified Forest 1      0.065679     0.038908      0.050226     0.046729
+         Reg         FULL LOGIT             0.080537     0.058082      0.076508     0.058589
+         Boost2      Modifed 1 Boost        0.083457     0.058831      0.077596     0.060935
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics Table
+Target: Attrition_Flag
+
+Data Role=Train
+
+ 
+Statistics
+
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Train: Kolmogorov-Smirnov Statistic                           
+Train: Akaike's Information Criterion                         
+Train: Average Squared Error                                  
+Train: Roc Index                                              
+Train: Average Error Function                                 
+Train: Cumulative Percent Captured Response                   
+Train: Percent Captured Response                              
+Selection Criterion: Valid: Misclassification Rate            
+Train: Degrees of Freedom for Error                           
+Train: Model Degrees of Freedom                               
+Train: Total Degrees of Freedom                               
+Train: Frequency of Classified Cases                          
+Train: Divisor for ASE                                        
+Train: Error Function                                         
+Train: Final Prediction Error                                 
+Train: Gain                                                   
+Train: Gini Coefficient                                       
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic         
+Train: Kolmogorov-Smirnov Probability Cutoff                  
+Train: Cumulative Lift                                        
+Train: Lift                                                   
+Train: Maximum Absolute Error                                 
+Train: Misclassification Rate                                 
+Train: Mean Square Error                                      
+Train: Sum of Frequencies                                     
+Train: Number of Estimate Weights                             
+Train: Root Average Sum of Squares                            
+Train: Cumulative Percent Response                            
+Train: Percent Response                                       
+Train: Root Final Prediction Error                            
+Train: Root Mean Squared Error                                
+Train: Schwarz's Bayesian Criterion                           
+Train: Sum of Squared Errors                                  
+Train: Sum of Case Weights Times Freq                         
+Train: Number of Wrong Classifications                        
+
+                Auto
+   Tree4     Neural2      Ensmbl    HPDMForest3         Reg      Boost2
+
+    0.17        0.22        0.27          0.25         0.23        0.25
+    0.84        0.90        0.89          0.90         0.74        0.77
+     .       2172.37         .             .        3234.81         .  
+    0.04        0.03        0.04          0.04         0.06        0.06
+    0.97        0.99        0.99          0.99         0.94        0.96
+     .          0.10         .             .           0.21         .  
+   59.24       61.02       60.25         59.88        56.56       56.37
+    5.54        6.06        5.82          5.53         4.43        4.74
+    0.05        0.05        0.05          0.07         0.08        0.08
+     .       6679.00         .             .        7553.00         .  
+     .        409.00         .             .          41.00         .  
+ 7088.00     7088.00         .             .        7594.00     7088.00
+     .           .       7594.00       7088.00          .           .  
+14176.00    14176.00    15188.00      14176.00     15188.00    14176.00
+     .       1354.37         .             .        3152.81         .  
+     .          0.03         .             .           0.06         .  
+  492.28      510.01      501.98        498.60       465.13      463.49
+    0.94        0.98        0.97          0.97         0.87        0.91
+    0.84        0.90        0.89          0.90         0.74        0.77
+    0.16        0.21        0.26          0.22         0.21        0.25
+    5.92        6.10        6.02          5.99         5.65        5.63
+    5.53        6.05        5.82          5.52         4.42        4.73
+    1.00        1.00        0.98          0.99         1.00        0.98
+    0.04        0.03        0.04          0.05         0.08        0.08
+     .          0.03         .             .           0.06         .  
+ 7088.00     7088.00     7594.00       7088.00      7594.00     7088.00
+     .        409.00         .             .          41.00         .  
+    0.19        0.16        0.19          0.20         0.24        0.24
+   95.18       98.03       96.71         96.19        90.79       90.55
+   88.87       97.18       93.42         88.73        71.05       76.06
+     .          0.17         .             .           0.24         .  
+     .          0.17         .             .           0.24         .  
+     .       4980.63         .             .        3519.15         .  
+  524.93      375.19      534.65        551.56       882.15      833.99
+     .      14176.00         .             .       15188.00    14176.00
+     .        239.00      330.00        356.00          .           .  
+
+
+Data Role=Valid
+
+ 
+Statistics
+
+Valid: Kolmogorov-Smirnov Statistic                           
+Valid: Average Squared Error                                  
+Valid: Roc Index                                              
+Valid: Average Error Function                                 
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Valid: Cumulative Percent Captured Response                   
+Valid: Percent Captured Response                              
+Valid: Frequency of Classified Cases                          
+Valid: Divisor for VASE                                       
+Valid: Error Function                                         
+Valid: Gain                                                   
+Valid: Gini Coefficient                                       
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic         
+Valid: Kolmogorov-Smirnov Probability Cutoff                  
+Valid: Cumulative Lift                                        
+Valid: Lift                                                   
+Valid: Maximum Absolute Error                                 
+Valid: Misclassification Rate                                 
+Valid: Mean Square Error                                      
+Valid: Sum of Frequencies                                     
+Valid: Root Average Squared Error                             
+Valid: Cumulative Percent Response                            
+Valid: Percent Response                                       
+Valid: Root Mean Square Error                                 
+Valid: Sum of Square Errors                                   
+Valid: Sum of Case Weights Times Freq                         
+Valid: Number of Wrong Classifications                        
+
+             Auto
+  Tree4    Neural2     Ensmbl    HPDMForest3        Reg     Boost2
+
+   0.84       0.84       0.87         0.87         0.75       0.79
+   0.04       0.04       0.04         0.05         0.06       0.06
+   0.97       0.97       0.98         0.98         0.95       0.96
+    .         0.15        .            .           0.20        .  
+   0.11       0.14       0.24         0.21         0.26       0.23
+  58.21      59.08      59.71        57.54        54.55      55.08
+   5.10       6.15       5.90         5.23         3.69       4.92
+    .          .      2533.00      2025.00          .          .  
+4050.00    4050.00    5066.00      4050.00      5066.00    4050.00
+    .       603.84        .            .        1002.17        .  
+ 480.62     489.31     495.41       473.97       443.95     449.41
+   0.93       0.95       0.96         0.95         0.90       0.92
+   0.83       0.83       0.87         0.87         0.75       0.79
+   0.10       0.12       0.23         0.21         0.25       0.22
+   5.81       5.89       5.95         5.74         5.44       5.49
+   5.16       6.23       5.74         5.30         3.59       4.98
+   1.00       1.00       0.98         0.98         1.00       0.97
+   0.05       0.05       0.05         0.07         0.08       0.08
+    .         0.04        .            .           0.06        .  
+2025.00    2025.00    2533.00      2025.00      2533.00    2025.00
+   0.20       0.20       0.20         0.22         0.24       0.25
+  93.19      94.58      95.67        92.12        87.40      88.18
+  82.83     100.00      92.31        85.00        57.69      80.00
+    .         0.20        .            .           0.24        .  
+ 161.86     168.74     201.43       189.25       296.81     246.78
+    .      4050.00        .            .        5066.00    4050.00
+    .       100.00     129.00       133.00          .          .  
+
+
+Data Role=Test
+
+ 
+Statistics
+
+Test:  Kolmogorov-Smirnov Statistic                           
+Test: Average Squared Error                                   
+Test:  Roc Index                                              
+Test: Average Error Function                                  
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff
+Test: Cumulative Percent Captured Response                    
+Test: Percent Captured Response                               
+Test: Frequency of Classified Cases                           
+Test: Divisor for TASE                                        
+Test: Error Function                                          
+Test: Gain                                                    
+Test:  Gini Coefficient                                       
+Test:  Bin-Based Two-Way Kolmogorov-Smirnov Statistic         
+Test:  Kolmogorov-Smirnov Probability Cutoff                  
+Test: Cumulative Lift                                         
+Test: Lift                                                    
+Test: Maximum Absolute Error                                  
+Test: Misclassification Rate                                  
+Test: Lower 95% Conf. Limit for TMISC                         
+Test: Upper 95% Conf. Limit for TMISC                         
+Test: Mean Squared Error                                      
+Test: Sum of Frequencies                                      
+Test: Root Average Squared Error                              
+Test: Cumulative Percent Response                             
+Test: Percent Response                                        
+Test: Root Mean Squared Error                                 
+Test: Sum of Squared Errors                                   
+Test: Sum of Case Weights Times Freq                          
+Test: Number of Wrong Classifications                         
+
+             Auto
+  Tree4    Neural2     Ensmbl    HPDMForest3    Reg     Boost2
+
+   0.83       0.89       0.88         0.87       .        0.82
+   0.05       0.04       0.04         0.05       .        0.06
+   0.97       0.98       0.98         0.98       .        0.97
+    .         0.13        .            .         .         .  
+   0.12       0.24       0.26         0.24       .        0.18
+  58.28      60.12      59.51        58.28       .       55.21
+   5.70       6.13       6.13         4.91       .        4.29
+    .          .      1014.00      1014.00       .         .  
+2028.00    2028.00    2028.00      2028.00       .     2028.00
+    .       266.18        .            .         .         .  
+ 479.39     497.69     491.59       479.39       .      448.90
+   0.93       0.96       0.97         0.96       .        0.93
+   0.82       0.89       0.88         0.87       .        0.82
+   0.11       0.19       0.23         0.23       .        0.18
+   5.79       5.98       5.92         5.79       .        5.49
+   5.78       6.22       6.22         4.98       .        4.35
+   0.99       1.00       0.95         0.94       .        0.93
+   0.07       0.06       0.05         0.06       .        0.08
+    .          .          .            .         .         .  
+    .          .          .            .         .         .  
+    .         0.04        .            .         .         .  
+1014.00    1014.00    1014.00      1014.00       .     1014.00
+   0.22       0.20       0.20         0.21       .        0.24
+  93.14      96.08      95.10        93.14       .       88.24
+  92.86     100.00     100.00        80.00       .       70.00
+    .         0.20        .            .         .         .  
+ 101.64      80.77      80.45        92.35       .      119.06
+2028.00    2028.00        .            .         .     2028.00
+    .        58.00      52.00        59.00       .         .  
+ 
+                                                                                               
+ 
+ 
+
+
+
+
+
+
+
+Event Classification Table
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+
+                                    Data
+Model Node     Model Description    Role            Target
+
+Reg            FULL LOGIT           TRAIN       Attrition_Flag
+Reg            FULL LOGIT           VALIDATE    Attrition_Flag
+AutoNeural2    AutoNeural 2         TRAIN       Attrition_Flag
+AutoNeural2    AutoNeural 2         VALIDATE    Attrition_Flag
+Boost2         Modifed 1 Boost      TRAIN       Attrition_Flag
+Boost2         Modifed 1 Boost      VALIDATE    Attrition_Flag
+Tree4          Modified Tree 3      TRAIN       Attrition_Flag
+Tree4          Modified Tree 3      VALIDATE    Attrition_Flag
+Ensmbl         Ensemble             TRAIN       Attrition_Flag
+Ensmbl         Ensemble             VALIDATE    Attrition_Flag
+HPDMForest3    Modified Forest 1    TRAIN       Attrition_Flag
+HPDMForest3    Modified Forest 1    VALIDATE    Attrition_Flag
+
+Target      False       True        False       True
+Label     Negative    Negative    Positive    Positive
+
+             418        6211         163         802  
+             131        2053          73         276  
+             152        5862          87         987  
+              48        1648          52         277  
+             455        5854          95         684  
+             137        1668          32         188  
+             191        5825         124         948  
+              51        1658          42         274  
+             262        6306          68         958  
+              83        2080          46         324  
+             273        5866          83         866  
+              88        1655          45         237  

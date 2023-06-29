@@ -1,0 +1,97 @@
+<PFDNode x="1458" y="1353" id="AutoNeural" title="AutoNeural"></PFDNode>
+<PFDNode x="1458" y="1254" id="AutoNeural2" title="AutoNeural 2"></PFDNode>
+<PFDNode x="1458" y="1452" id="AutoNeural4" title="AutoNeural 3"></PFDNode>
+<PFDNode x="1458" y="561" id="Boost" title="Standard Gradient Boost"></PFDNode>
+<PFDNode x="1458" y="462" id="Boost2" title="Modifed 1 Boost"></PFDNode>
+<PFDNode x="1458" y="759" id="Boost3" title="Modifed 2 Boost"></PFDNode>
+<PFDNode x="1458" y="660" id="Boost4" title="Modifed 3 Boost"></PFDNode>
+<PFDNode x="2340" y="1001" id="CNTRL" title="Control Point"></PFDNode>
+<PFDNode x="2490" y="1058" id="Ensmbl" title="Ensemble"></PFDNode>
+<PFDNode x="1468" y="345" id="HPDMForest" title="Standard Forest"></PFDNode>
+<PFDNode x="1447" y="103" id="HPDMForest2" title="Modified Forest 3"></PFDNode>
+<PFDNode x="1476" y="281" id="HPDMForest3" title="Modified Forest 1"></PFDNode>
+<PFDNode x="1458" y="165" id="HPDMForest4" title="Modified Forest 2"></PFDNode>
+<PFDNode x="1683" y="1124" id="HPNNA" title="HP Neural"></PFDNode>
+<PFDNode x="72" y="792" id="Ids" title="CREDITCARDCHURN"></PFDNode>
+<PFDNode x="2107" y="1156" id="MdlComp" title="COMPARE LOGIT"></PFDNode>
+<PFDNode x="2102" y="1014" id="MdlComp2" title="COMPARE TREE"></PFDNode>
+<PFDNode x="2713" y="1011" id="MdlComp3" title="Model Comparison"></PFDNode>
+<PFDNode x="2099" y="948" id="MdlComp4" title="COMPARE BOOSTING"></PFDNode>
+<PFDNode x="2105" y="1085" id="MdlComp5" title="COMPARE NEURAL"></PFDNode>
+<PFDNode x="1813" y="381" id="MdlComp6" title="COMPARE FOREST"></PFDNode>
+<PFDNode x="666" y="792" id="Meta" title="Metadata"></PFDNode>
+<PFDNode x="1062" y="792" id="Meta2" title="Metadata (2)"></PFDNode>
+<PFDNode x="1260" y="1650" id="Part" title="Data Partition x2"></PFDNode>
+<PFDNode x="1260" y="759" id="Part2" title="Data Partition x3"></PFDNode>
+<PFDNode x="1458" y="1650" id="Reg" title="FULL LOGIT"></PFDNode>
+<PFDNode x="1458" y="1551" id="Reg2" title="BACKWARD LOGIT"></PFDNode>
+<PFDNode x="1458" y="1848" id="Reg3" title="STEPWISE LOGIT"></PFDNode>
+<PFDNode x="1458" y="1749" id="Reg4" title="FOWARD LOGIT"></PFDNode>
+<PFDNode x="2844" y="859" id="Report" title="Reporter"></PFDNode>
+<PFDNode x="270" y="693" id="Stat" title="StatExplore"></PFDNode>
+<PFDNode x="1062" y="891" id="Stat2" title="Check"></PFDNode>
+<PFDNode x="468" y="792" id="Trans" title="Transform Variables"></PFDNode>
+<PFDNode x="864" y="792" id="Trans2" title="Standard range for NEURAL"></PFDNode>
+<PFDNode x="1458" y="1056" id="Tree" title="Standard Decision Tree"></PFDNode>
+<PFDNode x="1458" y="957" id="Tree2" title="Modified Tree 1"></PFDNode>
+<PFDNode x="1458" y="858" id="Tree3" title="Modified Tree 2"></PFDNode>
+<PFDNode x="1458" y="1155" id="Tree4" title="Modified Tree 3"></PFDNode>
+<PFDNode x="270" y="792" id="Varsel" title="Variable Selection"></PFDNode>
+<PFDLink id='1' fromId='Ids' toId='Stat'></PFDLink>
+<PFDLink id='2' fromId='Ids' toId='Varsel'></PFDLink>
+<PFDLink id='3' fromId='Varsel' toId='Trans'></PFDLink>
+<PFDLink id='4' fromId='Trans' toId='Meta'></PFDLink>
+<PFDLink id='5' fromId='Meta' toId='Trans2'></PFDLink>
+<PFDLink id='6' fromId='Trans2' toId='Stat2'></PFDLink>
+<PFDLink id='7' fromId='Trans2' toId='Meta2'></PFDLink>
+<PFDLink id='8' fromId='Meta2' toId='Part2'></PFDLink>
+<PFDLink id='9' fromId='Meta2' toId='Part'></PFDLink>
+<PFDLink id='10' fromId='Part' toId='Reg4'></PFDLink>
+<PFDLink id='11' fromId='Part' toId='Reg3'></PFDLink>
+<PFDLink id='12' fromId='Part' toId='Reg2'></PFDLink>
+<PFDLink id='13' fromId='Part' toId='Reg'></PFDLink>
+<PFDLink id='14' fromId='Part2' toId='HPDMForest4'></PFDLink>
+<PFDLink id='15' fromId='Part2' toId='HPDMForest3'></PFDLink>
+<PFDLink id='16' fromId='Part2' toId='AutoNeural4'></PFDLink>
+<PFDLink id='17' fromId='Part2' toId='AutoNeural2'></PFDLink>
+<PFDLink id='18' fromId='Part2' toId='AutoNeural'></PFDLink>
+<PFDLink id='19' fromId='Part2' toId='Boost4'></PFDLink>
+<PFDLink id='20' fromId='Part2' toId='Boost3'></PFDLink>
+<PFDLink id='21' fromId='Part2' toId='Boost2'></PFDLink>
+<PFDLink id='22' fromId='Part2' toId='Tree4'></PFDLink>
+<PFDLink id='23' fromId='Part2' toId='Tree3'></PFDLink>
+<PFDLink id='24' fromId='Part2' toId='Tree2'></PFDLink>
+<PFDLink id='25' fromId='Part2' toId='Tree'></PFDLink>
+<PFDLink id='26' fromId='Part2' toId='Boost'></PFDLink>
+<PFDLink id='27' fromId='Part2' toId='HPDMForest'></PFDLink>
+<PFDLink id='28' fromId='HPDMForest' toId='MdlComp6'></PFDLink>
+<PFDLink id='29' fromId='Boost' toId='MdlComp4'></PFDLink>
+<PFDLink id='30' fromId='Tree' toId='MdlComp2'></PFDLink>
+<PFDLink id='31' fromId='Tree2' toId='MdlComp2'></PFDLink>
+<PFDLink id='32' fromId='Tree3' toId='MdlComp2'></PFDLink>
+<PFDLink id='33' fromId='Tree4' toId='MdlComp2'></PFDLink>
+<PFDLink id='34' fromId='Boost2' toId='MdlComp4'></PFDLink>
+<PFDLink id='35' fromId='Boost3' toId='MdlComp4'></PFDLink>
+<PFDLink id='36' fromId='Boost4' toId='MdlComp4'></PFDLink>
+<PFDLink id='37' fromId='AutoNeural' toId='MdlComp5'></PFDLink>
+<PFDLink id='38' fromId='AutoNeural2' toId='MdlComp5'></PFDLink>
+<PFDLink id='39' fromId='AutoNeural4' toId='MdlComp5'></PFDLink>
+<PFDLink id='40' fromId='Reg' toId='MdlComp'></PFDLink>
+<PFDLink id='41' fromId='Reg2' toId='MdlComp'></PFDLink>
+<PFDLink id='42' fromId='Reg3' toId='MdlComp'></PFDLink>
+<PFDLink id='43' fromId='Reg4' toId='MdlComp'></PFDLink>
+<PFDLink id='44' fromId='MdlComp' toId='CNTRL'></PFDLink>
+<PFDLink id='45' fromId='MdlComp5' toId='CNTRL'></PFDLink>
+<PFDLink id='46' fromId='MdlComp4' toId='CNTRL'></PFDLink>
+<PFDLink id='47' fromId='MdlComp2' toId='HPNNA'></PFDLink>
+<PFDLink id='48' fromId='MdlComp2' toId='CNTRL'></PFDLink>
+<PFDLink id='49' fromId='CNTRL' toId='Ensmbl'></PFDLink>
+<PFDLink id='50' fromId='CNTRL' toId='MdlComp3'></PFDLink>
+<PFDLink id='51' fromId='HPNNA' toId='MdlComp5'></PFDLink>
+<PFDLink id='52' fromId='MdlComp3' toId='Report'></PFDLink>
+<PFDLink id='53' fromId='Ensmbl' toId='MdlComp3'></PFDLink>
+<PFDLink id='54' fromId='HPDMForest3' toId='MdlComp6'></PFDLink>
+<PFDLink id='55' fromId='HPDMForest4' toId='MdlComp6'></PFDLink>
+<PFDLink id='56' fromId='HPDMForest2' toId='MdlComp6'></PFDLink>
+<PFDLink id='57' fromId='Part2' toId='HPDMForest2'></PFDLink>
+<PFDLink id='58' fromId='MdlComp6' toId='MdlComp3'></PFDLink>

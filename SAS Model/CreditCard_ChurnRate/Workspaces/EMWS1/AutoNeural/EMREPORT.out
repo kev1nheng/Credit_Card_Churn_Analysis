@@ -1,0 +1,198 @@
+ 
+                                                                                               
+ 
+ 
+Fit Statistics
+
+Target=Attrition_Flag Target Label=' '
+
+   Fit
+Statistics    Statistics Label                      Train    Validation       Test
+
+ _DFT_        Total Degrees of Freedom            7088.00          .           .  
+ _DFE_        Degrees of Freedom for Error        6919.00          .           .  
+ _DFM_        Model Degrees of Freedom             169.00          .           .  
+ _NW_         Number of Estimated Weights          169.00          .           .  
+ _AIC_        Akaike's Information Criterion      3376.71          .           .  
+ _SBC_        Schwarz's Bayesian Criterion        4537.09          .           .  
+ _ASE_        Average Squared Error                  0.06         0.06        0.06
+ _MAX_        Maximum Absolute Error                 1.00         1.00        1.00
+ _DIV_        Divisor for ASE                    14176.00      4050.00     2028.00
+ _NOBS_       Sum of Frequencies                  7088.00      2025.00     1014.00
+ _RASE_       Root Average Squared Error             0.25         0.25        0.25
+ _SSE_        Sum of Squared Errors                859.92       248.03      126.04
+ _SUMW_       Sum of Case Weights Times Freq     14176.00      4050.00     2028.00
+ _FPE_        Final Prediction Error                 0.06          .           .  
+ _MSE_        Mean Squared Error                     0.06         0.06        0.06
+ _RFPE_       Root Final Prediction Error            0.25          .           .  
+ _RMSE_       Root Mean Squared Error                0.25         0.25        0.25
+ _AVERR_      Average Error Function                 0.21         0.21        0.20
+ _ERR_        Error Function                      3038.71       845.75      406.83
+ _MISC_       Misclassification Rate                 0.08         0.08        0.09
+ _WRONG_      Number of Wrong Classifications      566.00       171.00       91.00
+ 
+                                                                                               
+ 
+ 
+Classification Table
+
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+
+  0          0         94.3629       96.2347        5725        80.7703 
+  1          0          5.6371       30.0263         342         4.8251 
+  0          1         21.9393        3.7653         224         3.1603 
+  1          1         78.0607       69.9737         797        11.2444 
+
+
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+
+  0          0         94.8387       95.1176        1617        79.8519 
+  1          0          5.1613       27.0769          88         4.3457 
+  0          1         25.9375        4.8824          83         4.0988 
+  1          1         74.0625       72.9231         237        11.7037 
+ 
+                                                                                               
+ 
+ 
+Event Classification Table
+
+Data Role=TRAIN Target=Attrition_Flag Target Label=' '
+
+  False       True        False       True
+Negative    Negative    Positive    Positive
+
+   342        5725         224         797  
+
+
+Data Role=VALIDATE Target=Attrition_Flag Target Label=' '
+
+  False       True        False       True
+Negative    Negative    Positive    Positive
+
+   88         1617         83          237  
+ 
+                                                                                               
+ 
+ 
+Assessment Score Rankings
+
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+
+   5    504.771   6.04771     6.04771     97.1831     97.1831         355         0.98656  
+  10    460.860   5.16826     5.60860     83.0508     90.1269         354         0.89343  
+  15    377.253   3.10274     4.77253     49.8592     76.6917         355         0.61323  
+  20    302.433   1.77549     4.02433     28.5311     64.6685         354         0.37135  
+  25    252.590   1.52938     3.52590     24.5763     56.6591         354         0.16812  
+  30    203.104   0.56095     3.03104      9.0141     48.7071         355         0.07144  
+  35    162.866   0.21095     2.62866      3.3898     42.2410         354         0.04064  
+  40    133.253   0.26294     2.33253      4.2254     37.4824         355         0.02544  
+  45    109.514   0.19337     2.09514      3.1073     33.6677         354         0.01684  
+  50     89.991   0.14063     1.89991      2.2599     30.5305         354         0.01237  
+  55     74.927   0.24541     1.74927      3.9437     28.1098         355         0.00929  
+  60     61.684   0.15821     1.61684      2.5424     25.9817         354         0.00710  
+  65     50.443   0.15777     1.50443      2.5352     24.1753         355         0.00559  
+  70     39.836   0.01758     1.39836      0.2825     22.4708         354         0.00447  
+  75     30.641   0.01758     1.30641      0.2825     20.9932         354         0.00370  
+  80     22.902   0.07012     1.22902      1.1268     19.7496         355         0.00336  
+  85     16.300   0.10547     1.16300      1.6949     18.6888         354         0.00330  
+  90     10.414   0.10518     1.10414      1.6901     17.7429         355         0.00327  
+  95      4.980   0.07032     1.04980      1.1299     16.8696         354         0.00323  
+ 100      0.000   0.05274     1.00000      0.8475     16.0694         354         0.00320  
+
+
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+
+                                                                                    Mean
+                            Cumulative       %      Cumulative     Number of     Posterior
+Depth      Gain     Lift       Lift      Response   % Response   Observations   Probability
+
+   5    486.425   5.86425     5.86425     94.1176     94.1176         102         0.98292  
+  10    455.551   5.24372     5.55551     84.1584     89.1626         101         0.89879  
+  15    373.456   3.08454     4.73456     49.5050     75.9868         101         0.68480  
+  20    304.615   1.97411     4.04615     31.6832     64.9383         101         0.42561  
+  25    250.250   1.34389     3.50250     21.5686     56.2130         102         0.17749  
+  30    209.489   1.04874     3.09489     16.8317     49.6711         101         0.07699  
+  35    168.916   0.24676     2.68916      3.9604     43.1594         101         0.04134  
+  40    136.923   0.12338     2.36923      1.9802     38.0247         101         0.02709  
+  45    113.158   0.24434     2.13158      3.9216     34.2105         102         0.01794  
+  50     93.135   0.12338     1.93135      1.9802     30.9970         101         0.01288  
+  55     77.862   0.24676     1.77862      3.9604     28.5458         101         0.00979  
+  60     64.103   0.12338     1.64103      1.9802     26.3374         101         0.00758  
+  65     51.866   0.06109     1.51866      0.9804     24.3736         102         0.00572  
+  70     42.367   0.18507     1.42367      2.9703     22.8491         101         0.00449  
+  75     32.901   0.00000     1.32901      0.0000     21.3298         101         0.00374  
+  80     24.615   0.00000     1.24615      0.0000     20.0000         101         0.00338  
+  85     17.234   0.00000     1.17234      0.0000     18.8153         102         0.00331  
+  90     10.739   0.00000     1.10739      0.0000     17.7729         101         0.00327  
+  95      4.926   0.00000     1.04926      0.0000     16.8399         101         0.00324  
+ 100      0.000   0.06169     1.00000      0.9901     16.0494         101         0.00321  
+ 
+                                                                                               
+ 
+ 
+Assessment Score Distribution
+
+Data Role=TRAIN Target Variable=Attrition_Flag Target Label=' '
+
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+
+ 0.95-1.00       401          14        0.98210         5.8550 
+ 0.90-0.95       115          17        0.92953         1.8623 
+ 0.85-0.90        58          15        0.87873         1.0299 
+ 0.80-0.85        47          11        0.82402         0.8183 
+ 0.75-0.80        31          29        0.77180         0.8465 
+ 0.70-0.75        22          25        0.72172         0.6631 
+ 0.65-0.70        29          21        0.67494         0.7054 
+ 0.60-0.65        33          32        0.62652         0.9170 
+ 0.55-0.60        34          32        0.57235         0.9312 
+ 0.50-0.55        27          28        0.52390         0.7760 
+ 0.45-0.50        23          39        0.47458         0.8747 
+ 0.40-0.45        22          99        0.42231         1.7071 
+ 0.35-0.40        26          59        0.37970         1.1992 
+ 0.30-0.35        30          44        0.32293         1.0440 
+ 0.25-0.30        26          48        0.27481         1.0440 
+ 0.20-0.25        24          56        0.22230         1.1287 
+ 0.15-0.20        27          85        0.17375         1.5801 
+ 0.10-0.15        29         111        0.12215         1.9752 
+ 0.05-0.10        32         336        0.07110         5.1919 
+ 0.00-0.05       103        4848        0.01005        69.8505 
+
+
+Data Role=VALIDATE Target Variable=Attrition_Flag Target Label=' '
+
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+
+ 0.95-1.00       102           6        0.98123         5.3333 
+ 0.90-0.95        49           4        0.92634         2.6173 
+ 0.85-0.90        19           3        0.88412         1.0864 
+ 0.80-0.85        13           9        0.82364         1.0864 
+ 0.75-0.80        15           9        0.77214         1.1852 
+ 0.70-0.75        10          12        0.72787         1.0864 
+ 0.65-0.70         7          13        0.67315         0.9877 
+ 0.60-0.65         9           3        0.62455         0.5926 
+ 0.55-0.60         6          13        0.57719         0.9383 
+ 0.50-0.55         7          11        0.52846         0.8889 
+ 0.45-0.50         7          11        0.47417         0.8889 
+ 0.40-0.45         5          25        0.42165         1.4815 
+ 0.35-0.40         9          17        0.37841         1.2840 
+ 0.30-0.35         4           4        0.33201         0.3951 
+ 0.25-0.30         7          12        0.27367         0.9383 
+ 0.20-0.25         5           9        0.22406         0.6914 
+ 0.15-0.20         7          25        0.17165         1.5802 
+ 0.10-0.15         9          46        0.12275         2.7160 
+ 0.05-0.10        13          83        0.06984         4.7407 
+ 0.00-0.05        22        1385        0.01020        69.4815 

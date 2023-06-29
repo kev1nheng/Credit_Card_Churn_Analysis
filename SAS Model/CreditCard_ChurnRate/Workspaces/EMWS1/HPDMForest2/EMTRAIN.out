@@ -1,0 +1,257 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+Role         Level         Count
+
+ASSESS     NOMINAL           1    
+ID         INTERVAL          1    
+INPUT      INTERVAL          5    
+INPUT      NOMINAL           6    
+TARGET     BINARY            1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Model Events
+
+                                          Number
+                           Measurement      of
+    Target        Event       Level       Levels      Order       Label
+
+Attrition_Flag      1        BINARY          2      Descending         
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Predicted and decision variables
+
+Type             Variable                    Label
+
+TARGET       Attrition_Flag                                  
+PREDICTED    P_Attrition_Flag1    Predicted: Attrition_Flag=1
+RESIDUAL     R_Attrition_Flag1    Residual: Attrition_Flag=1 
+PREDICTED    P_Attrition_Flag0    Predicted: Attrition_Flag=0
+RESIDUAL     R_Attrition_Flag0    Residual: Attrition_Flag=0 
+FROM         F_Attrition_Flag     From: Attrition_Flag       
+INTO         I_Attrition_Flag     Into: Attrition_Flag       
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The HPFOREST Procedure
+
+      Performance Information
+
+Execution Mode       Single-Machine
+Number of Threads    4             
+
+
+                 Data Access Information
+ 
+Data                          Engine    Role     Path
+
+WORK.HPDMFOREST2_TRAINDATA    V9        Input    On Client
+
+
+                   Model Information
+ 
+Parameter                          Value
+
+Variables to Try                       3    (Default)  
+Maximum Trees                         65               
+Inbag Fraction                       0.6               
+Prune Fraction                         0    (Default)  
+Prune Threshold                      0.1    (Default)  
+Leaf Fraction                    0.00001               
+Leaf Size Setting                      1    (Default)  
+Leaf Size Used                         1               
+Category Bins                         30               
+Interval Bins                        100               
+Minimum Category Size                  5               
+Node Size                         100000    (Default)  
+Maximum Depth                         50               
+Alpha                               0.05               
+Exhaustive                          5000               
+Rows of Sequence to Skip               5    (Default)  
+Split Criterion                        .    Gini       
+Preselection Method                    .    Loh        
+Missing Value Handling                 .    Valid value
+
+
+                          Number of Observations
+ 
+Type                                 NTrain          NValid          NTotal
+
+Number of Observations Read            7088            2025            9113
+Number of Observations Used            7088            2025            9113
+
+
+               Baseline Fit Statistics
+ 
+Statistic                        Value      Validation
+
+Average Square Error             0.135           0.135
+Misclassification Rate           0.161           0.160
+Log Loss                         0.441           0.440
+
+
+                                                                    Fit Statistics
+ 
+                          Average    Average    Average
+                           Square     Square     Square    Misclassification    Misclassification    Misclassification        Log       Log        Log
+   Number       Number      Error      Error      Error                 Rate                 Rate                 Rate       Loss      Loss       Loss
+ of Trees    of Leaves    (Train)      (OOB)    (Valid)              (Train)                (OOB)              (Valid)    (Train)     (OOB)    (Valid)
+
+        1           51     0.0578     0.0629     0.0682               0.0762               0.0804               0.0933      0.213     0.255      0.240
+        2          117     0.0498     0.0653     0.0587               0.0636               0.0846               0.0785      0.177     0.328      0.202
+        3          172     0.0471     0.0627     0.0557               0.0621               0.0813               0.0770      0.167     0.286      0.189
+        4          214     0.0448     0.0587     0.0529               0.0597               0.0776               0.0751      0.160     0.244      0.181
+        5          265     0.0420     0.0559     0.0501               0.0576               0.0739               0.0696      0.150     0.220      0.171
+        6          325     0.0400     0.0538     0.0492               0.0515               0.0694               0.0681      0.145     0.204      0.169
+        7          373     0.0408     0.0539     0.0496               0.0549               0.0708               0.0696      0.147     0.200      0.170
+        8          437     0.0405     0.0530     0.0493               0.0542               0.0688               0.0706      0.146     0.193      0.169
+        9          484     0.0413     0.0533     0.0496               0.0547               0.0698               0.0711      0.149     0.194      0.170
+       10          547     0.0412     0.0536     0.0493               0.0532               0.0707               0.0721      0.150     0.190      0.170
+       11          615     0.0407     0.0526     0.0486               0.0542               0.0685               0.0686      0.149     0.185      0.169
+       12          661     0.0412     0.0526     0.0489               0.0549               0.0686               0.0686      0.150     0.185      0.169
+       13          724     0.0418     0.0532     0.0497               0.0556               0.0699               0.0696      0.152     0.186      0.172
+       14          778     0.0415     0.0524     0.0497               0.0554               0.0691               0.0716      0.151     0.183      0.172
+       15          838     0.0416     0.0521     0.0499               0.0554               0.0685               0.0741      0.151     0.182      0.173
+       16          899     0.0414     0.0517     0.0497               0.0556               0.0682               0.0721      0.151     0.181      0.172
+       17          948     0.0412     0.0514     0.0492               0.0554               0.0677               0.0736      0.150     0.180      0.171
+       18         1007     0.0410     0.0512     0.0495               0.0549               0.0677               0.0731      0.150     0.179      0.172
+       19         1051     0.0414     0.0514     0.0495               0.0550               0.0669               0.0731      0.152     0.181      0.172
+       20         1103     0.0415     0.0514     0.0493               0.0564               0.0673               0.0731      0.152     0.180      0.172
+       21         1141     0.0416     0.0512     0.0491               0.0557               0.0662               0.0716      0.152     0.180      0.171
+       22         1212     0.0413     0.0508     0.0489               0.0550               0.0662               0.0701      0.151     0.179      0.171
+       23         1269     0.0413     0.0508     0.0490               0.0547               0.0673               0.0711      0.151     0.178      0.171
+       24         1338     0.0409     0.0504     0.0488               0.0538               0.0669               0.0716      0.150     0.177      0.171
+       25         1391     0.0406     0.0501     0.0486               0.0532               0.0665               0.0726      0.149     0.176      0.170
+       26         1440     0.0406     0.0501     0.0485               0.0535               0.0669               0.0701      0.149     0.176      0.169
+       27         1494     0.0403     0.0497     0.0482               0.0530               0.0656               0.0711      0.148     0.174      0.169
+       28         1563     0.0401     0.0494     0.0481               0.0525               0.0648               0.0691      0.148     0.173      0.168
+       29         1628     0.0398     0.0490     0.0475               0.0525               0.0642               0.0691      0.147     0.172      0.167
+       30         1689     0.0399     0.0491     0.0473               0.0515               0.0645               0.0681      0.148     0.173      0.167
+       31         1761     0.0397     0.0489     0.0471               0.0514               0.0646               0.0667      0.147     0.172      0.166
+       32         1808     0.0399     0.0491     0.0471               0.0511               0.0653               0.0672      0.148     0.173      0.167
+       33         1881     0.0398     0.0488     0.0470               0.0506               0.0653               0.0667      0.148     0.172      0.166
+       34         1931     0.0399     0.0490     0.0471               0.0508               0.0655               0.0672      0.149     0.173      0.167
+       35         1980     0.0398     0.0487     0.0470               0.0515               0.0653               0.0672      0.148     0.173      0.167
+       36         2047     0.0398     0.0486     0.0471               0.0504               0.0649               0.0662      0.148     0.172      0.167
+       37         2096     0.0396     0.0484     0.0469               0.0508               0.0650               0.0647      0.147     0.171      0.167
+       38         2143     0.0397     0.0485     0.0472               0.0505               0.0648               0.0662      0.148     0.172      0.167
+       39         2198     0.0397     0.0485     0.0472               0.0502               0.0639               0.0667      0.148     0.172      0.167
+       40         2264     0.0396     0.0484     0.0472               0.0506               0.0642               0.0667      0.148     0.171      0.167
+       41         2327     0.0396     0.0484     0.0474               0.0506               0.0645               0.0681      0.148     0.171      0.168
+       42         2380     0.0397     0.0484     0.0475               0.0511               0.0649               0.0686      0.148     0.172      0.168
+       43         2430     0.0396     0.0482     0.0475               0.0508               0.0638               0.0672      0.148     0.171      0.168
+       44         2490     0.0396     0.0482     0.0474               0.0515               0.0639               0.0677      0.148     0.171      0.168
+       45         2546     0.0394     0.0479     0.0472               0.0506               0.0635               0.0672      0.147     0.170      0.167
+       46         2603     0.0393     0.0478     0.0471               0.0514               0.0636               0.0657      0.147     0.170      0.167
+       47         2658     0.0391     0.0476     0.0469               0.0499               0.0629               0.0667      0.146     0.169      0.167
+       48         2716     0.0390     0.0474     0.0468               0.0499               0.0622               0.0662      0.146     0.169      0.166
+       49         2758     0.0389     0.0473     0.0467               0.0497               0.0615               0.0657      0.146     0.169      0.166
+       50         2806     0.0389     0.0472     0.0467               0.0502               0.0615               0.0657      0.146     0.168      0.166
+       51         2874     0.0389     0.0472     0.0467               0.0502               0.0612               0.0652      0.146     0.169      0.166
+       52         2926     0.0390     0.0474     0.0468               0.0499               0.0618               0.0652      0.146     0.169      0.166
+       53         2978     0.0390     0.0474     0.0467               0.0502               0.0619               0.0642      0.146     0.169      0.166
+       54         3039     0.0390     0.0473     0.0465               0.0498               0.0617               0.0642      0.146     0.169      0.166
+       55         3096     0.0391     0.0474     0.0466               0.0505               0.0619               0.0642      0.146     0.169      0.166
+       56         3157     0.0390     0.0473     0.0466               0.0502               0.0614               0.0637      0.146     0.169      0.166
+       57         3212     0.0390     0.0474     0.0467               0.0506               0.0611               0.0652      0.146     0.169      0.166
+       58         3278     0.0389     0.0472     0.0465               0.0506               0.0614               0.0642      0.146     0.169      0.165
+       59         3327     0.0390     0.0473     0.0466               0.0501               0.0615               0.0647      0.146     0.169      0.165
+       60         3379     0.0388     0.0471     0.0464               0.0498               0.0617               0.0642      0.145     0.168      0.165
+       61         3445     0.0388     0.0471     0.0464               0.0499               0.0619               0.0642      0.145     0.168      0.165
+       62         3495     0.0388     0.0470     0.0463               0.0495               0.0617               0.0642      0.145     0.168      0.165
+       63         3549     0.0388     0.0470     0.0463               0.0494               0.0618               0.0642      0.145     0.168      0.165
+       64         3605     0.0388     0.0470     0.0463               0.0492               0.0618               0.0647      0.145     0.168      0.165
+       65         3655     0.0388     0.0469     0.0462               0.0497               0.0614               0.0632      0.145     0.168      0.164
+
+
+                                         Loss Reduction Variable Importance
+ 
+                                      Number                     OOB       Valid                     OOB       Valid
+Variable                            of Rules        Gini        Gini        Gini      Margin      Margin      Margin
+
+G_Total_Trans_Ct                         532    0.042040     0.03842     0.03340    0.084080    0.082640    0.075422
+RANGE_LOG_Total_Trans_Amt                762    0.032650     0.02483     0.02603    0.065300    0.056113    0.057969
+RANGE_Total_Revolving_Bal                341    0.024885     0.02091     0.02165    0.049770    0.045858    0.046614
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1           377    0.021530     0.01593     0.01691    0.043060    0.036991    0.039525
+RANGE_SQRT_Avg_Utilization_Ratio         182    0.016629     0.01452     0.01212    0.033258    0.031115    0.029195
+G_Total_Relationship_Count               368    0.012914     0.01051     0.01365    0.025828    0.023028    0.025939
+G_Contacts_Count_12_mon                  271    0.004710     0.00350     0.00307    0.009419    0.009038    0.008910
+G_Months_Inactive_12_mon                 255    0.003753     0.00209     0.00318    0.007507    0.006022    0.006259
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1          250    0.005292     0.00159     0.00219    0.010584    0.006585    0.006945
+G_Customer_Age                           138    0.001857     0.00051     0.00015    0.003715    0.002814    0.002373
+G_Months_on_book                         114    0.000757    -0.00024    -0.00040    0.001514    0.000966    0.000740
+
+
+          Procedure Task Timing
+ 
+Task                 Seconds      Percent
+
+Reading Data            0.02       1.14% 
+Training Forest         1.56      98.86% 
+Saving Model            0.00       0.00% 
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The ASTORE Procedure
+
+            Key Information
+
+27662C146EEA84F32B3E9B6AFB4C571C2F81EFCF
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The ASTORE Procedure
+
+         Basic Information
+
+Procedure Name    hpforest          
+Timestamp         09Apr2022:15:37:39
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The ASTORE Procedure
+
+                                   Input variables
+
+RANGE_LOG_Total_Trans_Amt                      8    Input    Interval    Numeric     
+RANGE_SQRT_Avg_Utilization_Ratio               8    Input    Interval    Numeric     
+RANGE_SQRT_Total_Amt_Chng_Q4_Q1                8    Input    Interval    Numeric     
+RANGE_SQRT_Total_Ct_Chng_Q4_Q1                 8    Input    Interval    Numeric     
+RANGE_Total_Revolving_Bal                      8    Input    Interval    Numeric     
+G_Contacts_Count_12_mon                        8    Input    Class       Numeric     
+G_Customer_Age                                 8    Input    Class       Numeric     
+G_Months_Inactive_12_mon                       8    Input    Class       Numeric     
+G_Months_on_book                               8    Input    Class       Numeric     
+G_Total_Relationship_Count                     8    Input    Class       Numeric     
+G_Total_Trans_Ct                               8    Input    Class       Numeric     
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The ASTORE Procedure
+
+                              Output variables
+ 
+Name                       Length    Type         Label
+
+P_Attrition_Flag1               8    Numeric      Predicted: Attrition_Flag=1
+P_Attrition_Flag0               8    Numeric      Predicted: Attrition_Flag=0
+I_Attrition_Flag               32    Character    Into: Attrition_Flag       
+_WARN_                          4    Character    Warnings                   
